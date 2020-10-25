@@ -1,15 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import 'antd/dist/antd.css';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import axios from "axios";
 
-function NormalLoginForm () {
+const NormalLoginForm = () => {
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
+    const [{username, password}, setUser] = useState({username:"", password:""})
+
+    function handleChange(event)
+    {
+        const {value, name} = event.target;
+        setUser((prevValue) => {
+            return ({
+                ...prevValue,
+                [name] : value
+            })
+        })
+    }
+
+    function handleSubmit(event)
+    {
+        event.preventDefault()
+        setUser({username:"", password:""})
+    }
 
   return (
     <Form
+      onSubmit={handleSubmit}
       name="normal_login"
       className="login-form"
       initialValues={{
@@ -26,7 +46,12 @@ function NormalLoginForm () {
           },
         ]}
       >
-        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+        <Input 
+          onChange={handleChange} 
+          value={username} 
+          name="username" 
+          prefix={<UserOutlined className="site-form-item-icon" />} 
+          placeholder="Username" />
       </Form.Item>
       <Form.Item
         name="password"
@@ -38,6 +63,9 @@ function NormalLoginForm () {
         ]}
       >
         <Input
+          onChange={handleChange}
+          value={password}
+          name="password"
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder="Password"

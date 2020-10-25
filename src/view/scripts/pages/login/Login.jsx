@@ -6,10 +6,8 @@ function Login()
 {
     return (
         <div>
-            <Row justify="center" align="middle">
-                <Col span={8} />
-                <Col span={8}><NormalLoginForm /></Col>
-                <Col span={8} />
+            <Row style={{minHeight: '100vh'}} justify="center" align="middle">
+                <Col span={6}><NormalLoginForm /></Col>
             </Row>
         </div>
     )
