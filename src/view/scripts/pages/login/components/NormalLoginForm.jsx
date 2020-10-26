@@ -8,7 +8,7 @@ const NormalLoginForm = () => {
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
   };
-    const [{username, password}, setUser] = useState({username:"", password:""})
+    const [{username, password}, setUser] = useState({username:"", password:""});
 
     function handleChange(event)
     {
@@ -23,8 +23,9 @@ const NormalLoginForm = () => {
 
     function handleSubmit(event)
     {
-        event.preventDefault()
-        setUser({username:"", password:""})
+        
+        console.log("handleSubmit")
+        setUser({username:"", password:""});
     }
 
   return (
@@ -85,7 +86,7 @@ const NormalLoginForm = () => {
         <Button type="primary" htmlType="submit" className="login-form-button">
           Log in
         </Button>
-        Or <a href="">register now!</a>
+         Or <a href="">register now!</a>
       </Form.Item>
     </Form>
   );
