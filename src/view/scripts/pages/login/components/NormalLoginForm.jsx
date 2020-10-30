@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import {Form, Input, Button, Checkbox, Typography} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
-import axios from "axios";
 import { Link, useHistory  } from 'react-router-dom';
+import {sendLoginPost} from "../../../../../core/login-signup/loginRequest";
+
 
 const NormalLoginForm = () => {
 
@@ -12,27 +13,17 @@ const NormalLoginForm = () => {
 
   const history = useHistory();
   const onSuccess = ({data}) => {
-    console.log(data)
     localStorage.setItem("userToken", data.token);
-    history.replace("/signup");
+    history.replace("/account");
   };
 
   const onFailure = (error) => {
-    const {data} = error.response;
-    setFailureMessage(data);
+    setFailureMessage("Invalid Login Attempt!");
     setIsFailed(true);
   };
 
   function onFinish(values) {
-
-    axios({
-      method: 'post',
-      url: 'https://localhost:44373/api/account/login',
-      data: {
-        Email: values.email,
-        Password: values.password
-      }
-    }).then(onSuccess).catch(onFailure);
+    sendLoginPost({Email:values.email, Password:values.password}).then(onSuccess).catch(onFailure);
   };
 
   return (<Form id="components-form-demo-normal-login" name="normal_login" className="login-form" initialValues={{
