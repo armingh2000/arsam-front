@@ -1,12 +1,7 @@
 import React, {useState} from 'react';
 import {sendSignupPost} from "../../../../../core/login-signup/signupRequest";
-import {
-  Form,
-  Input,
-  Button,
-  Typography
-} from 'antd';
-import { useHistory  } from 'react-router-dom';
+import {Form, Input, Button, Typography} from 'antd';
+import {useHistory} from 'react-router-dom';
 
 const formItemLayout = {
   labelCol: {
@@ -48,10 +43,8 @@ const RegistrationForm = () => {
 
   const history = useHistory();
 
-
   const onFailure = (error) => {
-    const err = error.response.data;
-    setFailureMessage(err[""][0]);
+    setFailureMessage("username used");
     setIsFailed(true);
   };
 
