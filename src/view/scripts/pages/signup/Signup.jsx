@@ -8,7 +8,8 @@ const Signup = () => {
     <Row style={{
         minHeight: '100vh'
       }} justify="center" align="middle">
-      <Col span={10}><RegistrationForm/></Col>
+      <Col span={9}><RegistrationForm/></Col>
+      <Col span={2}/>
     </Row>
   </div>
 }
