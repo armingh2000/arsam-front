@@ -3,7 +3,7 @@ import React from "react";
 
 const Account = () =>
 {
-  return <p>account</p>;
+  return <p>{localStorage.getItem("userToken")}</p>;
 };
 
 export default Account;

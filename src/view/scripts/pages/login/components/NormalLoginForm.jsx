@@ -18,8 +18,17 @@ const NormalLoginForm = () => {
   };
 
   const onFailure = (error) => {
-    setFailureMessage("Invalid Login Attempt!");
-    setIsFailed(true);
+    if(error.response.status === 401)
+    {
+      console.log("here");
+      setFailureMessage("Email is not confirmed yet!");
+      setIsFailed(true);
+    }
+    else
+    {
+      setFailureMessage("Invalid Login Attempt!");
+      setIsFailed(true);
+    }
   };
 
   function onFinish(values) {

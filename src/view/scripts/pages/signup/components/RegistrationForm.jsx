@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {sendSignupPost} from "../../../../../core/login-signup/signupRequest";
 import {
   Form,
   Input,
-  Row,
-  Col,
-  Checkbox,
-  Button
+  Button,
+  Typography
 } from 'antd';
+import { useHistory  } from 'react-router-dom';
 
 const formItemLayout = {
   labelCol: {
@@ -42,11 +42,32 @@ const tailFormItemLayout = {
 const RegistrationForm = () => {
   const [form] = Form.useForm();
 
+  const [failureMessage, setFailureMessage] = useState("");
+  const [isFailed, setIsFailed] = useState(false);
+  const {Text} = Typography;
+
+  const history = useHistory();
+
+
+  const onFailure = (error) => {
+    const err = error.response.data;
+    setFailureMessage(err[""][0]);
+    setIsFailed(true);
+  };
+
+  const onSuccess = (data) => {
+    localStorage.setItem("userToken", data.data.token);
+    history.replace("/account");
+  };
+
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    sendSignupPost({"EmailAddress": values.email, "Password": values.password, "PasswordConfirmation": values.confirm}).then(onSuccess).catch(onFailure);
   };
 
   return (<Form {...formItemLayout} form={form} name="register" onFinish={onFinish} scrollToFirstError="scrollToFirstError">
+    <Form.Item hidden={!isFailed}>
+      <Text type="danger">{failureMessage}</Text>
+    </Form.Item>
     <Form.Item name="email" label="E-mail" rules={[
         {
           type: 'email',
@@ -59,9 +80,13 @@ const RegistrationForm = () => {
       <Input/>
     </Form.Item>
 
-    <Form.Item name="password" label="Password" rules={[{
+    <Form.Item name="password" label="Password" rules={[
+        {
           required: true,
           message: 'Please input your password!'
+        }, {
+          min: 3,
+          message: 'Password must be at least in length of 3!'
         }
       ]} hasFeedback="hasFeedback">
       <Input.Password/>
@@ -86,27 +111,29 @@ const RegistrationForm = () => {
     </Form.Item>
 
     {
-    // TODO: recaptcha
-    // <Form.Item label="Captcha" extra="We must make sure that your are a human.">
-    //   <Row gutter={8}>
-    //     <Col span={12}>
-    //       <Form.Item name="captcha" noStyle="noStyle" rules={[{
-    //             required: true,
-    //             message: 'Please input the captcha you got!'
-    //           }
-    //         ]}>
-    //         <Input/>
-    //       </Form.Item>
-    //     </Col>
-    //     <Col span={12}>
-    //       <Button>Get captcha</Button>
-    //     </Col>
-    //   </Row>
-    // </Form.Item>
-  }
+      // TODO: recaptcha
+      // <Form.Item label="Captcha" extra="We must make sure that your are a human.">
+      //   <Row gutter={8}>
+      //     <Col span={12}>
+      //       <Form.Item name="captcha" noStyle="noStyle" rules={[{
+      //             required: true,
+      //             message: 'Please input the captcha you got!'
+      //           }
+      //         ]}>
+      //         <Input/>
+      //       </Form.Item>
+      //     </Col>
+      //     <Col span={12}>
+      //       <Button>Get captcha</Button>
+      //     </Col>
+      //   </Row>
+      // </Form.Item>
+    }
 
     <Form.Item {...tailFormItemLayout}>
-      <Button type="primary" htmlType="submit" style={{width:"100%"}}>
+      <Button type="primary" htmlType="submit" style={{
+          width: "100%"
+        }}>
         Register
       </Button>
     </Form.Item>
