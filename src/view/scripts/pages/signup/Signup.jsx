@@ -4,12 +4,12 @@ import {Row, Col} from 'antd';
 
 const Signup = () => {
 
-  return <div>
+  return <div id="components-form-demo-normal-signup">
     <Row style={{
         minHeight: '100vh'
       }} justify="center" align="middle">
-      <Col span={9}><RegistrationForm/></Col>
-      <Col span={2}/>
+      <Col span={17}><RegistrationForm/></Col>
+      <Col span={1}/>
     </Row>
   </div>
 }
