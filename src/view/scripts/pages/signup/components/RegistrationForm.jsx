@@ -57,51 +57,66 @@ const RegistrationForm = () => {
     sendSignupPost({"EmailAddress": values.email, "Password": values.password, "PasswordConfirmation": values.confirm}).then(onSuccess).catch(onFailure);
   };
 
-  return (<Form {...formItemLayout} form={form} name="register" onFinish={onFinish} scrollToFirstError="scrollToFirstError">
+  return (
+<div className="box">
+
+    <Form {...formItemLayout} form={form} name="register"
+    className="signup-form"
+    onFinish={onFinish} scrollToFirstError="scrollToFirstError">
+
+    <span className="text-center">signup</span>
+
     <Form.Item hidden={!isFailed}>
       <Text type="danger">{failureMessage}</Text>
     </Form.Item>
-    <Form.Item name="email" label="E-mail" rules={[
-        {
-          type: 'email',
-          message: 'The input is not valid E-mail!'
-        }, {
-          required: true,
-          message: 'Please input your E-mail!'
-        }
-      ]}>
-      <Input/>
-    </Form.Item>
 
-    <Form.Item name="password" label="Password" rules={[
-        {
-          required: true,
-          message: 'Please input your password!'
-        }, {
-          min: 3,
-          message: 'Password must be at least in length of 3!'
-        }
-      ]} hasFeedback="hasFeedback">
-      <Input.Password/>
-    </Form.Item>
-
-    <Form.Item name="confirm" label="Confirm Password" dependencies={['password']} hasFeedback="hasFeedback" rules={[
-        {
-          required: true,
-          message: 'Please confirm your password!'
-        },
-        ({getFieldValue}) => ({
-          validator(rule, value) {
-            if (!value || getFieldValue('password') === value) {
-              return Promise.resolve();
-            }
-
-            return Promise.reject('The two passwords that you entered do not match!');
+    <div className="input-container">
+      <Form.Item name="email" label="E-mail" rules={[
+          {
+            type: 'email',
+            message: 'The input is not valid E-mail!'
+          }, {
+            required: true,
+            message: 'Please input your E-mail!'
           }
-        })
-      ]}>
-      <Input.Password/>
-    </Form.Item>
+        ]}>
+        <Input/>
+      </Form.Item>
+    </div>
+
+    <div className="input-container">
+      <Form.Item name="password" label="Password" rules={[
+          {
+            required: true,
+            message: 'Please input your password!'
+          }, {
+            min: 3,
+            message: 'Password must be at least in length of 3!'
+          }
+        ]} hasFeedback="hasFeedback">
+        <Input.Password/>
+      </Form.Item>
+    </div>
+
+    <div className="input-container">
+      <Form.Item name="confirm" label="Confirm Password" dependencies={['password']} hasFeedback="hasFeedback" rules={[
+          {
+            required: true,
+            message: 'Please confirm your password!'
+          },
+          ({getFieldValue}) => ({
+            validator(rule, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+
+              return Promise.reject('The two passwords that you entered do not match!');
+            }
+          })
+        ]}>
+        <Input.Password/>
+      </Form.Item>
+    </div>
 
     {
       // TODO: recaptcha
@@ -130,7 +145,8 @@ const RegistrationForm = () => {
         Register
       </Button>
     </Form.Item>
-  </Form>);
+  </Form>
+</div>);
 };
 
 export default RegistrationForm;

@@ -3,7 +3,7 @@ import NormalLoginForm from "./components/NormalLoginForm";
 import {Row, Col} from 'antd';
 
 function Login() {
-  return (<div>
+  return (<div id="components-form-demo-normal-login">
     <Row style={{
         minHeight: '100vh'
       }} justify="center" align="middle">
