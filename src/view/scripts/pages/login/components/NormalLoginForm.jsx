@@ -31,7 +31,6 @@ const NormalLoginForm = () => {
   function onFinish(values) {
     sendLoginPost({Email: values.email, Password: values.password}).then(onSuccess).catch(onFailure);
   };
-  console.log(localStorage.getItem("userToken"));
 
   return (
   <div className="box">

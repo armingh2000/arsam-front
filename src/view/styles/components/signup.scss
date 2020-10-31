@@ -3,12 +3,6 @@
 #components-form-demo-normal-signup .signup-form {
   max-width: 300px;
 }
-#components-form-demo-normal-signup .signup-form-forgot {
-  float: right;
-}
-#components-form-demo-normal-signup .ant-col-rtl .signup-form-forgot {
-  float: left;
-}
 #components-form-demo-normal-signup .signup-form-button {
   width: 100%;
 }
@@ -31,7 +25,10 @@
     text-align: center;
 }
 #components-form-demo-normal-signup .box{
-
+  position:absolute;
+	left:50%;
+	top:50%;
+	transform: translate(-50%,-50%);
   background-color: rgba(0, 0, 0, 0.89);
 	border-radius:3px;
 	padding:70px 100px;
@@ -46,13 +43,13 @@ background-color: #000;
 }
 
 #components-form-demo-normal-signup .input-container label{
-	position:absolute;
-	top:0px;
-	left:0px;
-	font-size:16px;
-	color:#fff;
+  position:absolute;
+  top:0px;
+  left:0px;
+  font-size:16px;
+  color:#fff;
     pointer-event:none;
-	transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 // background-color: #000;
 }
 #components-form-demo-normal-signup .input-container Input{
@@ -72,8 +69,8 @@ background-color: #000;
 }
 #components-form-demo-normal-signup .input-container Input:focus ~ label,
 #components-form-demo-normal-signup .input-container Input:valid ~ label{
-	top:-12px;
-	font-size:12px;
+  top:-12px;
+  font-size:12px;
 }
 
 #components-form-demo-normal-signup .btn {

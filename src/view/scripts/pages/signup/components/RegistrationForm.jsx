@@ -39,6 +39,8 @@ const RegistrationForm = () => {
 
   const [failureMessage, setFailureMessage] = useState("");
   const [isFailed, setIsFailed] = useState(false);
+  const [verificationMessage, setVerificationMessage] = useState("");
+  const [isVerified, setIsVerified] = useState(null);
   const {Text} = Typography;
 
   const history = useHistory();
@@ -50,7 +52,8 @@ const RegistrationForm = () => {
 
   const onSuccess = (data) => {
     localStorage.setItem("userToken", data.data.token);
-    history.replace("/account");
+    setIsVerified(false);
+    setVerificationMessage("Please confirm your Email!");
   };
 
   const onFinish = (values) => {
@@ -66,8 +69,9 @@ const RegistrationForm = () => {
 
     <span className="text-center">signup</span>
 
-    <Form.Item hidden={!isFailed}>
-      <Text type="danger">{failureMessage}</Text>
+    <Form.Item hidden={!isFailed || !isVerified}>
+      <Text type="danger">{!isFailed && failureMessage}</Text>
+      <Text type="success">{!isVerified && verificationMessage}</Text>
     </Form.Item>
 
     <div className="input-container">
@@ -138,7 +142,7 @@ const RegistrationForm = () => {
       // </Form.Item>
     }
 
-    <Form.Item {...tailFormItemLayout}>
+    <Form.Item >
       <div className="container">
         <Button type="primary" htmlType="submit" className="signup-form-button btn">
         <svg width="277" height="62">
