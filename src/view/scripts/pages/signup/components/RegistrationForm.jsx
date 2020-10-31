@@ -139,11 +139,20 @@ const RegistrationForm = () => {
     }
 
     <Form.Item {...tailFormItemLayout}>
-      <Button type="primary" htmlType="submit" style={{
-          width: "100%"
-        }}>
-        Register
-      </Button>
+      <div className="container">
+        <Button type="primary" htmlType="submit" className="signup-form-button btn">
+        <svg width="277" height="62">
+          <defs>
+            <linearGradient id="grad1">
+              <stop offset="0%" stop-color="#5adc9f" />
+              <stop offset="100%" stop-color="#71eaf5" />
+            </linearGradient>
+          </defs>
+          <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+        </svg>
+        <span>Register</span>
+        </Button>
+      </div>
     </Form.Item>
   </Form>
 </div>);
