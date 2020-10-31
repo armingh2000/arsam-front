@@ -10,8 +10,8 @@ const clientId = '478986072183-a3b3l9p0p8bdn4ghjgr52m4ilu97v6fm.apps.googleuserc
 function GLogin() {
   const history = useHistory();
   const onSuccess = (res) => {
-    sendGLoginPost({Email:res.email, Password:res.password})
-    .then((data) => {localStorage.setItem("userToken", data.token);})
+    sendGLoginPost(res.tokenId)
+    .then(({data}) => {localStorage.setItem("userToken", data.token);})
     .catch(() => {alert("Ran into problem. Could not log you in. Please try again!");});
     history.replace("/account");
     refreshTokenSetup(res);

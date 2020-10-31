@@ -16,10 +16,7 @@ export const refreshTokenSetup = (res) => {
     const newAuthRes = await res.reloadAuthResponse();
     refreshTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000;
     // saveUserToken(newAuthRes.access_token);  <-- save new token
-    sendLoginPost({
-        Email: newAuthRes.email,
-        Password: newAuthRes.password
-      })
+    sendLoginPost(newAuthRes.tokenId)
       .then(({data}) => {
         localStorage.setItem("userToken", data.token);
       })
