@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {Form, Input, Button, Checkbox, Typography} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
-import { Link, useHistory  } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {sendLoginPost} from "../../../../../core/login-signup/loginRequest";
-
 
 const NormalLoginForm = () => {
 
   const [failureMessage, setFailureMessage] = useState("");
   const [isFailed, setIsFailed] = useState(false);
-  const { Text } = Typography;
+  const {Text} = Typography;
 
   const history = useHistory();
   const onSuccess = ({data}) => {
@@ -18,21 +17,17 @@ const NormalLoginForm = () => {
   };
 
   const onFailure = (error) => {
-    if(error.response.status === 401)
-    {
-      console.log("here");
+    if (error.response.status === 401) {
       setFailureMessage("Email is not confirmed yet!");
       setIsFailed(true);
-    }
-    else
-    {
+    } else {
       setFailureMessage("Invalid Login Attempt!");
       setIsFailed(true);
     }
   };
 
   function onFinish(values) {
-    sendLoginPost({Email:values.email, Password:values.password}).then(onSuccess).catch(onFailure);
+    sendLoginPost({Email: values.email, Password: values.password}).then(onSuccess).catch(onFailure);
   };
 
   return (<Form id="components-form-demo-normal-login" name="normal_login" className="login-form" initialValues={{
@@ -61,10 +56,10 @@ const NormalLoginForm = () => {
       </Form.Item>
 
       {
-      // TODO: forgot password manage
-      // <a className="login-form-forgot" href="">
-      //   Forgot password
-      // </a>
+        // TODO: forgot password manage
+        // <a className="login-form-forgot" href="">
+        //   Forgot password
+        // </a>
       }
     </Form.Item>
 
