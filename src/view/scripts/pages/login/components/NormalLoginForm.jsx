@@ -102,7 +102,9 @@ const NormalLoginForm = () => {
           register now!</Link>
         </div>
       </Form.Item>
-
+      <Form.Item>
+        <GLogin />
+      </Form.Item>
     </Form>
   </div>
 

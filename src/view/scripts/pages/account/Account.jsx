@@ -4,7 +4,8 @@ import GLogout from "../login/components/GLogout";
 const Account = () =>
 {
   return(<div>
-    <p>{localStorage.getItem("userToken")}</p>;
+    <p>{localStorage.getItem("userToken")}</p>
+    <GLogout />
   </div>);
 };
 
