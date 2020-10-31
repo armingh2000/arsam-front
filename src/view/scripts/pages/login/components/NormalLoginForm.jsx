@@ -3,6 +3,8 @@ import {Form, Input, Button, Checkbox, Typography} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
 import {Link, useHistory} from 'react-router-dom';
 import {sendLoginPost} from "../../../../../core/login-signup/loginRequest";
+import GLogin from "./GLogin";
+
 
 const NormalLoginForm = () => {
 
@@ -29,6 +31,7 @@ const NormalLoginForm = () => {
   function onFinish(values) {
     sendLoginPost({Email: values.email, Password: values.password}).then(onSuccess).catch(onFailure);
   };
+  console.log(localStorage.getItem("userToken"));
 
   return (
   <div className="box">
