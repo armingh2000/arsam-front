@@ -2,14 +2,14 @@ import React from "react";
 import GLogout from "../login/components/GLogout";
 
 
-const Account = () =>
+const Profile = () =>
 {
   console.log("userToken :" + localStorage.getItem("userToken"));
   return (<div>
-    <p>account</p>
+    <p>Profile</p>
     <p>{localStorage.getItem("userToken") && <GLogout />}</p>
     </div>
   );
 };
 
-export default Account;
+export default Profile;

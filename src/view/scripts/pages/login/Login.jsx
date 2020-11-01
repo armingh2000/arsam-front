@@ -14,7 +14,7 @@ function Login() {
         {localStorage.getItem("userToken") ? <GLogout /> : <GLogin />}
       </Col>
     </Row>
-  </div>)
+  </div>);
 }
 
 export default Login;
