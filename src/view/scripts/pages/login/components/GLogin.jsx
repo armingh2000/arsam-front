@@ -12,7 +12,7 @@ function GLogin() {
   const onSuccess = (res) => {
     sendGLoginPost(res.tokenId).then(({data}) => {
       localStorage.setItem("userToken", data.token);
-      history.replace("/account");
+      history.replace("/confirm");
     }).catch(() => {
       alert("Ran into problem. Please try logging in again!");
     });
