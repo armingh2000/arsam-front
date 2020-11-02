@@ -10,8 +10,11 @@ function Login() {
         minHeight: '100vh'
       }} justify="center" align="middle">
       <Col span={6}>
-        <NormalLoginForm/>
-        {localStorage.getItem("userToken") ? <GLogout /> : <GLogin />}
+        <NormalLoginForm/> {
+          localStorage.getItem("userToken")
+            ? <GLogout/>
+            : <GLogin/>
+        }
       </Col>
     </Row>
   </div>);

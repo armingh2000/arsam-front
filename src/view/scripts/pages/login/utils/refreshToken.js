@@ -12,7 +12,9 @@ export const refreshTokenSetup = (res) => {
     const newAuthRes = await res.reloadAuthResponse();
     refreshTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000;
     // saveUserToken(newAuthRes.access_token);  <-- save new token
-    sendGLoginPost(res.tokenId).then(({data}) => {
+    sendGLoginPost(res.tokenId).then(({
+      data
+    }) => {
       localStorage.setItem("userToken", data.token);
     }).catch(() => {
       alert("Ran into problem. Please try logging in again!");
