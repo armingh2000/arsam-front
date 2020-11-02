@@ -23,8 +23,8 @@ const CreateEventForm = () =>{
   };
 
 
-  const onFinish = values => {
-      console.log('Success:', values);
+  const onFinish = (values) => {
+      console.log('Success:', values.date );
     };
 
     const onFinishFailed = errorInfo => {
@@ -45,6 +45,7 @@ const CreateEventForm = () =>{
         initialValues={{ size: componentSize }}
         onValuesChange={onFormLayoutChange}
         size={componentSize}
+        onFinish={onFinish}
       >
 
         <Form.Item label="Form Size" name="size">
@@ -55,57 +56,32 @@ const CreateEventForm = () =>{
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item label="Input">
+        <Form.Item label="Event Name" name="eventName">
           <Input />
         </Form.Item>
 
-        <Form.Item label="Select">
-          <Select>
-            <Select.Option value="demo">Demo</Select.Option>
-          </Select>
+        <Form.Item label="Description" name="description">
+          <Input />
         </Form.Item>
 
-        <Form.Item label="TreeSelect">
-          <TreeSelect
-            treeData={[
-              { title: 'Light', value: 'light', children: [{ title: 'Bamboo', value: 'bamboo' }] },
-            ]}
-          />
-        </Form.Item>
-
-        <Form.Item label="Cascader">
-          <Cascader
-            options={[
-              {
-                value: 'zhejiang',
-                label: 'Zhejiang',
-                children: [
-                  {
-                    value: 'hangzhou',
-                    label: 'Hangzhou',
-                  },
-                ],
-              },
-            ]}
-          />
-        </Form.Item>
-
-        <Form.Item label="DatePicker">
+        <Form.Item label="Event Date" name="date">
           <DatePicker />
         </Form.Item>
 
-        <Form.Item label="InputNumber">
+        <Form.Item label="InputNumber" name="number">
           <InputNumber />
         </Form.Item>
 
-        <Form.Item label="Switch">
+        <Form.Item label="Task CheckList" name="checklist">
           <Switch />
         </Form.Item>
 
-        <Form.Item label="Button">
-          <Button>Button</Button>
+        <Form.Item label="Create">
+          <Button htmlType="submit" style={{width: "100%"}}>
+            Create
+          </Button>
         </Form.Item>
-        
+
       </Form>
 
 
