@@ -10,8 +10,18 @@ import {Form,
   DatePicker,
   InputNumber,
   TreeSelect,
-  Switch } from 'antd';
+  Switch,
+  Upload } from 'antd';
+import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
+
+const normFile = e => {
+  console.log('Upload event:', e);
+  if (Array.isArray(e)) {
+    return e;
+  }
+  return e && e.fileList;
+};
 
 const { Option } = Select;
 
@@ -65,12 +75,24 @@ const CreateEventForm = () =>{
             </Radio.Group>
           </Form.Item>
 
-          <Form.Item label="Event Name" name="eventName">
+          <Form.Item label="Event Name" name="eventName" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
 
-          <Form.Item label="Description" name="description">
+          <Form.Item label="Description" name="description" rules={[{ required: true }]}>
             <Input />
+          </Form.Item>
+
+          <Form.Item label="Event Image">
+            <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
+              <Upload.Dragger name="files" action="/upload.do">
+                <p className="ant-upload-drag-icon">
+                  <InboxOutlined />
+                </p>
+                <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                <p className="ant-upload-hint">Support for a single or bulk upload.</p>
+              </Upload.Dragger>
+            </Form.Item>
           </Form.Item>
 
           <Form.Item label="Event Date" name="date">
@@ -107,8 +129,6 @@ const CreateEventForm = () =>{
               Create
             </Button>
           </Form.Item>
-
-
 
         </Form>
 
