@@ -24,10 +24,11 @@ const normFile = e => {
 };
 
 const { Option } = Select;
-
+const { RangePicker } = DatePicker;
 const CreateEventForm = () =>{
   const [form] = Form.useForm();
   const [showTasks, handleShowTasks]=useState(false);
+  const [limiedMember,handleLimitedMember]=useState(false);
 
   const [componentSize, setComponentSize] = useState('default');
     const onFormLayoutChange = ({ size }) => {
@@ -43,6 +44,17 @@ const CreateEventForm = () =>{
   };
 
   const history = useHistory();
+
+  function onLimitChange(value){
+    switch (value) {
+      case true:
+        handleLimitedMember(true);
+        break;
+      case false:
+        handleLimitedMember(false);
+        break;
+    }
+  }
 
   function onTypeChange(value){
     switch (value) {
@@ -96,16 +108,19 @@ const CreateEventForm = () =>{
           </Form.Item>
 
           <Form.Item label="Event Date" name="date">
-            <DatePicker />
+            <RangePicker showTime />
           </Form.Item>
 
-          <Form.Item label="InputNumber" name="number">
-            <InputNumber />
+
+          <Form.Item label="Limited Member" name="limit" >
+            <Switch  onChange={onLimitChange}/>
           </Form.Item>
 
-          <Form.Item label="Task CheckList" name="checklist">
-            <Switch />
+          <Form.Item label="Event Member Num" name="memberNum" hidden={!limiedMember}>
+            <InputNumber min="0"/>
           </Form.Item>
+
+
 
           <Form.Item name="taskChecklistSelector" label="Task CheckList" rules={[{ required: true }]}>
           <Select
