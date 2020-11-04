@@ -87,11 +87,11 @@ const CreateEventForm = () =>{
             </Radio.Group>
           </Form.Item>
 
-          <Form.Item label="Event Name" name="eventName" rules={[{ required: true }]}>
+          <Form.Item label="Event Name" name="eventName" rules={[{ required: true, message:'Please Enter Event Name' }]}>
             <Input />
           </Form.Item>
 
-          <Form.Item label="Description" name="description" rules={[{ required: true }]}>
+          <Form.Item label="Description" name="description" rules={[{ required: true, message:'Please Enter Description' }]}>
             <Input />
           </Form.Item>
 
@@ -122,7 +122,7 @@ const CreateEventForm = () =>{
 
 
 
-          <Form.Item name="taskChecklistSelector" label="Task CheckList" rules={[{ required: true }]}>
+          <Form.Item name="taskChecklistSelector" label="Task CheckList" rules={[{ required: true, message:'Please Choose one Option' }]}>
           <Select
             placeholder="Select a option and change input text above"
             onChange={onTypeChange}
