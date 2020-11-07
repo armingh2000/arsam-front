@@ -50,6 +50,7 @@ const RegistrationForm = () => {
 
   const onSuccess = (data) => {
     localStorage.setItem("userToken", data.data.token);
+    console.log(data.data.token);
     history.replace("/account");
   };
 

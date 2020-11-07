@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from "axios";
 import {Form,
   Input,
   Button,
@@ -65,22 +66,32 @@ const CreateEventForm = () =>{
   const onFinish = (values) => {
     // console.log('Success:', values);
     // console.log(values.eventName,values.description,values.date[0], values.date[1], values.private, values.limit, values.memberNum, isProject, values.dragger);
-    const str = localStorage.getItem("userToken");
+
+    // const startdate=values.date[0];
+    // const enddate=values.date[1];
+    // console.log(startdate,enddate);
+
+    const token = localStorage.getItem("userToken");
+    console.log(token);
 
     sendCreateEventPost(
       {
-        userToken: str,
-        Name: values.eventName,
-        Description: values.description,
-        StartDate: values.date[0],
-        EndDate: values.date[1],
-        IsPrivate: values.private,
-        IsLimitedMember: values.limit,
-        MaximumNumberOfMembers: values.memberNum,
-        IsProject: isProject
-      })
-      .then(onSuccess)
-      .catch(onFailure);
+        "Name": values.eventName,
+        "Description": values.description,
+        "StartDate": values.date[0],
+        "EndDate": values.date[1],
+        "IsPrivate": values.private,
+        "IsLimitedMember": values.limit,
+        "MaximumNumberOfMembers": values.memberNum,
+        "IsProject": isProject
+      },
+      {
+        'Authorization':'Bearer ${token}'
+      }
+    );
+
+      // .then(onSuccess)
+      // .catch(onFailure);
   };
 
   // const onFinishFailed = errorInfo => {
@@ -89,6 +100,8 @@ const CreateEventForm = () =>{
 
   const onSuccess = ({data}) => {
     console.log("Success");
+
+
     // sendImageEventPost(
     //   {
     //
