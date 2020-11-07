@@ -15,7 +15,7 @@ function App() {
         <Route path="/login" component={Login}/>
         <Route path="/signup" component={Signup}/>
         <Route path="/account" component={Account}/>
-        <Route path="/showEvent" component={ShowEvent}/>
+        <Route path="/event" exact={true} component={ShowEvent}/>
         <Route path="/" component={Home}/>
       </Switch>
     </div>
