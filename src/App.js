@@ -3,6 +3,7 @@ import Login from "./view/scripts/pages/login/Login";
 import Home from "./view/scripts/pages/home/Home";
 import Signup from "./view/scripts/pages/signup/Signup";
 import Account from "./view/scripts/pages/account/Account";
+import ShowEvent from "./view/scripts/pages/event/ShowEvent"
 import CreateEvent from "./view/scripts/pages/createEvent/CreateEvent"
 import 'antd/dist/antd.css';
 import "./view/styles/main.scss";
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" component={Login}/>
         <Route path="/signup" component={Signup}/>
         <Route path="/account" component={Account}/>
+        <Route path="/event" exact={true} component={ShowEvent}/>
         <Route path="/createevent" component={CreateEvent} />
         <Route path="/" component={Home}/>
       </Switch>
