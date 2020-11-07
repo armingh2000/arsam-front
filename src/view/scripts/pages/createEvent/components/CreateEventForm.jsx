@@ -72,6 +72,7 @@ const CreateEventForm = () =>{
     // console.log(startdate,enddate);
 
     const token = localStorage.getItem("userToken");
+    //const token="eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJzb2hyYWJAZ21haWwuY29tIiwibmJmIjoxNjA0NzYzODkwLCJleHAiOjE2MDQ4NTAyOTAsImlhdCI6MTYwNDc2Mzg5MH0.o-k1j_LXSO6gUbntiNajWE1PqC82ItcX1uvxrEiMy2qS2V4hrFe0OXjKRk7mikqldCiusu3UdyBfwKsshoDArQ";
     console.log(token);
 
     sendCreateEventPost(
@@ -86,12 +87,11 @@ const CreateEventForm = () =>{
         "IsProject": isProject
       },
       {
-        'Authorization':'Bearer ${token}'
+        'Authorization':`Bearer ${token}`
       }
-    );
-
-      // .then(onSuccess)
-      // .catch(onFailure);
+    )
+       .then(onSuccess)
+       .catch(onFailure);
   };
 
   // const onFinishFailed = errorInfo => {
@@ -113,6 +113,7 @@ const CreateEventForm = () =>{
   const onFailure = (error) => {
     setIsFailed(true);
     setFailureMessage("Invalid Create Event Attempt!");
+    console.log(error);
     // if (error.response.status === 401) {
     //   setFailureMessage("Email is not confirmed yet!");
     //   setIsFailed(true);
