@@ -5,6 +5,7 @@ import {
 import EventImages from "./EventImages";
 import EventDescription from "./EventDescription";
 import EventSteps from "./EventSteps";
+import EventEditModal from "./EventEditModal"
 
 const EventGrid = () =>
 {
@@ -29,6 +30,7 @@ const EventGrid = () =>
           <Col span={10}>
             <EventSteps />
             <EventDescription name="E1" description="desc1" startDate="sd1" endDate="ed1"/>
+            <EventEditModal/>
           </Col>
         </Row>
       </div>
