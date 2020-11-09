@@ -36,8 +36,18 @@ const CreateEventForm = () =>{
   const onFormLayoutChange = ({ size }) => {
       setComponentSize(size);
   };
-
   const history = useHistory();
+
+  const eventCategory=
+  [
+    <Option key={1}>Race</Option>,
+    <Option key={2}>Performance</Option>,
+    <Option key={3}>Conference</Option>,
+    <Option key={4}>Fundraiser</Option>,
+    <Option key={5}>Festival</Option>,
+    <Option key={6}>Social Event</Option>
+  ];
+
 
 
   const [failureMessage, setFailureMessage] = useState("");
@@ -74,6 +84,7 @@ const CreateEventForm = () =>{
     const token = localStorage.getItem("userToken");
     //const token="eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJzb2hyYWJAZ21haWwuY29tIiwibmJmIjoxNjA0NzYzODkwLCJleHAiOjE2MDQ4NTAyOTAsImlhdCI6MTYwNDc2Mzg5MH0.o-k1j_LXSO6gUbntiNajWE1PqC82ItcX1uvxrEiMy2qS2V4hrFe0OXjKRk7mikqldCiusu3UdyBfwKsshoDArQ";
     console.log(token);
+    console.log(values.category);
 
     sendCreateEventPost(
       {
@@ -191,6 +202,20 @@ const CreateEventForm = () =>{
             <Option value="projectEvent">Project Event</Option>
           </Select>
           </Form.Item>
+
+
+          <Form.Item name="category" label="Event Category" rules={[{ required: true, message:'Please Choose one Option' }]}>
+            <Select
+              mode="multiple"
+              style={{ width: "100%" }}
+              placeholder="Please select"
+              defaultValue={[]}
+            >
+            {eventCategory}
+            </Select>
+          </Form.Item>
+
+
 
           {
           // <Form.Item name="but" label="but" hidden={!IsProject} >
