@@ -1,24 +1,27 @@
 import { ActionTypes } from "../constants/ActionTypes";
 
 const initialState = {
-  showEvent: {}
+  event: {
+    name:"",
+    description:"",
+    startDate:"",
+    endDate:""
+  }
 };
 
 export default ( state = initialState, {type, payload }) => {
   switch (type) {
     case ActionTypes.GET_EVENT_REQUEST:
-      console.log("state request", state);
       return state;
 
     case ActionTypes.GET_EVENT_REQUEST_SUCCESS:
-      console.log(payload);
       return {
-        showEvent: {
-          payload
-        }
+        ...state,
+        event: payload.data
       }
 
     case ActionTypes.GET_EVENT_REQUEST_FAILURE:
+      console.log("err", payload);
       return state;
 
     default:

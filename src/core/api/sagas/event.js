@@ -8,7 +8,7 @@ export function* getEventRequest({payload}) {
     setTimeout(() => {}, 1000);
     yield put ({
       type: ActionTypes.GET_EVENT_REQUEST_SUCCESS,
-      payload: sendEventGet(payload)
+      payload: yield sendEventGet(payload)
     });
   }
   catch (err) {

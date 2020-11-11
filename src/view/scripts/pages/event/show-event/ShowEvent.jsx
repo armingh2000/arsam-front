@@ -1,14 +1,16 @@
 import React from "react";
 import EventGrid from "./components/EventGrid";
 import { connect } from "react-redux";
+import { getEvent } from "../../../../../core/api/actions/EventActions";
 
-const ShowEvent = ({showEvent, dispatch}) =>
+const ShowEvent = ({event, dispatch}) =>
 {
+
     return (
-        <EventGrid dispatch={dispatch} showEvent={showEvent}/>
+        <EventGrid dispatch={dispatch} event={event.event}/>
     );
 }
 
-const mapStateToProps = (state) => ({ showEvent: state.showEvent });
+const mapStateToProps = (state) => ({ event: state.event });
 
 export default connect(mapStateToProps)(ShowEvent);
