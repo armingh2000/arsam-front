@@ -5,9 +5,11 @@ import {
 import EventImages from "./EventImages";
 import EventDescription from "./EventDescription";
 import EventSteps from "./EventSteps";
-import EventEditModal from "./EventEditModal"
+import EventEditModal from "./EventEditModal";
+import { getEventRequest } from "../../../../../../core/api/actions/EventActions";
 
-const EventGrid = () =>
+
+const EventGrid = ({showEvent, dispatch}) =>
 {
   const images = [
     {
@@ -31,6 +33,12 @@ const EventGrid = () =>
             <EventSteps />
             <EventDescription name="E1" description="desc1" startDate="sd1" endDate="ed1"/>
             <EventEditModal/>
+            <button onClick={() => dispatch(getEventRequest({
+                payload:{
+                  eventId:"1",
+                  tokenId: 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJ0ZXN0MkB0ZXN0Mi5jb20iLCJuYmYiOjE2MDUwODMyNjcsImV4cCI6MTYwNTE2OTY2NywiaWF0IjoxNjA1MDgzMjY3fQ.gmxnbH8HGHFuA0QyCGLDiOa4px8d8u3TB64XMdbwgWOP8vQ_wJ54OaIc1rOJgryxvXYE2nQqOPrWcvQEI-ZToQ'
+                }
+                }))}>Bello</button>
           </Col>
         </Row>
       </div>
