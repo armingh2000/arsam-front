@@ -27,6 +27,8 @@ const normFile = e => {
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
+
+
 const CreateEventForm = () =>{
   const [form] = Form.useForm();
   const [isProject, handleIsProject]=useState(false);
@@ -74,21 +76,17 @@ const CreateEventForm = () =>{
   }
 
  var imgVal;
+ var fileVal;
 
   const onFinish = (values) => {
-    // console.log('Success:', values);
-    // console.log(values.eventName,values.description,values.date[0], values.date[1], values.private, values.limit, values.memberNum, isProject, values.dragger);
-
-    // const startdate=values.date[0];
-    // const enddate=values.date[1];
-    // console.log(startdate,enddate);
 
     const token = localStorage.getItem("userToken");
-    //const token="eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJzb2hyYWJAZ21haWwuY29tIiwibmJmIjoxNjA0NzYzODkwLCJleHAiOjE2MDQ4NTAyOTAsImlhdCI6MTYwNDc2Mzg5MH0.o-k1j_LXSO6gUbntiNajWE1PqC82ItcX1uvxrEiMy2qS2V4hrFe0OXjKRk7mikqldCiusu3UdyBfwKsshoDArQ";
-    // console.log(token);
-    // console.log(values.category);
+    // console.log(`values: ${values}`);
     imgVal=values.dragger;
-    // console.log(values.dragger);
+    fileVal=values.files;
+    // console.log(`dragger: ${values.dragger}`);
+    console.log("files:");
+    console.log(values.files);
 
     sendCreateEventPost(
       {
@@ -109,21 +107,6 @@ const CreateEventForm = () =>{
        .catch(onFailure);
   };
 
-  // const onFinishFailed = errorInfo => {
-  //   console.log('Failed:', errorInfo);
-  // };
-
-  // const onSuccess = ({data}) => {
-  //   console.log("Success");
-  //
-  //
-  //   // sendImageEventPost(
-  //   //   {
-  //   //
-  //   //   });
-  //   //localStorage.setItem("userToken", data.token);
-  //   //history.replace("/account");
-  // };
 
   const onSuccess = (response) => {
     console.log("Success");
@@ -138,15 +121,22 @@ const CreateEventForm = () =>{
     // const data=new FormData();
     // data.append('image',imgVal);
 
-
     var FormData = require('form-data');
     var fs = require('fs');
     var data = new FormData();
-    data.append('',fs.createReadStream(`${imgVal[0].name}`));
-    // data.append('image',imgVal[0]);
+    //data.append('',fs.createReadStream(`${imgVal[0].name}`));
+    data.append('image',imgVal[0].originFileObj);
+    // data.append('image','1');
+
     // var data = new FormData(form.dragger);
     console.log("form-data:");
     console.log(data);
+
+    for(var pair of data.entries()) {
+      console.log(pair[1]);
+    }
+
+
     const token=localStorage.getItem("userToken");
     console.log("token:");
     console.log(token);
@@ -154,21 +144,15 @@ const CreateEventForm = () =>{
     console.log("event id:");
     console.log(eventId);
 
-
-
     sendImageEventPost(
       `https://localhost:44373/api/event/AddImage?eventId=${eventId}`
-      ,
-      {
+        ,
         data
-      }
         ,
       {
         'Authorization':`Bearer ${token}`
       }
       );
-    //localStorage.setItem("userToken", data.token);
-    //history.replace("/account");
   };
 
   const onFailure = (error) => {
@@ -212,13 +196,12 @@ const CreateEventForm = () =>{
             <Input />
           </Form.Item>
 
+
+
           <Form.Item label="Event Image">
             <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-
               <Upload.Dragger name="files"
-                // {
-                //   // action="/upload.do"
-                // }
+              // action="https://localhost:44373/api/event/AddImage"
               >
                 <p className="ant-upload-drag-icon">
                   <InboxOutlined />
@@ -228,6 +211,8 @@ const CreateEventForm = () =>{
               </Upload.Dragger>
             </Form.Item>
           </Form.Item>
+
+
 
           <Form.Item label="Event Date" name="date" rules={[{ required: true, message:'Please Enter Description' }]}>
             <RangePicker showTime />
@@ -245,8 +230,6 @@ const CreateEventForm = () =>{
             <InputNumber min="1" defaultValue={1}/>
           </Form.Item>
 
-
-
           <Form.Item name="eventType" label="Event Type" rules={[{ required: true, message:'Please Choose one Option' }]}>
           <Select
             placeholder="Select a option and change input text above"
@@ -258,7 +241,6 @@ const CreateEventForm = () =>{
           </Select>
           </Form.Item>
 
-
           <Form.Item name="category" label="Event Category" rules={[{ required: true, message:'Please Choose one Option' }]}>
             <Select
               mode="multiple"
@@ -269,8 +251,6 @@ const CreateEventForm = () =>{
             {eventCategory}
             </Select>
           </Form.Item>
-
-
 
           {
           // <Form.Item name="but" label="but" hidden={!IsProject} >
