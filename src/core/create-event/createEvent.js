@@ -17,10 +17,11 @@ const sendCreateEventPost = (data,headers) => {
 
 
 
-const sendImageEventPost = (data) =>{
+const sendImageEventPost = (url,data,headers) =>{
   return sendPostRequest({
-    url:"https://localhost:44373/api/event/AddImage",
-    data: data
+    url:url,
+    data: data,
+    headers: headers
   });
 };
 

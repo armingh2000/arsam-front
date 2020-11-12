@@ -15,7 +15,7 @@ import {Form,
   Upload } from 'antd';
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
-import {sendCreateEventPost} from "../../../../../core/create-event/createEvent"
+import {sendCreateEventPost, sendImageEventPost} from "../../../../../core/create-event/createEvent"
 
 const normFile = e => {
   console.log('Upload event:', e);
@@ -73,6 +73,8 @@ const CreateEventForm = () =>{
     }
   }
 
+ var imgVal;
+
   const onFinish = (values) => {
     // console.log('Success:', values);
     // console.log(values.eventName,values.description,values.date[0], values.date[1], values.private, values.limit, values.memberNum, isProject, values.dragger);
@@ -83,8 +85,10 @@ const CreateEventForm = () =>{
 
     const token = localStorage.getItem("userToken");
     //const token="eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJzb2hyYWJAZ21haWwuY29tIiwibmJmIjoxNjA0NzYzODkwLCJleHAiOjE2MDQ4NTAyOTAsImlhdCI6MTYwNDc2Mzg5MH0.o-k1j_LXSO6gUbntiNajWE1PqC82ItcX1uvxrEiMy2qS2V4hrFe0OXjKRk7mikqldCiusu3UdyBfwKsshoDArQ";
-    console.log(token);
-    console.log(values.category);
+    // console.log(token);
+    // console.log(values.category);
+    imgVal=values.dragger;
+    // console.log(values.dragger);
 
     sendCreateEventPost(
       {
@@ -109,14 +113,60 @@ const CreateEventForm = () =>{
   //   console.log('Failed:', errorInfo);
   // };
 
-  const onSuccess = ({data}) => {
+  // const onSuccess = ({data}) => {
+  //   console.log("Success");
+  //
+  //
+  //   // sendImageEventPost(
+  //   //   {
+  //   //
+  //   //   });
+  //   //localStorage.setItem("userToken", data.token);
+  //   //history.replace("/account");
+  // };
+
+  const onSuccess = (response) => {
     console.log("Success");
+    console.log("response:");
+    console.log(response);
+    console.log("imgVal");
+    console.log(imgVal);
+    console.log("imgval0:");
+    console.log(imgVal[0]);
+    console.log(imgVal[0].name);
+
+    // const data=new FormData();
+    // data.append('image',imgVal);
 
 
-    // sendImageEventPost(
-    //   {
-    //
-    //   });
+    var FormData = require('form-data');
+    var fs = require('fs');
+    var data = new FormData();
+    data.append('',fs.createReadStream(`${imgVal[0].name}`));
+    // data.append('image',imgVal[0]);
+    // var data = new FormData(form.dragger);
+    console.log("form-data:");
+    console.log(data);
+    const token=localStorage.getItem("userToken");
+    console.log("token:");
+    console.log(token);
+    const eventId = response.data.id;
+    console.log("event id:");
+    console.log(eventId);
+
+
+
+    sendImageEventPost(
+      `https://localhost:44373/api/event/AddImage?eventId=${eventId}`
+      ,
+      {
+        data
+      }
+        ,
+      {
+        'Authorization':`Bearer ${token}`
+      }
+      );
     //localStorage.setItem("userToken", data.token);
     //history.replace("/account");
   };
@@ -164,7 +214,12 @@ const CreateEventForm = () =>{
 
           <Form.Item label="Event Image">
             <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-              <Upload.Dragger name="files" action="/upload.do">
+
+              <Upload.Dragger name="files"
+                // {
+                //   // action="/upload.do"
+                // }
+              >
                 <p className="ant-upload-drag-icon">
                   <InboxOutlined />
                 </p>
