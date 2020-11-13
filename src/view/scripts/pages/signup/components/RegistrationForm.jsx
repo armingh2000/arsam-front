@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {sendSignupPost} from "../../../../../core/login-signup/signupRequest";
 import {Form, Input, Button, Typography} from 'antd';
+import openNotificationWithIcon from "../../../../../core/login-signup/openNotificationWithIcon";
 import {useHistory} from 'react-router-dom';
 
 const formItemLayout = {
@@ -35,12 +36,12 @@ const tailFormItemLayout = {
 };
 
 const RegistrationForm = () => {
+
   const [form] = Form.useForm();
 
   const [failureMessage, setFailureMessage] = useState("");
   const [isFailed, setIsFailed] = useState(false);
   const {Text} = Typography;
-
   const history = useHistory();
 
   const onFailure = (error) => {
@@ -50,7 +51,7 @@ const RegistrationForm = () => {
 
   const onSuccess = (data) => {
     localStorage.setItem("userToken", data.data.token);
-    history.replace("/account");
+    openNotificationWithIcon({history:history, type:"success", desc:true, dur:0});
   };
 
   const onFinish = (values) => {
