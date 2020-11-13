@@ -7,8 +7,8 @@ import EventImages from "./EventImages";
 import EventDescription from "./EventDescription";
 import EventSteps from "./EventSteps";
 import EventEditModal from "./EventEditModal";
+import EventDetails from "./EventDetails";
 import { getEvent } from "../../../../../../core/api/actions/EventActions";
-import moment from "moment";
 
 const EventGrid = ({event, dispatch}) =>
 {
@@ -24,28 +24,31 @@ const EventGrid = ({event, dispatch}) =>
   ];
 
   return (<div style={{padding:"20px"}}>
-            <Card.Grid width="100%" style={{width:"100%"}}>
+            <Card.Grid style={{width:"100%", margin:"20px 0"}}>
               <Row justify="space-around" align="middle" gutter={[8,8]}>
                 <Col span={11}>
                     <EventImages images={images}/>
                 </Col>
-                <Col span={11}>
-                  <EventDescription
-                    name={"event 1"}
-                    description={"Description 1"}
-                    startDate={moment()._d.toString()}
-                    endDate={moment()._d.toString()}
-                    />
+                <Col span={4} style={{height:"50vh"}} >
+                  <EventDetails name={event.name} startDate={event.startDate} endDate={event.endDate} creator={event.creator}/>
+                </Col>
+                <Col span={6}>
+
                 </Col>
               </Row>
             </Card.Grid>
+            <Card.Grid style={{width:"100%", margin:"10px 0"}}>
+              description
+            </Card.Grid>
+            <Card.Grid style={{width:"100%", margin:"10px 0"}}>
+              <h1>MELIKA</h1>
+            </Card.Grid>
 
 
-            <EventEditModal/>
             <button onClick={() => dispatch(getEvent({
                 payload:{
-                  eventId:"1",
-                  tokenId: 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJ0ZXN0MkB0ZXN0Mi5jb20iLCJuYmYiOjE2MDUwODMyNjcsImV4cCI6MTYwNTE2OTY2NywiaWF0IjoxNjA1MDgzMjY3fQ.gmxnbH8HGHFuA0QyCGLDiOa4px8d8u3TB64XMdbwgWOP8vQ_wJ54OaIc1rOJgryxvXYE2nQqOPrWcvQEI-ZToQ'
+                  eventId:"3",
+                  tokenId: 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJ0ZXN0MkB0ZXN0Mi5jb20iLCJuYmYiOjE2MDUyODI4NDEsImV4cCI6MTYwNTM2OTI0MSwiaWF0IjoxNjA1MjgyODQxfQ.wq4pr8FKpbF4gQdKMYqeMA4PNsL1fdHiWWOvPA-09b9h67_gjribQW43HnnYQ2O1Dnmay4lYl5xk3srJOuqriQ'
                 }
                 }))}>Bello</button>
 

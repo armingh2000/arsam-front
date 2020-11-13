@@ -2,10 +2,23 @@ import { ActionTypes } from "../constants/ActionTypes";
 
 const initialState = {
   event: {
-    name:"",
-    description:"",
-    startDate:"",
-    endDate:""
+    name: '',
+     id: null,
+     isProject: null,
+     description: '',
+     location: '',
+     isPrivate: null,
+     startDate: '',
+     endDate: '',
+     isLimitedMember: null,
+     maximumNumberOfMembers: null,
+     eventMembers: [],
+     imagesPath: [],
+     creator: {
+       email: '',
+       phoneNumber: null
+     },
+     categories: []
   }
 };
 
@@ -21,7 +34,6 @@ export default ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.GET_EVENT_REQUEST_FAILURE:
-      console.log("err", payload);
       return state;
 
     default:
