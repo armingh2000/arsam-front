@@ -44,10 +44,10 @@ const CreateEventForm = () =>{
   [
     <Option key={1}>Race</Option>,
     <Option key={2}>Performance</Option>,
-    <Option key={3}>Conference</Option>,
-    <Option key={4}>Fundraiser</Option>,
-    <Option key={5}>Festival</Option>,
-    <Option key={6}>Social Event</Option>
+    <Option key={4}>Conference</Option>,
+    <Option key={8}>Fundraiser</Option>,
+    <Option key={16}>Festival</Option>,
+    <Option key={32}>Social Event</Option>
   ];
 
 
@@ -79,7 +79,8 @@ const CreateEventForm = () =>{
  var fileVal;
 
   const onFinish = (values) => {
-
+    const category=values.category;
+    console.log(`category: ${category}`);
     const token = localStorage.getItem("userToken");
     // console.log(`values: ${values}`);
     imgVal=values.dragger;
@@ -97,7 +98,8 @@ const CreateEventForm = () =>{
         "IsPrivate": values.private,
         "IsLimitedMember": values.limit,
         "MaximumNumberOfMembers": values.memberNum,
-        "IsProject": isProject
+        "IsProject": isProject,
+        "Categories":category
       },
       {
         'Authorization':`Bearer ${token}`
@@ -109,50 +111,54 @@ const CreateEventForm = () =>{
 
 
   const onSuccess = (response) => {
-    console.log("Success");
-    console.log("response:");
-    console.log(response);
-    console.log("imgVal");
-    console.log(imgVal);
-    console.log("imgval0:");
-    console.log(imgVal[0]);
-    console.log(imgVal[0].name);
+    // console.log("Success");
+    // console.log("response:");
+    // console.log(response);
+    // console.log("imgVal:");
+    // console.log(imgVal);
+    // console.log("imgval0:");
+    // console.log(imgVal[0]);
+    // console.log(imgVal[0].name);
 
     // const data=new FormData();
     // data.append('image',imgVal);
 
-    var FormData = require('form-data');
-    var fs = require('fs');
-    var data = new FormData();
-    //data.append('',fs.createReadStream(`${imgVal[0].name}`));
-    data.append('image',imgVal[0].originFileObj);
-    // data.append('image','1');
+    if(imgVal!==undefined){
+      var FormData = require('form-data');
+      var fs = require('fs');
+      var data = new FormData();
+      //data.append('',fs.createReadStream(`${imgVal[0].name}`));
+      data.append('image',imgVal[0].originFileObj);
+      // data.append('image','1');
 
-    // var data = new FormData(form.dragger);
-    console.log("form-data:");
-    console.log(data);
+      // var data = new FormData(form.dragger);
+      console.log("form-data:");
+      console.log(data);
 
-    for(var pair of data.entries()) {
-      console.log(pair[1]);
+      for(var pair of data.entries()) {
+        console.log(pair[1]);
+      }
+
+
+      const token=localStorage.getItem("userToken");
+      console.log("token:");
+      console.log(token);
+      const eventId = response.data.id;
+      console.log("event id:");
+      console.log(eventId);
+
+      sendImageEventPost(
+        `https://localhost:44373/api/event/AddImage?eventId=${eventId}`
+          ,
+          data
+          ,
+        {
+          'Authorization':`Bearer ${token}`
+        }
+        );
     }
 
-
-    const token=localStorage.getItem("userToken");
-    console.log("token:");
-    console.log(token);
-    const eventId = response.data.id;
-    console.log("event id:");
-    console.log(eventId);
-
-    sendImageEventPost(
-      `https://localhost:44373/api/event/AddImage?eventId=${eventId}`
-        ,
-        data
-        ,
-      {
-        'Authorization':`Bearer ${token}`
-      }
-      );
+    // console.log("finish success");
   };
 
   const onFailure = (error) => {
