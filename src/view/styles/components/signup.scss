@@ -1,18 +1,17 @@
-#components-form-normal-login .login-form {
+#components-form-signup .signup-form {
   max-width: 300px;
 }
-#components-form-normal-login .login-form-forgot {
+#components-form-signup .signup-form-forgot {
   float: right;
 }
-#components-form-normal-login .ant-col-rtl .login-form-forgot {
+#components-form-signup .ant-col-rtl .signup-form-forgot {
   float: left;
 }
-#components-form-normal-login .login-form-button {
+#components-form-signup .signup-form-button {
   width: 100%;
 }
 
-
-#components-form-normal-login {
+#components-form-signup {
     background-position: center;
     background-origin: content-box;
     background-repeat: no-repeat;
@@ -21,7 +20,7 @@
     padding: 0% 5%;
 }
 
-#components-form-normal-login .text-center{
+#components-form-signup .text-center{
   color:#026770;
 	text-transform:uppercase;
     font-size: 23px;
@@ -30,7 +29,7 @@
     text-align: center;
 }
 
-#components-form-normal-login .box{
+#components-form-signup .box{
   background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.89) 0%, rgba(247, 252, 252,0.89) 100%);
 	border-radius:10px;
 	padding: 2% 7%;
@@ -38,28 +37,28 @@
   margin: 2% 0%;
 }
 
-#components-form-normal-login .box-item{
+#components-form-signup .box-item{
   background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.89) 0%, rgba(86,128,233,0.89) 100%);
 	border-radius:3px;
 }
 
 
-#components-form-normal-login Input:focus{
+#components-form-signup Input:focus{
   border:none;
   outline:none;
   border-bottom:3px solid #73CAC5;
 }
 
-#components-form-normal-login Input:hover{
+#components-form-signup Input:hover{
   box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.16);
 }
 
-#components-form-normal-login .get-shadow:hover{
+#components-form-signup .get-shadow:hover{
   box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.16);
 }
 
 //button style------------------------------------------------------------------------------------------------------
-#components-form-normal-login .btn {
+#components-form-signup .btn {
 position: relative;
 display: inline-block;
 width: 277px;
@@ -78,20 +77,20 @@ letter-spacing: 0.045em;
 border: none;
 }
 
-#components-form-normal-login .btn svg {
+#components-form-signup .btn svg {
 position: absolute;
 top: 0;
 left: 0;
 }
 
-#components-form-normal-login .btn svg rect {
+#components-form-signup .btn svg rect {
 stroke-width: 1%;
 stroke-dasharray: 100%, 0%;
 stroke-dashoffset: 0;
 transition: all 600ms ease;
 }
 
-#components-form-normal-login .btn span {
+#components-form-signup .btn span {
 background: rgb(86, 128, 233);
 
 background: linear-gradient(to right, rgba(86, 128, 233, 1) 0%, rgba(116, 221, 252, 1) 100%);
@@ -100,41 +99,41 @@ background-clip: text;
 color: transparent;
 }
 
-#components-form-normal-login .btn:hover svg rect {
+#components-form-signup .btn:hover svg rect {
 stroke-width: 1%;
 stroke-dasharray:70%,180%;
 stroke-dashoffset: 80%;
 }
 
-#components-form-normal-login .center-span{
+#components-form-signup .center-span{
   text-align: center;
   padding-left: 0%;
   position: relative;
   bottom: 9px;
 }
 
-#components-form-normal-login .center-button{
+#components-form-signup .center-button{
   margin-left: 25%;
 }
 
-#components-form-normal-login .center-form{
+#components-form-signup .center-form{
   margin-left: 0%;
 }
 
-#components-form-normal-login .checkbox-color{
+#components-form-signup .checkbox-color{
   color:#42f551;
 }
 
-#components-form-normal-login .signup-register-now{
+#components-form-signup .signup-register-now{
   color:#42f551;
   padding-top: 20px;
 }
 //end of button style--------------------------------------------------------------------------------------------
 
-#components-form-normal-login .get-border-radius{
+#components-form-signup .get-border-radius{
   border-radius: 5px;
 }
 
-#components-form-normal-login .resize-upload-dragger{
+#components-form-signup .resize-upload-dragger{
   top: 17px;
 }

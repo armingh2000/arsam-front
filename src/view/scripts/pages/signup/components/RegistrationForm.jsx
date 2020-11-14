@@ -58,80 +58,103 @@ const RegistrationForm = () => {
     sendSignupPost({"EmailAddress": values.email, "Password": values.password, "PasswordConfirmation": values.confirm}).then(onSuccess).catch(onFailure);
   };
 
-  return (<Form {...formItemLayout} form={form} name="register" onFinish={onFinish} scrollToFirstError="scrollToFirstError">
-    <Form.Item hidden={!isFailed}>
-      <Text type="danger">{failureMessage}</Text>
-    </Form.Item>
-    <Form.Item name="email" label="E-mail" rules={[
-        {
-          type: 'email',
-          message: 'The input is not valid E-mail!'
-        }, {
-          required: true,
-          message: 'Please input your E-mail!'
-        }
-      ]}>
-      <Input/>
-    </Form.Item>
+  return (
+    <div className="box">
 
-    <Form.Item name="password" label="Password" rules={[
-        {
-          required: true,
-          message: 'Please input your password!'
-        }, {
-          min: 3,
-          message: 'Password must be at least in length of 3!'
-        }
-      ]} hasFeedback="hasFeedback">
-      <Input.Password/>
-    </Form.Item>
+      <Form className="center-form"
+      labelCol={{ span: 5 }}
+      wrapperCol={{ span: 16 }}
+      form={form} name="register"
+      onFinish={onFinish}
+      scrollToFirstError="scrollToFirstError">
 
-    <Form.Item name="confirm" label="Confirm Password" dependencies={['password']} hasFeedback="hasFeedback" rules={[
-        {
-          required: true,
-          message: 'Please confirm your password!'
-        },
-        ({getFieldValue}) => ({
-          validator(rule, value) {
-            if (!value || getFieldValue('password') === value) {
-              return Promise.resolve();
-            }
+      <span className="text-center">signup</span>
 
-            return Promise.reject('The two passwords that you entered do not match!');
+      <Form.Item hidden={!isFailed}>
+        <Text type="danger">{failureMessage}</Text>
+      </Form.Item>
+      
+      <Form.Item name="email" label="E-mail" rules={[
+          {
+            type: 'email',
+            message: 'The input is not valid E-mail!'
+          }, {
+            required: true,
+            message: 'Please input your E-mail!'
           }
-        })
-      ]}>
-      <Input.Password/>
-    </Form.Item>
+        ]}>
+        <Input className="get-border-radius"/>
+      </Form.Item>
 
-    {
-      // TODO: recaptcha
-      // <Form.Item label="Captcha" extra="We must make sure that your are a human.">
-      //   <Row gutter={8}>
-      //     <Col span={12}>
-      //       <Form.Item name="captcha" noStyle="noStyle" rules={[{
-      //             required: true,
-      //             message: 'Please input the captcha you got!'
-      //           }
-      //         ]}>
-      //         <Input/>
-      //       </Form.Item>
-      //     </Col>
-      //     <Col span={12}>
-      //       <Button>Get captcha</Button>
-      //     </Col>
-      //   </Row>
-      // </Form.Item>
-    }
+      <Form.Item name="password" label="Password" rules={[
+          {
+            required: true,
+            message: 'Please input your password!'
+          }, {
+            min: 3,
+            message: 'Password must be at least in length of 3!'
+          }
+        ]} hasFeedback="hasFeedback">
+        <Input.Password className="get-border-radius"/>
+      </Form.Item>
 
-    <Form.Item {...tailFormItemLayout}>
-      <Button type="primary" htmlType="submit" style={{
-          width: "100%"
-        }}>
-        Register
-      </Button>
-    </Form.Item>
-  </Form>);
+      <Form.Item name="confirm" label="Confirm Password" dependencies={['password']} hasFeedback="hasFeedback" rules={[
+          {
+            required: true,
+            message: 'Please confirm your password!'
+          },
+          ({getFieldValue}) => ({
+            validator(rule, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+
+              return Promise.reject('The two passwords that you entered do not match!');
+            }
+          })
+        ]}>
+        <Input.Password className="get-border-radius"/>
+      </Form.Item>
+
+      {
+        // TODO: recaptcha
+        // <Form.Item label="Captcha" extra="We must make sure that your are a human.">
+        //   <Row gutter={8}>
+        //     <Col span={12}>
+        //       <Form.Item name="captcha" noStyle="noStyle" rules={[{
+        //             required: true,
+        //             message: 'Please input the captcha you got!'
+        //           }
+        //         ]}>
+        //         <Input/>
+        //       </Form.Item>
+        //     </Col>
+        //     <Col span={12}>
+        //       <Button>Get captcha</Button>
+        //     </Col>
+        //   </Row>
+        // </Form.Item>
+      }
+
+      <Form.Item>
+        <Button className="btn center-button" htmlType="submit" style={{ width: "100%"}}>
+          <svg width="100%" height="100%">
+            <defs>
+              <linearGradient id="grad1">
+                <stop offset="0%" stop-color="#7183f5" />
+                <stop offset="100%" stop-color="#74ddfc" />
+              </linearGradient>
+            </defs>
+            <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="97%" height="85%"></rect>
+          </svg>
+
+          <span className="center-span">Register</span>
+        </Button>
+      </Form.Item>
+    </Form>
+
+  </div>
+);
 };
 
 export default RegistrationForm;
