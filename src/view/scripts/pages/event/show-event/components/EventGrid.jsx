@@ -30,7 +30,12 @@ const EventGrid = ({event, dispatch}) =>
                     <EventImages images={images}/>
                 </Col>
                 <Col span={4} style={{height:"50vh"}} >
-                  <EventDetails name={event.name} startDate={event.startDate} endDate={event.endDate} creator={event.creator}/>
+                  <EventDetails
+                    name={event.name}
+                    startDate={event.startDate}
+                    endDate={event.endDate}
+                    creator={event.creator}
+                    categories={event.categories}/>
                 </Col>
                 <Col span={6}>
 
