@@ -16,7 +16,7 @@ const EventDetails = ({name, startDate, endDate, creator, categories}) =>
     <Text>End: {endDate}</Text>
     <br/>
     <br/>
-    <Text>TAGS: {categories.map(tag => {
+    <Text>Tags: {categories.map(tag => {
         switch (tag) {
           case 1:
             return <Tag color="magenta">Race</Tag>;
