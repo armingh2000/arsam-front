@@ -34,10 +34,7 @@ const CreateEventForm = () =>{
   const [isProject, handleIsProject]=useState(false);
   const [limiedMember,handleLimitedMember]=useState(false);
   const [isPrivate,handleIsPrivate]=useState(false);
-  const [componentSize, setComponentSize] = useState('default');
-  const onFormLayoutChange = ({ size }) => {
-      setComponentSize(size);
-  };
+
   const history = useHistory();
 
   const eventCategory=
@@ -175,104 +172,113 @@ const CreateEventForm = () =>{
   };
 
   return (
-      <div>
+      <div className="box">
         <Form
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
           layout="horizontal"
-          initialValues={{ size: componentSize }}
-          onValuesChange={onFormLayoutChange}
-          size={componentSize}
+          initialValues={{ size: 'default' }}
+          size={'default'}
           onFinish={onFinish}
         >
 
-          <Form.Item label="Form Size" name="size">
-            <Radio.Group>
-              <Radio.Button value="small">Small</Radio.Button>
-              <Radio.Button value="default">Default</Radio.Button>
-              <Radio.Button value="large">Large</Radio.Button>
-            </Radio.Group>
-          </Form.Item>
-
-          <Form.Item label="Event Name" name="eventName" rules={[{ required: true, message:'Please Enter Event Name' }]}>
-            <Input />
-          </Form.Item>
-
-          <Form.Item label="Description" name="description" rules={[{ required: true, message:'Please Enter Description' }]}>
-            <Input />
-          </Form.Item>
+          <span className="text-center">create event</span>
 
 
-
-          <Form.Item label="Event Image">
-            <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-              <Upload.Dragger name="files"
-              // action="https://localhost:44373/api/event/AddImage"
-              >
-                <p className="ant-upload-drag-icon">
-                  <InboxOutlined />
-                </p>
-                <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                <p className="ant-upload-hint">Support for a single or bulk upload.</p>
-              </Upload.Dragger>
+            <Form.Item label="Event Name" name="eventName" rules={[{ required: true, message:'Please Enter Event Name' }]}>
+              <Input/>
             </Form.Item>
-          </Form.Item>
+
+            <Form.Item label="Description" name="description" rules={[{ required: true, message:'Please Enter Description' }]}>
+              <Input/>
+            </Form.Item>
+
+
+            <Form.Item label="Event Image">
+              <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
+                <Upload.Dragger name="files"
+                className="get-shadow"
+                // action="https://localhost:44373/api/event/AddImage"
+                >
+                  <p className="ant-upload-drag-icon">
+                    <InboxOutlined />
+                  </p>
+                  <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                  <p className="ant-upload-hint">Support for a single or bulk upload.</p>
+                </Upload.Dragger>
+              </Form.Item>
+            </Form.Item>
 
 
 
-          <Form.Item label="Event Date" name="date" rules={[{ required: true, message:'Please Enter Description' }]}>
-            <RangePicker showTime />
-          </Form.Item>
+            <Form.Item label="Event Date" name="date" rules={[{ required: true, message:'Please Enter Description' }]}>
+              <RangePicker className="get-shadow" showTime/>
+            </Form.Item>
 
-          <Form.Item label="Private Event" name="private" >
-            <Switch  onChange={onPrivateChange}/>
-          </Form.Item>
+            <Form.Item label="Private Event" name="private" >
+              <Switch  className="get-shadow" onChange={onPrivateChange}/>
+            </Form.Item>
 
-          <Form.Item label="Limited Member" name="limit" >
-            <Switch  onChange={onLimitChange}/>
-          </Form.Item>
+            <Form.Item label="Limited Member" name="limit" >
+              <Switch  className="get-shadow" onChange={onLimitChange}/>
+            </Form.Item>
 
-          <Form.Item label="Event Member Num" name="memberNum" hidden={!limiedMember}>
-            <InputNumber min="1" defaultValue={1}/>
-          </Form.Item>
+            <Form.Item label="Event Member Num" name="memberNum" hidden={!limiedMember}>
+              <InputNumber min="1" defaultValue={1}/>
+            </Form.Item>
 
-          <Form.Item name="eventType" label="Event Type" rules={[{ required: true, message:'Please Choose one Option' }]}>
-          <Select
-            placeholder="Select a option and change input text above"
-            onChange={onTypeChange}
-            allowClear
-          >
-            <Option value="normalEvent">Normal Event</Option>
-            <Option value="projectEvent">Project Event</Option>
-          </Select>
-          </Form.Item>
-
-          <Form.Item name="category" label="Event Category" rules={[{ required: true, message:'Please Choose one Option' }]}>
+            <Form.Item name="eventType" label="Event Type" rules={[{ required: true, message:'Please Choose one Option' }]}>
             <Select
-              mode="multiple"
-              style={{ width: "100%" }}
-              placeholder="Please select"
-              defaultValue={[]}
+              className="get-shadow"
+              placeholder="Select a option and change input text above"
+              onChange={onTypeChange}
+              allowClear
             >
-            {eventCategory}
+              <Option value="normalEvent">Normal Event</Option>
+              <Option value="projectEvent">Project Event</Option>
             </Select>
-          </Form.Item>
+            </Form.Item>
 
-          {
-          // <Form.Item name="but" label="but" hidden={!IsProject} >
-          //   <Button htmlType="submit"  style={{width: "100%"}}>
-          //     but
-          //   </Button>
-          // </Form.Item>
-          }
+            <Form.Item name="category" label="Event Category" rules={[{ required: true, message:'Please Choose one Option' }]}>
+              <Select
+                className="get-shadow"
+                mode="multiple"
+                style={{ width: "100%" }}
+                placeholder="Please select"
+                defaultValue={[]}
+              >
+              {eventCategory}
+              </Select>
+            </Form.Item>
 
-          <Form.Item label="Create">
-            <Button htmlType="submit" style={{width: "100%"}}>
-              Create
-            </Button>
-          </Form.Item>
+            {
+            // <Form.Item name="but" label="but" hidden={!IsProject} >
+            //   <Button htmlType="submit"  style={{width: "100%"}}>
+            //     but
+            //   </Button>
+            // </Form.Item>
+            }
+
+            <Form.Item >
+              <Button htmlType="submit" className="btn" style={{width: "100%"}}>
+
+                <svg width="620" height="62">
+                  <defs>
+                    <linearGradient id="grad1">
+                      <stop offset="0%" stop-color="#7183f5" />
+                      <stop offset="100%" stop-color="#74ddfc" />
+                    </linearGradient>
+                  </defs>
+                  <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="610" height="50"></rect>
+                </svg>
+                <span>Create</span>
+
+              </Button>
+            </Form.Item>
+
 
         </Form>
+
 
       </div>
   );

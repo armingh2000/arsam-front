@@ -4,13 +4,9 @@ import {Row, Col} from 'antd';
 
 const CreateEvent = () => {
 
-  return <div>
-    <Row style={{
-        minHeight: '100vh'
-      }} justify="start" align="middle">
-      <Col span={2}></Col>
-      <Col span={20}><CreateEventForm /></Col>
-      <Col span={2}/>
+  return <div id="components-form-create-event">
+    <Row justify="center" align="middle">
+      <Col span={16}><CreateEventForm /></Col>
     </Row>
   </div>
 }
