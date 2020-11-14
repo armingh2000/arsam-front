@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import axios from "axios";
-import {Form,
+import {
+  Row,
+  Col,
+  Form,
   Input,
   Button,
   Typography,
@@ -27,7 +30,7 @@ const normFile = e => {
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
-
+const {TextArea} = Input;
 
 const CreateEventForm = () =>{
   const [form] = Form.useForm();
@@ -77,14 +80,15 @@ const CreateEventForm = () =>{
 
   const onFinish = (values) => {
     const category=values.category;
-    console.log(`category: ${category}`);
+    // console.log(`category: ${category}`);
     const token = localStorage.getItem("userToken");
     // console.log(`values: ${values}`);
     imgVal=values.dragger;
-    fileVal=values.files;
+    // fileVal=values.files;
     // console.log(`dragger: ${values.dragger}`);
-    console.log("files:");
-    console.log(values.files);
+    // console.log("files:");
+    // console.log(values.files);
+    // console.log(values.description);
 
     sendCreateEventPost(
       {
@@ -105,7 +109,6 @@ const CreateEventForm = () =>{
        .then(onSuccess)
        .catch(onFailure);
   };
-
 
   const onSuccess = (response) => {
     // console.log("Success");
@@ -174,58 +177,72 @@ const CreateEventForm = () =>{
   return (
       <div className="box">
         <Form
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 14 }}
+        className="center-form"
+          labelCol={{ span: 5 }}
+          wrapperCol={{ span: 16 }}
           layout="horizontal"
           initialValues={{ size: 'default' }}
           size={'default'}
           onFinish={onFinish}
         >
 
-          <span className="text-center">create event</span>
+
+            <span className="text-center">create event</span>
 
 
-            <Form.Item label="Event Name" name="eventName" rules={[{ required: true, message:'Please Enter Event Name' }]}>
-              <Input/>
+            <Form.Item  label="Event Name" name="eventName" rules={[{ required: true, message:'Please Enter Event Name' }]}>
+              <Input className="get-border-radius"/>
             </Form.Item>
+
 
             <Form.Item label="Description" name="description" rules={[{ required: true, message:'Please Enter Description' }]}>
-              <Input/>
+              <TextArea rows={2} className="get-border-radius"/>
             </Form.Item>
 
 
-            <Form.Item label="Event Image">
+            <Form.Item label="Image">
               <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
                 <Upload.Dragger name="files"
-                className="get-shadow"
+                className="get-shadow get-border-radius"
                 // action="https://localhost:44373/api/event/AddImage"
                 >
-                  <p className="ant-upload-drag-icon">
-                    <InboxOutlined />
-                  </p>
-                  <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                  <p className="ant-upload-hint">Support for a single or bulk upload.</p>
+                <Row>
+                  <Col span={6}>
+                    <p className="ant-upload-drag-icon">
+                      <InboxOutlined />
+                    </p>
+                  </Col>
+                  <Col  className="resize-upload-dragger">
+                    <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                  </Col>
+                </Row>
                 </Upload.Dragger>
               </Form.Item>
             </Form.Item>
 
 
 
-            <Form.Item label="Event Date" name="date" rules={[{ required: true, message:'Please Enter Description' }]}>
-              <RangePicker className="get-shadow" showTime/>
+            <Form.Item label="Date" name="date" rules={[{ required: true, message:'Please Enter Description' }]}>
+              <RangePicker className="get-shadow get-border-radius" showTime/>
             </Form.Item>
 
-            <Form.Item label="Private Event" name="private" >
-              <Switch  className="get-shadow" onChange={onPrivateChange}/>
-            </Form.Item>
 
-            <Form.Item label="Limited Member" name="limit" >
-              <Switch  className="get-shadow" onChange={onLimitChange}/>
-            </Form.Item>
+            <Row>
+              <Col span={14}>
+                <Form.Item label="Limited Member" name="limit" labelCol={{ span: 10 }} wrapperCol={{ span: 10 }} >
+                  <Switch  className="get-shadow" onChange={onLimitChange}/>
+                </Form.Item>
 
-            <Form.Item label="Event Member Num" name="memberNum" hidden={!limiedMember}>
-              <InputNumber min="1" defaultValue={1}/>
-            </Form.Item>
+                <Form.Item label="Member Num" name="memberNum" hidden={!limiedMember} labelCol={{ span: 10 }} wrapperCol={{ span: 10 }}>
+                  <InputNumber min="1" defaultValue={1}/>
+                </Form.Item>
+              </Col>
+              <Col span={10}>
+                <Form.Item label="Private" name="private" labelCol={{ span: 7 }} wrapperCol={{ span: 10 }}>
+                  <Switch  className="get-shadow" onChange={onPrivateChange}/>
+                </Form.Item>
+              </Col>
+            </Row>
 
             <Form.Item name="eventType" label="Event Type" rules={[{ required: true, message:'Please Choose one Option' }]}>
             <Select
@@ -260,18 +277,18 @@ const CreateEventForm = () =>{
             }
 
             <Form.Item >
-              <Button htmlType="submit" className="btn" style={{width: "100%"}}>
+              <Button htmlType="submit" className="btn center-button" style={{width: "100%"}}>
 
-                <svg width="620" height="62">
+                <svg width="100%" height="100%">
                   <defs>
                     <linearGradient id="grad1">
                       <stop offset="0%" stop-color="#7183f5" />
                       <stop offset="100%" stop-color="#74ddfc" />
                     </linearGradient>
                   </defs>
-                  <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="610" height="50"></rect>
+                  <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="97%" height="85%"></rect>
                 </svg>
-                <span>Create</span>
+                <span className="center-span">Create</span>
 
               </Button>
             </Form.Item>

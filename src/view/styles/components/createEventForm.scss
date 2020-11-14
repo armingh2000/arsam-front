@@ -31,18 +31,19 @@
   color:#026770;
 	text-transform:uppercase;
     font-size: 23px;
-    margin: -50px 0 80px 0;
+    margin: 0px 0 80px 0;
     display: block;
     text-align: center;
 }
 
 #components-form-create-event .box{
   background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.89) 0%, rgba(247, 252, 252,0.89) 100%);
-	border-radius:3px;
+	border-radius:10px;
 	padding: 2% 7%;
   box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.16);
   // margin: 50px 0px;
   margin: 2% 0%;
+  // background-color: #fff;
   // text-align: center;
 }
 
@@ -153,8 +154,12 @@ left: 0;
 }
 
 #components-form-create-event .btn svg rect {
-stroke-width: 4;
-stroke-dasharray: 600, 0;
+// stroke-width: 4;
+stroke-width: 1%;
+
+// stroke-dasharray: 600, 0;
+stroke-dasharray: 100%, 0%;
+
 stroke-dashoffset: 0;
 transition: all 600ms ease;
 }
@@ -169,10 +174,32 @@ color: transparent;
 }
 
 #components-form-create-event .btn:hover svg rect {
-stroke-width: 4;
-stroke-dasharray: 500, 700;
-stroke-dashoffset: 550;
+stroke-width: 1%;
+// stroke-dasharray: 500, 700;
+// stroke-dashoffset: 550;
+
+// stroke-dasharray:70%,220%;
+// stroke-dashoffset: 120%;
+
+stroke-dasharray:70%,180%;
+stroke-dashoffset: 80%;
 }
+
+#components-form-create-event .center-span{
+  text-align: center;
+  padding-left: 0%;
+  position: relative;
+  bottom: 9px;
+}
+
+#components-form-create-event .center-button{
+  margin-left: 25%;
+}
+
+#components-form-create-event .center-form{
+  margin-left: 0%;
+}
+
 
 #components-form-create-event .checkbox-color{
   color:#42f551;
@@ -183,3 +210,11 @@ stroke-dashoffset: 550;
   padding-top: 20px;
 }
 //end of button style--------------------------------------------------------------------------------------------
+
+#components-form-create-event .get-border-radius{
+  border-radius: 5px;
+}
+
+#components-form-create-event .resize-upload-dragger{
+  top: 17px;
+}
