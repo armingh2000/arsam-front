@@ -1,4 +1,4 @@
-import {sendPostRequest} from "../api";
+import {sendPostRequest} from "../api/api";
 
 const sendLoginPost = (data) => {
   return sendPostRequest({

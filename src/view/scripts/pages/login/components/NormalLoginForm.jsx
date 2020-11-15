@@ -13,7 +13,7 @@ const NormalLoginForm = () => {
   const history = useHistory();
   const onSuccess = ({data}) => {
     localStorage.setItem("userToken", data.token);
-    history.replace("/account");
+    history.replace("/profile");
   };
 
   const onFailure = (error) => {

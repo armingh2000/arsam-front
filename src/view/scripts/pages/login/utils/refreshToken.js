@@ -1,14 +1,10 @@
 import {
   sendGLoginPost
 } from "../../../../../core/login-signup/gLoginRequest";
-import {
-  sendLoginPost
-} from "../../../../../core/login-signup/loginRequest";
-
-
 
 
 export const refreshTokenSetup = (res) => {
+
   // Timing to renew access token
   let refreshTiming = (res.tokenObj.expires_in || 3600 - 5 * 60) * 1000;
 
@@ -16,16 +12,14 @@ export const refreshTokenSetup = (res) => {
     const newAuthRes = await res.reloadAuthResponse();
     refreshTiming = (newAuthRes.expires_in || 3600 - 5 * 60) * 1000;
     // saveUserToken(newAuthRes.access_token);  <-- save new token
-    sendLoginPost({
-        Email: newAuthRes.email,
-        Password: newAuthRes.password
-      })
-      .then(({data}) => {
-        localStorage.setItem("userToken", data.token);
-      })
-      .catch(() => {
-        alert("Ran into problem. Please try logging in again!");
-      });
+    sendGLoginPost(res.tokenId).then(({
+      data
+    }) => {
+      localStorage.setItem("userToken", data.token);
+    }).catch(() => {
+      alert("Ran into problem. Please try logging in again!");
+      localStorage.clear();
+    });
 
     // Setup the other timer after the first one
     setTimeout(refreshToken, refreshTiming);
