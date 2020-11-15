@@ -5,6 +5,7 @@ import {
     Card} from "antd";
 import EventImages from "./EventImages";
 import EventDetails from "./EventDetails";
+import EventMembersList from "./EventMembersList";
 
 const EventGrid = ({event, dispatch, eventId}) =>
 {
@@ -23,10 +24,10 @@ const EventGrid = ({event, dispatch, eventId}) =>
   return (<div>
             <Card className="card">
               <Row justify="space-around" align="middle" gutter={[8,8]}>
-                <Col span={11}>
+                <Col xs={24} md={11}>
                     <EventImages images={images}/>
                 </Col>
-                <Col span={9} className="details-col">
+                <Col xs={24} md={9} className="details-col">
                   <EventDetails
                     name={event.name}
                     startDate={event.startDate}
@@ -36,9 +37,18 @@ const EventGrid = ({event, dispatch, eventId}) =>
                 </Col>
               </Row>
             </Card>
-            <Card className="card">
-              <h1>MELIKA</h1>
-            </Card>
+            <Row justify="space-around" align="middle" gutter={[8,8]}>
+              <Col xs={24} md={18}>
+                <Card className="card">
+                  Melika
+                </Card>
+              </Col>
+              <Col xs={24} md={4}>
+                <Card className="card">
+                  <EventMembersList members={event.eventMembers}/>
+                </Card>
+              </Col>
+            </Row>
             <Card className="card">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed egestas egestas fringilla phasellus. Scelerisque in dictum non consectetur a erat nam at lectus. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Libero volutpat sed cras ornare arcu dui vivamus. Mauris pharetra et ultrices neque ornare aenean euismod elementum. Non enim praesent elementum facilisis leo vel fringilla. Amet mattis vulputate enim nulla aliquet porttitor lacus.
               <br/>
