@@ -1,16 +1,27 @@
-import React from "react";
+import React, {useEffect} from "react";
 import EventGrid from "./components/EventGrid";
 import { connect } from "react-redux";
 import { getEvent } from "../../../../../core/api/actions/EventActions";
+import { withRouter } from "react-router";
 
-const ShowEvent = ({event, dispatch}) =>
+
+const ShowEvent = ({event, dispatch, match}) =>
 {
+  useEffect(() => {
+    dispatch(getEvent({
+        payload:{
+          eventId: match.params.eventId,
+          tokenId: localStorage.getItem("userToken")
+        }
+      }))
+  }, []);
 
-    return (
-        <EventGrid dispatch={dispatch} event={event.event}/>
-    );
+  return (<div id="show-event-component">
+        <EventGrid dispatch={dispatch} event={event.event} eventId={match.params.eventId}/>
+      </div>
+  );
 }
 
 const mapStateToProps = (state) => ({ event: state.event });
-
-export default connect(mapStateToProps)(ShowEvent);
+const ShowTheLocationWithRouter = withRouter(ShowEvent);
+export default connect(mapStateToProps)(ShowTheLocationWithRouter);

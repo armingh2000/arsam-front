@@ -1,0 +1,70 @@
+#show-event-component .card {
+  border: solid 1px #73cac5;
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.89)0%, rgba(247, 252, 252, 0.89)100%);
+  width: 100%;
+  border-radius: 10px;
+  margin: 15px 0;
+  box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.16);
+}
+
+#show-event-component {
+  background-color: #F4F7FC;
+  padding: 20px 80px;
+}
+
+#show-event-component {
+  color: #1c4947;
+}
+
+#show-event-component h2{
+  color: #31827e;
+  margin-bottom: 0;
+}
+
+#show-event-component h5{
+  margin-top: 0;
+  font-size: 13px;
+}
+
+#show-event-component img {
+  border: solid 2px #73cac5;
+  border-radius: 10px;
+  width: 100%;
+  height: 45vh;
+  margin: auto;
+}
+
+#show-event-component .carousel {
+  height: 45vh;
+  border-radius: 10px;
+}
+
+#show-event-component .carousel:hover {
+    box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.2);
+}
+
+#show-event-component .event-details {
+  line-height: 1.5;
+  text-align: center;
+}
+
+#show-event-component .details-col {
+  text-align: top;
+}
+
+#show-event-component .details-header {
+}
+
+#show-event-component .text{
+  color: #1c4947;
+}
+
+#show-event-component .tags{
+  padding-top: 40px;
+}
+
+#show-event-component .carousel button {
+  border-radius: 100%;
+  width: 15px;
+  height: 15px;
+}

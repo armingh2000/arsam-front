@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Tag } from 'antd';
+import { Typography, Tag, Col, Row } from 'antd';
 
 
 const EventDetails = ({name, startDate, endDate, creator, categories}) =>
@@ -7,16 +7,23 @@ const EventDetails = ({name, startDate, endDate, creator, categories}) =>
   const { Text, Title } = Typography;
 
 
-  return (<div align="top" style={{lineHeight:"2"}}>
-    <Title level={2}>{name}</Title>
-    <Title type="secondary" level={5}>{creator.email}</Title>
-    <br />
-    <Text>Start: {startDate}</Text>
+  return (<div align="top" className="event-details">
+    <div className="details-header">
+      <Title level={2}>{name}</Title>
+      <Title type="secondary" level={5}>{creator.email}</Title>
+    </div>
     <br/>
-    <Text>End: {endDate}</Text>
+    <Row justify="space-around" align="middle" gutter={[8,8]}>
+      <Col>
+        <Text className="text">Start<br/>{new Date(startDate).toDateString()}</Text>
+      </Col>
+      <Col>
+        <Text className="text">End<br/>{new Date(endDate).toDateString()}</Text>
+      </Col>
+    </Row>
     <br/>
     <br/>
-    <Text>Tags: {categories.map(tag => {
+    <Text className="text tags">Tags: {categories.map((tag) => {
         switch (tag) {
           case 1:
             return <Tag color="magenta">Race</Tag>;
@@ -25,11 +32,13 @@ const EventDetails = ({name, startDate, endDate, creator, categories}) =>
           case 4:
             return <Tag color="purple">Conference</Tag>;
           case 8:
-            return <Tag color="orange">Fundraiser</Tag>;
+            return <Tag color="red">Fundraiser</Tag>;
           case 16:
             return <Tag color="blue">Festival</Tag>;
           case 32:
             return <Tag color="green">Social Event</Tag>;
+          default:
+            return null;
         }
       }
     )}

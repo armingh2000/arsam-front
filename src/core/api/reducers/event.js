@@ -22,7 +22,7 @@ const initialState = {
   }
 };
 
-export default ( state = initialState, {type, payload }) => {
+const event = ( state = initialState, {type, payload }) => {
   switch (type) {
     case ActionTypes.GET_EVENT_REQUEST:
       return state;
@@ -40,3 +40,5 @@ export default ( state = initialState, {type, payload }) => {
       return state;
     };
 }
+
+export default event;
