@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Typography } from 'antd';
+import { Avatar, Typography, Tooltip } from 'antd';
 
 const EventMembersList = ({members}) =>
 {
@@ -19,7 +19,7 @@ const EventMembersList = ({members}) =>
     <div style={{textAlign:"center"}}>
       <Title level={5}>Attendies: {members.length}</Title>
       <Avatar.Group
-          maxCount={20}
+          maxCount={3}
           size="large"
           maxStyle={{
             color: '#f56a00',
@@ -28,13 +28,15 @@ const EventMembersList = ({members}) =>
         >
           {members.map((member) => {
             return (
-              <Avatar
-                style={{
-                  backgroundColor: getRandomColor(),
-                }}
-              >
-                {member.email.charAt(0)}
-              </Avatar>
+              <Tooltip title={member.email} placement="top">
+                <Avatar
+                  style={{
+                    backgroundColor: getRandomColor(),
+                  }}
+                >
+                  {member.email.charAt(0)}
+                </Avatar>
+              </Tooltip>
             );
           })}
         </Avatar.Group>

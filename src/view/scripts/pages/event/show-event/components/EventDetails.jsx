@@ -15,10 +15,20 @@ const EventDetails = ({name, startDate, endDate, creator, categories}) =>
     <br/>
     <Row justify="space-around" align="middle" gutter={[8,8]}>
       <Col>
-        <Text className="text">Start<br/>{new Date(startDate).toDateString()}</Text>
+        <Text className="text">Start
+          <br/>
+          {new Date(startDate).toDateString()}
+          <br/>
+          <Text type="secondary">{new Date(startDate).getHours() + ":" + new Date(startDate).getMinutes()}</Text>
+        </Text>
       </Col>
       <Col>
-        <Text className="text">End<br/>{new Date(endDate).toDateString()}</Text>
+        <Text className="text">End
+          <br/>
+          {new Date(endDate).toDateString()}
+          <br/>
+          <Text type="secondary">{new Date(endDate).getHours() + ":" + new Date(endDate).getMinutes()}</Text>
+        </Text>
       </Col>
     </Row>
     <br/>

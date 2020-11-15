@@ -3,10 +3,12 @@ import EventGrid from "./components/EventGrid";
 import { connect } from "react-redux";
 import { getEvent } from "../../../../../core/api/actions/EventActions";
 import { withRouter } from "react-router";
-
+import { Spin,Typography, Row, Col } from 'antd';
 
 const ShowEvent = ({event, dispatch, match}) =>
 {
+  const {Text} = Typography;
+
   useEffect(() => {
     dispatch(getEvent({
         payload:{
@@ -16,11 +18,36 @@ const ShowEvent = ({event, dispatch, match}) =>
       }))
   }, []);
 
-  return (<div id="show-event-component">
-        <EventGrid dispatch={dispatch} event={event.event} eventId={match.params.eventId}/>
-      </div>
-  );
+  switch (event.status) {
+    case 'loading':
+      return (
+        <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
+          <Col>
+            <Spin size="large"/>
+          </Col>
+        </Row>
+      );
+    case 'success':
+      return (<div id="show-event-component">
+            <EventGrid dispatch={dispatch} event={event.event} eventId={match.params.eventId}/>
+          </div>
+        );
+
+
+    case 'error':
+      return (
+        <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
+          <Col>
+            <Text type="danger">Please try again!</Text>
+          </Col>
+        </Row>
+      );
+
+    default:
+      return <div></div>;
+  }
 }
+
 
 const mapStateToProps = (state) => ({ event: state.event });
 const ShowTheLocationWithRouter = withRouter(ShowEvent);
