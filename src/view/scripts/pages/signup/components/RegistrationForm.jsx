@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {sendSignupPost} from "../../../../../core/login-signup/signupRequest";
 import {Form, Input, Button, Typography} from 'antd';
-import {useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 const formItemLayout = {
   labelCol: {
@@ -73,7 +73,7 @@ const RegistrationForm = () => {
       <Form.Item hidden={!isFailed}>
         <Text type="danger">{failureMessage}</Text>
       </Form.Item>
-      
+
       <Form.Item name="email" label="E-mail" rules={[
           {
             type: 'email',
@@ -152,6 +152,10 @@ const RegistrationForm = () => {
         </Button>
       </Form.Item>
     </Form>
+
+    <div className="link-location">
+      <Link to="/login">back to login!</Link>
+    </div>
 
   </div>
 );

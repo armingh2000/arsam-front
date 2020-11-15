@@ -196,7 +196,7 @@ const CreateEventForm = () =>{
 
 
             <Form.Item label="Description" name="description" rules={[{ required: true, message:'Please Enter Description' }]}>
-              <TextArea rows={2} className="get-border-radius"/>
+              <TextArea rows={2} className="get-border-radius get-shadow"/>
             </Form.Item>
 
 
@@ -223,51 +223,62 @@ const CreateEventForm = () =>{
 
 
             <Form.Item label="Date" name="date" rules={[{ required: true, message:'Please Enter Description' }]}>
-              <RangePicker className="get-shadow get-border-radius" showTime/>
+              <RangePicker className="get-shadow get-border-radius date-picker-width" showTime/>
             </Form.Item>
 
 
             <Row>
-              <Col span={14}>
-                <Form.Item label="Limited Member" name="limit" labelCol={{ span: 10 }} wrapperCol={{ span: 10 }} >
+              <Col span={11}>
+                <Form.Item label="Limited Member" name="limit" labelCol={{ span: 11 }} wrapperCol={{ span: 11 }} >
                   <Switch  className="get-shadow" onChange={onLimitChange}/>
                 </Form.Item>
 
-                <Form.Item label="Member Num" name="memberNum" hidden={!limiedMember} labelCol={{ span: 10 }} wrapperCol={{ span: 10 }}>
+                <Form.Item label="Member Num" name="memberNum" hidden={!limiedMember} labelCol={{ span: 11 }} wrapperCol={{ span: 10 }}>
                   <InputNumber min="1" defaultValue={1}/>
                 </Form.Item>
               </Col>
-              <Col span={10}>
+              <Col span={9}>
                 <Form.Item label="Private" name="private" labelCol={{ span: 7 }} wrapperCol={{ span: 10 }}>
                   <Switch  className="get-shadow" onChange={onPrivateChange}/>
                 </Form.Item>
               </Col>
             </Row>
 
-            <Form.Item name="eventType" label="Event Type" rules={[{ required: true, message:'Please Choose one Option' }]}>
-            <Select
-              className="get-shadow"
-              placeholder="Select a option and change input text above"
-              onChange={onTypeChange}
-              allowClear
-            >
-              <Option value="normalEvent">Normal Event</Option>
-              <Option value="projectEvent">Project Event</Option>
-            </Select>
-            </Form.Item>
 
-            <Form.Item name="category" label="Event Category" rules={[{ required: true, message:'Please Choose one Option' }]}>
-              <Select
-                className="get-shadow"
-                mode="multiple"
-                style={{ width: "100%" }}
-                placeholder="Please select"
-                defaultValue={[]}
-              >
-              {eventCategory}
-              </Select>
-            </Form.Item>
+            <Row className="category-type-loaction">
 
+              <Col span={10}>
+                <Form.Item
+                labelCol={4}
+                wrapperCol={7}
+                name="category" label="Category" rules={[{ required: true, message:'Please Choose one Option' }]}>
+                  <Select
+                    className="get-shadow"
+                    mode="multiple"
+                    style={{ width: "100%" }}
+                    placeholder="Please select"
+                    defaultValue={[]}
+                  >
+                  {eventCategory}
+                  </Select>
+                </Form.Item>
+              </Col>
+
+              <Col span={12}>
+                <Form.Item name="eventType" label="Type" rules={[{ required: true, message:'Please Choose one Option' }]}>
+                <Select
+                  className="get-shadow"
+                  placeholder="Select a option and change input text above"
+                  onChange={onTypeChange}
+                  allowClear
+                >
+                  <Option value="normalEvent">Normal Event</Option>
+                  <Option value="projectEvent">Project Event</Option>
+                </Select>
+                </Form.Item>
+              </Col>
+
+            </Row>
             {
             // <Form.Item name="but" label="but" hidden={!IsProject} >
             //   <Button htmlType="submit"  style={{width: "100%"}}>
