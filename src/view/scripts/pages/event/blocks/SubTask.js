@@ -34,8 +34,17 @@ const SubTask = ({dispatch, id, eventId, title, status, members, taskMembers}) =
     }
     const editTaskSend = () => {
       setEditMode(false)
-      sendEditTaskGet({Name : editedTitle, EventId : eventId, Order : 0, Status : status, Id :  id})
-      .then(dispatch(editTask(id, editedTitle))).catch((e) => console.log(e))
+      if(status == 'todo'){
+        sendEditTaskGet({Name : editedTitle, EventId : eventId, Order : 0, Status : 1, Id :  id})
+        .then(dispatch(editTask(id, editedTitle))).catch((e) => console.log(e))
+      } else if(status == 'Doing'){
+        sendEditTaskGet({Name : editedTitle, EventId : eventId, Order : 0, Status : 2, Id :  id})
+        .then(dispatch(editTask(id, editedTitle))).catch((e) => console.log(e))
+      } else{
+        sendEditTaskGet({Name : editedTitle, EventId : eventId, Order : 0, Status : 3, Id :  id})
+        .then(dispatch(editTask(id, editedTitle))).catch((e) => console.log(e))
+      }
+     
     }
 
 

@@ -11,7 +11,7 @@ export default class TaskForm extends React.Component{
         this.state = {
             title :  '',
             status : 'To Do',
-            members :  [],
+            taskMembers :  [],
             eventId :  '',
             error : ''
         }
@@ -27,8 +27,7 @@ export default class TaskForm extends React.Component{
       this.props.onSubmit({
         title : this.state.title,
         status : data.status,
-        // members : data.assignedMembers,
-        members : ['1', '2', '3', '4'],
+        members : data.assignedMembers,
         id : data.id,
         eventId : data.eventId
     })
@@ -64,13 +63,12 @@ export default class TaskForm extends React.Component{
             },
           };
         return (
-            <div style={{
-              padding : 24
-            }}> 
+            <div className="box"> 
                
                 <Form
                     name="basic"
                     onSubmitCapture={this.onSubmit}
+                    className="center-form"
                     >
                    <Row> 
                    <Col span={12} offset={5}><Form.Item
@@ -81,7 +79,9 @@ export default class TaskForm extends React.Component{
                    <Input type='text'
                    placeholder="My task"
                    value={this.state.title}
-                   onChange={this.onChangeTitle}/>
+                   onChange={this.onChangeTitle}
+                   className="get-border-radius get-shadow"
+                   />
                    
                   </Form.Item></Col>
                   <Col offset={1}><Form.Item>

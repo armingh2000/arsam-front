@@ -9,6 +9,10 @@ import EventSteps from "./EventSteps";
 import EventEditModal from "./EventEditModal";
 import EventDetails from "./EventDetails";
 import { getEvent } from "../../../../../../core/api/actions/EventActions";
+import { addTask, changeStatus } from '../../../../../../core/event/actions/taskActions'
+import Tasks from '../../blocks/Tasks'
+import TaskForm from '../../blocks/TaskForm'
+
 
 const EventGrid = ({event, dispatch}) =>
 {
@@ -46,7 +50,12 @@ const EventGrid = ({event, dispatch}) =>
               description
             </Card.Grid>
             <Card.Grid style={{width:"100%", margin:"10px 0"}}>
-              <h1>MELIKA</h1>
+            <div id="components-checkList">
+            <Tasks></Tasks>
+            <TaskForm  
+            onSubmit={(task) => {dispatch(addTask(task))}} 
+            onStatusChange={(task) => {dispatch(changeStatus(task.id, task))}}></TaskForm>
+            </div>
             </Card.Grid>
 
 

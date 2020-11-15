@@ -11,8 +11,9 @@ const {Header, Content, Sider} = Layout
 const Tasks = (props) => {
  
 
-    const chooseSubTask = (task) => {
-        props.dispatch(selectSubTask(task))
+    const chooseSubTask = (id) => {
+        console.log(id)
+        props.dispatch(selectSubTask(id))
     }
     return (
         <Layout style={{
@@ -33,7 +34,7 @@ const Tasks = (props) => {
           onSelect={(e) => chooseSubTask(e.key)
         }
         >
-              {props.tasks.map((task) => {
+              {props.event.tasks.map((task) => {
                   return <MenuItem task={task} key={task.id}>{task.title}
                   </MenuItem>
               })}
@@ -48,7 +49,7 @@ const Tasks = (props) => {
           }}
         >
         {
-           props.selectedTask ?  <SubTask key={props.selectedTask.id} {...props.selectedTask} ></SubTask> :
+           props.event.selectedTask ?  <SubTask key={props.event.selectedTask.id} {...props.event.selectedTask} ></SubTask> :
             <Divider>Nothing Selected!</Divider>
         }
         </Content>
@@ -61,8 +62,8 @@ const Tasks = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        tasks : state.tasks,
-        selectedTask : state.selectedTask
+        event:state.event.event,
+       
     }
 }
 
