@@ -78,27 +78,44 @@ const NormalLoginForm = () => {
       </Form.Item>
 
 
-      <Form.Item>
-        <Form.Item name="remember" valuePropName="checked" noStyle="noStyle">
-          <Checkbox>Remember me</Checkbox>
+      <div className="checkbox-center">
+        <Form.Item>
+          <Form.Item name="remember" valuePropName="checked" noStyle="noStyle">
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
+
+          {
+            // TODO: forgot password manage
+            // <a className="login-form-forgot" href="">
+            //   Forgot password
+            // </a>
+          }
+
         </Form.Item>
+      </div>
 
-        {
-          // TODO: forgot password manage
-          // <a className="login-form-forgot" href="">
-          //   Forgot password
-          // </a>
-        }
-      </Form.Item>
+        <Form.Item>
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
-        </Button>
-        Or&nbsp;
-        <Link to="/signup">
-          register now!</Link>
-      </Form.Item>
+          <Button htmlType="submit" className="btn center-button" >
+            <svg width="100%" height="100%">
+              <defs>
+                <linearGradient id="grad1">
+                  <stop offset="0%" stop-color="#7183f5" />
+                  <stop offset="100%" stop-color="#74ddfc" />
+                </linearGradient>
+              </defs>
+              <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="97%" height="85%"></rect>
+            </svg>
+
+            <span className="center-span">Log in</span>
+
+          </Button>
+
+          <div className="link-location">
+            Or&nbsp;
+            <Link to="/signup">register now!</Link>
+          </div>
+        </Form.Item>
     </Form>
 
   </div>
