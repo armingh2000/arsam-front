@@ -14,7 +14,6 @@ const Profile = () =>
       <ProfileForm />
     </Col>
   </Row>
-
     </div>
   );
 };

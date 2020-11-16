@@ -45,7 +45,12 @@ const RegistrationForm = () => {
   const history = useHistory();
 
   const onFailure = (error) => {
-    setFailureMessage("username used");
+    if(error.response.request.status === 400){
+      setFailureMessage("username used!");
+    }
+    else{
+      setFailureMessage("SignUp failed. Try again!");
+    }
     setIsFailed(true);
   };
 
