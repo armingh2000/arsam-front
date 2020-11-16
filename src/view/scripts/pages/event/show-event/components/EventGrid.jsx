@@ -42,7 +42,9 @@ const EventGrid = ({event, dispatch, eventId}) =>
                 <Tasks></Tasks>
                 <TaskForm
                 onSubmit={(task) => {dispatch(addTask(task))}}
-                onStatusChange={(task) => {dispatch(changeStatus(task.id, task))}}></TaskForm>
+                onStatusChange={(task) => {dispatch(changeStatus(task.id, task))}}
+                event={event}>
+                </TaskForm>
                 </div>
                 </div>
                 </Card>
