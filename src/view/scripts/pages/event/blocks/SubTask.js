@@ -15,7 +15,7 @@ const SubTask = ({dispatch, id, eventId, title, status, members, taskMembers}) =
     const [assignMode, setAssignMode] = useState(false)
     const [editMode, setEditMode] = useState(false);
     const [editedTitle, setEditedTitle] = useState(title)
-    const [styleButtonColor, setStyleButtonColor] = useState('#303afc')
+    const [styleButtonColor, setStyleButtonColor] = useState("Status-Button-Todo-Style")
     const [styleButtonIcon, setStyleButtonIcon] = useState(<FileAddOutlined style={{color:'white'}} />)
     const [hidePopover, setHidePopover] = useState(true)
     const [hideDropdown, setHideDropdown] = useState(false)
@@ -47,33 +47,20 @@ const SubTask = ({dispatch, id, eventId, title, status, members, taskMembers}) =
      
     }
 
-
-  const menuMembers = () => {
-    return <Menu
-          mode="inline"
-          style={{ height: '100%', borderRight: 0 }}
-          onClick={(e) => {assignChange(e.key)}}>
-            {members.map((member) => {
-              return <Menu.Item key={member}>{member}</Menu.Item>
-            })}
-        </Menu>
-  }
-
-
   const statusButtonStyle = (type) => {
   
     if(type == 'todo'){
-      setStyleButtonColor('#303afc')
+      setStyleButtonColor("Status-Button-Todo-Style")
       setStyleButtonIcon(<FileAddOutlined style={{color:'white'}}/>)
       sendEditTaskGet({Name : editedTitle, EventId : eventId, Order : 0, Status : 1, Id :  id})
       .then(dispatch(changeStatus({id, status : type})))
     } else if(type == 'Doing'){
-      setStyleButtonColor('#fccc30')
+      setStyleButtonColor("Status-Button-Doing-Style")
       setStyleButtonIcon(<LoadingOutlined style={{color:'white'}}/>)
       sendEditTaskGet({Name : editedTitle, EventId : eventId, Order : 0, Status : 2, Id :  id})
       .then(dispatch(changeStatus({id, status : type})))
     } else{
-      setStyleButtonColor('#21c22e')
+      setStyleButtonColor("Status-Button-Done-Style")
       setStyleButtonIcon(<FileDoneOutlined  style={{color:'white'}}/>)
       sendEditTaskGet({Name : editedTitle, EventId : eventId, Order : 0, Status : 3, Id :  id})
       .then(dispatch(changeStatus({id, status : type})))
@@ -82,17 +69,21 @@ const SubTask = ({dispatch, id, eventId, title, status, members, taskMembers}) =
 
     return (<div>
               
-     {!editMode &&  <Row>
-      <Col span={2}>
+     {!editMode &&  
+      <Row className="First-Row-Padding">
+      <Col span={3}>
         <Dropdown
         placement="topCenter"
-        overlay={<div>
-          <a onClick={(e) => {statusButtonStyle(e='todo')}}>To Do</a>
-          <br/>
-          <a onClick={(e) => {statusButtonStyle(e='Doing')}}>Doing</a>
-          <br/>
-          <a onClick={(e) => {statusButtonStyle(e='Done')}}>Done</a>
-      </div>}
+        overlay={
+          <Menu>
+           <Menu.Item><a  onClick={(e) => {
+            statusButtonStyle(e='todo')
+            setHideDropdown(false)}}>To Do</a></Menu.Item>
+          <Menu.Item><a  onClick={(e) => {statusButtonStyle(e='Doing')
+          setHideDropdown(false)}}>Doing</a></Menu.Item>
+         <Menu.Item> <a  onClick={(e) => {statusButtonStyle(e='Done')
+         setHideDropdown(false)}}>Done</a>  </Menu.Item>
+      </Menu>}
       trigger={['click']}
       onVisibleChange={(e) =>{
         if(e) {
@@ -116,48 +107,54 @@ const SubTask = ({dispatch, id, eventId, title, status, members, taskMembers}) =
         onMouseLeave={() => {setHidePopover(true)}}>
             <Button 
             size='large'
+            className="Status-Button-Style get-shadow get-border-radius"
             icon={styleButtonIcon}
-            style={{
-              backgroundColor : styleButtonColor,
-            }}></Button>
+            className={styleButtonColor}></Button>
         </Popover>
         </Dropdown>
       </Col>
       <Col span={12}><Title class="Title" level={2}>{title} </Title></Col>
-      <Col span={2} offset={6}><Button icon={<EditOutlined />} type="dashed" onClick={() => {setEditMode(!editMode)}}></Button></Col>
-      <Button icon={<DeleteOutlined />} style={{backgroundColor:'red'}} type="ghost" onClick={() => sendDeleteTaskDelete(id).then(dispatch(removeSubTask({id}))).catch((e) => {console.log(e)})
+      <Col span={5} offset={4}>
+      <Button icon={<EditOutlined />} className="get-shadow get-border-radius Delete-Edit-Button" type="dashed" onClick={() => {setEditMode(!editMode)}}></Button>
+      <Button icon={<DeleteOutlined />} className="get-shadow get-border-radius Delete-Edit-Button"  type="ghost" onClick={() => sendDeleteTaskDelete(id).then(dispatch(removeSubTask({id}))).catch((e) => {console.log(e)})
     }></Button>
+    </Col>
       </Row>
          }       
         {<div>  
           {editMode && 
-            <Form {...layout}
+            <Form
             name="basic"
             onSubmitCapture={editTaskSend
             }>
-            <Form.Item
-            label="Title"
-            name="Title"
-        >
-            <Input type='text'
-            defaultValue={title}
-            value={editedTitle}
-            onChange={(e) => {editChange(e)}}/>
-            
-        </Form.Item>
-
-        <Form.Item {...tailLayout}>
-            <Button type="primary" htmlType="submit">
-            <CheckOutlined />
-            </Button>
-        </Form.Item>
+           <Row>
+           <Col span={18} className="Tags-Row-Style">
+           <Form.Item
+           label="Title"
+           name="Title"
+       >
+           <Input type='text'
+           defaultValue={title}
+           value={editedTitle}
+           onChange={(e) => {editChange(e)}}/>
+           
+           </Form.Item>
+           </Col>
+           <Col>
+           <Form.Item {...tailLayout}>
+           <Button type="primary" htmlType="submit" className="Task-Button-Style">
+           <CheckOutlined />
+           </Button>
+         </Form.Item>
+         </Col>
+           </Row>
             </Form>
           }</div>
         }
       
-        <Title level={3} style={{marginTop : 10}}>Members</Title>
+        <Title level={3} className="Members-Title-Style">Members</Title>
      
-     <Row>
+     <Row className="Tags-Row-Style">
      {taskMembers && taskMembers.map((member) => {
        return (<Tag key={member}
        closable
@@ -169,7 +166,7 @@ const SubTask = ({dispatch, id, eventId, title, status, members, taskMembers}) =
                }
            </Tag>)
      })}  
-     <Tag icon={<UserAddOutlined />} onClick={() => {setAssignMode(!assignMode)}}>{assignMode && 
+     <Tag icon={<UserAddOutlined />} className="get-border-radius get-shadow" onClick={() => {setAssignMode(!assignMode)}}>{assignMode && 
       <Dropdown overlay={(<Menu
         onClick={(e) => {assignChange(e.key)}}>
           {members.map(member => 

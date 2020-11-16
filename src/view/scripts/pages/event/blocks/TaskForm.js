@@ -63,15 +63,14 @@ export default class TaskForm extends React.Component{
             },
           };
         return (
-            <div className="box"> 
-               
+           
                 <Form
                     name="basic"
                     onSubmitCapture={this.onSubmit}
                     className="center-form"
                     >
                    <Row> 
-                   <Col span={12} offset={5}><Form.Item
+                   <Col span={18} offset={1}><Form.Item
                    label="Title"
                    name="Title"
                    rules={[{ required: true, message: this.state.error }]}
@@ -85,16 +84,14 @@ export default class TaskForm extends React.Component{
                    
                   </Form.Item></Col>
                   <Col offset={1}><Form.Item>
-                  <Button style={{display: 'flex'}} type="primary" htmlType="submit">
+                  <Button className="Task-Button-Style" type="primary" htmlType="submit">
                   Submit
                   </Button>
-              </Form.Item></Col>
+                </Form.Item></Col>
                   </Row>
                    
                     </Form>
                 
-
-            </div>
         )
     }
 }

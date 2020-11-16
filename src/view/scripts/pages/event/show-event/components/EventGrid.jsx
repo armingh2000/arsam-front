@@ -51,10 +51,14 @@ const EventGrid = ({event, dispatch}) =>
             </Card.Grid>
             <Card.Grid style={{width:"100%", margin:"10px 0"}}>
             <div id="components-checkList">
+            <div 
+            className="box"
+            >
             <Tasks></Tasks>
             <TaskForm  
             onSubmit={(task) => {dispatch(addTask(task))}} 
             onStatusChange={(task) => {dispatch(changeStatus(task.id, task))}}></TaskForm>
+            </div>
             </div>
             </Card.Grid>
 
