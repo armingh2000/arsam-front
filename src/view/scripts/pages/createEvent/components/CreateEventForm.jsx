@@ -77,6 +77,7 @@ const CreateEventForm = () =>{
 
  var imgVal;
  var fileVal;
+ var eventId;
 
   const onFinish = (values) => {
     const category=values.category;
@@ -111,41 +112,29 @@ const CreateEventForm = () =>{
   };
 
   const onSuccess = (response) => {
-    // console.log("Success");
-    // console.log("response:");
-    // console.log(response);
-    // console.log("imgVal:");
-    // console.log(imgVal);
-    // console.log("imgval0:");
-    // console.log(imgVal[0]);
-    // console.log(imgVal[0].name);
 
-    // const data=new FormData();
-    // data.append('image',imgVal);
+
+    const token=localStorage.getItem("userToken");
+    // console.log("token:");
+    // console.log(token);
+    eventId = response.data.id;
+    // console.log("event id:");
+    // console.log(eventId);
+
 
     if(imgVal!==undefined){
       var FormData = require('form-data');
       var fs = require('fs');
       var data = new FormData();
-      //data.append('',fs.createReadStream(`${imgVal[0].name}`));
       data.append('image',imgVal[0].originFileObj);
-      // data.append('image','1');
-
       // var data = new FormData(form.dragger);
-      console.log("form-data:");
-      console.log(data);
+      // console.log("form-data:");
+      // console.log(data);
 
-      for(var pair of data.entries()) {
-        console.log(pair[1]);
-      }
+      // for(var pair of data.entries()) {
+        // console.log(pair[1]);
+      // }
 
-
-      const token=localStorage.getItem("userToken");
-      console.log("token:");
-      console.log(token);
-      const eventId = response.data.id;
-      console.log("event id:");
-      console.log(eventId);
 
       sendImageEventPost(
         `https://localhost:44373/api/event/AddImage?eventId=${eventId}`
@@ -155,11 +144,25 @@ const CreateEventForm = () =>{
         {
           'Authorization':`Bearer ${token}`
         }
-        );
+        )
+        .then(onSuccess2)
+        .catch(onFailure);
+    }
+    else {
+      redirectUser(eventId);
     }
 
-    // console.log("finish success");
   };
+
+  const onSuccess2 =(response) => {
+    if(response.data==="images added"){
+      redirectUser(eventId);
+    }
+  };
+
+  function redirectUser(eventId){
+    history.replace(`/event/${eventId}`);
+  }
 
   const onFailure = (error) => {
     setIsFailed(true);
@@ -307,8 +310,9 @@ const CreateEventForm = () =>{
 
         </Form>
 
-
       </div>
+
+
   );
 
 }
