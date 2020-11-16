@@ -13,7 +13,7 @@ const ShowEvent = ({event, dispatch, match}) =>
     dispatch(getEvent({
         payload:{
           eventId: match.params.eventId,
-          tokenId: "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJ0ZXN0MkB0ZXN0Mi5jb20iLCJuYmYiOjE2MDU0NTg1MDQsImV4cCI6MTYwNTU0NDkwNCwiaWF0IjoxNjA1NDU4NTA0fQ.e7iIDj3N2ochoGStlkTdrBFyDm9Y04zS0qcxtCEIgPknbKTqmIPHPT24Wx_9a36oZp1sp2v25yOZWXL-Y3O0gg"
+          tokenId: localStorage.getItem("userToken")
         }
       }))
   }, []);
