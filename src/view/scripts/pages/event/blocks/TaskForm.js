@@ -11,7 +11,6 @@ export default class TaskForm extends React.Component{
         this.state = {
             title :  '',
             status : 'To Do',
-            taskMembers :  [],
             eventId :  '',
             error : ''
         }
@@ -25,9 +24,9 @@ export default class TaskForm extends React.Component{
 
     onSuccess = ({data}) =>{
       this.props.onSubmit({
-        title : this.state.title,
+        name : this.state.title,
         status : data.status,
-        members : data.assignedMembers,
+        assignedMembers : data.assignedMembers,
         id : data.id,
         eventId : data.eventId
     })

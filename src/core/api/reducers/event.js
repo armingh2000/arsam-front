@@ -14,43 +14,49 @@ const initialState = {
      maximumNumberOfMembers: null,
      eventMembers: [],
      imagesPath: [],
+     tasks : [],
+     selectedTask : undefined,
      creator: {
-       email: '',
-       phoneNumber: null
+     email: '',
+     phoneNumber: null
      },
      categories: [],
-     tasks : [],
-     selectedTask : undefined
+     status: 'idle'
   }
 };
 
-export default ( state = initialState, {type, payload }) => {
+const event = ( state = initialState, {type, payload }) => {
   switch (type) {
     case ActionTypes.GET_EVENT_REQUEST:
-      return state;
-
-    case ActionTypes.GET_EVENT_REQUEST_SUCCESS:
-      console.log(payload)
       return {
         ...state,
-        event: payload.data
+        status: 'loading'
+      };
+
+    case ActionTypes.GET_EVENT_REQUEST_SUCCESS:
+      return {
+        ...state,
+        event: payload.data,
+        status: 'success'
       }
 
     case ActionTypes.GET_EVENT_REQUEST_FAILURE:
-      return state;
+      return {
+        ...state,
+        status: 'error'
+      };
 
     case 'ADD_TASK':
             return {
                 event: {
                   ...state.event,
                 tasks : [...state.event.tasks, payload.task = {
-                  ...payload.task,
-                  members : state.event.eventMembers
+                  ...payload.task
                 }],
+                status : 'success'
               }
             }
     case 'REMOVE_TASK':
-      console.log(payload.id)
             return {
                 event:{
                   ...state.event,
@@ -66,7 +72,7 @@ export default ( state = initialState, {type, payload }) => {
                     if(task.id === payload.id){
                         return {
                             ...task, 
-                            title : payload.title
+                            name : payload.name
                         }
                     } else {
                         return {
@@ -76,7 +82,7 @@ export default ( state = initialState, {type, payload }) => {
                 }),
                 selectedTask : {
                     ...state.event.selectedTask,
-                    title : payload.title
+                    name : payload.name
                 }
                 }
             }        
@@ -110,7 +116,7 @@ export default ( state = initialState, {type, payload }) => {
                     if(task.id === payload.id){
                         return {
                             ...task,
-                            taskMembers : [...task.taskMembers, payload.memberId]
+                            assignedMembers : [...task.assignedMembers, payload.memberId]
                         }
                     } else {
                         return {
@@ -120,8 +126,8 @@ export default ( state = initialState, {type, payload }) => {
                 }),
                 selectedTask : {
                     ...state.event.selectedTask,
-                    taskMembers : [ ...state.event.tasks.find((task) => {
-                        return task.id == payload.id}).taskMembers, payload.memberId]
+                    assignedMembers : [ ...state.event.tasks.find((task) => {
+                        return task.id == payload.id}).assignedMembers, payload.memberId]
                 }
                 }
             }
@@ -142,7 +148,7 @@ export default ( state = initialState, {type, payload }) => {
                     if(task.id == payload.id){
                         return{
                             ...task,
-                            taskMembers : task.taskMembers.filter((memberId) => memberId !== payload.memberId)
+                            assignedMembers : task.assignedMembers.filter((memberId) => memberId !== payload.memberId)
                         }
                     }else{
                         return{ ...task}
@@ -150,7 +156,7 @@ export default ( state = initialState, {type, payload }) => {
                 }),
                 selectedTask : {
                     ...state.event.selectedTask,
-                    taskMembers : state.event.selectedTask.taskMembers.filter((memberId) => memberId !== payload.memberId)
+                    assignedMembers : state.event.selectedTask.assignedMembers.filter((memberId) => memberId !== payload.memberId)
                 }
                 }
             }
@@ -158,3 +164,5 @@ export default ( state = initialState, {type, payload }) => {
       return state;
     };
 }
+
+export default event;

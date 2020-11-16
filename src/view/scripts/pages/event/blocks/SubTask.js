@@ -10,11 +10,11 @@ import {  UserAddOutlined, EditOutlined, DeleteOutlined, CheckOutlined,FileDoneO
 
 const { Title } = Typography;
 
-const SubTask = ({dispatch, id, eventId, title, status, members, taskMembers}) =>{
+const SubTask = ({dispatch, id, eventId, name, status, eventMembers, assignedMembers}) =>{
   
     const [assignMode, setAssignMode] = useState(false)
     const [editMode, setEditMode] = useState(false);
-    const [editedTitle, setEditedTitle] = useState(title)
+    const [editedTitle, setEditedTitle] = useState(name)
     const [styleButtonColor, setStyleButtonColor] = useState("Status-Button-Todo-Style")
     const [styleButtonIcon, setStyleButtonIcon] = useState(<FileAddOutlined style={{color:'white'}} />)
     const [hidePopover, setHidePopover] = useState(true)
@@ -27,7 +27,7 @@ const SubTask = ({dispatch, id, eventId, title, status, members, taskMembers}) =
    
     const assignChange = (e) => {
       const setIt = e;
-      if(!taskMembers.includes(setIt)){
+      if(!assignedMembers.includes(setIt)){
         sendAssignMembersTaskPut({Id : id, MemberId : setIt})
             .then(dispatch(assignMember(id, setIt))).catch((e) => {console.log(e)})
       }
@@ -113,7 +113,7 @@ const SubTask = ({dispatch, id, eventId, title, status, members, taskMembers}) =
         </Popover>
         </Dropdown>
       </Col>
-      <Col span={12}><Title class="Title" level={2}>{title} </Title></Col>
+      <Col span={12}><Title class="Title" level={2}>{name} </Title></Col>
       <Col span={5} offset={4}>
       <Button icon={<EditOutlined />} className="get-shadow get-border-radius Delete-Edit-Button" type="dashed" onClick={() => {setEditMode(!editMode)}}></Button>
       <Button icon={<DeleteOutlined />} className="get-shadow get-border-radius Delete-Edit-Button"  type="ghost" onClick={() => sendDeleteTaskDelete(id).then(dispatch(removeSubTask({id}))).catch((e) => {console.log(e)})
@@ -134,7 +134,7 @@ const SubTask = ({dispatch, id, eventId, title, status, members, taskMembers}) =
            name="Title"
        >
            <Input type='text'
-           defaultValue={title}
+           defaultValue={name}
            value={editedTitle}
            onChange={(e) => {editChange(e)}}/>
            
@@ -155,7 +155,7 @@ const SubTask = ({dispatch, id, eventId, title, status, members, taskMembers}) =
         <Title level={3} className="Members-Title-Style">Members</Title>
      
      <Row className="Tags-Row-Style">
-     {taskMembers && taskMembers.map((member) => {
+     {assignedMembers && assignedMembers.map((member) => {
        return (<Tag key={member}
        closable
        onClose={() => {
@@ -169,8 +169,9 @@ const SubTask = ({dispatch, id, eventId, title, status, members, taskMembers}) =
      <Tag icon={<UserAddOutlined />} className="get-border-radius get-shadow" onClick={() => {setAssignMode(!assignMode)}}>{assignMode && 
       <Dropdown overlay={(<Menu
         onClick={(e) => {assignChange(e.key)}}>
-          {members.map(member => 
-             <Menu.Item key={member}>{member}</Menu.Item>
+        {console.log(eventMembers)}
+          {eventMembers.map(member => 
+             <Menu.Item key={member.email}>{member.email}</Menu.Item>
           )}
       </Menu>)}><a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
       Select a member 

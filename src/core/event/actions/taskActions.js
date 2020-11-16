@@ -1,6 +1,6 @@
 import uuid from 'react-uuid';
 //Add
-export const addTask = ({eventId, title, status , members , id, taskMembers=[]}) => 
+export const addTask = ({eventId, name, status, id, assignedMembers=[]}) => 
     ({
         type : 'ADD_TASK',
         payload : {
@@ -8,10 +8,9 @@ export const addTask = ({eventId, title, status , members , id, taskMembers=[]})
         task : {
             id ,
             eventId, 
-            title,
+            name,
             status,
-            members,
-            taskMembers
+            assignedMembers
         }
         }
     })

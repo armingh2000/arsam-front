@@ -17,9 +17,8 @@
       border-radius:10px;
       padding: 1% 0%;
       height: 20%;
-      width: 105vh;
+      width: 100%;
       box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.16);
-      margin-left: 15%;
     // margin: 50px 0px;
     // margin: 10% 0%;
     // background-color: #fff;
@@ -216,7 +215,7 @@
   }
 
   #components-checkList .content-style{
-    max-width: 580;
+    // max-width: 100%;
     background-Color : white;
     padding-top: 0.5%;
     padding-left: 1%;

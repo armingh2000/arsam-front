@@ -21,7 +21,7 @@ const Tasks = (props) => {
             <Layout
             className="get-border-radius"
             style={{
-                width: '95vh',
+                // width: '95vh',
                 marginLeft: '5%',
                 marginTop : '5%',
             }}
@@ -35,8 +35,9 @@ const Tasks = (props) => {
             onSelect={(e) => chooseSubTask(e.key)
             }
             >
+            {console.log(props.event.tasks)}
                 {props.event.tasks.map((task) => {
-                    return <MenuItem task={task} key={task.id}>{task.title}
+                    return <MenuItem task={task} key={task.id}>{task.name}
                     </MenuItem>
                 })}
             </Menu>
@@ -45,7 +46,8 @@ const Tasks = (props) => {
             className="content-style"
             >
             {
-            props.event.selectedTask ?  <SubTask key={props.event.selectedTask.id} {...props.event.selectedTask} ></SubTask> :
+            props.event.selectedTask ?  <SubTask key={props.event.selectedTask.id} {...props.event.selectedTask} 
+            eventMembers={props.event.eventMembers} ></SubTask> :
                 <div >
                     <Row className="Nothing-Shown">
                     <EyeInvisibleTwoTone  
