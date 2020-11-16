@@ -26,7 +26,7 @@ const EventGrid = ({event, dispatch, eventId}) =>
             <Card className="card">
               <Row justify="space-around" align="middle" gutter={[8,8]}>
                 <Col xs={24} md={11}>
-                    <EventImages images={event.imagesPath}/>
+                    <EventImages images={event.images}/>
                 </Col>
                 <Col xs={24} md={9} className="details-col">
                   <EventDetails
@@ -51,7 +51,7 @@ const EventGrid = ({event, dispatch, eventId}) =>
               </Col>
             </Row>
             <Card className="card">
-              <EventDescription/>
+              <EventDescription description={event.description}/>
             </Card>
 
           </div>
