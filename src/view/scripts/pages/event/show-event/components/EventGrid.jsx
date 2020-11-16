@@ -5,6 +5,10 @@ import {
     Card} from "antd";
 import EventImages from "./EventImages";
 import EventDetails from "./EventDetails";
+import { addTask, changeStatus } from '../../../../../../core/event/actions/taskActions'
+import Tasks from '../../blocks/Tasks'
+import TaskForm from '../../blocks/TaskForm'
+
 import EventMembersList from "./EventMembersList";
 import EventDescription from "./EventDescription";
 
@@ -37,11 +41,21 @@ const EventGrid = ({event, dispatch, eventId}) =>
                     categories={event.categories}/>
                 </Col>
               </Row>
-            </Card>
+              </Card>
+            
             <Row justify="space-around" align="middle" gutter={[8,8]}>
               <Col xs={24} md={18}>
                 <Card className="card">
-                  Melika
+                <div id="components-checkList">
+                <div 
+                className="box"
+                >
+                <Tasks></Tasks>
+                <TaskForm  
+                onSubmit={(task) => {dispatch(addTask(task))}} 
+                onStatusChange={(task) => {dispatch(changeStatus(task.id, task))}}></TaskForm>
+                </div>
+                </div>
                 </Card>
               </Col>
               <Col xs={24} md={4}>
@@ -53,7 +67,9 @@ const EventGrid = ({event, dispatch, eventId}) =>
             <Card className="card">
               <EventDescription description={event.description}/>
             </Card>
-
+            <Card.Grid style={{width:"100%", margin:"10px 0"}}>
+            description
+          </Card.Grid>
           </div>
   );
 }

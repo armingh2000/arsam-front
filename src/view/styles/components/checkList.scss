@@ -1,0 +1,276 @@
+  #components-checkList {
+      padding: 5% 10%;
+  }
+  
+  #components-checkList .text-center{
+      // color:#f542ef;
+    color:#026770;
+      text-transform:uppercase;
+      font-size: 23px;
+      margin: 0px 0 80px 0;
+      display: block;
+      text-align: center;
+  }
+  
+  #components-checkList .box{
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.89) 0%, rgba(247, 252, 252,0.89) 100%);
+      border-radius:10px;
+      padding: 1% 0%;
+      height: 20%;
+      width: 100%;
+      box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.16);
+    // margin: 50px 0px;
+    // margin: 10% 0%;
+    // background-color: #fff;
+    // text-align: center;
+  }
+  
+  #components-checkList .box-item{
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.89) 0%, rgba(86,128,233,0.89) 100%);
+      border-radius:3px;
+      // padding:70px 100px;
+  }
+  
+  
+  #components-checkList Input:focus{
+    border:none;
+    outline:none;
+    border-bottom:3px solid #73CAC5;
+  }
+  
+  #components-checkList Input:hover{
+    box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.16);
+  }
+  
+  #components-checkList .get-shadow:hover{
+    box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.16);
+  }
+  
+  
+  
+  #components-checkList .input-container{
+      position:relative;
+      margin-bottom:25px;
+  }
+  
+  #components-checkList .Form-Item{
+  background-color: #000;
+  }
+  
+  #components-checkList .input-container label{
+      position:absolute;
+      top:0px;
+      left:0px;
+      font-size:16px;
+      color:#000;
+      pointer-event:none;
+      transition: all 0.5s ease-in-out;
+  // background-color: #000;
+  }
+  
+  #components-checkList .input-container Input{
+    border:0;
+    border-bottom:1px solid #555;
+    // background:transparent;
+  
+    // background-color: #9FEDD7;
+    width:100%;
+    padding:8px 0 5px 0;
+    // font-size:16px;
+    // color:#4287f5;
+    // color:#9FEDD7;
+    // background-color: rgba(135,96,208, 0.89);
+    // background-color: rgba(86,128,233, 0.89);
+    // background-color: rgba(193,200,228, 0.89);
+    background: linear-gradient(to right, rgba(86, 128, 233, 1) 0%, rgba(90, 250, 160, 1) 100%);
+    // background-color: #000;
+  }
+  
+  #components-checkList .input-container Input:focus{
+   border:none;
+   outline:none;
+   // border-bottom:3px solid #9FEDD7;
+   // border-bottom:3px solid #FCE181;
+  
+      border-bottom:3px solid #f5428d;
+  
+   // border-bottom:3px solid #b042f5;
+  }
+  
+  #components-checkList .input-container Input:focus ~ label,
+  #components-checkList .input-container Input:valid ~ label{
+      top:-12px;
+      font-size:12px;
+  }
+  
+  
+  //button style------------------------------------------------------------------------------------------------------
+  #components-checkList .btn {
+  position: relative;
+  display: inline-block;
+  width: 277px;
+  height: 50px;
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 60px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  // font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: 0.045em;
+  border: none;
+  }
+  
+  #components-checkList .btn svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  }
+  
+  #components-checkList .btn svg rect {
+  // stroke-width: 4;
+  stroke-width: 1%;
+  
+  // stroke-dasharray: 600, 0;
+  stroke-dasharray: 100%, 0%;
+  
+  stroke-dashoffset: 0;
+  transition: all 600ms ease;
+  }
+  
+  #components-checkList .btn span {
+  background: rgb(86, 128, 233);
+  
+  background: linear-gradient(to right, rgba(86, 128, 233, 1) 0%, rgba(116, 221, 252, 1) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  }
+  
+  #components-checkList .btn:hover svg rect {
+  stroke-width: 1%;
+  // stroke-dasharray: 500, 700;
+  // stroke-dashoffset: 550;
+  
+  // stroke-dasharray:70%,220%;
+  // stroke-dashoffset: 120%;
+  
+  stroke-dasharray:70%,180%;
+  stroke-dashoffset: 80%;
+  }
+  
+  #components-checkList .center-span{
+    text-align: center;
+    padding-left: 0%;
+    position: relative;
+    bottom: 9px;
+  }
+  
+  #components-checkList .center-button{
+    margin-left: 25%;
+  }
+  
+  #components-checkList .center-form{
+    margin-top: 5%;
+    margin-left: 0%;
+  }
+  
+  
+  #components-checkList .checkbox-color{
+    color:#42f551;
+  }
+  
+  #components-checkList .signup-register-now{
+    color:#42f551;
+    padding-top: 20px;
+  }
+  //end of button style--------------------------------------------------------------------------------------------
+  
+  #components-checkList .get-border-radius{
+    border-radius: 5px;
+  }
+  
+  #components-checkList .resize-upload-dragger{
+    top: 17px;
+  }
+  
+  #components-checkList .category-type-loaction{
+    margin-left: 9%;
+  }
+  
+  #components-checkList .date-picker-width{
+    width: 100%;
+  }
+
+  #components-checkList .menu-tasks-get-style{
+    overflow: auto;
+    height: 25vh;
+    width : 260 ;
+    margin-left: 0px;
+    margin-right: 5px;
+  }
+
+  #components-checkList .content-style{
+    // max-width: 100%;
+    background-Color : white;
+    padding-top: 0.5%;
+    padding-left: 1%;
+  }
+  #components-checkList .Status-Button-Style{
+      margin-left: 10%;
+  }
+
+  #components-checkList .Delete-Edit-Button{
+      margin-left: 5%;
+      margin-right: 5%;
+  }
+
+  #components-checkList .Nothing-Selected-Style{
+    margin-left: 10px;
+  }
+
+  #components-checkList .Members-Title-Style{
+    margin-left: 0px;
+  }
+  #components-checkList .Tags-Row-Style{
+    margin-right: 10px;
+  }
+
+  #components-checkList .Firt-Row-Padding{
+    padding-top: 70px;
+  }
+
+  #components-checkList .Task-Button-Style{
+    background: rgb(86, 128, 233);
+  
+    background: linear-gradient(to right, rgba(86, 128, 233, 1) 0%, rgba(116, 221, 252, 1) 100%);
+  }
+
+  #components-checkList .Status-Button-Todo-Style{
+    background: rgb(84, 172, 194);
+  
+    background: linear-gradient(to right, rgb(124, 211, 196) 0%, rgb(152, 226, 195) 100%);
+  }
+  #components-checkList .Status-Button-Doing-Style{
+    background: rgb(220, 233, 104);
+  
+    background: linear-gradient(to right, rgb(230, 243, 109) 0%, rgb(241, 218, 86) 100%);
+  }
+  #components-checkList .Status-Button-Done-Style{
+    background: rgb(158, 221, 182);
+  
+    background: linear-gradient(to right, rgb(73, 182, 100) 0%, rgb(101, 209, 87) 100%);
+  }
+
+  #components-checkList .Dropdown-Background{
+    background-color: #73CAC5;
+  }
+
+  #components-checkList .Nothing-Shown{
+    justify-content: center;
+    display: flex;
+  }
