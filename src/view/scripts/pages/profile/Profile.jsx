@@ -4,10 +4,10 @@ import GLogout from "../login/components/GLogout";
 
 const Profile = () =>
 {
-  console.log("userToken :" + localStorage.getItem("userToken"));
+  console.log(localStorage.getItem("userToken"), localStorage.getItem("g"));
   return (<div>
     <p>Profile</p>
-    <p>{localStorage.getItem("userToken") && <GLogout />}</p>
+    <p>{localStorage.getItem("userToken") !== undefined && localStorage.getItem("g") !== undefined && <GLogout />}</p>
     </div>
   );
 };

@@ -12,7 +12,9 @@ function GLogin() {
   const history = useHistory();
   const onSuccess = (res) => {
     sendGLoginPost(res.tokenId).then(({data}) => {
-      openNotificationWithIcon({history:history, type:"success", desc:false, dur:3});
+      localStorage.setItem("userToken", data.token);
+      localStorage.setItem("g", true);
+      history.replace("/profile");
     }).catch(() => {
       alert("Ran into problem. Please try logging in again!");
     });

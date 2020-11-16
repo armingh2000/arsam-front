@@ -11,7 +11,7 @@ function Login() {
       }} justify="center" align="middle">
       <Col span={16}>
         <NormalLoginForm/> {
-          localStorage.getItem("userToken")
+          localStorage.getItem("g")
             ? <GLogout/>
             : <GLogin/>
         }
