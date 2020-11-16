@@ -31,7 +31,7 @@ const EventMembersList = ({members}) =>
               <Tooltip title={member.email} placement="top">
                 <Avatar
                   style={{
-                    backgroundColor: getRandomColor(),
+                    backgroundColor: 'orange',
                   }}
                 >
                   {member.email.charAt(0)}

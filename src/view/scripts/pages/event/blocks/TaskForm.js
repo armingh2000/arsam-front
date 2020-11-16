@@ -11,7 +11,7 @@ export default class TaskForm extends React.Component{
         this.state = {
             title :  '',
             status : 'To Do',
-            eventId :  props.event.id,
+            eventId :  props.event,
             error : ''
         }
 

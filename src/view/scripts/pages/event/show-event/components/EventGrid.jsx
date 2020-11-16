@@ -14,7 +14,8 @@ import EventDescription from "./EventDescription";
 
 const EventGrid = ({event, dispatch, eventId}) =>
 {
-
+  console.log(localStorage.getItem("userToken"));
+  // console.log(eventId);
   return (<div>
             <Card className="card">
               <Row justify="space-around" align="middle" gutter={[8,8]}>
@@ -43,7 +44,7 @@ const EventGrid = ({event, dispatch, eventId}) =>
                 <TaskForm
                 onSubmit={(task) => {dispatch(addTask(task))}}
                 onStatusChange={(task) => {dispatch(changeStatus(task.id, task))}}
-                event={event}>
+                event={eventId}>
                 </TaskForm>
                 </div>
                 </div>
