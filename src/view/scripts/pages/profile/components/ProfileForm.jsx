@@ -1,27 +1,13 @@
-import React, {useState} from "react";
-import {Form, Input, Button, Checkbox, Typography, Row, Col} from 'antd';
-import {UserOutlined, LockOutlined} from '@ant-design/icons';
-import {Link, useHistory} from 'react-router-dom';
+import React from "react";
+import {Form, Button} from 'antd';
+import {useHistory} from 'react-router-dom';
 import GLogout from "../../login/components/GLogout";
 
 
 const ProfileForm = () => {
 
-  const [failureMessage, setFailureMessage] = useState("");
-  const [isFailed, setIsFailed] = useState(false);
-  const {Text} = Typography;
 
   const history = useHistory();
-
-  const onFailure = (error) => {
-    if (error.response.status === 401) {
-      setFailureMessage("Email is not confirmed yet!");
-      setIsFailed(true);
-    } else {
-      setFailureMessage("Invalid Create Event Attempt!");
-      setIsFailed(true);
-    }
-  };
 
   function onFinish(values) {
     history.replace("/createevent");

@@ -13,12 +13,12 @@ const initialState = {
      isLimitedMember: null,
      maximumNumberOfMembers: null,
      eventMembers: [],
-     imagesPath: [],
      tasks : [],
      selectedTask : undefined,
+     images: [],
      creator: {
-     email: '',
-     phoneNumber: null
+       email: '',
+       phoneNumber: null
      },
      categories: [],
      status: 'idle'
@@ -71,7 +71,7 @@ const event = ( state = initialState, {type, payload }) => {
                   tasks : state.event.tasks.map((task) => {
                     if(task.id === payload.id){
                         return {
-                            ...task, 
+                            ...task,
                             name : payload.name
                         }
                     } else {
@@ -85,7 +85,7 @@ const event = ( state = initialState, {type, payload }) => {
                     name : payload.name
                 }
                 }
-            }        
+            }
     case 'CHANGE_STATUS':
             return {
                 event:{
@@ -93,7 +93,7 @@ const event = ( state = initialState, {type, payload }) => {
                   tasks : state.event.tasks.map((task) => {
                     if(task.id === payload.id){
                         return {
-                            ...task, 
+                            ...task,
                             status : payload.status
                         }
                     } else {
@@ -107,7 +107,7 @@ const event = ( state = initialState, {type, payload }) => {
                     status : payload.status
                 }
               }
-            }       
+            }
     case 'ASSIGN_MEMBER':
             return {
                 event:{

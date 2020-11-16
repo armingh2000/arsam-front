@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Form, Input, Button, Checkbox, Typography, Row, Col} from 'antd';
+import {Form, Input, Button, Checkbox, Typography} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
 import {Link, useHistory} from 'react-router-dom';
 import {sendLoginPost} from "../../../../../core/login-signup/loginRequest";

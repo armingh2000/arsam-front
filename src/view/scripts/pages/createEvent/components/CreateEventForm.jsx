@@ -155,7 +155,8 @@ const CreateEventForm = () =>{
   };
 
   const onSuccess2 =(response) => {
-    if(response.data==="images added"){
+    // console.log(response);
+    if(response.status===200){
       redirectUser(eventId);
     }
   };

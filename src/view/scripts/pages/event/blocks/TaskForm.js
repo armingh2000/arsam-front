@@ -11,7 +11,7 @@ export default class TaskForm extends React.Component{
         this.state = {
             title :  '',
             status : 'To Do',
-            eventId :  '',
+            eventId :  props.event.id,
             error : ''
         }
 
@@ -32,14 +32,15 @@ export default class TaskForm extends React.Component{
     })
     }
 
-  
+
     onSubmit = (e) => {
+        console.log(this.state);
         e.preventDefault();
-        
+
           if(this.state.title){
-            sendCreateTaskPost({Name : this.state.title, EventId : 2, Order : 0, Status : 1})
+            sendCreateTaskPost({Name : this.state.title, EventId : this.state.eventId, Order : 0, Status : 1})
             .then(this.onSuccess)
-            
+
           }
           else{
               this.setState(() => ({error : 'Please enter a title '}))
@@ -62,13 +63,13 @@ export default class TaskForm extends React.Component{
             },
           };
         return (
-           
+
                 <Form
                     name="basic"
                     onSubmitCapture={this.onSubmit}
                     className="center-form"
                     >
-                   <Row> 
+                   <Row>
                    <Col span={18} offset={1}><Form.Item
                    label="Title"
                    name="Title"
@@ -80,7 +81,7 @@ export default class TaskForm extends React.Component{
                    onChange={this.onChangeTitle}
                    className="get-border-radius get-shadow"
                    />
-                   
+
                   </Form.Item></Col>
                   <Col offset={1}><Form.Item>
                   <Button className="Task-Button-Style" type="primary" htmlType="submit">
@@ -88,9 +89,9 @@ export default class TaskForm extends React.Component{
                   </Button>
                 </Form.Item></Col>
                   </Row>
-                   
+
                     </Form>
-                
+
         )
     }
 }
