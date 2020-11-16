@@ -18,34 +18,34 @@ const ShowEvent = ({event, dispatch, match}) =>
       }))
   }, []);
 
-  // switch (event.status) {
-  //   case 'loading':
-  //     return (
-  //       <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
-  //         <Col>
-  //           <Spin size="large"/>
-  //         </Col>
-  //       </Row>
-  //     );
-  //   case 'success':
+  switch (event.status) {
+    case 'loading':
+      return (
+        <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
+          <Col>
+            <Spin size="large"/>
+          </Col>
+        </Row>
+      );
+    case 'success':
       return (<div id="show-event-component">
             <EventGrid dispatch={dispatch} event={event.event} eventId={match.params.eventId}/>
           </div>
         );
 
 
-  //   case 'error':
-  //     return (
-  //       <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
-  //         <Col>
-  //           <Text type="danger">Please try again!</Text>
-  //         </Col>
-  //       </Row>
-  //     );
+    case 'error':
+      return (
+        <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
+          <Col>
+            <Text type="danger">Please try again!</Text>
+          </Col>
+        </Row>
+      );
 
-  //   default:
-  //     return <div></div>;
-  // }
+    default:
+      return <div></div>;
+  }
 }
 
 

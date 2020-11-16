@@ -4,37 +4,6 @@ import {Form, Input, Button, Typography} from 'antd';
 import {Link, useHistory} from 'react-router-dom';
 import openNotificationWithIcon from "../../../../../core/login-signup/openNotificationWithIcon";
 
-const formItemLayout = {
-  labelCol: {
-    xs: {
-      span: 24
-    },
-    sm: {
-      span: 8
-    }
-  },
-  wrapperCol: {
-    xs: {
-      span: 24
-    },
-    sm: {
-      span: 16
-    }
-  }
-};
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0
-    },
-    sm: {
-      span: 16,
-      offset: 8
-    }
-  }
-};
-
 const RegistrationForm = () => {
 
   const [form] = Form.useForm();

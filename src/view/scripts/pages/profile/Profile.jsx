@@ -1,5 +1,4 @@
 import React from "react";
-import GLogout from "../login/components/GLogout";
 import ProfileForm from "./components/ProfileForm";
 import {Row, Col} from 'antd';
 
