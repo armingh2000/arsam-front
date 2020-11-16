@@ -5,11 +5,11 @@ import GLogout from "./components/GLogout";
 import {Row, Col} from 'antd';
 
 function Login() {
-  return (<div>
+  return (<div id="components-form-normal-login">
     <Row style={{
         minHeight: '100vh'
       }} justify="center" align="middle">
-      <Col span={6}>
+      <Col span={16}>
         <NormalLoginForm/> {
           localStorage.getItem("userToken")
             ? <GLogout/>
