@@ -11,11 +11,13 @@ const EventImages = (props) =>
     if(imagesArray.length > 0)
     {
       return (<Carousel autoplay autoplaySpeed="50" speed="1000" fade className="carousel">
-            {imagesArray.map((img) => {
+            {
+              imagesArray.map((img) => {
                 return <div className="image-div">
                 <Image src={`data:image/jpeg;base64,${img}`}  alt="event image"/>
                 </div>
-            })}
+            })
+          }
               </Carousel>
             );
     }

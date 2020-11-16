@@ -1,0 +1,19 @@
+$myFont: Georgia, serif;
+$myColor: rgb(3, 46, 75);
+$myFontSize: 28px;
+$myWidth: 680px;
+
+
+.Title{
+    font-family: $myFont;
+    font-size: $myFontSize;
+    color: $myColor;
+}
+
+.div{
+    display: inline;
+    color: $myColor;
+}
+.TaskForm {
+    border-style: 'outset';
+}
