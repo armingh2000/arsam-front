@@ -13,7 +13,7 @@ const initialState = {
      isLimitedMember: null,
      maximumNumberOfMembers: null,
      eventMembers: [],
-     imagesPath: [],
+     images: [],
      creator: {
        email: '',
        phoneNumber: null
