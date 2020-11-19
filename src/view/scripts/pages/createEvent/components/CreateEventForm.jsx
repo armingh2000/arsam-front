@@ -15,7 +15,8 @@ import {
   InputNumber,
   TreeSelect,
   Switch,
-  Upload } from 'antd';
+  Upload ,
+  message} from 'antd';
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
 import {sendCreateEventPost, sendImageEventPost} from "../../../../../core/create-event/createEvent"
@@ -75,6 +76,13 @@ const CreateEventForm = () =>{
     }
   }
 
+  function checkImageType(file){
+    if (file.type !== 'image/png') {
+        message.error(`${file.name} is not a png file`);
+      }
+      return file.type === 'image/png';
+  }
+
  var imgVal;
  var fileVal;
  var eventId;
@@ -85,8 +93,18 @@ const CreateEventForm = () =>{
     const token = localStorage.getItem("userToken");
     // console.log(`values: ${values}`);
     imgVal=values.dragger;
+    // fileVal=fileList;
     // fileVal=values.files;
     // console.log(`dragger: ${values.dragger}`);
+    console.log(fileList);
+    for(var file of fileList){
+      console.log(file);
+    }
+    // for(var pair of imgVal) {
+    //   console.log(pair);
+    // }
+
+
     // console.log("files:");
     // console.log(values.files);
     // console.log(values.description);
@@ -122,11 +140,19 @@ const CreateEventForm = () =>{
     // console.log(eventId);
 
 
-    if(imgVal!==undefined){
+    if(fileList!==undefined){
       var FormData = require('form-data');
       var fs = require('fs');
       var data = new FormData();
-      data.append('image',imgVal[0].originFileObj);
+
+      // data.append('image',imgVal[0].originFileObj);
+
+      fileList.map((file,index)=>{
+        data.append(`image${index}`,file);
+      }
+      );
+
+
       // var data = new FormData(form.dragger);
       // console.log("form-data:");
       // console.log(data);
@@ -178,6 +204,25 @@ const CreateEventForm = () =>{
     // }
   };
 
+  const [fileList, updateFileList] = useState([]);
+
+  const draggerProps = {
+    name: 'files',
+    multiple: true,
+    beforeUpload: file => {
+      if (file.type !== 'image/png') {
+        message.error(`${file.name} is not a png file`);
+      }
+      return file.type === 'image/png';
+    },
+    onChange: info => {
+      // console.log(info.fileList);
+      // file.status is empty when beforeUpload return false
+      updateFileList(info.fileList.filter(file => !!file.status));
+    }
+  };
+
+
   return (
       <div className="box">
         <Form
@@ -206,8 +251,11 @@ const CreateEventForm = () =>{
 
             <Form.Item label="Image">
               <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-                <Upload.Dragger name="files"
+                <Upload.Dragger
                 className="get-shadow get-border-radius"
+                {...draggerProps}
+                // name="files"
+                // beforeUpload={checkImageType}
                 // action="https://localhost:44373/api/event/AddImage"
                 >
                 <Row>
