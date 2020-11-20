@@ -1,8 +1,7 @@
 import React from "react";
 import {Form, Button} from 'antd';
 import {useHistory} from 'react-router-dom';
-import GLogout from "../../login/components/GLogout";
-
+import LogoutButton from "./LogoutButton";
 
 const ProfileForm = () => {
 
@@ -44,9 +43,9 @@ const ProfileForm = () => {
           </Button>
 
         </Form.Item>
-    </Form>
-    <p>{localStorage.getItem("userToken") && <GLogout />}</p>
 
+        <LogoutButton />
+    </Form>
 
   </div>
 );
