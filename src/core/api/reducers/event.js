@@ -21,8 +21,8 @@ const initialState = {
        phoneNumber: null
      },
      categories: [],
-     status: 'idle'
-  }
+  },
+  status: 'idle'
 };
 
 const event = ( state = initialState, {type, payload }) => {
@@ -48,16 +48,15 @@ const event = ( state = initialState, {type, payload }) => {
 
     case 'ADD_TASK':
             return {
+                ...state,
                 event: {
                   ...state.event,
-                tasks : [...state.event.tasks, payload.task = {
-                  ...payload.task
-                }],
-                status : 'success'
+                tasks : [...state.event.tasks, payload.task],
               }
             }
     case 'REMOVE_TASK':
             return {
+              ...state,
                 event:{
                   ...state.event,
                   tasks : state.event.tasks.filter(({id}) => id !== payload.id),
@@ -66,6 +65,7 @@ const event = ( state = initialState, {type, payload }) => {
             }
     case 'EDIT_TASK':
             return {
+              ...state,
                 event:{
                   ...state.event,
                   tasks : state.event.tasks.map((task) => {
@@ -88,6 +88,7 @@ const event = ( state = initialState, {type, payload }) => {
             }
     case 'CHANGE_STATUS':
             return {
+              ...state,
                 event:{
                   ...state.event,
                   tasks : state.event.tasks.map((task) => {
@@ -110,6 +111,7 @@ const event = ( state = initialState, {type, payload }) => {
             }
     case 'ASSIGN_MEMBER':
             return {
+              ...state,
                 event:{
                   ...state.event,
                   tasks : state.event.tasks.map((task) => {
@@ -133,6 +135,7 @@ const event = ( state = initialState, {type, payload }) => {
             }
     case 'SELECT_SUBTASK':
             return{
+              ...state,
                 event:{
                   ...state.event,
                   tasks : state.event.tasks,
@@ -142,6 +145,7 @@ const event = ( state = initialState, {type, payload }) => {
             }
     case 'REMOVE_TASK_MEMBER':
             return{
+              ...state,
                 event:{
                   ...state.event,
                   tasks : state.event.tasks.map((task) => {

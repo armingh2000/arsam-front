@@ -168,7 +168,7 @@ const CreateEventForm = () =>{
   const onFailure = (error) => {
     setIsFailed(true);
     setFailureMessage("Invalid Create Event Attempt!");
-    console.log(error);
+    // console.log(error);
     // if (error.response.status === 401) {
     //   setFailureMessage("Email is not confirmed yet!");
     //   setIsFailed(true);
