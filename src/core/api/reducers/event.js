@@ -129,7 +129,7 @@ const event = ( state = initialState, {type, payload }) => {
                 selectedTask : {
                     ...state.event.selectedTask,
                     assignedMembers : [ ...state.event.tasks.find((task) => {
-                        return task.id == payload.id}).assignedMembers, payload.memberId]
+                        return task.id === payload.id}).assignedMembers, payload.memberId]
                 }
                 }
             }
@@ -140,7 +140,7 @@ const event = ( state = initialState, {type, payload }) => {
                   ...state.event,
                   tasks : state.event.tasks,
                   selectedTask : state.event.tasks.find((task) => {
-                    return task.id == payload.id})
+                    return task.id === payload.id})
                 }
             }
     case 'REMOVE_TASK_MEMBER':
@@ -149,7 +149,7 @@ const event = ( state = initialState, {type, payload }) => {
                 event:{
                   ...state.event,
                   tasks : state.event.tasks.map((task) => {
-                    if(task.id == payload.id){
+                    if(task.id === payload.id){
                         return{
                             ...task,
                             assignedMembers : task.assignedMembers.filter((memberId) => memberId !== payload.memberId)

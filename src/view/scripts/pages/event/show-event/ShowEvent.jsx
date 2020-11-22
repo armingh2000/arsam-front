@@ -9,15 +9,17 @@ const ShowEvent = ({event, dispatch, match}) =>
 {
   const {Text} = Typography;
 
-  useEffect(() => {
-    dispatch(getEvent({
-        payload:{
-          eventId: match.params.eventId,
-          tokenId: localStorage.getItem("userToken")
-        }
-      }))
-  }, []);
-  console.log(event.status);
+    useEffect(() => {
+      if(match.path === "/event/:eventId") {
+      dispatch(getEvent({
+          payload:{
+            eventId: match.params.eventId,
+            tokenId: localStorage.getItem("userToken")
+          }
+        }))
+      }
+    }, []);
+
   switch (event.status) {
     case 'loading':
       return (
