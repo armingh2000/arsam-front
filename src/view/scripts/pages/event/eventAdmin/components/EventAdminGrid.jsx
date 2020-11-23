@@ -2,18 +2,19 @@ import React from "react";
 import EventAdminSidebar from "./EventAdminSidebar";
 import {Layout} from "antd";
 import ShowEvent from "../../show-event/ShowEvent";
+import EventAdminMembers from "./EventAdminMembers";
 
 const EventAdminGrid = ({event, dispatch}) =>
 {
   const { Header, Content, Footer, Sider } = Layout;
 
   function getAdminContent(event) {
-    switch (event.adminContent) { 
+    switch (event.adminContent) {
       case "event":
         return <ShowEvent />
 
       case "eventMembers":
-        return <div>eventMembers</div>
+        return <EventAdminMembers members={event.event.eventMembers}/>
 
       default:
         return <div>default</div>

@@ -6,12 +6,12 @@ const EventMembersList = ({members, maximumNumberOfMembers, isLimitedMember}) =>
   const { Title } = Typography;
 
   function getRandomColor(firstLetter) {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[(firstLetter.charCodeAt(0) * i + 14) % 16];
-  }
-  return color;
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[(firstLetter.charCodeAt(0) * i + 14) % 16];
+    }
+    return color;
   }
 
 
