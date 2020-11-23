@@ -32,7 +32,7 @@ const EventGrid = ({event, dispatch, eventId}) =>
               </Card>
 
             <Row justify="space-around" align="middle" gutter={[8,8]}>
-              <Col xs={24} md={18}>
+              <Col xs={24} md={17}>
                 <Card className="card">
                 <div id="components-checkList">
 
@@ -45,7 +45,7 @@ const EventGrid = ({event, dispatch, eventId}) =>
                 </div>
                 </Card>
               </Col>
-              <Col xs={24} md={4} style={{height:"100%"}}>
+              <Col xs={24} md={5} style={{height:"100%"}}>
                 <Card className="card">
                   <EventMembersList
                     members={event.eventMembers}

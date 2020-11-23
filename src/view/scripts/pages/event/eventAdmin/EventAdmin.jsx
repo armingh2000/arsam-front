@@ -9,18 +9,17 @@ import { getEvent } from "../../../../../core/api/actions/EventActions";
 const EventAdmin = ({event, dispatch, match}) =>
 {
   const {Text} = Typography;
-  console.log(match);
 
-    useEffect(() => {
-      if(match.path === "/event/:eventId/admin") {
-      dispatch(getEvent({
-          payload:{
-            eventId: match.params.eventId,
-            tokenId: localStorage.getItem("userToken")
-          }
-        }))
-      }
-    }, []);
+  useEffect(() => {
+    if(match.path === "/event/:eventId/admin") {
+    dispatch(getEvent({
+        payload:{
+          eventId: match.params.eventId,
+          tokenId: localStorage.getItem("userToken")
+        }
+      }))
+    }
+  }, []);
 
   switch (event.status) {
     case 'loading':
@@ -32,11 +31,7 @@ const EventAdmin = ({event, dispatch, match}) =>
         </Row>
       );
     case 'success':
-      return (
-        <div >
-          <EventAdminGrid />
-        </div>
-        );
+      return <EventAdminGrid event={event} dispatch={dispatch}/>
 
 
     case 'error':

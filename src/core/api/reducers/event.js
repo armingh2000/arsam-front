@@ -22,7 +22,9 @@ const initialState = {
      },
      categories: [],
   },
-  status: 'idle'
+  status: 'idle',
+  adminContent: "event"
+
 };
 
 const event = ( state = initialState, {type, payload }) => {
@@ -164,6 +166,13 @@ const event = ( state = initialState, {type, payload }) => {
                 }
                 }
             }
+
+    case ActionTypes.SET_ADMIN_CONTENT:
+       return {
+         ...state,
+           adminContent: payload.content
+       }
+
     default:
       return state;
     };

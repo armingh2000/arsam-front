@@ -22,7 +22,7 @@ const EventMembersList = ({members, maximumNumberOfMembers, isLimitedMember}) =>
         {isLimitedMember && <div>Limit: {maximumNumberOfMembers}</div>}</Title>
       <Avatar.Group
           maxCount={3}
-          size="medium"
+          size="large"
           maxStyle={{
             color: '#f56a00',
             backgroundColor: '#fde3cf',

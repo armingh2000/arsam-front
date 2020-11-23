@@ -7,3 +7,11 @@ export const getEvent = ({payload}) =>
         payload
     }
 }
+
+export const setAdminContent = ({payload}) =>
+{
+  return {
+    type: ActionTypes.SET_ADMIN_CONTENT,
+    payload
+  }
+}

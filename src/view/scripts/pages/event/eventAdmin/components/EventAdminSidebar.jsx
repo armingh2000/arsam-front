@@ -3,17 +3,27 @@ import {
   Menu,
   Avatar
  } from 'antd';
+ import {setAdminContent} from "../../../../../../core/api/actions/EventActions";
 
 
-const EventAdminSidebar = () =>
+const EventAdminSidebar = ({creator, dispatch}) =>
 {
+
+  const setContent = (content) => {
+    dispatch(setAdminContent({
+        payload: {
+          content
+        }
+      })
+    )
+  }
 
   return (
     <div>
       <Menu style={{backgroundColor:"powderblue"}} mode="inline">
-        <Avatar>S</Avatar>
-        <Menu.Item>Event</Menu.Item>
-        <Menu.Item>Event Members</Menu.Item>
+        <Avatar size={150} style={{margin:"23px", color: '#f56a00', backgroundColor: '#fde3cf'}}>{creator.email.charAt(0)}</Avatar>
+        <Menu.Item onClick={() => {setContent("event")}}>Event</Menu.Item>
+        <Menu.Item onClick={() => {setContent("eventMembers")}}>Event Members</Menu.Item>
         <Menu.Item>Requests</Menu.Item>
       </Menu>
     </div>
