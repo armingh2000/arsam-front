@@ -22,7 +22,21 @@ const initialState = {
      },
      categories: [],
      status: 'idle'
-  }
+  },
+
+  //filters applied
+  filter: { 
+    name: null,
+    dateMin: null,
+    dateMax: null,
+    isPravate: null,
+    isProject: null,
+    membersCountMin: null,
+    membersCountMax: null,
+    categories: null
+  },
+  //Array of events which is returned byd back
+  filteredEvents: []
 };
 
 const event = ( state = initialState, {type, payload }) => {
@@ -160,6 +174,18 @@ const event = ( state = initialState, {type, payload }) => {
                 }
                 }
             }
+    case 'SET_FILTERING':
+      return{
+        ...state,
+        filter: payload
+      }
+
+    case 'GET_EVENTS_LIST':
+      return{
+        ...state,
+        filteredEvents: payload
+      }
+
     default:
       return state;
     };
