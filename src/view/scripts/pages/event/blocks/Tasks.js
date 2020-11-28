@@ -35,7 +35,6 @@ const Tasks = (props) => {
             onSelect={(e) => chooseSubTask(e.key)
             }
             >
-            {console.log(props.event.tasks)}
                 {props.event.tasks.map((task) => {
                     return <MenuItem task={task} key={task.id}>{task.name}
                     </MenuItem>

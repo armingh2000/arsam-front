@@ -19,7 +19,6 @@ export default class TaskForm extends React.Component{
     }
 
     onChangeTitle = (e) => {
-        console.log(e)
         this.setState(() => ({title: e}))
     }
 

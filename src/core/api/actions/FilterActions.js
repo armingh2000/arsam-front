@@ -10,7 +10,6 @@ export const getEventsList = (events) => ({
 })
 
 export const sendFilterRequest = (filters) => {
-    console.log(filters)
     return{
         type : 'Send_Filter_Request',
         payload: filters

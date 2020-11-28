@@ -83,7 +83,6 @@ class FilterPage extends React.Component {
         this.setState(() => ({pageNumber : e}))
     }
     onSuccess = ({data}) => {
-        console.log(data)
         this.props.dispatch(setFiltering(this.state));
         this.props.dispatch(getEventsList(data));
     }
