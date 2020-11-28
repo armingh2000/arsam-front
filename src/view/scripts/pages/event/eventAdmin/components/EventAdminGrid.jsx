@@ -14,7 +14,7 @@ const EventAdminGrid = ({event, dispatch}) =>
         return <ShowEvent />
 
       case "eventMembers":
-        return <EventAdminMembers members={event.event.eventMembers}/>
+        return <EventAdminMembers admins={event.event.eventAdmins} members={event.event.eventMembers}/>
 
       default:
         return <div>default</div>
