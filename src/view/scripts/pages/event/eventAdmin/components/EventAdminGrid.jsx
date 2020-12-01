@@ -4,7 +4,7 @@ import {Layout} from "antd";
 import ShowEvent from "../../show-event/ShowEvent";
 import EventAdminMembers from "./EventAdminMembers";
 
-const EventAdminGrid = ({event, dispatch}) =>
+const EventAdminGrid = ({eventId, event, dispatch}) =>
 {
   const { Header, Content, Footer, Sider } = Layout;
 
@@ -14,7 +14,7 @@ const EventAdminGrid = ({event, dispatch}) =>
         return <ShowEvent />
 
       case "eventMembers":
-        return <EventAdminMembers admins={event.event.eventAdmins} members={event.event.eventMembers}/>
+        return <EventAdminMembers dispatch={dispatch} eventId={eventId} admins={event.event.eventAdmins} members={event.event.eventMembers}/>
 
       default:
         return <div>default</div>

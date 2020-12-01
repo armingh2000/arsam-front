@@ -15,3 +15,19 @@ export const setAdminContent = ({payload}) =>
     payload
   }
 }
+
+export const setAdmin = ({payload}) =>
+{
+  return {
+    type: ActionTypes.SET_ADMIN_Request,
+    payload
+  }
+}
+
+export const setMember = ({payload}) =>
+{
+  return {
+    type: ActionTypes.SET_MEMBER_Request,
+    payload
+  }
+}

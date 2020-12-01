@@ -12,8 +12,10 @@ import {
   UpCircleTwoTone,
   DownCircleTwoTone
 } from "@ant-design/icons";
+import { setAdmin, setMember } from "../../../../../../core/api/actions/EventActions";
 
-const EventAdminMembers = ({admins, members}) =>
+
+const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
 {
 
   const {Text} = Typography;
@@ -33,6 +35,10 @@ const EventAdminMembers = ({admins, members}) =>
       <UserOutlined/>
       {" " + user.email}
     </div>
+  }
+
+  const onFailure = (err) => {
+    console.log(err.response);
   }
 
   return (<div style={{width:"90%", margin:"20px auto"}}>
@@ -59,7 +65,12 @@ const EventAdminMembers = ({admins, members}) =>
                         description="admin"
                       />
                       <Tooltip title="demote to member" placement="right" color="red">
-                        <DownCircleTwoTone twoToneColor="#eb2f96" style={{fontSize:40, margin:"10px"}} onClick={() => {console.log("asdk");}}/>
+                        <DownCircleTwoTone
+                        twoToneColor="#eb2f96"
+                        style={{fontSize:40, margin:"10px"}}
+                        onClick={() => {
+                          dispatch(setMember({payload:{eventId, email:admin.email}}))
+                        }}/>
                       </Tooltip>
                     </Card>
                   </Col>
@@ -87,7 +98,12 @@ const EventAdminMembers = ({admins, members}) =>
                         description="member"
                       />
                     <Tooltip title="promote to admin" placement="right" color="green">
-                      <UpCircleTwoTone twoToneColor="#52c41a" style={{fontSize:40, margin:"10px"}} onClick={() => {console.log("asdk");}}/>
+                      <UpCircleTwoTone
+                        twoToneColor="#52c41a"
+                        style={{fontSize:40, margin:"10px"}}
+                        onClick={
+                          dispatch(setAdmin({payload:{eventId, email:member.email}}))
+                        }/>
                     </Tooltip>
                     </Card>
                   </Col>

@@ -23,7 +23,8 @@ const initialState = {
      categories: [],
   },
   status: 'idle',
-  adminContent: "event"
+  adminContent: "event",
+  membersStatus: 'success'
 };
 
 const event = ( state = initialState, {type, payload }) => {
@@ -39,7 +40,7 @@ const event = ( state = initialState, {type, payload }) => {
         ...state,
         event: payload.data,
         status: 'success'
-      }
+      };
 
     case ActionTypes.GET_EVENT_REQUEST_FAILURE:
       return {
@@ -167,10 +168,46 @@ const event = ( state = initialState, {type, payload }) => {
             }
 
     case ActionTypes.SET_ADMIN_CONTENT:
-       return {
+      return {
          ...state,
            adminContent: payload.content
-       }
+       };
+    
+    case ActionTypes.SET_MEMBER_Request:
+      return {
+        ...state,
+        membersStatus: "loading"
+      };
+
+    case ActionTypes.SET_MEMBER_Success:
+      return {
+        ...state,
+        membersStatus: "success"
+      };
+
+    case ActionTypes.SET_MEMBER_Failure:
+      return {
+        ...state,
+        membersStatus: "error"
+      };
+
+    case ActionTypes.SET_ADMIN_Request:
+      return {
+        ...state,
+        membersStatus: "loading"
+      };
+
+    case ActionTypes.SET_ADMIN_Success:
+      return {
+        ...state,
+        membersStatus: "success"
+      };
+
+    case ActionTypes.SET_ADMIN_Failure:
+      return {
+        ...state,
+        membersStatus: "error"
+      };
 
     default:
       return state;
