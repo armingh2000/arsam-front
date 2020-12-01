@@ -77,10 +77,10 @@ const CreateEventForm = () =>{
   }
 
   function checkImageType(file){
-    if (file.type !== 'image/png') {
-        message.error(`${file.name} is not a png file`);
+    if (file.type !== 'image/png' && file.type !== 'image/jpg') {
+        message.error(`${file.name} is not a png or jpg  file`);
       }
-      return file.type === 'image/png';
+      return file.type === 'image/png' || file.type === 'image/jpg' ;
   }
 
  var imgVal;
@@ -148,7 +148,7 @@ const CreateEventForm = () =>{
       // data.append('image',imgVal[0].originFileObj);
 
       fileList.map((file,index)=>{
-        data.append(`image${index}`,file);
+        data.append(`image${index}`,file.originFileObj);
       }
       );
 
@@ -156,10 +156,13 @@ const CreateEventForm = () =>{
       // var data = new FormData(form.dragger);
       // console.log("form-data:");
       // console.log(data);
+      console.log("data");
 
-      // for(var pair of data.entries()) {
-        // console.log(pair[1]);
-      // }
+      for(var pair of data.entries()) {
+        console.log(pair[1]);
+      }
+
+      // console.log(data[0]);
 
 
       sendImageEventPost(
@@ -210,10 +213,10 @@ const CreateEventForm = () =>{
     name: 'files',
     multiple: true,
     beforeUpload: file => {
-      if (file.type !== 'image/png') {
-        message.error(`${file.name} is not a png file`);
+      if (file.type !== 'image/png' && file.type !=='jpg') {
+        message.error(`${file.name} is not a png or jpg file`);
       }
-      return file.type === 'image/png';
+      return file.type === 'image/png' || file.type === 'jpg';
     },
     onChange: info => {
       // console.log(info.fileList);
