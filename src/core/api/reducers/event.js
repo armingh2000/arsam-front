@@ -13,6 +13,7 @@ const initialState = {
      isLimitedMember: null,
      maximumNumberOfMembers: null,
      eventMembers: [],
+     eventAdmins: [],
      tasks : [],
      selectedTask : undefined,
      images: [],
@@ -28,6 +29,7 @@ const initialState = {
 };
 
 const event = ( state = initialState, {type, payload }) => {
+  console.log("herher", payload);
   switch (type) {
     case ActionTypes.GET_EVENT_REQUEST:
       return {
@@ -172,38 +174,48 @@ const event = ( state = initialState, {type, payload }) => {
          ...state,
            adminContent: payload.content
        };
-    
-    case ActionTypes.SET_MEMBER_Request:
+
+    case ActionTypes.SET_MEMBER_REQUEST:
       return {
         ...state,
         membersStatus: "loading"
       };
 
-    case ActionTypes.SET_MEMBER_Success:
+    case ActionTypes.SET_MEMBER_SUCCESS:
       return {
         ...state,
+        event: {
+          ...state.event,
+          eventMembers: [...state.event.eventMembers, {email: payload.email}],
+          eventAdmins: state.event.eventAdmins.filter((admin)=>{return admin.email != payload.email})
+        },
         membersStatus: "success"
       };
 
-    case ActionTypes.SET_MEMBER_Failure:
+    case ActionTypes.SET_MEMBER_FAILURE:
       return {
         ...state,
         membersStatus: "error"
       };
 
-    case ActionTypes.SET_ADMIN_Request:
+    case ActionTypes.SET_ADMIN_REQUEST:
       return {
         ...state,
         membersStatus: "loading"
       };
 
-    case ActionTypes.SET_ADMIN_Success:
+    case ActionTypes.SET_ADMIN_SUCCESS:
       return {
         ...state,
+        event: {
+          ...state.event,
+          eventAdmins: [...state.event.eventAdmins, {email: payload.email}],
+          eventMembers: state.event.eventMembers.filter((member)=>{return member.email != payload.email})
+        },
         membersStatus: "success"
       };
 
-    case ActionTypes.SET_ADMIN_Failure:
+    case ActionTypes.SET_ADMIN_FAILURE:
       return {
         ...state,
         membersStatus: "error"

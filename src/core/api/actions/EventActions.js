@@ -19,7 +19,7 @@ export const setAdminContent = ({payload}) =>
 export const setAdmin = ({payload}) =>
 {
   return {
-    type: ActionTypes.SET_ADMIN_Request,
+    type: ActionTypes.SET_ADMIN_REQUEST,
     payload
   }
 }
@@ -27,7 +27,7 @@ export const setAdmin = ({payload}) =>
 export const setMember = ({payload}) =>
 {
   return {
-    type: ActionTypes.SET_MEMBER_Request,
+    type: ActionTypes.SET_MEMBER_REQUEST,
     payload
   }
 }

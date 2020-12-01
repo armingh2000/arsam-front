@@ -101,9 +101,9 @@ const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
                       <UpCircleTwoTone
                         twoToneColor="#52c41a"
                         style={{fontSize:40, margin:"10px"}}
-                        onClick={
+                        onClick={() => {
                           dispatch(setAdmin({payload:{eventId, email:member.email}}))
-                        }/>
+                        }}/>
                     </Tooltip>
                     </Card>
                   </Col>

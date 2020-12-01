@@ -25,7 +25,8 @@ export function* sendMemberRequest({payload}) {
     setTimeout(() => {}, 1000);
     yield put ({
       type: ActionTypes.SET_MEMBER_SUCCESS,
-      payload: yield sendMemberPatch(payload)
+      result: yield sendMemberPatch(payload),
+      payload
     });
   }
   catch (err) {
@@ -41,7 +42,8 @@ export function* sendAdminRequest({payload}) {
     setTimeout(() => {}, 1000);
     yield put ({
       type: ActionTypes.SET_ADMIN_SUCCESS,
-      payload: yield sendAdminPatch(payload)
+      result: yield sendAdminPatch(payload),
+      payload
     });
   }
   catch (err) {
@@ -54,6 +56,7 @@ export function* sendAdminRequest({payload}) {
 
 
 export default function* root() {
+  console.log(ActionTypes.SET_MEMBER_REQUEST, ActionTypes.SET_ADMIN_REQUEST);
   yield all([
     takeLatest(ActionTypes.GET_EVENT_REQUEST, getEventRequest),
     takeLatest(ActionTypes.SET_MEMBER_REQUEST, sendMemberRequest),
