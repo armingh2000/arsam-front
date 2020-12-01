@@ -19,7 +19,7 @@ import {
   message} from 'antd';
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
-import {sendCreateEventPost, sendImageEventPost} from "../../../../../core/create-event/createEvent"
+import {sendCreateEventPost, sendImageEventPost} from "../../../../../core/create-event/createEvent";
 
 const normFile = e => {
   console.log('Upload event:', e);
@@ -213,10 +213,12 @@ const CreateEventForm = () =>{
     name: 'files',
     multiple: true,
     beforeUpload: file => {
-      if (file.type !== 'image/png' && file.type !=='jpg') {
+      console.log(file.type);
+      if (file.type !== 'image/png' && file.type !=='image/jpeg') {
         message.error(`${file.name} is not a png or jpg file`);
+        return false;
       }
-      return file.type === 'image/png' || file.type === 'jpg';
+      return file.type === 'image/png' || file.type === 'image/jpeg';
     },
     onChange: info => {
       // console.log(info.fileList);

@@ -23,7 +23,7 @@ class FilterPage extends React.Component {
             dateMin: null,
             dateMax: null,
             pageNumber : 1,
-            pageSize: 10
+            pageSize: 15
         }
 
         window.FP = this;
@@ -77,13 +77,13 @@ class FilterPage extends React.Component {
         this.setState(() => ({membersCountMax : e}))
     }
 
-    onChangePageSize = (e) => {
-        this.setState(() => ({pageSize : e}))
-    }
-
-    onChangePageNumber = (e) => {
-        this.setState(() => ({pageNumber : e}))
-    }
+    // onChangePageSize = (e) => {
+    //     this.setState(() => ({pageSize : e}))
+    // }
+    //
+    // onChangePageNumber = (e) => {
+    //     this.setState(() => ({pageNumber : e}))
+    // }
     onSuccess = ({data}) => {
         this.props.dispatch(setFiltering(this.state));
         this.props.dispatch(getEventsList(data));
@@ -106,10 +106,10 @@ class FilterPage extends React.Component {
 
     Filter = (e) => {
         e.preventDefault();
-        this.pageNumber = 1;
+        this.state.pageNumber = 1;
 
         const body = this.getBody();
-
+        // console.log(`page:${this.pageNumber}`);
 
         this.props.dispatch(sendFilterRequest(body))
 
@@ -214,28 +214,29 @@ class FilterPage extends React.Component {
                         value={this.state.dateMax}
                         onChange={this.onChangeDateMax}/>
                     </Form.Item>
+                    {
+                    // <Form.Item label="Page Size"
+                    // labelCol={{span:24}}
+                    // wrapperCol={{span:24}}>
+                    //     <InputNumber
+                    //     className="get-shadow"
+                    //     value={this.state.pageSize}
+                    //     onChange={this.onChangePageSize}
+                    //     />
+                    // </Form.Item>
+                    }
+                    {
 
-
-                    <Form.Item label="Page Size"
-                    labelCol={{span:24}}
-                    wrapperCol={{span:24}}>
-                        <InputNumber
-                        className="get-shadow"
-                        value={this.state.pageSize}
-                        onChange={this.onChangePageSize}
-                        />
-                    </Form.Item>
-
-                    <Form.Item label="Page Numbre"
-                    labelCol={{span:24}}
-                    wrapperCol={{span:24}}>
-                        <InputNumber
-                        className="get-shadow"
-                        value={this.state.pageNumber}
-                        onChange={this.onChangePageNumber}
-                        />
-                    </Form.Item>
-
+                    // <Form.Item label="Page Number"
+                    // labelCol={{span:24}}
+                    // wrapperCol={{span:24}}>
+                    //     <InputNumber
+                    //     className="get-shadow"
+                    //     value={this.state.pageNumber}
+                    //     onChange={this.onChangePageNumber}
+                    //     />
+                    // </Form.Item>
+                    }
                     <Form.Item
                     wrapperCol={{span:4}}
                     >
