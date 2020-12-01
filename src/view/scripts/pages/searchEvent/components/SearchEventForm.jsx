@@ -23,6 +23,7 @@ import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
 import EventImages from "./EventImages";
 import EventDetails from "./EventDetails";
+import { sendFilterRequest } from '../../../../../core/api/actions/FilterActions';
 
 
 
@@ -37,7 +38,10 @@ const SearchEventForm = (props) =>{
     // console.log(".");
     const bottom = ((e.target.scrollHeight - e.target.scrollTop) <= e.target.clientHeight);
     if(bottom){
-      console.log("end of scroll");
+      // console.log(window.FP.getBody());
+      window.FP.state.pageNumber++;
+      sendFilterRequest(window.FP.getBody());
+      console.log(window.FP.state);
     }
   }
 

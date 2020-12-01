@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 
 
 const ShowFilter = ({dispatch, match, filteredEvents}) =>{
-
   const events=[
     {
       name:"e1",
