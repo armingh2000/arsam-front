@@ -28,7 +28,9 @@ const EventImages = (props) =>
             );
     }
     else{
-      return <div></div>;
+      return (<div>
+          <Image src={"https://www.talkwalker.com/images/2020/blog-headers/image-analysis.png"} />
+        </div>);
     }
 }
 
