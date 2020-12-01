@@ -2,9 +2,12 @@ import FilterPage from './Filter/Filter';
 import SearchEventForm from "../searchEvent/components/SearchEventForm";
 import {Row, Col} from 'antd';
 import moment from 'moment';
+import { withRouter } from "react-router";
+import { getEventsList, setFiltering } from '../../../../core/api/actions/FilterActions';
+import { connect } from "react-redux";
 
 
-const ShowFilter = () =>{
+const ShowFilter = ({dispatch, match, filteredEvents}) =>{
 
   const events=[
     {
@@ -133,20 +136,19 @@ const ShowFilter = () =>{
 
   ];
 
-
-
-
     return(
       <div>
 
         <div>
           <Row justify="center" align="middle">
             <Col span={4} ><FilterPage/></Col>
-            <Col span={20} id="search-event-component"><SearchEventForm events={events}/></Col>
+            <Col span={20} id="search-event-component"><SearchEventForm events={filteredEvents}/></Col>
           </Row>
         </div>
       </div>
     )
 }
 
-export default ShowFilter
+const mapStateToProps = (state) => ({ filteredEvents: state.event.filteredEvents });
+const ShowTheLocationWithRouter = withRouter(ShowFilter);
+export default connect(mapStateToProps)(ShowTheLocationWithRouter);
