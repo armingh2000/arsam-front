@@ -5,6 +5,8 @@ import { sendCreateTaskPost } from '../../../../../core/event/Tasks/api';
 import '../../../../styles/components/tasks.scss'
 
 export default class TaskForm extends React.Component{
+
+  formReference = React.createRef();
     constructor(props){
         super(props);
 
@@ -23,7 +25,9 @@ export default class TaskForm extends React.Component{
     }
 
     onSuccess = ({data}) =>{
-      this.onChangeTitle('')
+      this.onChangeTitle('');
+      this.formReference.current.resetFields();
+      console.log(this.state.title)
       this.props.onSubmit({
         name : data.name,
         status : data.status,
@@ -55,7 +59,8 @@ export default class TaskForm extends React.Component{
                 <Form
                     name="basic"
                     onSubmitCapture={this.onSubmit }
-                    className="center-form"
+                   ref={this.formReference}
+                   className="center-form"
                     >
                    <Row>
                    <Col span={18} offset={1}><Form.Item
@@ -64,6 +69,7 @@ export default class TaskForm extends React.Component{
                    rules={[{ required: true, message: this.state.error }]}
                >
                    <Input type='text'
+                  //  allowClear={true}
                    placeholder="My task"
                    value={this.state.title}
                    onChange={(e) => {this.onChangeTitle(e.target.value)}}

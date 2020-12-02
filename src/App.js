@@ -5,7 +5,7 @@ import Signup from "./view/scripts/pages/signup/Signup";
 import CreateEvent from "./view/scripts/pages/createEvent/CreateEvent"
 import Profile from "./view/scripts/pages/profile/Profile";
 import ShowEvent from "./view/scripts/pages/event/show-event/ShowEvent";
-import ShowFilter from "./view/scripts/pages/event/ShowFilter";
+import ShowFilter from "./view/scripts/pages/event/Filter/ShowFilter";
 import 'antd/dist/antd.css';
 import "./view/styles/main.scss";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';

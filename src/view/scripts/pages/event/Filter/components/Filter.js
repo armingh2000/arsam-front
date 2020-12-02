@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Card, Form, Input, Button, Select, DatePicker, InputNumber, Switch,} from 'antd';
-import { sendFilterRequest } from '../../../../../core/api/actions/FilterActions';
-import { getEventsList, setFiltering } from '../../../../../core/api/actions/FilterActions';
+import { sendFilterRequest } from '../../../../../../core/api/actions/FilterActions';
+import { getEventsList, setFiltering } from '../../../../../../core/api/actions/FilterActions';
 
 const {Option} = Select
 
@@ -152,6 +152,7 @@ class FilterPage extends React.Component {
                     wrapperCol={{span:24}}>
                         <InputNumber
                         className="get-shadow"
+                        min={0}
                         value={this.state.membersCountMin}
                         onChange={this.onChaneMemberCountMin}/>
                     </Form.Item>
@@ -160,6 +161,7 @@ class FilterPage extends React.Component {
                     labelCol={{span:24}}
                     wrapperCol={{span:24}}>
                         <InputNumber
+                        min={0}
                         className="get-shadow"
                         value={this.state.membersCountMax}
                         onChange={this.onChangeMemberCountMax}

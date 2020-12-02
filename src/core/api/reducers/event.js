@@ -60,7 +60,7 @@ const event = ( state = initialState, {type, payload }) => {
         status: 'error'
       };
 
-    case 'ADD_TASK':
+    case ActionTypes.ADD_TASK:
             return {
                 event: {
                   ...state.event,
@@ -70,7 +70,7 @@ const event = ( state = initialState, {type, payload }) => {
                 status : 'success'
               }
             }
-    case 'REMOVE_TASK':
+    case ActionTypes.REMOVE_TASK:
             return {
                 event:{
                   ...state.event,
@@ -78,7 +78,7 @@ const event = ( state = initialState, {type, payload }) => {
                   selectedTask : undefined
                 }
             }
-    case 'EDIT_TASK':
+    case ActionTypes.EDIT_TASK:
             return {
                 event:{
                   ...state.event,
@@ -100,7 +100,7 @@ const event = ( state = initialState, {type, payload }) => {
                 }
                 }
             }
-    case 'CHANGE_STATUS':
+    case ActionTypes.CHANGE_STATUS:
             return {
                 event:{
                   ...state.event,
@@ -122,7 +122,7 @@ const event = ( state = initialState, {type, payload }) => {
                 }
               }
             }
-    case 'ASSIGN_MEMBER':
+    case ActionTypes.ASSIGN_MEMBER:
             return {
                 event:{
                   ...state.event,
@@ -145,7 +145,7 @@ const event = ( state = initialState, {type, payload }) => {
                 }
                 }
             }
-    case 'SELECT_SUBTASK':
+    case ActionTypes.SELECT_SUBTASK:
             return{
                 event:{
                   ...state.event,
@@ -154,7 +154,7 @@ const event = ( state = initialState, {type, payload }) => {
                     return task.id == payload.id})
                 }
             }
-    case 'REMOVE_TASK_MEMBER':
+    case ActionTypes.REMOVE_TASK_MEMBER:
             return{
                 event:{
                   ...state.event,
@@ -174,13 +174,13 @@ const event = ( state = initialState, {type, payload }) => {
                 }
                 }
             }
-    case 'SET_FILTERING':
+    case ActionTypes.SET_FILTERING:
       return{
         ...state,
         filter: payload
       }
 
-    case 'GET_EVENTS_LIST':
+    case ActionTypes.GET_EVENTS_LIST:
       return{
         ...state,
         filteredEvents: payload

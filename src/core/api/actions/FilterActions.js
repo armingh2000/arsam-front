@@ -1,17 +1,18 @@
+import { ActionTypes } from "../constants/ActionTypes"
 
 export const setFiltering = (state) => ({
-    type: 'SET_FILTERING',
+    type: ActionTypes.SET_FILTERING,
     payload : state
 })
 
 export const getEventsList = (events) => ({
-    type: 'GET_EVENTS_LIST',
+    type: ActionTypes.GET_EVENTS_LIST,
     payload: events
 })
 
 export const sendFilterRequest = (filters) => {
     return{
-        type : 'Send_Filter_Request',
+        type : ActionTypes.SEND_FILTER_REQUEST,
         payload: filters
     }
     
