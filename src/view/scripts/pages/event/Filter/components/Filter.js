@@ -156,7 +156,7 @@ class FilterPage extends React.Component {
                     labelCol={{span:24}}
                     wrapperCol={{span:24}}>
                         <InputNumber
-                        className="get-shadow"
+                        className="get-shadow handel-width"
                         min={0}
                         value={this.state.membersCountMin}
                         onChange={this.onChaneMemberCountMin}/>
@@ -167,7 +167,7 @@ class FilterPage extends React.Component {
                     wrapperCol={{span:24}}>
                         <InputNumber
                         min={0}
-                        className="get-shadow"
+                        className="get-shadow handel-width"
                         value={this.state.membersCountMax}
                         onChange={this.onChangeMemberCountMax}
                         />
@@ -203,7 +203,7 @@ class FilterPage extends React.Component {
                     labelCol={{span:24}}
                     wrapperCol={{span:24}}>
                         <DatePicker
-                        className="get-shadow"
+                        className="get-shadow handel-width"
                         value={this.state.dateMin}
                         onChange={this.onChangeDateMin}/>
                     </Form.Item>
@@ -212,7 +212,7 @@ class FilterPage extends React.Component {
                     labelCol={{span:24}}
                     wrapperCol={{span:24}}>
                         <DatePicker
-                        className="get-shadow"
+                        className="get-shadow handel-width"
                         value={this.state.dateMax}
                         onChange={this.onChangeDateMax}/>
                     </Form.Item>

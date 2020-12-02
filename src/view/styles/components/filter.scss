@@ -1,5 +1,7 @@
 #components-filter {
     padding: 1%;
+    margin-top: 0;
+    background-color: #f4f7fc;
 }
 
 
@@ -50,4 +52,8 @@
   #components-filter .cardBody{
     max-height: 300;
     overflow: "auto"
+  }
+
+  #components-filter .handel-width{
+    width: 100%;
   }

@@ -13,7 +13,7 @@ const ShowFilter = ({dispatch, match, filteredEvents}) =>{
     return(
       <div>
 
-        <div>
+        <div id="filter-component">
           <Row justify="center" align="middle">
             <Col span={4} ><FilterPage/></Col>
             <Col span={20} id="search-event-component"><SearchEventForm dispatch={dispatch} events={filteredEvents}/></Col>
