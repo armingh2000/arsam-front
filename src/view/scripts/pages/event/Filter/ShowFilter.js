@@ -1,18 +1,19 @@
-import FilterPage from './Filter/Filter';
-import SearchEventForm from "../searchEvent/components/SearchEventForm";
+import FilterPage from './components/Filter';
+import SearchEventForm from "../../searchEvent/components/SearchEventForm";
 import {Row, Col} from 'antd';
 import moment from 'moment';
 import { withRouter } from "react-router";
-import { getEventsList, setFiltering } from '../../../../core/api/actions/FilterActions';
+import { getEventsList, setFiltering } from '../../../../../core/api/actions/FilterActions';
 import { connect } from "react-redux";
 
 
 const ShowFilter = ({dispatch, match, filteredEvents}) =>{
 
+
     return(
       <div>
 
-        <div id="filter-component">
+        <div>
           <Row justify="center" align="middle">
             <Col span={4} ><FilterPage/></Col>
             <Col span={20} id="search-event-component"><SearchEventForm dispatch={dispatch} events={filteredEvents}/></Col>

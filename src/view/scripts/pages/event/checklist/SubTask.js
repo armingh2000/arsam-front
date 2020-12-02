@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import {tailLayout, layout} from './util'
-import MenuItem from 'antd/lib/menu/MenuItem';
 import { Form, Popover, Input, Button, Menu, Divider,  Typography, List, Dropdown, Tag, Row, Col } from 'antd';
 import {changeStatus, editTask, removeSubTask, assignMember, removeTaskMember} from '../../../../../core/event/actions/taskActions'
 import { sendEditTaskGet, sendDeleteTaskDelete, sendAssignMembersTaskPut, sendDeleteMemberDelete} from '../../../../../core/event/Tasks/api';
-import styles from '../../../../styles/components/tasks.scss'
 import {  UserAddOutlined, EditOutlined, DeleteOutlined, CheckOutlined,FileDoneOutlined,LoadingOutlined, FileAddOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
 
 const SubTask = ({dispatch, id, eventId, name, status, eventMembers, assignedMembers}) =>{
+
+  const tailLayout = {
+    wrapperCol: { offset: 8, span: 16 },
+  };
   
     const [assignMode, setAssignMode] = useState(false)
     const [editMode, setEditMode] = useState(false);
