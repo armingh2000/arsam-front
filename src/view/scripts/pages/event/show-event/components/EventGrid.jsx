@@ -6,8 +6,8 @@ import {
 import EventImages from "./EventImages";
 import EventDetails from "./EventDetails";
 import { addTask, changeStatus } from '../../../../../../core/event/actions/taskActions'
-import Tasks from '../../blocks/Tasks'
-import TaskForm from '../../blocks/TaskForm'
+import Tasks from '../../checklist/Tasks'
+import TaskForm from '../../checklist/TaskForm'
 
 import EventMembersList from "./EventMembersList";
 import EventDescription from "./EventDescription";

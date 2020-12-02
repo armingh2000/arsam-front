@@ -1,4 +1,4 @@
-import FilterPage from './Filter/Filter'
+import FilterPage from './components/Filter'
 
 
 const ShowFilter = () =>{
