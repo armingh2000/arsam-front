@@ -1,4 +1,3 @@
-import uuid from 'react-uuid';
 //Add
 export const addTask = ({eventId, name, status, id, assignedMembers=[]}) => 
     ({
@@ -23,11 +22,11 @@ export const removeSubTask = (id) =>
     })
 
 //Edit
-export const editTask = (id, title) => ({
+export const editTask = (id, name) => ({
     type : 'EDIT_TASK',
     payload:{
         id,
-        title
+        name
     }
 })
 

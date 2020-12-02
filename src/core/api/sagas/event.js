@@ -2,6 +2,7 @@ import { all, put, takeLatest } from "redux-saga/effects";
 import { ActionTypes } from "../constants/ActionTypes";
 import sendEventGet from "../event/sendEventGet";
 import {sendMemberPatch, sendAdminPatch, sendKickDelete} from "../../admin/adminRequests";
+import { sendFilterPost } from "../Filter/sendFilter";
 
 
 export function* getEventRequest({payload}) {
@@ -19,6 +20,7 @@ export function* getEventRequest({payload}) {
     });
   }
 }
+
 
 export function* sendMemberRequest({payload}) {
   try {
@@ -81,5 +83,30 @@ export default function* root() {
     takeLatest(ActionTypes.SET_MEMBER_REQUEST, sendMemberRequest),
     takeLatest(ActionTypes.SET_ADMIN_REQUEST, sendAdminRequest),
     takeLatest(ActionTypes.KICK_MEMBER_REQUEST, sendAdminKick),
+
+export function* sendFilterRequest({payload}){
+  try{
+    // setTimeout(() => {}, 1000);
+    const data =  yield sendFilterPost(payload)
+    yield put({
+      type : 'SET_FILTERING',
+      payload: payload
+    });
+    console.log(data.data);
+    yield put({
+      type : 'GET_EVENTS_LIST',
+      payload: data.data
+    });
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+
+export default function* root() {
+  yield all([
+    takeLatest(ActionTypes.GET_EVENT_REQUEST, getEventRequest),
+    takeLatest('Send_Filter_Request', sendFilterRequest)
+
   ]);
 }

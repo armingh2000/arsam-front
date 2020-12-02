@@ -1,9 +1,12 @@
 import { Button, Form, Input, Row, Col } from 'antd';
+import { useForm } from 'antd/lib/form/Form';
 import React from 'react';
 import { sendCreateTaskPost } from '../../../../../core/event/Tasks/api';
 import '../../../../styles/components/tasks.scss'
 
 export default class TaskForm extends React.Component{
+
+  formReference = React.createRef();
     constructor(props){
         super(props);
 
@@ -18,13 +21,15 @@ export default class TaskForm extends React.Component{
     }
 
     onChangeTitle = (e) => {
-        const title = e.target.value;
-        this.setState(() => ({title}))
+        this.setState(() => ({title: e}))
     }
 
     onSuccess = ({data}) =>{
+      this.onChangeTitle('');
+      this.formReference.current.resetFields();
+      console.log(this.state.title)
       this.props.onSubmit({
-        name : this.state.title,
+        name : data.name,
         status : data.status,
         assignedMembers : data.assignedMembers,
         id : data.id,
@@ -34,40 +39,28 @@ export default class TaskForm extends React.Component{
 
 
     onSubmit = (e) => {
-        console.log(this.state);
+
         e.preventDefault();
 
           if(this.state.title){
             sendCreateTaskPost({Name : this.state.title, EventId : this.state.eventId, Order : 0, Status : 1})
             .then(this.onSuccess)
-
           }
           else{
               this.setState(() => ({error : 'Please enter a title '}))
           }
-    }
+          
+        }
 
     render() {
-        const layout = {
-            labelCol: {
-              span: 6,
-            },
-            wrapperCol: {
-              span: 10,
-            },
-          };
-          const tailLayout = {
-            wrapperCol: {
-              offset: 1,
-              span: 8,
-            },
-          };
+       
         return (
 
                 <Form
                     name="basic"
-                    onSubmitCapture={this.onSubmit}
-                    className="center-form"
+                    onSubmitCapture={this.onSubmit }
+                   ref={this.formReference}
+                   className="center-form"
                     >
                    <Row>
                    <Col span={18} offset={1}><Form.Item
@@ -76,9 +69,10 @@ export default class TaskForm extends React.Component{
                    rules={[{ required: true, message: this.state.error }]}
                >
                    <Input type='text'
+                  //  allowClear={true}
                    placeholder="My task"
                    value={this.state.title}
-                   onChange={this.onChangeTitle}
+                   onChange={(e) => {this.onChangeTitle(e.target.value)}}
                    className="get-border-radius get-shadow"
                    />
 

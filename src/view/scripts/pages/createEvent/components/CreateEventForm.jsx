@@ -15,10 +15,11 @@ import {
   InputNumber,
   TreeSelect,
   Switch,
-  Upload } from 'antd';
+  Upload ,
+  message} from 'antd';
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
-import {sendCreateEventPost, sendImageEventPost} from "../../../../../core/create-event/createEvent"
+import {sendCreateEventPost, sendImageEventPost} from "../../../../../core/create-event/createEvent";
 
 const normFile = e => {
   console.log('Upload event:', e);
@@ -75,6 +76,13 @@ const CreateEventForm = () =>{
     }
   }
 
+  function checkImageType(file){
+    if (file.type !== 'image/png' && file.type !== 'image/jpg') {
+        message.error(`${file.name} is not a png or jpg  file`);
+      }
+      return file.type === 'image/png' || file.type === 'image/jpg' ;
+  }
+
  var imgVal;
  var fileVal;
  var eventId;
@@ -85,8 +93,20 @@ const CreateEventForm = () =>{
     const token = localStorage.getItem("userToken");
     // console.log(`values: ${values}`);
     imgVal=values.dragger;
+    // fileVal=fileList;
     // fileVal=values.files;
     // console.log(`dragger: ${values.dragger}`);
+
+    // console.log(fileList);
+    // for(var file of fileList){
+    //   console.log(file);
+    // }
+
+    // for(var pair of imgVal) {
+    //   console.log(pair);
+    // }
+
+
     // console.log("files:");
     // console.log(values.files);
     // console.log(values.description);
@@ -122,18 +142,29 @@ const CreateEventForm = () =>{
     // console.log(eventId);
 
 
-    if(imgVal!==undefined){
+    if(fileList!==undefined){
       var FormData = require('form-data');
       var fs = require('fs');
       var data = new FormData();
-      data.append('image',imgVal[0].originFileObj);
+
+      // data.append('image',imgVal[0].originFileObj);
+
+      fileList.map((file,index)=>{
+        data.append(`image${index}`,file.originFileObj);
+      }
+      );
+
+
       // var data = new FormData(form.dragger);
       // console.log("form-data:");
       // console.log(data);
-
+      // console.log("data");
+      //
       // for(var pair of data.entries()) {
-        // console.log(pair[1]);
+      //   console.log(pair[1]);
       // }
+
+      // console.log(data[0]);
 
 
       sendImageEventPost(
@@ -155,7 +186,6 @@ const CreateEventForm = () =>{
   };
 
   const onSuccess2 =(response) => {
-    // console.log(response);
     if(response.status===200){
       redirectUser(eventId);
     }
@@ -168,15 +198,29 @@ const CreateEventForm = () =>{
   const onFailure = (error) => {
     setIsFailed(true);
     setFailureMessage("Invalid Create Event Attempt!");
-    // console.log(error);
-    // if (error.response.status === 401) {
-    //   setFailureMessage("Email is not confirmed yet!");
-    //   setIsFailed(true);
-    // } else {
-    //   setFailureMessage("Invalid Login Attempt!");
-    //   setIsFailed(true);
-    // }
+    console.log(error);
   };
+
+  const [fileList, updateFileList] = useState([]);
+
+  const draggerProps = {
+    name: 'files',
+    multiple: true,
+    beforeUpload: file => {
+      console.log(file.type);
+      if (file.type !== 'image/png' && file.type !=='image/jpeg') {
+        message.error(`${file.name} is not a png or jpg file`);
+        return false;
+      }
+      return file.type === 'image/png' || file.type === 'image/jpeg';
+    },
+    onChange: info => {
+      // console.log(info.fileList);
+      // file.status is empty when beforeUpload return false
+      updateFileList(info.fileList.filter(file => !!file.status));
+    }
+  };
+
 
   return (
       <div className="box">
@@ -206,9 +250,9 @@ const CreateEventForm = () =>{
 
             <Form.Item label="Image">
               <Form.Item name="dragger" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
-                <Upload.Dragger name="files"
+                <Upload.Dragger
                 className="get-shadow get-border-radius"
-                // action="https://localhost:44373/api/event/AddImage"
+                {...draggerProps}
                 >
                 <Row>
                   <Col span={6}>
@@ -283,13 +327,6 @@ const CreateEventForm = () =>{
               </Col>
 
             </Row>
-            {
-            // <Form.Item name="but" label="but" hidden={!IsProject} >
-            //   <Button htmlType="submit"  style={{width: "100%"}}>
-            //     but
-            //   </Button>
-            // </Form.Item>
-            }
 
             <Form.Item >
               <Button htmlType="submit" className="btn center-button" style={{width: "100%"}}>

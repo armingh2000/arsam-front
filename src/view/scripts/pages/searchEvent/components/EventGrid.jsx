@@ -5,15 +5,13 @@ import {
     Card} from "antd";
 import EventImages from "./EventImages";
 import EventDetails from "./EventDetails";
-import { addTask, changeStatus } from '../../../../../../core/event/actions/taskActions'
-import Tasks from '../../checklist/Tasks'
-import TaskForm from '../../checklist/TaskForm'
-
 import EventMembersList from "./EventMembersList";
 import EventDescription from "./EventDescription";
 
 const EventGrid = ({event, dispatch, eventId}) =>
 {
+  console.log(localStorage.getItem("userToken"));
+  // console.log(eventId);
   return (<div>
             <Card className="card">
               <Row justify="space-around" align="middle" gutter={[8,8]}>
@@ -31,30 +29,6 @@ const EventGrid = ({event, dispatch, eventId}) =>
               </Row>
               </Card>
 
-            <Row justify="space-around" align="middle" gutter={[8,8]}>
-              <Col xs={24} md={17}>
-                <Card className="card">
-                <div id="components-checkList">
-
-                <Tasks/>
-                <TaskForm
-                onSubmit={(task) => {dispatch(addTask(task))}}
-                onStatusChange={(task) => {dispatch(changeStatus(task.id, task))}}
-                event={eventId}>
-                </TaskForm>
-                </div>
-                </Card>
-              </Col>
-              <Col xs={24} md={5} style={{height:"100%"}}>
-                <Card className="card">
-                  <EventMembersList
-                    members={event.eventMembers}
-                    isLimitedMember={event.isLimitedMember}
-                    maximumNumberOfMembers={event.maximumNumberOfMembers}
-                    />
-                </Card>
-              </Col>
-            </Row>
             <Card className="card">
               <EventDescription description={event.description}/>
             </Card>

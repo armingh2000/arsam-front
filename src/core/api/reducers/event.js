@@ -1,4 +1,6 @@
 import { ActionTypes } from "../constants/ActionTypes";
+import moment from 'moment';
+
 
 const initialState = {
   event: {
@@ -26,6 +28,22 @@ const initialState = {
   status: 'idle',
   adminContent: "event",
   membersStatus: 'success'
+     status: 'idle'
+  },
+
+  //filters applied
+  filter: {
+    name: null,
+    dateMin: null,
+    dateMax: null,
+    isPravate: null,
+    isProject: null,
+    membersCountMin: null,
+    membersCountMax: null,
+    categories: null
+  },
+  //Array of events which is returned byd back
+  filteredEvents: []
 };
 
 const event = ( state = initialState, {type, payload }) => {
@@ -50,7 +68,7 @@ const event = ( state = initialState, {type, payload }) => {
         status: 'error'
       };
 
-    case 'ADD_TASK':
+    case ActionTypes.ADD_TASK:
             return {
                 ...state,
                 event: {
@@ -58,7 +76,7 @@ const event = ( state = initialState, {type, payload }) => {
                 tasks : [...state.event.tasks, payload.task],
               }
             }
-    case 'REMOVE_TASK':
+    case ActionTypes.REMOVE_TASK:
             return {
               ...state,
                 event:{
@@ -67,7 +85,7 @@ const event = ( state = initialState, {type, payload }) => {
                   selectedTask : undefined
                 }
             }
-    case 'EDIT_TASK':
+    case ActionTypes.EDIT_TASK:
             return {
               ...state,
                 event:{
@@ -90,7 +108,7 @@ const event = ( state = initialState, {type, payload }) => {
                 }
                 }
             }
-    case 'CHANGE_STATUS':
+    case ActionTypes.CHANGE_STATUS:
             return {
               ...state,
                 event:{
@@ -113,7 +131,7 @@ const event = ( state = initialState, {type, payload }) => {
                 }
               }
             }
-    case 'ASSIGN_MEMBER':
+    case ActionTypes.ASSIGN_MEMBER:
             return {
               ...state,
                 event:{
@@ -137,7 +155,7 @@ const event = ( state = initialState, {type, payload }) => {
                 }
                 }
             }
-    case 'SELECT_SUBTASK':
+    case ActionTypes.SELECT_SUBTASK:
             return{
               ...state,
                 event:{
@@ -147,7 +165,7 @@ const event = ( state = initialState, {type, payload }) => {
                     return task.id == payload.id})
                 }
             }
-    case 'REMOVE_TASK_MEMBER':
+    case ActionTypes.REMOVE_TASK_MEMBER:
             return{
               ...state,
                 event:{
@@ -251,6 +269,17 @@ const event = ( state = initialState, {type, payload }) => {
       return {
         ...state,
         membersStatus: "error"
+        
+    case ActionTypes.SET_FILTERING:
+      return{
+        ...state,
+        filter: payload
+      }
+
+    case ActionTypes.GET_EVENTS_LIST:
+      return{
+        ...state,
+        filteredEvents: payload
       }
 
     default:
