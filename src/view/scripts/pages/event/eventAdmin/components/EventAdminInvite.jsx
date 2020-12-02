@@ -18,7 +18,7 @@ const EventAdminInvite = ({dispatch, eventId, osm, oem, olm}) =>
   }
 
   return (
-    <div>
+    <div className="admin-invite">
       <Form
       name="add_member"
       onFinish={onFinish}
@@ -32,7 +32,7 @@ const EventAdminInvite = ({dispatch, eventId, osm, oem, olm}) =>
             }
           ]}
         >
-          <Input prefix={<UserOutlined />} placeholder="Member username" />
+          <Input prefix={<UserOutlined />} placeholder="Member username" style={{width:"20%"}}/>
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">

@@ -15,17 +15,19 @@ const EventAdminGrid = ({eventId, event, dispatch}) =>
         return <ShowEvent />
 
       case "eventMembers":
-        return <EventAdminMembers dispatch={dispatch} eventId={eventId} admins={event.event.eventAdmins} members={event.event.eventMembers}/>
+        return (<div id="admin-members">
+          <EventAdminMembers dispatch={dispatch} eventId={eventId} admins={event.event.eventAdmins} members={event.event.eventMembers}/>
+        </div>)
 
       default:
-        return <div>default</div>
+        return <div></div>
       }
   }
 
   return (
     <div>
       <Layout>
-        <Sider class="admin-sider" style={{backgroundColor:"#73cac5"}}> <EventAdminSidebar creator={event.event.creator} dispatch={dispatch}/> </Sider>
+        <Sider style={{backgroundColor:"#73cac5"}}> <div id="admin-sidebar"><EventAdminSidebar creator={event.event.creator} dispatch={dispatch}/></div> </Sider>
         <Content>
           {getAdminContent(event)}
          </Content>

@@ -53,23 +53,14 @@ const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
     </div>
   }
 
-  const onFailure = (err) => {
-    console.log(err.response);
-  }
-
-  const onSuccess = (data) => {
-    console.log(data);
-  }
-
-  console.log(admins);
   return (
-    <div style={{width:"90%", margin:"20px auto"}}>
+    <div className="admin-cards-div">
       <EventAdminInvite olm={openLoadMessage} oem={openErrorMessage} osm={openSuccessMessage} eventId={eventId} dispatch={dispatch}/>
       <div>
-      <Row gutter={[10,10]}>
+      <Row gutter={[90,10]}>
         {admins && admins.map((admin) => {
           return (
-            <Col span={5} offset={2} >
+            <Col span={6} offset={1} >
               <Card
                 className="card"
               >

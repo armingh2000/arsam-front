@@ -31,9 +31,7 @@ const EventAdmin = ({event, dispatch, match}) =>
         </Row>
       );
     case 'success':
-      return <EventAdminGrid id="admin-component" eventId={match.params.eventId} event={event} dispatch={dispatch}/>
-
-
+      return <EventAdminGrid eventId={match.params.eventId} event={event} dispatch={dispatch}/>
 
     case 'error':
       return (
