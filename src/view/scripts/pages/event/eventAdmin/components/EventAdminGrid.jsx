@@ -4,6 +4,7 @@ import {Layout} from "antd";
 import ShowEvent from "../../show-event/ShowEvent";
 import EventAdminMembers from "./EventAdminMembers";
 
+
 const EventAdminGrid = ({eventId, event, dispatch}) =>
 {
   const { Header, Content, Footer, Sider } = Layout;

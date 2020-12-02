@@ -31,3 +31,11 @@ export const setMember = ({payload}) =>
     payload
   }
 }
+
+export const kickMember = ({payload}) =>
+{
+  return {
+    type: ActionTypes.KICK_MEMBER_REQUEST,
+    payload
+  }
+}

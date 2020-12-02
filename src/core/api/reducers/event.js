@@ -221,6 +221,29 @@ const event = ( state = initialState, {type, payload }) => {
         membersStatus: "error"
       };
 
+    case ActionTypes.KICK_MEMBER_REQUEST:
+      return {
+        ...state,
+        membersStatus: "loading"
+      }
+
+    case ActionTypes.KICK_MEMBER_SUCCESS:
+      return {
+        ...state,
+        event: {
+          ...state.event,
+          eventMembers: state.event.eventMembers.filter((member) => {return member.email !== payload.email}),
+          eventAdmins: state.event.eventAdmins.filter((admin) => {return admin.email !== payload.email})
+        },
+        membersStatus: "success"
+      }
+
+    case ActionTypes.KICK_MEMBER_FAILURE:
+      return {
+        ...state,
+        membersStatus: "error"
+      }
+
     default:
       return state;
     };
