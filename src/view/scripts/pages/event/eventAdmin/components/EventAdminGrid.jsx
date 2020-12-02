@@ -23,15 +23,15 @@ const EventAdminGrid = ({eventId, event, dispatch}) =>
   }
 
   return (
-    <Layout>
+    <div>
       <Layout>
-        <Sider> <EventAdminSidebar creator={event.event.creator} dispatch={dispatch}/> </Sider>
+        <Sider class="admin-sider" style={{backgroundColor:"#73cac5"}}> <EventAdminSidebar creator={event.event.creator} dispatch={dispatch}/> </Sider>
         <Content>
           {getAdminContent(event)}
          </Content>
 
       </Layout>
-    </Layout>
+    </div>
   );
 }
 

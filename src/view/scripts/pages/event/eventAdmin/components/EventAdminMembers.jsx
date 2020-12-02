@@ -71,7 +71,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
           return (
             <Col span={5} offset={2} >
               <Card
-                style={{ width:250 , height:150 }}
+                className="card"
               >
                 <Meta
                   avatar={
@@ -113,7 +113,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
           return (
             <Col span={5} offset={2} >
               <Card
-                style={{ width:250 , height:150 }}
+                className="card"
               >
                 <Meta
                   avatar={
