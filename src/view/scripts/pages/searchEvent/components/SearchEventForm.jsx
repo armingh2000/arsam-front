@@ -34,7 +34,7 @@ const SearchEventForm = (props) =>{
 
 
   function handleScroll(e){
-    const bottom = ((e.target.scrollHeight - e.target.scrollTop)*0.999 <= e.target.clientHeight);
+    const bottom = ((e.target.scrollHeight - e.target.scrollTop)*0.997 <= e.target.clientHeight);
     if(bottom && props.events.length == 15){
       // console.log("body:");
       // console.log(window.FP.getBody());
