@@ -68,7 +68,7 @@ const SearchEventForm = (props) =>{
   return (
       <div className="scrollable" onScroll={handleScroll}>
 
-        <Row gutter={[15,10]}>
+        <Row gutter={[20,10]}>
           {
             props.events.map((item)=>{
             return(

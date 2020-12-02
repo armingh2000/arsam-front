@@ -23,7 +23,7 @@ class FilterPage extends React.Component {
             dateMin: null,
             dateMax: null,
             pageNumber : 1,
-            pageSize: 5
+            pageSize: 15
         }
 
         window.FP = this;
