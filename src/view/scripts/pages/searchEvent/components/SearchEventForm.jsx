@@ -34,20 +34,14 @@ const SearchEventForm = (props) =>{
 
 
   function handleScroll(e){
-    // const elem=document.getElementById("search-event-component");
-    // console.log(".");
-    // if((e.target.scrollHeight - e.target.scrollTop)<window.height){
-    //   return;
-    // }
     const bottom = ((e.target.scrollHeight - e.target.scrollTop)*0.999 <= e.target.clientHeight);
     if(bottom && props.events.length == 15){
-      console.log("body:");
-      console.log(window.FP.getBody());
-      window.FP.state.pageNumber++;
-      console.log("window state:");
-      console.log(window.FP.state);
+      // console.log("body:");
+      // console.log(window.FP.getBody());
+      // window.FP.state.pageNumber++;
+      // console.log("window state:");
+      // console.log(window.FP.state);
       props.dispatch(sendFilterRequest(window.FP.getBody()));
-      // window.scrollTo(0,0);
     }
   }
 

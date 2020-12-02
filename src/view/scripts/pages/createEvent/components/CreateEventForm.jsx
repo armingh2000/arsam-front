@@ -96,10 +96,12 @@ const CreateEventForm = () =>{
     // fileVal=fileList;
     // fileVal=values.files;
     // console.log(`dragger: ${values.dragger}`);
-    console.log(fileList);
-    for(var file of fileList){
-      console.log(file);
-    }
+
+    // console.log(fileList);
+    // for(var file of fileList){
+    //   console.log(file);
+    // }
+
     // for(var pair of imgVal) {
     //   console.log(pair);
     // }
@@ -156,11 +158,11 @@ const CreateEventForm = () =>{
       // var data = new FormData(form.dragger);
       // console.log("form-data:");
       // console.log(data);
-      console.log("data");
-
-      for(var pair of data.entries()) {
-        console.log(pair[1]);
-      }
+      // console.log("data");
+      //
+      // for(var pair of data.entries()) {
+      //   console.log(pair[1]);
+      // }
 
       // console.log(data[0]);
 
@@ -184,7 +186,6 @@ const CreateEventForm = () =>{
   };
 
   const onSuccess2 =(response) => {
-    // console.log(response);
     if(response.status===200){
       redirectUser(eventId);
     }
@@ -198,13 +199,6 @@ const CreateEventForm = () =>{
     setIsFailed(true);
     setFailureMessage("Invalid Create Event Attempt!");
     console.log(error);
-    // if (error.response.status === 401) {
-    //   setFailureMessage("Email is not confirmed yet!");
-    //   setIsFailed(true);
-    // } else {
-    //   setFailureMessage("Invalid Login Attempt!");
-    //   setIsFailed(true);
-    // }
   };
 
   const [fileList, updateFileList] = useState([]);
@@ -259,9 +253,6 @@ const CreateEventForm = () =>{
                 <Upload.Dragger
                 className="get-shadow get-border-radius"
                 {...draggerProps}
-                // name="files"
-                // beforeUpload={checkImageType}
-                // action="https://localhost:44373/api/event/AddImage"
                 >
                 <Row>
                   <Col span={6}>
@@ -336,13 +327,6 @@ const CreateEventForm = () =>{
               </Col>
 
             </Row>
-            {
-            // <Form.Item name="but" label="but" hidden={!IsProject} >
-            //   <Button htmlType="submit"  style={{width: "100%"}}>
-            //     but
-            //   </Button>
-            // </Form.Item>
-            }
 
             <Form.Item >
               <Button htmlType="submit" className="btn center-button" style={{width: "100%"}}>
