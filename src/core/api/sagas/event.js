@@ -23,12 +23,11 @@ export function* getEventRequest({payload}) {
 export function* sendFilterRequest({payload}){
   try{
     // setTimeout(() => {}, 1000);
-    const data =  yield sendFilterPost(payload)
+    const data =  yield sendFilterPost(payload);
     yield put({
       type : 'SET_FILTERING',
       payload: payload
     });
-    console.log(data.data);
     yield put({
       type : 'GET_EVENTS_LIST',
       payload: data.data

@@ -15,5 +15,10 @@ export const sendFilterRequest = (filters) => {
         type : ActionTypes.SEND_FILTER_REQUEST,
         payload: filters
     }
-    
+}
+
+export const resetFilteredEvents = () => {
+  return {
+    type: ActionTypes.RESET_FILTERED_EVENTS,
+  }
 }
