@@ -19,7 +19,7 @@ import {
   message} from 'antd';
 import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
-import {sendCreateEventPost, sendImageEventPost} from "../../../../../core/create-event/createEvent"
+import {sendCreateEventPost, sendImageEventPost} from "../../../../../core/create-event/createEvent";
 
 const normFile = e => {
   console.log('Upload event:', e);
@@ -77,10 +77,10 @@ const CreateEventForm = () =>{
   }
 
   function checkImageType(file){
-    if (file.type !== 'image/png') {
-        message.error(`${file.name} is not a png file`);
+    if (file.type !== 'image/png' && file.type !== 'image/jpg') {
+        message.error(`${file.name} is not a png or jpg  file`);
       }
-      return file.type === 'image/png';
+      return file.type === 'image/png' || file.type === 'image/jpg' ;
   }
 
  var imgVal;
@@ -96,10 +96,12 @@ const CreateEventForm = () =>{
     // fileVal=fileList;
     // fileVal=values.files;
     // console.log(`dragger: ${values.dragger}`);
-    console.log(fileList);
-    for(var file of fileList){
-      console.log(file);
-    }
+
+    // console.log(fileList);
+    // for(var file of fileList){
+    //   console.log(file);
+    // }
+
     // for(var pair of imgVal) {
     //   console.log(pair);
     // }
@@ -148,7 +150,7 @@ const CreateEventForm = () =>{
       // data.append('image',imgVal[0].originFileObj);
 
       fileList.map((file,index)=>{
-        data.append(`image${index}`,file);
+        data.append(`image${index}`,file.originFileObj);
       }
       );
 
@@ -156,10 +158,13 @@ const CreateEventForm = () =>{
       // var data = new FormData(form.dragger);
       // console.log("form-data:");
       // console.log(data);
-
+      // console.log("data");
+      //
       // for(var pair of data.entries()) {
-        // console.log(pair[1]);
+      //   console.log(pair[1]);
       // }
+
+      // console.log(data[0]);
 
 
       sendImageEventPost(
@@ -181,7 +186,6 @@ const CreateEventForm = () =>{
   };
 
   const onSuccess2 =(response) => {
-    // console.log(response);
     if(response.status===200){
       redirectUser(eventId);
     }
@@ -195,13 +199,6 @@ const CreateEventForm = () =>{
     setIsFailed(true);
     setFailureMessage("Invalid Create Event Attempt!");
     console.log(error);
-    // if (error.response.status === 401) {
-    //   setFailureMessage("Email is not confirmed yet!");
-    //   setIsFailed(true);
-    // } else {
-    //   setFailureMessage("Invalid Login Attempt!");
-    //   setIsFailed(true);
-    // }
   };
 
   const [fileList, updateFileList] = useState([]);
@@ -210,10 +207,12 @@ const CreateEventForm = () =>{
     name: 'files',
     multiple: true,
     beforeUpload: file => {
-      if (file.type !== 'image/png') {
-        message.error(`${file.name} is not a png file`);
+      console.log(file.type);
+      if (file.type !== 'image/png' && file.type !=='image/jpeg') {
+        message.error(`${file.name} is not a png or jpg file`);
+        return false;
       }
-      return file.type === 'image/png';
+      return file.type === 'image/png' || file.type === 'image/jpeg';
     },
     onChange: info => {
       // console.log(info.fileList);
@@ -254,9 +253,6 @@ const CreateEventForm = () =>{
                 <Upload.Dragger
                 className="get-shadow get-border-radius"
                 {...draggerProps}
-                // name="files"
-                // beforeUpload={checkImageType}
-                // action="https://localhost:44373/api/event/AddImage"
                 >
                 <Row>
                   <Col span={6}>
@@ -331,13 +327,6 @@ const CreateEventForm = () =>{
               </Col>
 
             </Row>
-            {
-            // <Form.Item name="but" label="but" hidden={!IsProject} >
-            //   <Button htmlType="submit"  style={{width: "100%"}}>
-            //     but
-            //   </Button>
-            // </Form.Item>
-            }
 
             <Form.Item >
               <Button htmlType="submit" className="btn center-button" style={{width: "100%"}}>

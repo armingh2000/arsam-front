@@ -28,6 +28,7 @@ export function* sendFilterRequest({payload}){
       type : 'SET_FILTERING',
       payload: payload
     });
+    console.log(data.data);
     yield put({
       type : 'GET_EVENTS_LIST',
       payload: data.data

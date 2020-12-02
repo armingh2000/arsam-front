@@ -23,8 +23,10 @@ class FilterPage extends React.Component {
             dateMin: null,
             dateMax: null,
             pageNumber : 1,
-            pageSize: 10
+            pageSize: 15
         }
+
+        window.FP = this;
     }
 
     OnchangeName = (e) => {
@@ -66,7 +68,7 @@ class FilterPage extends React.Component {
         const dateMax = e
         this.setState(() => ({dateMax : dateMax}))
     }
-    
+
     onChaneMemberCountMin = (e) => {
         this.setState(() => ({membersCountMin : e}))
     }
@@ -75,36 +77,39 @@ class FilterPage extends React.Component {
         this.setState(() => ({membersCountMax : e}))
     }
 
-    onChangePageSize = (e) => {
-        this.setState(() => ({pageSize : e}))
-    }
-
-    onChangePageNumber = (e) => {
-        this.setState(() => ({pageNumber : e}))
-    }
+    // onChangePageSize = (e) => {
+    //     this.setState(() => ({pageSize : e}))
+    // }
+    //
+    // onChangePageNumber = (e) => {
+    //     this.setState(() => ({pageNumber : e}))
+    // }
     onSuccess = ({data}) => {
         this.props.dispatch(setFiltering(this.state));
         this.props.dispatch(getEventsList(data));
     }
 
-  
+    getBody = () => {
+      return {
+          Name: this.state.name == "" ? this.setState(() => ({name: null})): this.state.name,
+          DateMin: this.state.dateMin,
+          DateMax: this.state.dateMax,
+          IsPrivate:this.state.isPrivate,
+          IsProject: this.state.isProject,
+          MembersCountMin: this.state.membersCountMin,
+          MembersCountMax: this.state.membersCountMax,
+          Categories: this.state.categories,
+          PageNumber: this.state.pageNumber,
+          PageSize: this.state.pageSize
+      }
+    }
 
     Filter = (e) => {
         e.preventDefault();
+        this.state.pageNumber = 1;
 
-        const body = {
-            Name: this.state.name == "" ? this.setState(() => ({name: null})): this.state.name, 
-            DateMin: this.state.dateMin,
-            DateMax: this.state.dateMax, 
-            IsPrivate:this.state.isPrivate,
-            IsProject: this.state.isProject, 
-            MembersCountMin: this.state.membersCountMin,
-            MembersCountMax: this.state.membersCountMax, 
-            Categories: this.state.categories,
-            PageNumber: this.state.pageNumber, 
-            PageSize: this.state.pageSize
-        }
-
+        const body = this.getBody();
+        // console.log(`page:${this.pageNumber}`);
 
         this.props.dispatch(sendFilterRequest(body))
 
@@ -112,24 +117,24 @@ class FilterPage extends React.Component {
 
     render(){
         return(
-            <Card  
+            <Card
             id="components-filter">
                 <Form
                 className="box input-container"
                 layout="horizontal"
                 onSubmitCapture={this.Filter}>
-                    
+
                     <Form.Item label="Name"
                     labelCol={{span:24}}
                     wrapperCol={{span:24}}
-                    >                        
+                    >
                     <Input type="text"
                         className="get-shadow"
                         placeholder="Name"
                         value={this.state.name}
                         onChange={this.OnchangeName}/>
                     </Form.Item>
-    
+
                     <Form.Item label="Categories"
                     labelCol={{span:24}}
                     wrapperCol={{span:24}}>
@@ -145,33 +150,33 @@ class FilterPage extends React.Component {
                         <Option value={16}>Festival</Option>,
                         <Option value={32}>Social Event</Option>
                     </Select>
-    
+
                     </Form.Item>
                     <Form.Item label="Minimum Member"
                     labelCol={{span:24}}
                     wrapperCol={{span:24}}>
                         <InputNumber
-                        className="get-shadow"
+                        className="get-shadow handel-width"
                         min={0}
                         value={this.state.membersCountMin}
                         onChange={this.onChaneMemberCountMin}/>
                     </Form.Item>
-    
+
                     <Form.Item label="Maximum Member"
                     labelCol={{span:24}}
                     wrapperCol={{span:24}}>
                         <InputNumber
                         min={0}
-                        className="get-shadow"
+                        className="get-shadow handel-width"
                         value={this.state.membersCountMax}
                         onChange={this.onChangeMemberCountMax}
                         />
                     </Form.Item>
-    
+
                     <Form.Item label="Privacy Type"
                     labelCol={{span:24}}
                     wrapperCol={{span:24}}>
-                        <Select 
+                        <Select
                         className="get-shadow"
                         defaultValue="all" onSelect={this.onChangePrivate}
                         >
@@ -180,11 +185,11 @@ class FilterPage extends React.Component {
                             <Option value="all">All</Option>
                         </Select>
                     </Form.Item>
-    
+
                     <Form.Item label="Project Type"
                     labelCol={{span:24}}
                     wrapperCol={{span:24}}>
-                        <Select 
+                        <Select
                         className="get-shadow"
                         defaultValue="all" onSelect={this.onChangeProject}
                         >
@@ -193,47 +198,48 @@ class FilterPage extends React.Component {
                             <Option value="all">All</Option>
                         </Select>
                     </Form.Item>
-    
+
                     <Form.Item label="Start Date"
                     labelCol={{span:24}}
                     wrapperCol={{span:24}}>
                         <DatePicker
-                        className="get-shadow"
+                        className="get-shadow handel-width"
                         value={this.state.dateMin}
                         onChange={this.onChangeDateMin}/>
                     </Form.Item>
-    
+
                     <Form.Item label="End Date"
                     labelCol={{span:24}}
                     wrapperCol={{span:24}}>
                         <DatePicker
-                        className="get-shadow"
+                        className="get-shadow handel-width"
                         value={this.state.dateMax}
                         onChange={this.onChangeDateMax}/>
                     </Form.Item>
-    
-    
-                    <Form.Item label="Page Size"
-                    labelCol={{span:24}}
-                    wrapperCol={{span:24}}>
-                        <InputNumber
-                        className="get-shadow"
-                        value={this.state.pageSize}
-                        onChange={this.onChangePageSize}
-                        />
-                    </Form.Item>
-    
-                    <Form.Item label="Page Numbre"
-                    labelCol={{span:24}}
-                    wrapperCol={{span:24}}>
-                        <InputNumber
-                        className="get-shadow"
-                        value={this.state.pageNumber}
-                        onChange={this.onChangePageNumber}
-                        />
-                    </Form.Item>
+                    {
+                    // <Form.Item label="Page Size"
+                    // labelCol={{span:24}}
+                    // wrapperCol={{span:24}}>
+                    //     <InputNumber
+                    //     className="get-shadow"
+                    //     value={this.state.pageSize}
+                    //     onChange={this.onChangePageSize}
+                    //     />
+                    // </Form.Item>
+                    }
+                    {
 
-                    <Form.Item 
+                    // <Form.Item label="Page Number"
+                    // labelCol={{span:24}}
+                    // wrapperCol={{span:24}}>
+                    //     <InputNumber
+                    //     className="get-shadow"
+                    //     value={this.state.pageNumber}
+                    //     onChange={this.onChangePageNumber}
+                    //     />
+                    // </Form.Item>
+                    }
+                    <Form.Item
                     wrapperCol={{span:4}}
                     >
                         <Button
@@ -241,7 +247,7 @@ class FilterPage extends React.Component {
                         type="primary"
                         htmlType="submit">Filter</Button>
                     </Form.Item>
-    
+
                 </Form>
             </Card>
         )
@@ -256,10 +262,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(FilterPage)
-
-
-
-
-
-
-

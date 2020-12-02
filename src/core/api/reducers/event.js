@@ -1,4 +1,6 @@
 import { ActionTypes } from "../constants/ActionTypes";
+import moment from 'moment';
+
 
 const initialState = {
   event: {
@@ -25,7 +27,7 @@ const initialState = {
   },
 
   //filters applied
-  filter: { 
+  filter: {
     name: null,
     dateMin: null,
     dateMax: null,
