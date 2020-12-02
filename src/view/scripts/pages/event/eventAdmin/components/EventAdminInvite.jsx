@@ -8,12 +8,13 @@ import { setMember } from "../../../../../../core/api/actions/EventActions";
 import { UserOutlined } from '@ant-design/icons';
 
 
-const EventAdminInvite = ({dispatch, eventId, }) =>
+const EventAdminInvite = ({dispatch, eventId, osm, oem, olm}) =>
 {
   const {Search} = Input;
 
   function onFinish(data) {
-    dispatch(setMember({payload:{eventId, email: data.email}}))
+
+    dispatch(setMember({payload:{eventId, email: data.email, olm, osm, oem}}))
   }
 
   return (

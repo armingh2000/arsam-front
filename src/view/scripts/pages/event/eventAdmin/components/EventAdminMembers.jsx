@@ -5,7 +5,8 @@ import {
   Avatar,
   Row,
   Col,
-  Tooltip
+  Tooltip,
+  message
 } from "antd";
 import {
   UserOutlined,
@@ -15,15 +16,26 @@ import {
 } from "@ant-design/icons";
 import { setAdmin, setMember, kickMember } from "../../../../../../core/api/actions/EventActions";
 import EventAdminInvite from "./EventAdminInvite";
-import openNotificationWithIcon from "../../../../../../core/login-signup/openNotificationWithIcon";
-
-
 
 const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
 {
 
   const {Text} = Typography;
   const { Meta } = Card;
+  const key = 'updatable';
+
+  const openLoadMessage = () => {
+    message.loading({ content: 'Loading...', key });
+  };
+
+  const openSuccessMessage = () => {
+      message.success({ content: 'Updated!', key, duration: 2 });
+  };
+
+  const openErrorMessage = () => {
+      message.error({ content: 'Error!', key, duration: 2 });
+  };
+
 
   function getRandomColor(firstLetter) {
     var letters = '0123456789ABCDEF';
@@ -49,12 +61,13 @@ const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
     console.log(data);
   }
 
+  console.log(admins);
   return (
     <div style={{width:"90%", margin:"20px auto"}}>
-      <EventAdminInvite eventId={eventId} dispatch={dispatch}/>
+      <EventAdminInvite olm={openLoadMessage} oem={openErrorMessage} osm={openSuccessMessage} eventId={eventId} dispatch={dispatch}/>
       <div>
       <Row gutter={[10,10]}>
-        {admins.map((admin) => {
+        {admins && admins.map((admin) => {
           return (
             <Col span={5} offset={2} >
               <Card
@@ -80,7 +93,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
                   twoToneColor="#eb2f96"
                   style={{fontSize:40, margin:"10px"}}
                   onClick={() => {
-                    dispatch(setMember({payload:{eventId, email:admin.email}}))
+                    dispatch(setMember({payload:{eventId, email:admin.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                   }}/>
                 </Tooltip>
                 <Tooltip title="remove member" placement="left" color="red">
@@ -88,7 +101,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
                     twoToneColor="red"
                     style={{fontSize:40}}
                     onClick={() => {
-                      dispatch(kickMember({payload:{eventId, email:admin.email}}))
+                      dispatch(kickMember({payload:{eventId, email:admin.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                     }}
                     />
                 </Tooltip>
@@ -96,7 +109,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
             </Col>
           );
         })}
-        {members.map((member) => {
+        {members && members.map((member) => {
           return (
             <Col span={5} offset={2} >
               <Card
@@ -122,7 +135,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
                   twoToneColor="#52c41a"
                   style={{fontSize:40, margin:"10px"}}
                   onClick={() => {
-                    dispatch(setAdmin({payload:{eventId, email:member.email}}))
+                    dispatch(setAdmin({payload:{eventId, email:member.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                   }}/>
               </Tooltip>
               <Tooltip title="remove member" placement="left" color="red">
@@ -130,7 +143,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
                   twoToneColor="red"
                   style={{fontSize:40, margin:"auto 10px auto auto"}}
                   onClick={() => {
-                    dispatch(kickMember({payload:{eventId, email:member.email}}))
+                    dispatch(kickMember({payload:{eventId, email:member.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                   }}
                   />
               </Tooltip>

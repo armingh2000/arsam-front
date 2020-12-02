@@ -176,12 +176,14 @@ const event = ( state = initialState, {type, payload }) => {
        };
 
     case ActionTypes.SET_MEMBER_REQUEST:
+      payload.olm();
       return {
         ...state,
         membersStatus: "loading"
       };
 
     case ActionTypes.SET_MEMBER_SUCCESS:
+      payload.osm();
       return {
         ...state,
         event: {
@@ -193,18 +195,21 @@ const event = ( state = initialState, {type, payload }) => {
       };
 
     case ActionTypes.SET_MEMBER_FAILURE:
+      payload.oem();
       return {
         ...state,
         membersStatus: "error"
       };
 
     case ActionTypes.SET_ADMIN_REQUEST:
+      payload.olm();
       return {
         ...state,
         membersStatus: "loading"
       };
 
     case ActionTypes.SET_ADMIN_SUCCESS:
+      payload.osm();
       return {
         ...state,
         event: {
@@ -216,18 +221,21 @@ const event = ( state = initialState, {type, payload }) => {
       };
 
     case ActionTypes.SET_ADMIN_FAILURE:
+      payload.oem();
       return {
         ...state,
         membersStatus: "error"
       };
 
     case ActionTypes.KICK_MEMBER_REQUEST:
+      payload.olm();
       return {
         ...state,
         membersStatus: "loading"
       }
 
     case ActionTypes.KICK_MEMBER_SUCCESS:
+      payload.osm();
       return {
         ...state,
         event: {
@@ -239,6 +247,7 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.KICK_MEMBER_FAILURE:
+      payload.oem();
       return {
         ...state,
         membersStatus: "error"

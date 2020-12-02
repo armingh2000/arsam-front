@@ -32,7 +32,8 @@ export function* sendMemberRequest({payload}) {
   catch (err) {
     console.log(err);
     yield put ({
-      type: ActionTypes.SET_MEMBER_FAILURE
+      type: ActionTypes.SET_MEMBER_FAILURE,
+      payload
     });
   }
 }
@@ -49,7 +50,8 @@ export function* sendAdminRequest({payload}) {
   catch (err) {
     console.log(err);
     yield put ({
-      type: ActionTypes.SET_ADMIN_FAILURE
+      type: ActionTypes.SET_ADMIN_FAILURE,
+      payload
     });
   }
 }
@@ -66,7 +68,8 @@ export function* sendAdminKick({payload}) {
   catch (err) {
     console.log(err);
     yield put ({
-      type: ActionTypes.KICK_MEMBER_FAILURE
+      type: ActionTypes.KICK_MEMBER_FAILURE,
+      payload
     });
   }
 }
