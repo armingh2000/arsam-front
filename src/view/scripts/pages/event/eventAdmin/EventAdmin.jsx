@@ -1,24 +1,25 @@
 import React, {useEffect} from "react";
-import EventGrid from "./components/EventGrid";
+import EventAdminGrid from "./components/EventAdminGrid";
 import { connect } from "react-redux";
-import { getEvent } from "../../../../../core/api/actions/EventActions";
 import { withRouter } from "react-router";
 import { Spin,Typography, Row, Col } from 'antd';
+import { getEvent } from "../../../../../core/api/actions/EventActions";
 
-const ShowEvent = ({event, dispatch, match}) =>
+
+const EventAdmin = ({event, dispatch, match}) =>
 {
   const {Text} = Typography;
 
-    useEffect(() => {
-      if(match.path === "/event/:eventId") {
-      dispatch(getEvent({
-          payload:{
-            eventId: match.params.eventId,
-            tokenId: localStorage.getItem("userToken")
-          }
-        }))
-      }
-    }, []);
+  useEffect(() => {
+    if(match.path === "/event/:eventId/admin") {
+    dispatch(getEvent({
+        payload:{
+          eventId: match.params.eventId,
+          tokenId: localStorage.getItem("userToken")
+        }
+      }))
+    }
+  }, []);
 
   switch (event.status) {
     case 'loading':
@@ -30,11 +31,7 @@ const ShowEvent = ({event, dispatch, match}) =>
         </Row>
       );
     case 'success':
-      return (<div id="show-event-component">
-            <EventGrid dispatch={dispatch} event={event.event} eventId={match.params.eventId}/>
-          </div>
-        );
-
+      return <EventAdminGrid eventId={match.params.eventId} event={event} dispatch={dispatch}/>
 
     case 'error':
       return (
@@ -52,5 +49,5 @@ const ShowEvent = ({event, dispatch, match}) =>
 
 
 const mapStateToProps = (state) => ({ event: state.event });
-const ShowTheLocationWithRouter = withRouter(ShowEvent);
+const ShowTheLocationWithRouter = withRouter(EventAdmin);
 export default connect(mapStateToProps)(ShowTheLocationWithRouter);

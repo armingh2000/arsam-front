@@ -14,8 +14,6 @@ import EventDescription from "./EventDescription";
 
 const EventGrid = ({event, dispatch, eventId}) =>
 {
-  console.log(localStorage.getItem("userToken"));
-  // console.log(eventId);
   return (<div>
             <Card className="card">
               <Row justify="space-around" align="middle" gutter={[8,8]}>
@@ -34,25 +32,26 @@ const EventGrid = ({event, dispatch, eventId}) =>
               </Card>
 
             <Row justify="space-around" align="middle" gutter={[8,8]}>
-              <Col xs={24} md={18}>
+              <Col xs={24} md={17}>
                 <Card className="card">
                 <div id="components-checkList">
-                <div
-                className="box"
-                >
-                <Tasks></Tasks>
+
+                <Tasks/>
                 <TaskForm
                 onSubmit={(task) => {dispatch(addTask(task))}}
                 onStatusChange={(task) => {dispatch(changeStatus(task.id, task))}}
                 event={eventId}>
                 </TaskForm>
                 </div>
-                </div>
                 </Card>
               </Col>
-              <Col xs={24} md={4}>
+              <Col xs={24} md={5} style={{height:"100%"}}>
                 <Card className="card">
-                  <EventMembersList members={event.eventMembers}/>
+                  <EventMembersList
+                    members={event.eventMembers}
+                    isLimitedMember={event.isLimitedMember}
+                    maximumNumberOfMembers={event.maximumNumberOfMembers}
+                    />
                 </Card>
               </Col>
             </Row>
