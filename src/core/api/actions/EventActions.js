@@ -7,3 +7,35 @@ export const getEvent = ({payload}) =>
         payload
     }
 }
+
+export const setAdminContent = ({payload}) =>
+{
+  return {
+    type: ActionTypes.SET_ADMIN_CONTENT,
+    payload
+  }
+}
+
+export const setAdmin = ({payload}) =>
+{
+  return {
+    type: ActionTypes.SET_ADMIN_REQUEST,
+    payload
+  }
+}
+
+export const setMember = ({payload}) =>
+{
+  return {
+    type: ActionTypes.SET_MEMBER_REQUEST,
+    payload
+  }
+}
+
+export const kickMember = ({payload}) =>
+{
+  return {
+    type: ActionTypes.KICK_MEMBER_REQUEST,
+    payload
+  }
+}

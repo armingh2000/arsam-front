@@ -32,9 +32,17 @@ const sendDeleteRequest = (props) => {
   });
 };
 
+const sendPatchRequest = (props) => {
+  return sendRequest({
+    ...props,
+    method: "patch"
+  });
+}
+
 export {
   sendDeleteRequest,
   sendGetRequest,
   sendPutRequest,
-  sendPostRequest
+  sendPostRequest,
+  sendPatchRequest
 };
