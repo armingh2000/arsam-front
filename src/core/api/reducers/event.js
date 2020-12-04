@@ -27,9 +27,8 @@ const initialState = {
   },
   status: 'idle',
   adminContent: "event",
-  membersStatus: 'success'
-     status: 'idle'
-  },
+  membersStatus: 'success',
+     status: 'idle',
 
   //filters applied
   filter: {
@@ -43,7 +42,8 @@ const initialState = {
     categories: null
   },
   //Array of events which is returned byd back
-  filteredEvents: []
+  filteredEvents: [],
+  shouldSendSearchRequest: true
 };
 
 const event = ( state = initialState, {type, payload }) => {
@@ -269,7 +269,8 @@ const event = ( state = initialState, {type, payload }) => {
       return {
         ...state,
         membersStatus: "error"
-        
+      }
+
     case ActionTypes.SET_FILTERING:
       return{
         ...state,
@@ -279,7 +280,20 @@ const event = ( state = initialState, {type, payload }) => {
     case ActionTypes.GET_EVENTS_LIST:
       return{
         ...state,
-        filteredEvents: payload
+        filteredEvents: state.filteredEvents.concat(payload),
+        shouldSendSearchRequest:true
+      }
+
+    case ActionTypes.SEND_FILTER_REQUEST:
+      return {
+        ...state,
+        shouldSendSearchRequest: false
+      }
+
+    case ActionTypes.RESET_FILTERED_EVENTS:
+      return {
+        ...state,
+        filteredEvents: []
       }
 
     default:

@@ -57,10 +57,10 @@ const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
     <div className="admin-cards-div">
       <EventAdminInvite olm={openLoadMessage} oem={openErrorMessage} osm={openSuccessMessage} eventId={eventId} dispatch={dispatch}/>
       <div>
-      <Row gutter={[90,10]}>
+      <Row gutter={[20,10]}>
         {admins && admins.map((admin) => {
           return (
-            <Col span={6} offset={1} >
+            <Col span={5} offset={2} >
               <Card
                 className="card"
               >

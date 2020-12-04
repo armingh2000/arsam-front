@@ -31,18 +31,26 @@ const SearchEventForm = (props) =>{
   const [form] = Form.useForm();
 
   const history = useHistory();
-
+  const [scroll, setScroll] = useState(0);
 
   function handleScroll(e){
-    const bottom = ((e.target.scrollHeight - e.target.scrollTop)*0.997 <= e.target.clientHeight);
-    if(bottom && props.events.length == 15){
+
+    setScroll(e.target.scrollTop);
+    console.log(props.shouldSendSearchRequest, scroll % 270);
+    if(props.shouldSendSearchRequest && scroll % 270 > 200){
+      console.log("reached here");
+      setScroll(0);
+      window.FP.state.pageNumber++;
+      props.dispatch(sendFilterRequest(window.FP.getBody()));
+    }
+    // const bottom = ((e.target.scrollHeight - e.target.scrollTop) <= e.target.clientHeight);
+    // if(bottom && props.events.length == 5){
       // console.log("body:");
       // console.log(window.FP.getBody());
       // window.FP.state.pageNumber++;
       // console.log("window state:");
       // console.log(window.FP.state);
-      props.dispatch(sendFilterRequest(window.FP.getBody()));
-    }
+    // }
   }
 
   function handelClick(item){
@@ -60,7 +68,7 @@ const SearchEventForm = (props) =>{
   return (
       <div className="scrollable" onScroll={handleScroll}>
 
-        <Row gutter={[15,10]}>
+        <Row gutter={[20,10]}>
           {
             props.events.map((item)=>{
             return(
