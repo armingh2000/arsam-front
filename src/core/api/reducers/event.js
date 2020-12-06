@@ -43,7 +43,8 @@ const initialState = {
   },
   //Array of events which is returned byd back
   filteredEvents: [],
-  shouldSendSearchRequest: true
+  shouldSendSearchRequest: true,
+  loading:true
 };
 
 const event = ( state = initialState, {type, payload }) => {
@@ -281,13 +282,15 @@ const event = ( state = initialState, {type, payload }) => {
       return{
         ...state,
         filteredEvents: state.filteredEvents.concat(payload),
-        shouldSendSearchRequest:true
+        shouldSendSearchRequest:true,
+        loading:false
       }
 
     case ActionTypes.SEND_FILTER_REQUEST:
       return {
         ...state,
-        shouldSendSearchRequest: false
+        shouldSendSearchRequest: false,
+        loading:true
       }
 
     case ActionTypes.RESET_FILTERED_EVENTS:
