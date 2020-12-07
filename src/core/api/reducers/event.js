@@ -39,7 +39,9 @@ const initialState = {
     isProject: null,
     membersCountMin: null,
     membersCountMax: null,
-    categories: null
+    categories: null,
+    pageNumber:1,
+    pageSize:15
   },
   //Array of events which is returned byd back
   filteredEvents: [],

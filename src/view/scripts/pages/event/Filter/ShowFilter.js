@@ -7,7 +7,7 @@ import { getEventsList, setFiltering } from '../../../../../core/api/actions/Fil
 import { connect } from "react-redux";
 
 
-const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, loading}) =>{
+const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, loading, filter}) =>{
 
 
     return(
@@ -22,6 +22,7 @@ const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, l
               dispatch={dispatch}
               events={filteredEvents}
               loading={loading}
+              filter={filter}
               />
             </Col>
           </Row>
@@ -30,10 +31,12 @@ const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, l
     )
 }
 
-const mapStateToProps = (state) => (
-  { filteredEvents: state.event.filteredEvents,
-   shouldSendSearchRequest: state.event.shouldSendSearchRequest,
-   loading:state.event.loading
+const mapStateToProps = (state,filter) => (
+  {
+    filteredEvents: state.event.filteredEvents,
+    shouldSendSearchRequest: state.event.shouldSendSearchRequest,
+    loading:state.event.loading,
+    filter:state.event.filter
   });
 const ShowTheLocationWithRouter = withRouter(ShowFilter);
 export default connect(mapStateToProps)(ShowTheLocationWithRouter);
