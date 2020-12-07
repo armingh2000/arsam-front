@@ -83,7 +83,18 @@ export function* sendFilterRequest({payload}){
     const data =  yield sendFilterPost(payload);
     yield put({
       type : 'SET_FILTERING',
-      payload: payload
+      payload: {
+      name: payload.Name,
+      dateMin: payload.DateMin,
+      dateMax: payload.DateMax,
+      isPrivate: payload.IsPrivate,
+      isProject: payload.IsProject,
+      membersCountMin: payload.MembersCountMin,
+      membersCountMax: payload.MembersCountMax,
+      categories: payload.Categories,
+      pageNumber:1,
+      pageSize:15
+      }
     });
     yield put({
       type : 'GET_EVENTS_LIST',
