@@ -66,7 +66,7 @@ const SearchEventForm = (props) =>{
           PageSize: props.pageSize
       }
     }
-
+ 
   }
 
   useEffect(() => {
