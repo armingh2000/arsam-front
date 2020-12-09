@@ -17,7 +17,7 @@ import {
 import { setAdmin, setMember, kickMember } from "../../../../../../core/api/actions/EventActions";
 import EventAdminInvite from "./EventAdminInvite";
 
-const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
+const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
 {
 
   const {Text} = Typography;
@@ -79,23 +79,26 @@ const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
                   title={getUserInfo(admin)}
                   description="admin"
                 />
-                <Tooltip title="demote to member" placement="right" color="red">
+              {admin.email !== creator.email &&
+                <div>
+                  <Tooltip title="demote to member" placement="right" color="red">
                   <DownCircleTwoTone
                   twoToneColor="#eb2f96"
-                  style={{fontSize:40, margin:"10px"}}
+                  style={{fontSize:40, margin:"10px 10px 0 0"}}
                   onClick={() => {
                     dispatch(setMember({payload:{eventId, email:admin.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                   }}/>
                 </Tooltip>
-                <Tooltip title="remove member" placement="left" color="red">
+                <Tooltip title="remove member" placement="left" color="red" className="right-aligned-button">
                   <CloseCircleTwoTone
                     twoToneColor="red"
-                    style={{fontSize:40}}
+                    style={{fontSize:40, margin:"10px 10px 0 0"}}
                     onClick={() => {
                       dispatch(kickMember({payload:{eventId, email:admin.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                     }}
                     />
                 </Tooltip>
+              </div>}
               </Card>
             </Col>
           );
@@ -124,15 +127,15 @@ const EventAdminMembers = ({eventId, admins, members, dispatch}) =>
               <Tooltip title="promote to admin" placement="right" color="green">
                 <UpCircleTwoTone
                   twoToneColor="#52c41a"
-                  style={{fontSize:40, margin:"10px"}}
+                  style={{fontSize:40, margin:"10px 10px 0 0"}}
                   onClick={() => {
                     dispatch(setAdmin({payload:{eventId, email:member.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                   }}/>
               </Tooltip>
-              <Tooltip title="remove member" placement="left" color="red">
+              <Tooltip title="remove member" placement="left" color="red" className="right-aligned-button">
                 <CloseCircleTwoTone
                   twoToneColor="red"
-                  style={{fontSize:40, margin:"auto 10px auto auto"}}
+                  style={{fontSize:40, margin:"10px 10px 0 0"}}
                   onClick={() => {
                     dispatch(kickMember({payload:{eventId, email:member.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                   }}
