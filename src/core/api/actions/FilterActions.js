@@ -10,10 +10,10 @@ export const getEventsList = (events) => ({
     payload: events
 })
 
-export const sendFilterRequest = (filters,shouldAddPageNumber) => {
+export const sendFilterRequest = (filters,shouldAddPageNumber,shouldResetPageNumber) => {
     return{
         type : ActionTypes.SEND_FILTER_REQUEST,
-        payload: {filters,shouldAddPageNumber}
+        payload: {filters,shouldAddPageNumber,shouldResetPageNumber}
     }
 }
 

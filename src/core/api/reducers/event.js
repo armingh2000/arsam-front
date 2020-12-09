@@ -46,7 +46,8 @@ const initialState = {
   //Array of events which is returned byd back
   filteredEvents: [],
   shouldSendSearchRequest: true,
-  loading:true
+  loading:true,
+  isButtonPressed:false
 };
 
 const event = ( state = initialState, {type, payload }) => {
@@ -275,7 +276,7 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.SET_FILTERING:
-    console.log("filter and payload in SET_FILTERING:");
+    console.log("filter and payload in SET_FILTERING:(event.js-reducers)");
     console.log(state.filter,payload);
       return{
         ...state,
@@ -294,8 +295,8 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.GET_EVENTS_LIST:
-    console.log("state in ActionTypes.GET_EVENTS_LIST:",state);
-    console.log("payload in ActionTypes.GET_EVENTS_LIST:",payload);
+    console.log("state in ActionTypes.GET_EVENTS_LIST:(event.js-reducers)",state);
+    console.log("payload in ActionTypes.GET_EVENTS_LIST:(event.js-reducers)",payload);
     // console.log("...........................................",shouldAppend);
 
       return{
@@ -313,10 +314,17 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.RESET_FILTERED_EVENTS:
+    console.log("state in RESET_FILTERED_EVENTS:(event.js-reducers)",state);
+    console.log("state.filter in Reset:(event.js-reducers)",state.filter);
       return {
         ...state,
         pageNumber:1,
-        filteredEvents: []
+        filter:{
+          ...state.filter,
+          pageNumber:1
+        },
+        filteredEvents: [],
+        isButtonPressed:true
       }
 
     case ActionTypes.ADD_FILTER_PAGE_NUMBER:

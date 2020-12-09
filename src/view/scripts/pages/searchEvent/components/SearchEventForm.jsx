@@ -31,7 +31,6 @@ import Icon from '@ant-design/icons';
 import { connect } from "react-redux";
 
 
-
 const SearchEventForm = (props) =>{
   const [form] = Form.useForm();
 
@@ -57,12 +56,17 @@ const SearchEventForm = (props) =>{
     // props.dispatch(sendFilterRequest(window.FP.getBody()));
     // console.log(window.FP.getBody());
     // console.log(getBody(props.filter));
+    // props.dispatch(resetFilteredEvents());
+    console.log("*********************************************","props.filter:(SearchEventForm.jsx)",props.filter);
+    if(true){
+    console.log("###############################################");
 
-    props.dispatch(sendFilterRequest(getBody(props.filter),true));
+    props.dispatch(sendFilterRequest(getBody(props.filter),true,true));
 
     props.dispatch(addFilterPageNumber());
 
-
+    // useEffectNum++;
+    }
   }, []);
 
   function handleScroll(e){
@@ -74,11 +78,11 @@ const SearchEventForm = (props) =>{
       // window.FP.state.pageNumber++;
       // props.dispatch(sendFilterRequest(window.FP.getBody()));
       // props.filter.PageNumber++;
-      console.log("props.filter1");
+      console.log("props.filter1:(SearchEventForm.jsx)");
       console.log(props.filter);
       props.dispatch(addFilterPageNumber());
-      props.dispatch(sendFilterRequest(getBody(props.filter),true));
-      console.log("props.filter2");
+      props.dispatch(sendFilterRequest(getBody(props.filter),true,false));
+      console.log("props.filter2:(SearchEventForm.jsx)");
       console.log(getBody(props.filter));
     }
   }
@@ -96,9 +100,9 @@ const SearchEventForm = (props) =>{
   }
 
 
-console.log("events:",props.events);
-console.log("loading:",props.loading);
-console.log("pageNumber",props.filter.pageNumber);
+// console.log("events:",props.events);
+// console.log("loading:",props.loading);
+// console.log("pageNumber",props.filter.pageNumber);
   if((props.events.length>0)){
     return (
       <div className="scrollable" onScroll={handleScroll}>

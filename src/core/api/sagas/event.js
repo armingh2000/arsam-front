@@ -80,28 +80,41 @@ export function* sendAdminKick({payload}) {
 export function* sendFilterRequest({payload}){
   try{
     // setTimeout(() => {}, 1000);
-    const data =  yield sendFilterPost(payload);
-    console.log("payload in sendFilterRequest");
+    console.log("payload in sendFilterRequest:(event.js-sagas)");
     console.log(payload);
-    var newPageNumber=(payload.shouldAddPageNumber?payload.filters.PageNumber+1:payload.filters.PageNumber);
-    console.log("newPageNumber:",newPageNumber);
+    const data =  yield sendFilterPost(payload.filters);
+
+    // var newPageNumber=(payload.shouldAddPageNumber?payload.filters.PageNumber+1:payload.filters.PageNumber);
+    var newPageNumber;
+    if(payload.shouldResetPageNumber){
+      newPageNumber=1;
+    }
+    else if(payload.shouldAddPageNumber){
+      newPageNumber=payload.filters.PageNumber+1;
+    }
+    else{
+      newPageNumber=payload.filters.PageNumber;
+    }
+
+    console.log("newPageNumber:(event.js-sagas)",newPageNumber);
+
     yield put({
       type : 'SET_FILTERING',
       payload: {
-      name: payload.Name,
-      dateMin: payload.DateMin,
-      dateMax: payload.DateMax,
-      isPrivate: payload.IsPrivate,
-      isProject: payload.IsProject,
-      membersCountMin: payload.MembersCountMin,
-      membersCountMax: payload.MembersCountMax,
-      categories: payload.Categories,
+      name: payload.filters.Name,
+      dateMin: payload.filters.DateMin,
+      dateMax: payload.filters.DateMax,
+      isPrivate: payload.filters.IsPrivate,
+      isProject: payload.filters.IsProject,
+      membersCountMin: payload.filters.MembersCountMin,
+      membersCountMax: payload.filters.MembersCountMax,
+      categories: payload.filters.Categories,
       pageNumber:(newPageNumber),
       pageSize:15
       }
     });
-    console.log("data:",data);
-    console.log("data.data:",data.data);
+    console.log("data:(event.js-sagas)",data);
+    console.log("data.data:(event.js-sagas)",data.data);
     yield put({
       type : 'GET_EVENTS_LIST',
       payload: data.data

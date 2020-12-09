@@ -7,7 +7,7 @@ import { getEventsList, setFiltering } from '../../../../../core/api/actions/Fil
 import { connect } from "react-redux";
 
 
-const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, loading, filter}) =>{
+const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, loading, filter, isButtonPressed}) =>{
 
   console.log("filter on ShowFilter");
   console.log(filter);
@@ -24,6 +24,7 @@ const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, l
               events={filteredEvents}
               loading={loading}
               filter={filter}
+              isButtonPressed={isButtonPressed}
               />
             </Col>
           </Row>
@@ -37,7 +38,8 @@ const mapStateToProps = (state) => (
     filteredEvents: state.event.filteredEvents,
     shouldSendSearchRequest: state.event.shouldSendSearchRequest,
     loading:state.event.loading,
-    filter:state.event.filter
+    filter:state.event.filter,
+    isButtonPressed:state.event.isButtonPressed,
   });
 const ShowTheLocationWithRouter = withRouter(ShowFilter);
 export default connect(mapStateToProps)(ShowTheLocationWithRouter);

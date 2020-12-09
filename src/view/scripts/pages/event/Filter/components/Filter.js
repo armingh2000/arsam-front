@@ -98,13 +98,18 @@ class FilterPage extends React.Component {
     }
 
     Filter = (e) => {
+        console.log("..................................................");
         e.preventDefault();
         this.state.pageNumber = 1;
 
-        const body = this.getBody();
         // console.log(`page:${this.pageNumber}`);
         this.props.dispatch(resetFilteredEvents());
-        this.props.dispatch(sendFilterRequest(body,false));
+        console.log("------this.state---------(Filter.js)",this.state);
+        const body = this.getBody();
+
+        this.props.dispatch(sendFilterRequest(body,true,true));
+        this.props.dispatch(resetFilteredEvents());
+
 
     }
 
