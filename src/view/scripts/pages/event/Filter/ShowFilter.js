@@ -9,7 +9,8 @@ import { connect } from "react-redux";
 
 const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, loading, filter}) =>{
 
-
+  console.log("filter on ShowFilter");
+  console.log(filter);
     return(
       <div id="not-scrollable">
 
@@ -31,7 +32,7 @@ const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, l
     )
 }
 
-const mapStateToProps = (state,filter) => (
+const mapStateToProps = (state) => (
   {
     filteredEvents: state.event.filteredEvents,
     shouldSendSearchRequest: state.event.shouldSendSearchRequest,

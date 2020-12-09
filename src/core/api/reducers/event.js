@@ -50,7 +50,7 @@ const initialState = {
 };
 
 const event = ( state = initialState, {type, payload }) => {
-  console.log("herher", payload);
+  // console.log("herher", payload);
   switch (type) {
     case ActionTypes.GET_EVENT_REQUEST:
       return {
@@ -275,9 +275,22 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.SET_FILTERING:
+    console.log("filter and payload in SET_FILTERING:");
+    console.log(state.filter,payload);
       return{
         ...state,
-        filter: payload
+        filter: {
+          name: payload.name,
+          dateMin: payload.dateMin,
+          dateMax: payload.dateMax,
+          isPrivate: payload.isPrivate,
+          isProject: payload.isProject,
+          membersCountMin: payload.membersCountMin,
+          membersCountMax: payload.membersCountMax,
+          categories: payload.categories,
+          pageNumber:state.filter.pageNumber,
+          pageSize:15
+        }
       }
 
     case ActionTypes.GET_EVENTS_LIST:
@@ -300,6 +313,15 @@ const event = ( state = initialState, {type, payload }) => {
         ...state,
         filteredEvents: []
       }
+
+    case ActionTypes.ADD_FILTER_PAGE_NUMBER:
+      return {
+        ...state,
+        filter:{
+          ...state.filter,
+          pageNumber:state.filter.pageNumber+1
+        }
+      };
 
     default:
       return state;

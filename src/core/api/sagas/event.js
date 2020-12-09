@@ -81,6 +81,10 @@ export function* sendFilterRequest({payload}){
   try{
     // setTimeout(() => {}, 1000);
     const data =  yield sendFilterPost(payload);
+    console.log("payload in sendFilterRequest");
+    console.log(payload);
+    var newPageNumber=(payload.shouldAddPageNumber?payload.filters.PageNumber+1:payload.filters.PageNumber);
+    console.log("newPageNumber:",newPageNumber);
     yield put({
       type : 'SET_FILTERING',
       payload: {
@@ -92,7 +96,7 @@ export function* sendFilterRequest({payload}){
       membersCountMin: payload.MembersCountMin,
       membersCountMax: payload.MembersCountMax,
       categories: payload.Categories,
-      pageNumber:1,
+      pageNumber:(newPageNumber),
       pageSize:15
       }
     });

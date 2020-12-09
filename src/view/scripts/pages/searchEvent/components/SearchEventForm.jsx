@@ -25,10 +25,11 @@ import { UploadOutlined, InboxOutlined, FrownOutlined, FrownTwoTone, FilterTwoTo
 import {useHistory} from 'react-router-dom';
 import EventImages from "./EventImages";
 import EventDetails from "./EventDetails";
-import { sendFilterRequest } from '../../../../../core/api/actions/FilterActions';
+import { sendFilterRequest, addFilterPageNumber } from '../../../../../core/api/actions/FilterActions';
 import { withRouter } from "react-router";
 import Icon from '@ant-design/icons';
 import { connect } from "react-redux";
+
 
 
 const SearchEventForm = (props) =>{
@@ -53,37 +54,28 @@ const SearchEventForm = (props) =>{
   }
 
   useEffect(() => {
-    // if(match.path === "/filter") {
     // props.dispatch(sendFilterRequest(window.FP.getBody()));
-    // console.log("++++++++++++++++++++++++++++++++++++++++++++++++++");
     // console.log(window.FP.getBody());
     // console.log(getBody(props.filter));
-    props.dispatch(sendFilterRequest(getBody(props.filter)));
-    // }
+    props.dispatch(sendFilterRequest(getBody(props.filter),false));
   }, []);
 
   function handleScroll(e){
 
     setScroll(e.target.scrollTop);
-    console.log(props.shouldSendSearchRequest, scroll % 270);
+    // console.log(props.shouldSendSearchRequest, scroll % 270);
     if(props.shouldSendSearchRequest && scroll % 270 > 200){
-      // console.log("reached here");
       setScroll(0);
       // window.FP.state.pageNumber++;
       // props.dispatch(sendFilterRequest(window.FP.getBody()));
-      props.filter.PageNumber++;
-      // console.log("++++++++++++++++++++++++++++++++++++++++++++++++++");
-      // console.log(props.filter);
-      props.dispatch(sendFilterRequest(getBody(props.filter)));
+      // props.filter.PageNumber++;
+      console.log("props.filter1");
+      console.log(props.filter);
+      props.dispatch(addFilterPageNumber());
+      props.dispatch(sendFilterRequest(getBody(props.filter),true));
+      console.log("props.filter2");
+      console.log(getBody(props.filter));
     }
-    // const bottom = ((e.target.scrollHeight - e.target.scrollTop) <= e.target.clientHeight);
-    // if(bottom && props.events.length == 5){
-      // console.log("body:");
-      // console.log(window.FP.getBody());
-      // window.FP.state.pageNumber++;
-      // console.log("window state:");
-      // console.log(window.FP.state);
-    // }
   }
 
   function handelClick(item){

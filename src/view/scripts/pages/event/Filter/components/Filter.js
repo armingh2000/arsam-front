@@ -104,7 +104,7 @@ class FilterPage extends React.Component {
         const body = this.getBody();
         // console.log(`page:${this.pageNumber}`);
         this.props.dispatch(resetFilteredEvents());
-        this.props.dispatch(sendFilterRequest(body));
+        this.props.dispatch(sendFilterRequest(body,false));
 
     }
 
@@ -196,7 +196,7 @@ class FilterPage extends React.Component {
                         value={this.state.dateMax}
                         onChange={this.onChangeDateMax}/>
                     </Form.Item>
-                  
+
                     <Form.Item
                     wrapperCol={{span:4}}
                     >
