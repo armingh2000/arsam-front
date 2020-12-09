@@ -11,10 +11,10 @@ const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, l
 
 
     return(
-      <div>
+      <div id="not-scrollable">
 
         <div id="filter-component">
-          <Row justify="center" align="middle">
+          <Row justify="center">
             <Col span={4} ><FilterPage/></Col>
             <Col span={20} id="search-event-component">
               <SearchEventForm
