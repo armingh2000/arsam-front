@@ -57,7 +57,12 @@ const SearchEventForm = (props) =>{
     // props.dispatch(sendFilterRequest(window.FP.getBody()));
     // console.log(window.FP.getBody());
     // console.log(getBody(props.filter));
-    props.dispatch(sendFilterRequest(getBody(props.filter),false));
+
+    props.dispatch(sendFilterRequest(getBody(props.filter),true));
+
+    props.dispatch(addFilterPageNumber());
+
+
   }, []);
 
   function handleScroll(e){
@@ -91,7 +96,9 @@ const SearchEventForm = (props) =>{
   }
 
 
-
+console.log("events:",props.events);
+console.log("loading:",props.loading);
+console.log("pageNumber",props.filter.pageNumber);
   if((props.events.length>0)){
     return (
       <div className="scrollable" onScroll={handleScroll}>
@@ -147,6 +154,17 @@ const SearchEventForm = (props) =>{
     );
   }
   else if(props.loading && (props.filter.pageNumber===1)){
+    // console.log("-----------------------------------------------------------------------------");
+    // console.log(props.filter);
+    return(
+      <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
+        <Col>
+          <Spin size="large"/>
+        </Col>
+      </Row>
+    )
+  }
+  else {
     // console.log("-----------------------------------------------------------------------------");
     // console.log(props.filter);
     return(

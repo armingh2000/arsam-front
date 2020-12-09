@@ -294,6 +294,10 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.GET_EVENTS_LIST:
+    console.log("state in ActionTypes.GET_EVENTS_LIST:",state);
+    console.log("payload in ActionTypes.GET_EVENTS_LIST:",payload);
+    // console.log("...........................................",shouldAppend);
+
       return{
         ...state,
         filteredEvents: state.filteredEvents.concat(payload),
@@ -311,6 +315,7 @@ const event = ( state = initialState, {type, payload }) => {
     case ActionTypes.RESET_FILTERED_EVENTS:
       return {
         ...state,
+        pageNumber:1,
         filteredEvents: []
       }
 

@@ -100,6 +100,8 @@ export function* sendFilterRequest({payload}){
       pageSize:15
       }
     });
+    console.log("data:",data);
+    console.log("data.data:",data.data);
     yield put({
       type : 'GET_EVENTS_LIST',
       payload: data.data
