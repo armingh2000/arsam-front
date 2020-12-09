@@ -38,21 +38,6 @@ const SearchEventForm = (props) =>{
   const [scroll, setScroll] = useState(0);
 
   function getBody(props) {
-    if(props.pageNumber===undefined){
-      return {
-          Name: props.name,
-          DateMin: props.dateMin,
-          DateMax: props.dateMax,
-          IsPrivate:props.isPrivate,
-          IsProject: props.isProject,
-          MembersCountMin: props.MembersCountMin,
-          MembersCountMax: props.MembersCountMax,
-          Categories: props.Categories,
-          PageNumber: props.PageNumber,
-          PageSize: props.PageSize
-      }
-    }
-    else{
       return {
           Name: props.name,
           DateMin: props.dateMin,
@@ -65,8 +50,6 @@ const SearchEventForm = (props) =>{
           PageNumber: props.pageNumber,
           PageSize: props.pageSize
       }
-    }
- 
   }
 
   useEffect(() => {
@@ -115,14 +98,6 @@ const SearchEventForm = (props) =>{
     history.replace(`/event/${eventId}`);
   }
 
-
-  console.log("conditions");
-  console.log(".........................................");
-  console.log(props.events.length);
-  console.log(props.loading);
-  console.log(props.filter.pageNumber);
-  console.log(props.filter) ;
-  console.log("..........................................");
 
 
   if((props.events.length>0)){
@@ -179,7 +154,7 @@ const SearchEventForm = (props) =>{
       </div>
     );
   }
-  else if(props.loading && (props.filter.pageNumber===1||props.filter.PageNumber===1)){
+  else if(props.loading && (props.filter.pageNumber===1)){
     // console.log("-----------------------------------------------------------------------------");
     // console.log(props.filter);
     return(
