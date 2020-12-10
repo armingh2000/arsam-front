@@ -25,7 +25,10 @@
 
 #search-event-component {
   background-color: #F4F7FC;
-  padding: 20px 80px;
+  padding-top: 20px;
+  // padding-right: 80px;
+  // padding: 20px 80px;
+  // width: 100%;
 }
 
 #search-event-component {
@@ -91,8 +94,10 @@
   overflow-y:scroll;
   overflow-x: hidden;
   height: 100vh;
-  width: 103%;
+  width: 100%;
   margin-top: -20px;
+  padding-right: 20px;
+
 }
 
 #search-event-component .icon{

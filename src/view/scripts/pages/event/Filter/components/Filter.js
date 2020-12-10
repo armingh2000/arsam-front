@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Card, Form, Input, Button, Select, DatePicker, InputNumber, Switch,} from 'antd';
 import { sendFilterRequest } from '../../../../../../core/api/actions/FilterActions';
-import { getEventsList, setFiltering, resetFilteredEvents } from '../../../../../../core/api/actions/FilterActions';
+import { getEventsList, setFiltering, resetFilteredEvents, addFilterPageNumber } from '../../../../../../core/api/actions/FilterActions';
 
 const {Option} = Select
 
@@ -108,7 +108,9 @@ class FilterPage extends React.Component {
         const body = this.getBody();
 
         this.props.dispatch(sendFilterRequest(body,true,true));
-        this.props.dispatch(resetFilteredEvents());
+        // this.props.dispatch(resetFilteredEvents());
+        this.props.dispatch(addFilterPageNumber());
+
 
 
     }
