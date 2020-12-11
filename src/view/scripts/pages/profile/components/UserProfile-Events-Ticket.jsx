@@ -17,17 +17,17 @@ const UserEventsTickets=({user})=>{
   return(
     <div id="user-events-form-components">
     <Tabs defaultActiveKey="1">
-      <TabPane tab="Events You Created" key="1">
+      <TabPane tab="Events" key="1">
         <UserEventsForm
         events={user.createdEvents}
         />
       </TabPane>
-      <TabPane tab="Events You Are Member Of Them" key="2">
+      <TabPane tab="Participations" key="2">
         <UserEventsForm
         events={user.inEvents}
         />
       </TabPane>
-      <TabPane tab="Tickets You Buy" key="3">
+      <TabPane tab="Tickets" key="3">
         nothing to show
       </TabPane>
     </Tabs>

@@ -20,15 +20,6 @@ const Profile = (props) =>
   return (
     <div id="components-form-profile">
 
-      <Row
-        justify="center"
-        align="middle">
-        <UserInfo/>
-      </Row>
-
-      <Row>
-        <UserEventsTickets />
-      </Row>
 
       <Row
       style={{
@@ -39,6 +30,17 @@ const Profile = (props) =>
           <ProfileForm />
         </Col>
       </Row>
+
+      <Row
+        justify="center"
+        align="middle">
+        <UserInfo/>
+      </Row>
+
+      <Row>
+        <UserEventsTickets />
+      </Row>
+
 
     </div>
   );

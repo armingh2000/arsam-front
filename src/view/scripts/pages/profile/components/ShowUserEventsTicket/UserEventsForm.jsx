@@ -27,6 +27,7 @@ import EventDetails from "./EventDetails";
 import { withRouter } from "react-router";
 import Icon from '@ant-design/icons';
 import { connect } from "react-redux";
+import EventMembersList from "./EventMembersList";
 
 
 const UserEventsForm = (props) =>{
@@ -57,7 +58,7 @@ const UserEventsForm = (props) =>{
           {
               props.events.map((item)=>{
               return(
-                <Col span={8}>
+                <Col span={6}>
                   <Card className="card" onClick={()=>handelClick(item)}>
 
 
@@ -67,6 +68,10 @@ const UserEventsForm = (props) =>{
                           endDate={item.endDate}
                           creator={item.creator}
                           categories={item.categories}/>
+                    <br />
+
+                    <EventMembersList
+                          members={item.eventMembers}/>
 
                   </Card>
                 </Col>
