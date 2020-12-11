@@ -46,7 +46,7 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
   const key = 'updatable';
 
   const openLoadMessage = () => {
-    message.loading({ content: 'Loading...', key });
+    message.loading({ content: 'Loading...', key, duration: 10 });
   };
 
   const openSuccessMessage = () => {

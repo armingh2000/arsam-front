@@ -319,12 +319,14 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.ACCEPT_JOIN_REQUEST:
+      payload.olm();
       return {
         ...state,
         joinStatus: "loading"
       }
 
     case ActionTypes.ACCEPT_JOIN_SUCCESS:
+      payload.osm();
       return {
         ...state,
         joinStatus: "success",
@@ -336,18 +338,21 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.ACCEPT_JOIN_FAILURE:
+      payload.oem();
       return {
         ...state,
         joinStatus: "error"
       }
 
     case ActionTypes.REJECT_JOIN_REQUEST:
+      payload.olm();
       return {
         ...state,
         joinStatus: "loading"
       }
 
     case ActionTypes.REJECT_JOIN_SUCCESS:
+      payload.osm();
       return {
         ...state,
         joinStatus: "success",
@@ -358,6 +363,7 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.REJECT_JOIN_FAILURE:
+      payload.oem();
       return {
         ...state,
         joinStatus: "error"

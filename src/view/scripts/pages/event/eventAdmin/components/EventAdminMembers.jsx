@@ -25,7 +25,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
   const key = 'updatable';
 
   const openLoadMessage = () => {
-    message.loading({ content: 'Loading...', key });
+    message.loading({ content: 'Loading...', key, duration: 10 });
   };
 
   const openSuccessMessage = () => {
