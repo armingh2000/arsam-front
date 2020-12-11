@@ -47,3 +47,11 @@ export const setRequest = ({payload}) =>
     payload
   }
 }
+
+export const acceptJoin = ({payload}) =>
+{
+  return {
+    type: ActionTypes.ACCEPT_JOIN_REQUEST,
+    payload
+  }
+}

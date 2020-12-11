@@ -28,6 +28,7 @@ const initialState = {
   },
   status: 'idle',
   requestStatus: 'idle',
+  joinStatus: 'idle',
   adminContent: "event",
   membersStatus: 'success',
   //filters applied
@@ -302,7 +303,6 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.SET_REQUEST_SUCCESS:
-    console.log("req", payload);
       return {
         ...state,
         requestStatus: "success",
@@ -313,10 +313,32 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.SET_REQUEST_FAILURE:
-    console.log("err", payload);
       return {
         ...state,
         requestStatus: "error"
+      }
+
+    case ActionTypes.ACCEPT_JOIN_REQUEST:
+      return {
+        ...state,
+        joinStatus: "loading"
+      }
+
+    case ActionTypes.ACCEPT_JOIN_SUCCESS:
+      return {
+        ...state,
+        joinStatus: "success",
+        event: {
+          ...state.event,
+          requests: state.event.requests.filter((req) => {return req.user.email !== payload.email}),
+          eventMembers: [...state.event.eventMembers, {email: payload.email}]
+        }
+      }
+
+    case ActionTypes.ACCEPT_JOIN_FAILURE:
+      return {
+        ...state,
+        joinStatus: "error"
       }
 
     default:

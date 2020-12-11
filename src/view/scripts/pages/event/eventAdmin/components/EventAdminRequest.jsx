@@ -7,13 +7,15 @@ import {
   Row,
   Card,
   Avatar,
-  Tooltip
+  Tooltip,
+  message
 } from "antd";
 import {
   UserOutlined,
   CheckCircleTwoTone,
   CloseCircleTwoTone
 } from "@ant-design/icons";
+import { acceptJoin } from "../../../../../../core/api/actions/EventActions";
 
 const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
 {
@@ -41,13 +43,35 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
     </div>
   }
 
+  const key = 'updatable';
+
+  const openLoadMessage = () => {
+    message.loading({ content: 'Loading...', key });
+  };
+
+  const openSuccessMessage = () => {
+      message.success({ content: 'Updated!', key, duration: 2 });
+  };
+
+  const openErrorMessage = () => {
+      message.error({ content: 'Error!', key, duration: 2 });
+  };
+
   const {Text} = Typography;
   const { Meta } = Card;
 
 
   function getRequests() {
 
-    if (requests.length)
+    if (requests.length === 0) {
+      return (
+        <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
+          <Col>
+            <Text type="danger">Sorry, no join requests!</Text>
+          </Col>
+        </Row>
+      )
+    }
 
     return (<div>
       {requests.map((req) => {
@@ -77,6 +101,7 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
                   twoToneColor="#52c41a"
                   style={{fontSize:40, margin:"10px 10px 0 0"}}
                   onClick={() => {
+                    dispatch(acceptJoin({payload:{eventId, email:req.user.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                   }}/>
                 </Tooltip>
                 <Tooltip title="reject" placement="left" color="red" className="right-aligned-button">
