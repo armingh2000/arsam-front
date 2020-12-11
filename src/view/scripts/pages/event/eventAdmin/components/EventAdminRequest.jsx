@@ -15,7 +15,7 @@ import {
   CheckCircleTwoTone,
   CloseCircleTwoTone
 } from "@ant-design/icons";
-import { acceptJoin } from "../../../../../../core/api/actions/EventActions";
+import { acceptJoin, rejectJoin } from "../../../../../../core/api/actions/EventActions";
 
 const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
 {
@@ -109,6 +109,7 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
                     twoToneColor="red"
                     style={{fontSize:40, margin:"10px 10px 0 0"}}
                     onClick={() => {
+                      dispatch(rejectJoin({payload:{eventId, email:req.user.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                     }}
                     />
                 </Tooltip>

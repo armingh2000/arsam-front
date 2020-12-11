@@ -341,6 +341,28 @@ const event = ( state = initialState, {type, payload }) => {
         joinStatus: "error"
       }
 
+    case ActionTypes.REJECT_JOIN_REQUEST:
+      return {
+        ...state,
+        joinStatus: "loading"
+      }
+
+    case ActionTypes.REJECT_JOIN_SUCCESS:
+      return {
+        ...state,
+        joinStatus: "success",
+        event: {
+          ...state.event,
+          requests: state.event.requests.filter((req) => {return req.user.email !== payload.email})
+        }
+      }
+
+    case ActionTypes.REJECT_JOIN_FAILURE:
+      return {
+        ...state,
+        joinStatus: "error"
+      }
+
     default:
       return state;
     };

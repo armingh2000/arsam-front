@@ -55,3 +55,11 @@ export const acceptJoin = ({payload}) =>
     payload
   }
 }
+
+export const rejectJoin = ({payload}) =>
+{
+  return {
+    type: ActionTypes.REJECT_JOIN_REQUEST,
+    payload
+  }
+}

@@ -44,3 +44,12 @@ export const sendAcceptPatch = ({email, eventId}) => {
     }
   })
 }
+
+export const sendRejectPatch = ({email, eventId}) => {
+  return sendPatchRequest({
+    url: `https://localhost:44373/api/event/AcceptOrRejectJoinRequest?EventId=${eventId}&memberEmail=${email}&accept=false`,
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem("userToken")}`
+    }
+  })
+}

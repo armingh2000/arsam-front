@@ -1,7 +1,7 @@
 import { all, put, takeLatest } from "redux-saga/effects";
 import { ActionTypes } from "../constants/ActionTypes";
 import sendEventGet from "../event/sendEventGet";
-import {sendMemberPatch, sendAdminPatch, sendKickDelete, sendRequestGet, sendAcceptPatch} from "../../admin/adminRequests";
+import {sendMemberPatch, sendAdminPatch, sendKickDelete, sendRequestGet, sendAcceptPatch, sendRejectPatch} from "../../admin/adminRequests";
 import { sendFilterPost } from "../Filter/sendFilter";
 
 
@@ -128,6 +128,23 @@ export function* sendAcceptRequest({payload}) {
   }
 }
 
+export function* sendRejectRequest ({payload}) {
+  try {
+    setTimeout(() => {}, 1000);
+    yield put ({
+      type: ActionTypes.REJECT_JOIN_SUCCESS,
+      payload,
+      result: yield sendRejectPatch(payload)
+    })
+  }
+  catch (err) {
+    yield put ({
+      type: ActionTypes.REJECT_JOIN_FAILURE,
+      payload: err
+    })
+  }
+}
+
 export default function* root() {
   yield all([
     takeLatest(ActionTypes.GET_EVENT_REQUEST, getEventRequest),
@@ -138,6 +155,7 @@ export default function* root() {
     takeLatest('Send_Filter_Request', sendFilterRequest),
     takeLatest(ActionTypes.SET_REQUEST_REQUEST, sendRequestRequest),
     takeLatest(ActionTypes.ACCEPT_JOIN_REQUEST, sendAcceptRequest),
+    takeLatest(ActionTypes.REJECT_JOIN_REQUEST, sendRejectRequest),
 
 
   ]);
