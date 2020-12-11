@@ -1,13 +1,16 @@
 import React from "react";
 import {
   Menu,
-  Avatar
+  Avatar,
+  Typography
  } from 'antd';
  import {setAdminContent} from "../../../../../../core/api/actions/EventActions";
 
 
-const EventAdminSidebar = ({creator, dispatch}) =>
+const EventAdminSidebar = ({event, dispatch}) =>
 {
+
+  const {Text} = Typography;
 
   const setContent = (content) => {
     dispatch(setAdminContent({
@@ -20,9 +23,9 @@ const EventAdminSidebar = ({creator, dispatch}) =>
 
   return (
     <div>
-      <Menu theme="light" mode="inline" style={{background:"linear-gradient(to bottom right, rgba(255, 255, 255, 0.89)0%, rgba(247, 252, 252, 0.89)100%)"}}>
-        <Avatar size={150} style={{margin:"23px", color: '#f56a00', backgroundColor: '#fde3cf'}}>{creator.email.charAt(0)}</Avatar>
-        <Menu.Item onClick={() => {setContent("event")}}>Event</Menu.Item>
+      <Menu defaultSelectedKeys={["1"]} theme="light" mode="inline" style={{background:"linear-gradient(to bottom right, rgba(255, 255, 255, 0.89)0%, rgba(247, 252, 252, 0.89)100%)"}}>
+        <Avatar size={150} shape="square" style={{margin:"23px", color: 'white', backgroundColor: '#73cac5'}}>{event.event.name}</Avatar>
+        <Menu.Item key="1" onClick={() => {setContent("event")}}>Event</Menu.Item>
         <Menu.Item onClick={() => {setContent("eventMembers")}}>Event Members</Menu.Item>
       </Menu>
     </div>
