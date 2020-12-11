@@ -25,7 +25,7 @@ import { UploadOutlined, InboxOutlined, FrownOutlined, FrownTwoTone, FilterTwoTo
 import {useHistory} from 'react-router-dom';
 import EventImages from "./EventImages";
 import EventDetails from "./EventDetails";
-import { sendFilterRequest } from '../../../../../core/api/actions/FilterActions';
+import { sendFilterRequest, addFilterPageNumber } from '../../../../../core/api/actions/FilterActions';
 import { withRouter } from "react-router";
 import Icon from '@ant-design/icons';
 import { connect } from "react-redux";
@@ -38,21 +38,6 @@ const SearchEventForm = (props) =>{
   const [scroll, setScroll] = useState(0);
 
   function getBody(props) {
-    if(props.pageNumber===undefined){
-      return {
-          Name: props.name,
-          DateMin: props.dateMin,
-          DateMax: props.dateMax,
-          IsPrivate:props.isPrivate,
-          IsProject: props.isProject,
-          MembersCountMin: props.MembersCountMin,
-          MembersCountMax: props.MembersCountMax,
-          Categories: props.Categories,
-          PageNumber: props.PageNumber,
-          PageSize: props.PageSize
-      }
-    }
-    else{
       return {
           Name: props.name,
           DateMin: props.dateMin,
@@ -65,42 +50,41 @@ const SearchEventForm = (props) =>{
           PageNumber: props.pageNumber,
           PageSize: props.pageSize
       }
-    }
-
   }
 
   useEffect(() => {
-    // if(match.path === "/filter") {
     // props.dispatch(sendFilterRequest(window.FP.getBody()));
-    // console.log("++++++++++++++++++++++++++++++++++++++++++++++++++");
     // console.log(window.FP.getBody());
     // console.log(getBody(props.filter));
-    props.dispatch(sendFilterRequest(getBody(props.filter)));
-    // }
+    // props.dispatch(resetFilteredEvents());
+    console.log("*********************************************","props.filter:(SearchEventForm.jsx)",props.filter);
+    if(true){
+    console.log("###############################################");
+
+    props.dispatch(sendFilterRequest(getBody(props.filter),true,true));
+
+    props.dispatch(addFilterPageNumber());
+
+    // useEffectNum++;
+    }
   }, []);
 
   function handleScroll(e){
 
     setScroll(e.target.scrollTop);
-    console.log(props.shouldSendSearchRequest, scroll % 270);
+    // console.log(props.shouldSendSearchRequest, scroll % 270);
     if(props.shouldSendSearchRequest && scroll % 270 > 200){
-      // console.log("reached here");
       setScroll(0);
       // window.FP.state.pageNumber++;
       // props.dispatch(sendFilterRequest(window.FP.getBody()));
-      props.filter.PageNumber++;
-      // console.log("++++++++++++++++++++++++++++++++++++++++++++++++++");
-      // console.log(props.filter);
-      props.dispatch(sendFilterRequest(getBody(props.filter)));
+      // props.filter.PageNumber++;
+      console.log("props.filter1:(SearchEventForm.jsx)");
+      console.log(props.filter);
+      props.dispatch(addFilterPageNumber());
+      props.dispatch(sendFilterRequest(getBody(props.filter),true,false));
+      console.log("props.filter2:(SearchEventForm.jsx)");
+      console.log(getBody(props.filter));
     }
-    // const bottom = ((e.target.scrollHeight - e.target.scrollTop) <= e.target.clientHeight);
-    // if(bottom && props.events.length == 5){
-      // console.log("body:");
-      // console.log(window.FP.getBody());
-      // window.FP.state.pageNumber++;
-      // console.log("window state:");
-      // console.log(window.FP.state);
-    // }
   }
 
   function handelClick(item){
@@ -116,15 +100,9 @@ const SearchEventForm = (props) =>{
   }
 
 
-  console.log("conditions");
-  console.log(".........................................");
-  console.log(props.events.length);
-  console.log(props.loading);
-  console.log(props.filter.pageNumber);
-  console.log(props.filter) ;
-  console.log("..........................................");
-
-
+// console.log("events:",props.events);
+// console.log("loading:",props.loading);
+// console.log("pageNumber",props.filter.pageNumber);
   if((props.events.length>0)){
     return (
       <div className="scrollable" onScroll={handleScroll}>
@@ -179,7 +157,18 @@ const SearchEventForm = (props) =>{
       </div>
     );
   }
-  else if(props.loading && (props.filter.pageNumber===1||props.filter.PageNumber===1)){
+  else if(props.loading && (props.filter.pageNumber===1)){
+    // console.log("-----------------------------------------------------------------------------");
+    // console.log(props.filter);
+    return(
+      <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
+        <Col>
+          <Spin size="large"/>
+        </Col>
+      </Row>
+    )
+  }
+  else {
     // console.log("-----------------------------------------------------------------------------");
     // console.log(props.filter);
     return(

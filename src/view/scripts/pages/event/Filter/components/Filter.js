@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Card, Form, Input, Button, Select, DatePicker, InputNumber, Switch,} from 'antd';
 import { sendFilterRequest } from '../../../../../../core/api/actions/FilterActions';
-import { getEventsList, setFiltering, resetFilteredEvents } from '../../../../../../core/api/actions/FilterActions';
+import { getEventsList, setFiltering, resetFilteredEvents, addFilterPageNumber } from '../../../../../../core/api/actions/FilterActions';
 
 const {Option} = Select
 
@@ -98,13 +98,20 @@ class FilterPage extends React.Component {
     }
 
     Filter = (e) => {
+        console.log("..................................................");
         e.preventDefault();
         this.state.pageNumber = 1;
 
-        const body = this.getBody();
         // console.log(`page:${this.pageNumber}`);
         this.props.dispatch(resetFilteredEvents());
-        this.props.dispatch(sendFilterRequest(body));
+        console.log("------this.state---------(Filter.js)",this.state);
+        const body = this.getBody();
+
+        this.props.dispatch(sendFilterRequest(body,true,true));
+        // this.props.dispatch(resetFilteredEvents());
+        this.props.dispatch(addFilterPageNumber());
+
+
 
     }
 
@@ -196,7 +203,7 @@ class FilterPage extends React.Component {
                         value={this.state.dateMax}
                         onChange={this.onChangeDateMax}/>
                     </Form.Item>
-                  
+
                     <Form.Item
                     wrapperCol={{span:4}}
                     >

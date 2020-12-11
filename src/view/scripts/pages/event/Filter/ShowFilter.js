@@ -7,14 +7,15 @@ import { getEventsList, setFiltering } from '../../../../../core/api/actions/Fil
 import { connect } from "react-redux";
 
 
-const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, loading, filter}) =>{
+const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, loading, filter, isButtonPressed}) =>{
 
-
+  console.log("filter on ShowFilter");
+  console.log(filter);
     return(
-      <div>
+      <div id="not-scrollable">
 
         <div id="filter-component">
-          <Row justify="center" align="middle">
+          <Row justify="center">
             <Col span={4} ><FilterPage/></Col>
             <Col span={20} id="search-event-component">
               <SearchEventForm
@@ -23,6 +24,7 @@ const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, l
               events={filteredEvents}
               loading={loading}
               filter={filter}
+              isButtonPressed={isButtonPressed}
               />
             </Col>
           </Row>
@@ -31,12 +33,13 @@ const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, l
     )
 }
 
-const mapStateToProps = (state,filter) => (
+const mapStateToProps = (state) => (
   {
     filteredEvents: state.event.filteredEvents,
     shouldSendSearchRequest: state.event.shouldSendSearchRequest,
     loading:state.event.loading,
-    filter:state.event.filter
+    filter:state.event.filter,
+    isButtonPressed:state.event.isButtonPressed,
   });
 const ShowTheLocationWithRouter = withRouter(ShowFilter);
 export default connect(mapStateToProps)(ShowTheLocationWithRouter);
