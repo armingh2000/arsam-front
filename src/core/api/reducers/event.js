@@ -35,15 +35,18 @@ const initialState = {
     name: null,
     dateMin: null,
     dateMax: null,
-    isPravate: null,
+    isPrivate: null,
     isProject: null,
     membersCountMin: null,
     membersCountMax: null,
-    categories: null
+    categories: null,
+    pageNumber:1,
+    pageSize:15
   },
   //Array of events which is returned byd back
   filteredEvents: [],
-  shouldSendSearchRequest: true
+  shouldSendSearchRequest: true,
+  loading:true
 };
 
 const event = ( state = initialState, {type, payload }) => {
@@ -281,13 +284,15 @@ const event = ( state = initialState, {type, payload }) => {
       return{
         ...state,
         filteredEvents: state.filteredEvents.concat(payload),
-        shouldSendSearchRequest:true
+        shouldSendSearchRequest:true,
+        loading:false
       }
 
     case ActionTypes.SEND_FILTER_REQUEST:
       return {
         ...state,
-        shouldSendSearchRequest: false
+        shouldSendSearchRequest: false,
+        loading:true
       }
 
     case ActionTypes.RESET_FILTERED_EVENTS:
