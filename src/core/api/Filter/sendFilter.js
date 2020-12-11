@@ -1,4 +1,4 @@
-import { sendPostRequest, sendpostRequest } from "../api";
+import { sendPostRequest } from "../api";
 
 
 export const sendFilterPost = (data) => {

@@ -4,6 +4,7 @@ import {UserOutlined, LockOutlined} from '@ant-design/icons';
 import {Link, useHistory} from 'react-router-dom';
 import {sendLoginPost} from "../../../../../core/login-signup/loginRequest";
 
+
 const NormalLoginForm = () => {
 
   const [failureMessage, setFailureMessage] = useState("");
