@@ -39,3 +39,11 @@ export const kickMember = ({payload}) =>
     payload
   }
 }
+
+export const setRequest = ({payload}) =>
+{
+  return {
+    type: ActionTypes.SET_REQUEST_REQUEST,
+    payload
+  }
+}

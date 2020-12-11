@@ -1,4 +1,4 @@
-import {sendPatchRequest, sendDeleteRequest} from '../api/api';
+import {sendPatchRequest, sendDeleteRequest, sendGetRequest} from '../api/api';
 
 export const sendMemberPatch = ({email, eventId}) => {
   return sendPatchRequest({
@@ -19,11 +19,19 @@ export const sendAdminPatch = ({email, eventId}) => {
 }
 
 export const sendKickDelete = ({email, eventId}) => {
-  console.log("asdasdasdas", email);
   return sendDeleteRequest({
     url: `https://localhost:44373/api/event/KickUser?id=${eventId}&userEmail=${email}`,
   headers: {
     'Authorization': `Bearer ${localStorage.getItem("userToken")}`
   }
+  })
+}
+
+export const sendRequestGet = ({eventId}) => {
+  return sendGetRequest({
+    url: `https://localhost:44373/api/event/GetJoinRequests?eventId=${eventId}`,
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem("userToken")}`
+    }
   })
 }

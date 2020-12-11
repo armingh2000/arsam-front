@@ -3,6 +3,7 @@ import EventAdminSidebar from "./EventAdminSidebar";
 import {Layout} from "antd";
 import ShowEvent from "../../show-event/ShowEvent";
 import EventAdminMembers from "./EventAdminMembers";
+import EventAdminRequest from "./EventAdminRequest";
 
 
 const EventAdminGrid = ({eventId, event, dispatch}) =>
@@ -18,6 +19,13 @@ const EventAdminGrid = ({eventId, event, dispatch}) =>
         return (<div id="admin-members">
           <EventAdminMembers creator={event.event.creator} dispatch={dispatch} eventId={eventId} admins={event.event.eventAdmins} members={event.event.eventMembers}/>
         </div>)
+
+      case "eventRequest":
+        return (<div id="admin-request">
+          <EventAdminRequest requests={event.event.requests} requestStatus={event.requestStatus} eventId={eventId} dispatch={dispatch}/>
+        </div>
+
+        )
 
       default:
         return <div></div>

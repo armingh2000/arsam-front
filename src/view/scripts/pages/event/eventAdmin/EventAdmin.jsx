@@ -17,7 +17,7 @@ const EventAdmin = ({event, dispatch, match}) =>
           eventId: match.params.eventId,
           tokenId: localStorage.getItem("userToken")
         }
-      }))
+      }));
     }
   }, []);
 
@@ -41,7 +41,7 @@ const EventAdmin = ({event, dispatch, match}) =>
           </Row>
         );
       }
-      
+
       return <EventAdminGrid eventId={match.params.eventId} event={event} dispatch={dispatch}/>
 
     case 'error':

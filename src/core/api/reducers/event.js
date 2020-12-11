@@ -24,12 +24,12 @@ const initialState = {
        phoneNumber: null
      },
      categories: [],
+     requests: []
   },
   status: 'idle',
+  requestStatus: 'idle',
   adminContent: "event",
   membersStatus: 'success',
-     status: 'idle',
-
   //filters applied
   filter: {
     name: null,
@@ -47,7 +47,6 @@ const initialState = {
 };
 
 const event = ( state = initialState, {type, payload }) => {
-  console.log("herher", payload);
   switch (type) {
     case ActionTypes.GET_EVENT_REQUEST:
       return {
@@ -294,6 +293,30 @@ const event = ( state = initialState, {type, payload }) => {
       return {
         ...state,
         filteredEvents: []
+      }
+
+    case ActionTypes.SET_REQUEST_REQUEST:
+      return {
+        ...state,
+        requestStatus: "loading"
+      }
+
+    case ActionTypes.SET_REQUEST_SUCCESS:
+    console.log("req", payload);
+      return {
+        ...state,
+        requestStatus: "success",
+        event: {
+          ...state.event,
+          requests: payload.data
+        }
+      }
+
+    case ActionTypes.SET_REQUEST_FAILURE:
+    console.log("err", payload);
+      return {
+        ...state,
+        requestStatus: "error"
       }
 
     default:

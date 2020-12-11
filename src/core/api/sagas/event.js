@@ -1,7 +1,7 @@
 import { all, put, takeLatest } from "redux-saga/effects";
 import { ActionTypes } from "../constants/ActionTypes";
 import sendEventGet from "../event/sendEventGet";
-import {sendMemberPatch, sendAdminPatch, sendKickDelete} from "../../admin/adminRequests";
+import {sendMemberPatch, sendAdminPatch, sendKickDelete, sendRequestGet} from "../../admin/adminRequests";
 import { sendFilterPost } from "../Filter/sendFilter";
 
 
@@ -95,6 +95,22 @@ export function* sendFilterRequest({payload}){
   }
 }
 
+export function* sendRequestRequest({payload}) {
+  try {
+    setTimeout(() => {}, 1000);
+    yield put ({
+      type: ActionTypes.SET_REQUEST_SUCCESS,
+      payload: yield sendRequestGet(payload)
+    })
+  }
+  catch(err) {
+    yield put ({
+      type: ActionTypes.SET_REQUEST_FAILURE,
+      payload: err
+    })
+  }
+}
+
 export default function* root() {
   yield all([
     takeLatest(ActionTypes.GET_EVENT_REQUEST, getEventRequest),
@@ -102,7 +118,8 @@ export default function* root() {
     takeLatest(ActionTypes.SET_ADMIN_REQUEST, sendAdminRequest),
     takeLatest(ActionTypes.KICK_MEMBER_REQUEST, sendAdminKick),
     takeLatest(ActionTypes.GET_EVENT_REQUEST, getEventRequest),
-    takeLatest('Send_Filter_Request', sendFilterRequest)
+    takeLatest('Send_Filter_Request', sendFilterRequest),
+    takeLatest(ActionTypes.SET_REQUEST_REQUEST, sendRequestRequest)
 
   ]);
 }
