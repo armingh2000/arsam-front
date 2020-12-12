@@ -26,7 +26,6 @@ import EventDetails from "./EventDetails";
 import { withRouter } from "react-router";
 import Icon from '@ant-design/icons';
 import { connect } from "react-redux";
-import EventMembersList from "./EventMembersList";
 
 
 const UserTicketsForm = (props) =>{

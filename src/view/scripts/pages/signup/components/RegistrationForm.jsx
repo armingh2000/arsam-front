@@ -29,7 +29,15 @@ const RegistrationForm = () => {
   };
 
   const onFinish = (values) => {
-    sendSignupPost({"EmailAddress": values.email, "Password": values.password, "PasswordConfirmation": values.confirm}).then(onSuccess).catch(onFailure);
+    sendSignupPost(
+      {
+        "EmailAddress": values.email,
+        "Password": values.password,
+        "PasswordConfirmation": values.confirm,
+        "FirstName":values.firstName,
+        "LastName":values.lastName
+      }
+    ).then(onSuccess).catch(onFailure);
   };
 
   return (
@@ -47,6 +55,15 @@ const RegistrationForm = () => {
       <Form.Item hidden={!isFailed}>
         <Text type="danger">{failureMessage}</Text>
       </Form.Item>
+
+      <Form.Item name="firstName" label="FirstName">
+        <Input className="get-border-radius"/>
+      </Form.Item>
+
+      <Form.Item name="lastName" label="LastName" >
+        <Input className="get-border-radius"/>
+      </Form.Item>
+
 
       <Form.Item name="email" label="E-mail" rules={[
           {
