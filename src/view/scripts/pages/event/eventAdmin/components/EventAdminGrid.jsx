@@ -4,6 +4,8 @@ import {Layout} from "antd";
 import ShowEvent from "../../show-event/ShowEvent";
 import EventAdminMembers from "./EventAdminMembers";
 import EventAdminRequest from "./EventAdminRequest";
+import EventAdminTicketsGrid from "./EventAdminTicketsGrid";
+import EventAdminTicketsManage from "./EventAdminTicketsManage";
 
 
 const EventAdminGrid = ({eventId, event, dispatch}) =>
@@ -24,8 +26,17 @@ const EventAdminGrid = ({eventId, event, dispatch}) =>
         return (<div id="admin-request">
           <EventAdminRequest requests={event.event.requests} requestStatus={event.requestStatus} eventId={eventId} dispatch={dispatch}/>
         </div>
-
         )
+
+      case "eventTickets":
+        return (<div id="admin-tickets">
+          <EventAdminTicketsGrid />
+        </div>)
+
+      case "eventTicketsManage":
+        return (<div id="admin-tickets-manage">
+          <EventAdminTicketsManage />
+        </div>)
 
       default:
         return <div></div>

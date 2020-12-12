@@ -11,6 +11,7 @@ const EventAdminSidebar = ({event, dispatch}) =>
 {
 
   const {Text} = Typography;
+  const {SubMenu} = Menu;
 
   const setContent = (content) => {
     if (content === "eventRequest") {
@@ -32,6 +33,10 @@ const EventAdminSidebar = ({event, dispatch}) =>
         <Menu.Item key="1" onClick={() => {setContent("event")}}>Event</Menu.Item>
         <Menu.Item onClick={() => {setContent("eventMembers")}}>Members</Menu.Item>
         <Menu.Item onClick={() => {setContent("eventRequest")}}>Requests</Menu.Item>
+        <SubMenu title="Event Tickets">
+          <Menu.Item onClick={() => {setContent("eventTickets")}}>Tickets</Menu.Item>
+          <Menu.Item onClick={() => {setContent("eventTicketsManage")}}>Manage Tickets</Menu.Item>
+        </SubMenu>
       </Menu>
     </div>
   );
