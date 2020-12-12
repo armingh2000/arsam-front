@@ -9,6 +9,7 @@ const LogoutButton = () =>
 {
   const history = useHistory();
 
+
   function logout () {
     localStorage.clear();
     history.replace("/");
@@ -18,8 +19,9 @@ const LogoutButton = () =>
   if(localStorage.getItem("userToken") && localStorage.getItem('g')) {
      return <GLogout />;
   }
-  return <Button className="btn center-button" onClick={logout}>
-    Logout
+  return <Button className="btn center-button" onClick={logout} >
+  Logout
+
 </Button>
 }
 

@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import ProfileForm from "./components/ProfileForm";
 import UserInfo from "./components/UserProfile";
-import {Row, Col} from 'antd';
+import {Row, Col, Button} from 'antd';
 import { connect } from "react-redux";
 import { getUser } from '../../../../core/api/actions/UserProfileActions';
 import { withRouter } from "react-router";
 import UserEventsTickets from "./components/UserProfile-Events-Ticket";
+import LogoutButton from "./components/LogoutButton";
+
 
 
 const Profile = (props) =>
@@ -16,20 +18,11 @@ const Profile = (props) =>
   },
   []);
 
+
   console.log("userToken :" + localStorage.getItem("userToken"));
   return (
     <div id="components-form-profile">
 
-
-      <Row
-      style={{
-          minHeight: '100vh'
-      }}
-      justify="center" align="middle">
-        <Col span={16}>
-          <ProfileForm />
-        </Col>
-      </Row>
 
       <Row
         justify="center"
@@ -37,7 +30,12 @@ const Profile = (props) =>
         <UserInfo/>
       </Row>
 
+
+
+
       <Row>
+
+        <LogoutButton />
         <UserEventsTickets />
       </Row>
 

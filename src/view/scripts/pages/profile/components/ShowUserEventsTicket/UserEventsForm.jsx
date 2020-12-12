@@ -45,7 +45,12 @@ const UserEventsForm = (props) =>{
   }
 
   function redirectUser(eventId){
-    history.replace(`/event/${eventId}`);
+    if(props.isAdmin){
+      history.replace(`/event/${eventId}/admin`);
+    }
+    else {
+      history.replace(`/event/${eventId}`);
+    }
   }
 
 
