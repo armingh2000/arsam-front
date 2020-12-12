@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Card, Form, Input, Button, Select, DatePicker, InputNumber, Switch,} from 'antd';
 import { sendFilterRequest } from '../../../../../../core/api/actions/FilterActions';
-import { getEventsList, setFiltering, resetFilteredEvents } from '../../../../../../core/api/actions/FilterActions';
+import { getEventsList, setFiltering, resetFilteredEvents, addFilterPageNumber } from '../../../../../../core/api/actions/FilterActions';
 
 const {Option} = Select
 
@@ -77,13 +77,6 @@ class FilterPage extends React.Component {
         this.setState(() => ({membersCountMax : e}))
     }
 
-    // onChangePageSize = (e) => {
-    //     this.setState(() => ({pageSize : e}))
-    // }
-    //
-    // onChangePageNumber = (e) => {
-    //     this.setState(() => ({pageNumber : e}))
-    // }
     onSuccess = ({data}) => {
         this.props.dispatch(setFiltering(this.state));
         this.props.dispatch(getEventsList(data));
@@ -105,13 +98,20 @@ class FilterPage extends React.Component {
     }
 
     Filter = (e) => {
+        console.log("..................................................");
         e.preventDefault();
         this.state.pageNumber = 1;
 
-        const body = this.getBody();
         // console.log(`page:${this.pageNumber}`);
         this.props.dispatch(resetFilteredEvents());
-        this.props.dispatch(sendFilterRequest(body));
+        console.log("------this.state---------(Filter.js)",this.state);
+        const body = this.getBody();
+
+        this.props.dispatch(sendFilterRequest(body,true,true));
+        // this.props.dispatch(resetFilteredEvents());
+        this.props.dispatch(addFilterPageNumber());
+
+
 
     }
 
@@ -173,19 +173,6 @@ class FilterPage extends React.Component {
                         />
                     </Form.Item>
 
-                    <Form.Item label="Privacy Type"
-                    labelCol={{span:24}}
-                    wrapperCol={{span:24}}>
-                        <Select
-                        className="get-shadow"
-                        defaultValue="all" onSelect={this.onChangePrivate}
-                        >
-                            <Option value="public">Public</Option>
-                            <Option value="private">Private</Option>
-                            <Option value="all">All</Option>
-                        </Select>
-                    </Form.Item>
-
                     <Form.Item label="Project Type"
                     labelCol={{span:24}}
                     wrapperCol={{span:24}}>
@@ -216,29 +203,7 @@ class FilterPage extends React.Component {
                         value={this.state.dateMax}
                         onChange={this.onChangeDateMax}/>
                     </Form.Item>
-                    {
-                    // <Form.Item label="Page Size"
-                    // labelCol={{span:24}}
-                    // wrapperCol={{span:24}}>
-                    //     <InputNumber
-                    //     className="get-shadow"
-                    //     value={this.state.pageSize}
-                    //     onChange={this.onChangePageSize}
-                    //     />
-                    // </Form.Item>
-                    }
-                    {
 
-                    // <Form.Item label="Page Number"
-                    // labelCol={{span:24}}
-                    // wrapperCol={{span:24}}>
-                    //     <InputNumber
-                    //     className="get-shadow"
-                    //     value={this.state.pageNumber}
-                    //     onChange={this.onChangePageNumber}
-                    //     />
-                    // </Form.Item>
-                    }
                     <Form.Item
                     wrapperCol={{span:4}}
                     >

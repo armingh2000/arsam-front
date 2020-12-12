@@ -23,6 +23,7 @@ const EventAdmin = ({event, dispatch, match}) =>
 
   switch (event.status) {
     case 'loading':
+
       return (
         <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
           <Col>
@@ -31,6 +32,16 @@ const EventAdmin = ({event, dispatch, match}) =>
         </Row>
       );
     case 'success':
+      if(event.event.myRole !== "Admin") {
+        return (
+          <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
+            <Col>
+              <Text type="danger">Sorry, you are not admin!</Text>
+            </Col>
+          </Row>
+        );
+      }
+      
       return <EventAdminGrid eventId={match.params.eventId} event={event} dispatch={dispatch}/>
 
     case 'error':
