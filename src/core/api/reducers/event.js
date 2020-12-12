@@ -24,8 +24,11 @@ const initialState = {
        phoneNumber: null
      },
      categories: [],
-     requests: []
+     requests: [],
+     buyingTicketEnabled: null
   },
+  ticketTypes: [],
+  ticketTypeStatus: 'idle',
   status: 'idle',
   requestStatus: 'idle',
   joinStatus: 'idle',
@@ -367,6 +370,25 @@ const event = ( state = initialState, {type, payload }) => {
       return {
         ...state,
         joinStatus: "error"
+      }
+
+    case ActionTypes.GET_EVENT_TICKET_TYPE_REQUEST:
+      return {
+        ...state,
+        ticketTypeStatus: "loading"
+      }
+
+    case ActionTypes.GET_EVENT_TICKET_TYPE_SUCCESS:
+      return {
+        ...state,
+        ticketTypes: payload.data,
+        ticketTypeStatus: "success"
+      }
+
+    case ActionTypes.GET_EVENT_TICKET_TYPE_FAILURE:
+      return {
+        ...state,
+        ticketTypeStatus: "error"
       }
 
     default:

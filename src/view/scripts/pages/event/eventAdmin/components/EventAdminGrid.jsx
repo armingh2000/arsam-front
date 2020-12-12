@@ -4,7 +4,7 @@ import {Layout} from "antd";
 import ShowEvent from "../../show-event/ShowEvent";
 import EventAdminMembers from "./EventAdminMembers";
 import EventAdminRequest from "./EventAdminRequest";
-import EventAdminTicketsGrid from "./EventAdminTicketsGrid";
+import EventAdminTickets from "./EventAdminTickets";
 import EventAdminTicketsManage from "./EventAdminTicketsManage";
 
 
@@ -30,12 +30,12 @@ const EventAdminGrid = ({eventId, event, dispatch}) =>
 
       case "eventTickets":
         return (<div id="admin-tickets">
-          <EventAdminTicketsGrid />
+          <EventAdminTickets />
         </div>)
 
       case "eventTicketsManage":
         return (<div id="admin-tickets-manage">
-          <EventAdminTicketsManage />
+          <EventAdminTicketsManage ticketTypeStatus={event.ticketTypeStatus} dispatch={dispatch} eventId={eventId} ticketTypes={event.ticketTypes}/>
         </div>)
 
       default:

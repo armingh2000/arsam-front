@@ -53,3 +53,12 @@ export const sendRejectPatch = ({email, eventId}) => {
     }
   })
 }
+
+export const sendEventTicketTypeGet = ({eventId}) => {
+  return sendGetRequest({
+    url: `https://localhost:44373/api/ticket/GetEventTicketTypes?id=${eventId}`,
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem("userToken")}`
+    }
+  })
+}

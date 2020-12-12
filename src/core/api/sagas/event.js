@@ -1,7 +1,15 @@
 import { all, put, takeLatest } from "redux-saga/effects";
 import { ActionTypes } from "../constants/ActionTypes";
 import sendEventGet from "../event/sendEventGet";
-import {sendMemberPatch, sendAdminPatch, sendKickDelete, sendRequestGet, sendAcceptPatch, sendRejectPatch} from "../../admin/adminRequests";
+import {
+  sendMemberPatch,
+  sendAdminPatch,
+  sendKickDelete,
+  sendRequestGet,
+  sendAcceptPatch,
+  sendRejectPatch,
+  sendEventTicketTypeGet
+} from "../../admin/adminRequests";
 import { sendFilterPost } from "../Filter/sendFilter";
 
 
@@ -142,6 +150,20 @@ export function* sendRejectRequest ({payload}) {
   }
 }
 
+export function* sendEventTicketTypeRequest ({payload}) {
+  try {
+    yield put ({
+      type: ActionTypes.GET_EVENT_TICKET_TYPE_SUCCESS,
+      payload: yield sendEventTicketTypeGet(payload)
+    })
+  }
+  catch (err) {
+    yield put ({
+      type: ActionTypes.GET_EVENT_TICKET_TYPE_FAILURE
+    })
+  }
+}
+
 export default function* root() {
   yield all([
     takeLatest(ActionTypes.GET_EVENT_REQUEST, getEventRequest),
@@ -153,7 +175,7 @@ export default function* root() {
     takeLatest(ActionTypes.SET_REQUEST_REQUEST, sendRequestRequest),
     takeLatest(ActionTypes.ACCEPT_JOIN_REQUEST, sendAcceptRequest),
     takeLatest(ActionTypes.REJECT_JOIN_REQUEST, sendRejectRequest),
-
+    takeLatest(ActionTypes.GET_EVENT_TICKET_TYPE_REQUEST, sendEventTicketTypeRequest),
 
   ]);
 }

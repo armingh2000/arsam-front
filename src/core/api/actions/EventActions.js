@@ -63,3 +63,10 @@ export const rejectJoin = ({payload}) =>
     payload
   }
 }
+
+export const getEventTicketType = ({payload}) => {
+  return {
+    type: ActionTypes.GET_EVENT_TICKET_TYPE_REQUEST,
+    payload
+  }
+}
