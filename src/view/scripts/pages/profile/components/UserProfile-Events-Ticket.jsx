@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import UserEventsForm from "./ShowUserEventsTicket/UserEventsForm";
+import UserTicketsForm from "./ShowUserEventsTicket/UserTicketsForm"
 import { Tabs, Button } from 'antd';
 import { connect } from 'react-redux';
 import {useHistory} from 'react-router-dom';
@@ -83,7 +84,9 @@ const UserEventsTickets=({user,status})=>{
           </div>
         }
         key="3">
-          nothing to show
+          <UserTicketsForm
+            tickets={user.tickets}
+          />
         </TabPane>
 
 

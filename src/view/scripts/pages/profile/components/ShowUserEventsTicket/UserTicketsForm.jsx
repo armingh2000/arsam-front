@@ -22,7 +22,7 @@ import {
 import moment from 'moment';
 import { UploadOutlined, InboxOutlined, FrownOutlined, FrownTwoTone, FilterTwoTone, RobotOutlined } from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
-import EventDetails from "./EventDetails";
+import TicketDetails from "./TicketDetails";
 import { withRouter } from "react-router";
 import Icon from '@ant-design/icons';
 import { connect } from "react-redux";
@@ -39,38 +39,39 @@ const UserTicketsForm = (props) =>{
 
 
   function handelClick(item){
-    redirectUser(item.id);
+    // redirectUser(item.id);
   }
 
   function redirectUser(eventId){
-    if(props.isAdmin){
-      history.replace(`/event/${eventId}/admin`);
-    }
-    else {
-      history.replace(`/event/${eventId}`);
-    }
+    // if(props.isAdmin){
+    //   history.replace(`/event/${eventId}/admin`);
+    // }
+    // else {
+    //   history.replace(`/event/${eventId}`);
+    // }
   }
 
 
-  if((props.events.length>0)){
+  if((props.tickets.length>0)){
     return (
+    <div id="user-tickets-form-components">
+
       <div className="main-div">
 
         <Row gutter={[20,10]}>
 
           {
-              props.events.map((item)=>{
+              props.tickets.map((item)=>{
               return(
                 <Col span={6}>
                   <Card className="card" onClick={()=>handelClick(item)}>
 
 
-                    <EventDetails
-                          name={item.name}
-                          startDate={item.startDate}
-                          endDate={item.endDate}
-                          creator={item.creator}
-                          categories={item.categories}/>
+                    <TicketDetails
+                        eventName={item.eventName}
+                        price={item.price}
+                        ticketTypeName={item.ticketTypeName}
+                    />
                     <br />
 
                   </Card>
@@ -82,9 +83,10 @@ const UserTicketsForm = (props) =>{
         </Row>
 
       </div>
+    </div>
     );
   }
-  else if(props.events.length===0 && props.status==='Success'){
+  else if(props.tickets.length===0 && props.status==='Success'){
     return (
       <div className="not-found">
         <FrownTwoTone className="icon"/>

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {sendSignupPost} from "../../../../../core/login-signup/signupRequest";
-import {Form, Input, Button, Typography} from 'antd';
+import {Form, Input, Button, Typography, Row, Col} from 'antd';
 import {Link, useHistory} from 'react-router-dom';
 import openNotificationWithIcon from "../../../../../core/login-signup/openNotificationWithIcon";
 
@@ -45,7 +45,7 @@ const RegistrationForm = () => {
 
       <Form className="center-form"
       labelCol={{ span: 5 }}
-      wrapperCol={{ span: 16 }}
+      wrapperCol={{ span: 15 }}
       form={form} name="register"
       onFinish={onFinish}
       scrollToFirstError="scrollToFirstError">
@@ -56,14 +56,21 @@ const RegistrationForm = () => {
         <Text type="danger">{failureMessage}</Text>
       </Form.Item>
 
-      <Form.Item name="firstName" label="FirstName">
-        <Input className="get-border-radius"/>
-      </Form.Item>
+      <Row className="row-from-left">
 
-      <Form.Item name="lastName" label="LastName" >
-        <Input className="get-border-radius"/>
-      </Form.Item>
+        <Col span={9}>
+          <Form.Item labelCol={4} wrapperCol={4} name="firstName" label="FirstName" className="f-l">
+            <Input className="get-border-radius"/>
+          </Form.Item>
+        </Col>
 
+        <Col span={10}>
+          <Form.Item  labelCol={4} wrapperCol={4} name="lastName" label="LastName" className="from-left" >
+            <Input className="get-border-radius"/>
+          </Form.Item>
+        </Col>
+
+      </Row>
 
       <Form.Item name="email" label="E-mail" rules={[
           {
