@@ -31,7 +31,6 @@ const initialState = {
   ticketTypeStatus: 'idle',
   status: 'idle',
   requestStatus: 'idle',
-  joinStatus: 'idle',
   adminContent: "event",
   membersStatus: 'success',
   //filters applied
@@ -351,14 +350,12 @@ const event = ( state = initialState, {type, payload }) => {
       payload.olm();
       return {
         ...state,
-        joinStatus: "loading"
       }
 
     case ActionTypes.REJECT_JOIN_SUCCESS:
       payload.osm();
       return {
         ...state,
-        joinStatus: "success",
         event: {
           ...state.event,
           requests: state.event.requests.filter((req) => {return req.user.email !== payload.email})
@@ -369,7 +366,6 @@ const event = ( state = initialState, {type, payload }) => {
       payload.oem();
       return {
         ...state,
-        joinStatus: "error"
       }
 
     case ActionTypes.GET_EVENT_TICKET_TYPE_REQUEST:
@@ -389,6 +385,26 @@ const event = ( state = initialState, {type, payload }) => {
       return {
         ...state,
         ticketTypeStatus: "error"
+      }
+
+    case ActionTypes.UPDATE_TICKET_TYPE_REQUEST:
+      return {
+        ...state,
+      }
+
+    case ActionTypes.UPDATE_TICKET_TYPE_SUCCESS:
+    console.log(state.ticketTypes);
+      return {
+        ...state,
+        ticketTypes: state.ticketTypes.map((ticket) => {
+            // console.log(ticket, payload.data);
+            return ticket.id === payload.data.id ? payload.data : ticket
+        })
+      }
+
+    case ActionTypes.UPDATE_TICKET_TYPE_FAILURE:
+      return {
+        ...state,
       }
 
     default:

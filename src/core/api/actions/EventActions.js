@@ -70,3 +70,10 @@ export const getEventTicketType = ({payload}) => {
     payload
   }
 }
+
+export const updateTicketType = ({payload}) => {
+  return {
+    type: ActionTypes.UPDATE_TICKET_TYPE_REQUEST,
+    payload
+  }
+}

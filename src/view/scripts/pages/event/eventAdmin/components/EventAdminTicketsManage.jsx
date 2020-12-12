@@ -30,7 +30,7 @@ const EventAdminTicketsManage = ({ticketTypes, dispatch, eventId, ticketTypeStat
       );
     case 'success':
 
-      return  <EventAdminTicketTypeList ticketTypes={ticketTypes}/>
+      return  <EventAdminTicketTypeList dispatch={dispatch} ticketTypes={ticketTypes}/>
 
     case 'error':
       return (

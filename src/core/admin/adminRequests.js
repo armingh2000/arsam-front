@@ -1,4 +1,4 @@
-import {sendPatchRequest, sendDeleteRequest, sendGetRequest} from '../api/api';
+import {sendPatchRequest, sendDeleteRequest, sendGetRequest, sendPutRequest} from '../api/api';
 
 export const sendMemberPatch = ({email, eventId}) => {
   return sendPatchRequest({
@@ -57,6 +57,22 @@ export const sendRejectPatch = ({email, eventId}) => {
 export const sendEventTicketTypeGet = ({eventId}) => {
   return sendGetRequest({
     url: `https://localhost:44373/api/ticket/GetEventTicketTypes?id=${eventId}`,
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem("userToken")}`
+    }
+  })
+}
+
+export const sendEditTicketPut = ({ticket}) => {
+  return sendPutRequest({
+    url: `https://localhost:44373/api/ticket/UpdateType`,
+    data: {
+      Id: ticket.id,
+      Name: ticket.name,
+      Description: ticket.description,
+      Price: ticket.price,
+      Capacity: ticket.capacity
+    },
     headers: {
       'Authorization': `Bearer ${localStorage.getItem("userToken")}`
     }

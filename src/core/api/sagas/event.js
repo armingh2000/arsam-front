@@ -8,7 +8,8 @@ import {
   sendRequestGet,
   sendAcceptPatch,
   sendRejectPatch,
-  sendEventTicketTypeGet
+  sendEventTicketTypeGet,
+  sendEditTicketPut
 } from "../../admin/adminRequests";
 import { sendFilterPost } from "../Filter/sendFilter";
 
@@ -128,7 +129,7 @@ export function* sendAcceptRequest({payload}) {
   catch (err) {
     yield put ({
       type: ActionTypes.ACCEPT_JOIN_FAILURE,
-      payload: err
+      payload
     })
   }
 }
@@ -145,7 +146,7 @@ export function* sendRejectRequest ({payload}) {
   catch (err) {
     yield put ({
       type: ActionTypes.REJECT_JOIN_FAILURE,
-      payload: err
+      payload
     })
   }
 }
@@ -164,6 +165,21 @@ export function* sendEventTicketTypeRequest ({payload}) {
   }
 }
 
+export function* sendUpdateTicketTypeRequest ({payload}) {
+  try {
+    yield put ({
+      type: ActionTypes.UPDATE_TICKET_TYPE_SUCCESS,
+      payload: yield sendEditTicketPut(payload)
+    })
+  }
+  catch (err) {
+    yield put ({
+      type: ActionTypes.UPDATE_TICKET_TYPE_FAILURE,
+      payload: err
+    })
+  }
+}
+
 export default function* root() {
   yield all([
     takeLatest(ActionTypes.GET_EVENT_REQUEST, getEventRequest),
@@ -176,6 +192,7 @@ export default function* root() {
     takeLatest(ActionTypes.ACCEPT_JOIN_REQUEST, sendAcceptRequest),
     takeLatest(ActionTypes.REJECT_JOIN_REQUEST, sendRejectRequest),
     takeLatest(ActionTypes.GET_EVENT_TICKET_TYPE_REQUEST, sendEventTicketTypeRequest),
+    takeLatest(ActionTypes.UPDATE_TICKET_TYPE_REQUEST, sendUpdateTicketTypeRequest),
 
   ]);
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form, Input, Radio } from 'antd';
 import moment from "moment";
+import { updateTicketType } from "../../../../../../core/api/actions/EventActions";
 
 const CollectionCreateForm = ({ visible, onCreate, onCancel, ticket }) => {
   const [form] = Form.useForm();
@@ -87,11 +88,11 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel, ticket }) => {
   );
 };
 
-const TicketEditModal = ({ticket}) => {
+const TicketEditModal = ({ticket, dispatch}) => {
   const [visible, setVisible] = useState(false);
 
   const onCreate = (values) => {
-    console.log('Received values of form: ', values);
+    dispatch(updateTicketType({payload: {ticket: values}}));
     setVisible(false);
   };
 
