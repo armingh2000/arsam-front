@@ -29,7 +29,7 @@ import { connect } from "react-redux";
 import EventMembersList from "./EventMembersList";
 
 
-const UserEventsForm = (props) =>{
+const UserTicketsForm = (props) =>{
   const [form] = Form.useForm();
 
   const history = useHistory();
@@ -74,9 +74,6 @@ const UserEventsForm = (props) =>{
                           categories={item.categories}/>
                     <br />
 
-                    <EventMembersList
-                          members={item.eventMembers}/>
-
                   </Card>
                 </Col>
               );
@@ -95,7 +92,7 @@ const UserEventsForm = (props) =>{
         <br />
         <br />
 
-        <h2>Oops!!! we didn't find such event</h2>
+        <h2>Oops!!! we didn't find such ticket</h2>
 
       </div>
     );
@@ -120,4 +117,4 @@ const UserEventsForm = (props) =>{
   }
 }
 
-export default UserEventsForm;
+export default UserTicketsForm;

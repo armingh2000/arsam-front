@@ -4,8 +4,10 @@ import UserEventsForm from "./ShowUserEventsTicket/UserEventsForm";
 import { Tabs, Button } from 'antd';
 import { connect } from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import { TeamOutlined, ThunderboltOutlined, ShakeOutlined } from '@ant-design/icons';
 
-const UserEventsTickets=({user})=>{
+
+const UserEventsTickets=({user,status})=>{
 
   const history = useHistory();
 
@@ -41,23 +43,51 @@ const UserEventsTickets=({user})=>{
 
   return(
     <div id="user-events-form-components">
-    <Tabs defaultActiveKey="1" centered tabBarExtraContent={operations}>
-      <TabPane tab="Events" key="1">
-        <UserEventsForm
-        events={user.createdEvents}
-        isAdmin={true}
-        />
-      </TabPane>
-      <TabPane tab="Participations" key="2">
-        <UserEventsForm
-        events={user.inEvents}
-        isAdmin={false}
-        />
-      </TabPane>
-      <TabPane tab="Tickets" key="3">
-        nothing to show
-      </TabPane>
-    </Tabs>
+      <Tabs defaultActiveKey="1" centered tabBarExtraContent={operations}>
+
+        <TabPane
+        tab={
+          <div>
+            <ThunderboltOutlined />
+            Events
+          </div>
+        }
+        key="1">
+          <UserEventsForm
+          events={user.createdEvents}
+          isAdmin={true}
+          status={status}
+          />
+        </TabPane>
+
+        <TabPane
+        tab={
+          <div>
+            <TeamOutlined />
+            Participations
+          </div>
+        }
+        key="2">
+          <UserEventsForm
+          events={user.inEvents}
+          isAdmin={false}
+          status={status}
+          />
+        </TabPane>
+
+        <TabPane
+        tab={
+          <div>
+            <ShakeOutlined />
+            Tickets
+          </div>
+        }
+        key="3">
+          nothing to show
+        </TabPane>
+
+
+      </Tabs>
     </div>
   );
 }
@@ -67,7 +97,7 @@ const UserEventsTickets=({user})=>{
 const mapStateToProps = (state) => {
     return{
         user: state.profile.user,
-        status: state.status
+        status: state.profile.status
     }
   }
 
