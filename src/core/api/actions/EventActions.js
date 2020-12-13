@@ -77,3 +77,10 @@ export const updateTicketType = ({payload}) => {
     payload
   }
 }
+
+export const addTicketType = ({payload}) => {
+  return {
+    type: ActionTypes.ADD_TICKET_TYPE_REQUEST,
+    payload
+  }
+}

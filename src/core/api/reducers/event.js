@@ -393,7 +393,6 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.UPDATE_TICKET_TYPE_SUCCESS:
-    console.log(state.ticketTypes);
       return {
         ...state,
         ticketTypes: state.ticketTypes.map((ticket) => {
@@ -405,6 +404,22 @@ const event = ( state = initialState, {type, payload }) => {
     case ActionTypes.UPDATE_TICKET_TYPE_FAILURE:
       return {
         ...state,
+      }
+
+    case ActionTypes.ADD_TICKET_TYPE_REQUEST:
+      return {
+        ...state
+      }
+
+    case ActionTypes.ADD_TICKET_TYPE_SUCCESS:
+      return {
+        ...state,
+        ticketTypes: state.ticketTypes.concat(payload.data)
+      }
+
+    case ActionTypes.ADD_TICKET_TYPE_FAILURE:
+      return {
+        ...state
       }
 
     default:

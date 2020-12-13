@@ -1,4 +1,4 @@
-import {sendPatchRequest, sendDeleteRequest, sendGetRequest, sendPutRequest} from '../api/api';
+import {sendPatchRequest, sendDeleteRequest, sendGetRequest, sendPutRequest, sendPostRequest} from '../api/api';
 
 export const sendMemberPatch = ({email, eventId}) => {
   return sendPatchRequest({
@@ -72,6 +72,23 @@ export const sendEditTicketPut = ({ticket}) => {
       Description: ticket.description,
       Price: ticket.price,
       Capacity: ticket.capacity
+    },
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem("userToken")}`
+    }
+  })
+}
+
+export const sendAddTypePost = ({ticket, eventId}) => {
+  console.log("req", ticket);
+  return sendPostRequest({
+    url: `https://localhost:44373/api/ticket/createtype`,
+    data: {
+      Name: ticket.name,
+      Description: ticket.description,
+      Price: ticket.price,
+      Capacity: ticket.capacity,
+      EventId: eventId
     },
     headers: {
       'Authorization': `Bearer ${localStorage.getItem("userToken")}`
