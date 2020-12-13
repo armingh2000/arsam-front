@@ -68,9 +68,10 @@ const UserTicketsForm = (props) =>{
 
 
                     <TicketDetails
-                        eventName={item.eventName}
+                        title={item.eventName}
                         price={item.price}
                         ticketTypeName={item.ticketTypeName}
+                        isEvent={true}
                     />
                     <br />
 

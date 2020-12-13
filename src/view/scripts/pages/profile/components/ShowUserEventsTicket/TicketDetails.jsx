@@ -17,7 +17,7 @@ import {
 } from '@ant-design/icons';
 
 
-const TicketDetails = ({eventName, price, ticketTypeName}) =>
+const TicketDetails = ({title, price, ticketTypeName, isEvent}) =>
 {
   const { Text, Title } = Typography;
 
@@ -27,9 +27,10 @@ const TicketDetails = ({eventName, price, ticketTypeName}) =>
     <div className="details-header">
 
       <Title level={2}>
-      <ThunderboltTwoTone className="icon-place" twoToneColor="#fcb103"/>
 
-      {eventName}
+      {isEvent?<ThunderboltTwoTone className="icon-place" twoToneColor="#fcb103"/>:<UserOutlined className="icon-place"/>}
+
+      {title}
       </Title>
     </div>
 
@@ -45,7 +46,7 @@ const TicketDetails = ({eventName, price, ticketTypeName}) =>
 
     <div>
       <DollarCircleTwoTone className="icon icon-place" twoToneColor="#52c41a"/>
-      <Text className="icon">{price}</Text>
+      <Text className="icon">{price}$</Text>
     </div>
 
     <br/>
