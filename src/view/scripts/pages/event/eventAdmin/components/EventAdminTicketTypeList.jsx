@@ -5,18 +5,25 @@ import {
 } from '@ant-design/icons';
 import TicketEditModal from "./TicketEditModal";
 import TicketAddModal from "./TicketAddModal";
+import { deleteTicketType } from "../../../../../../core/api/actions/EventActions";
+
 
 
 const EventAdminTicketTypeList = ({ticketTypes, dispatch, eventId}) =>
 {
   const { Text } = Typography;
 
+  function deleteType (ticket) {
+    console.log(ticket);
+    dispatch(deleteTicketType({payload: {id: ticket.id}}));
+  }
+
   return ( <div>
             <List
             itemLayout="horizontal"
             dataSource={ticketTypes}
             renderItem={item => (
-              <List.Item actions={[<TicketEditModal dispatch={dispatch} ticket={item}/>, <Button type="primary">delete</Button>]}>
+              <List.Item actions={[<TicketEditModal dispatch={dispatch} ticket={item}/>, <Button type="primary" onClick={() => deleteType(item)}>delete</Button>]}>
                   <List.Item.Meta
                     avatar={<ContainerTwoTone />}
                     title={item.name}

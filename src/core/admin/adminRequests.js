@@ -80,7 +80,6 @@ export const sendEditTicketPut = ({ticket}) => {
 }
 
 export const sendAddTypePost = ({ticket, eventId}) => {
-  console.log("req", ticket);
   return sendPostRequest({
     url: `https://localhost:44373/api/ticket/createtype`,
     data: {
@@ -92,6 +91,17 @@ export const sendAddTypePost = ({ticket, eventId}) => {
     },
     headers: {
       'Authorization': `Bearer ${localStorage.getItem("userToken")}`
+    }
+  })
+}
+
+export const sendTypeDelete = (id) => {
+  return sendDeleteRequest({
+    url: "https://localhost:44373/api/ticket/deleteType",
+    data: id,
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem("userToken")}`,
+      'Content-Type': 'application/json'
     }
   })
 }

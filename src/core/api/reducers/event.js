@@ -422,6 +422,22 @@ const event = ( state = initialState, {type, payload }) => {
         ...state
       }
 
+    case ActionTypes.DELETE_TICKET_TYPE_REQUEST:
+      return {
+        ...state
+      }
+
+    case ActionTypes.DELETE_TICKET_TYPE_SUCCESS:
+      return {
+        ...state,
+        ticketTypes: state.ticketTypes.filter((ticket) => {return ticket.id !== payload.id})
+      }
+
+    case ActionTypes.DELETE_TICKET_TYPE_FAILURE:
+      return {
+        ...state
+      }
+
     default:
       return state;
     };

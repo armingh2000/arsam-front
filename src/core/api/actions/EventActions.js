@@ -84,3 +84,10 @@ export const addTicketType = ({payload}) => {
     payload
   }
 }
+
+export const deleteTicketType = ({payload}) => {
+  return {
+    type: ActionTypes.DELETE_TICKET_TYPE_REQUEST,
+    payload
+  }
+}

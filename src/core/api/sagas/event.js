@@ -10,7 +10,8 @@ import {
   sendRejectPatch,
   sendEventTicketTypeGet,
   sendEditTicketPut,
-  sendAddTypePost
+  sendAddTypePost,
+  sendTypeDelete
 } from "../../admin/adminRequests";
 import { sendFilterPost } from "../Filter/sendFilter";
 
@@ -196,6 +197,22 @@ export function* sendAddTicketTypeRequest ({payload}) {
   }
 }
 
+export function* sendDeleteTicketTypeRequest ({payload}) {
+  try {
+    yield put ({
+      type: ActionTypes.DELETE_TICKET_TYPE_SUCCESS,
+      payload,
+      result: yield sendTypeDelete(payload.id)
+    })
+  }
+  catch (err) {
+    yield put ({
+      type: ActionTypes.DELETE_TICKET_TYPE_FAILURE,
+      payload: err
+    })
+  }
+}
+
 export default function* root() {
   yield all([
     takeLatest(ActionTypes.GET_EVENT_REQUEST, getEventRequest),
@@ -210,6 +227,7 @@ export default function* root() {
     takeLatest(ActionTypes.GET_EVENT_TICKET_TYPE_REQUEST, sendEventTicketTypeRequest),
     takeLatest(ActionTypes.UPDATE_TICKET_TYPE_REQUEST, sendUpdateTicketTypeRequest),
     takeLatest(ActionTypes.ADD_TICKET_TYPE_REQUEST, sendAddTicketTypeRequest),
+    takeLatest(ActionTypes.DELETE_TICKET_TYPE_REQUEST, sendDeleteTicketTypeRequest),
 
   ]);
 }
