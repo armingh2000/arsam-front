@@ -35,7 +35,7 @@ const EventAdminGrid = ({eventId, event, dispatch}) =>
 
       case "eventTicketsManage":
         return (<div id="admin-tickets-manage">
-          <EventAdminTicketsManage ticketTypeStatus={event.ticketTypeStatus} dispatch={dispatch} eventId={eventId} ticketTypes={event.ticketTypes}/>
+          <EventAdminTicketsManage event={event.event} ticketTypeStatus={event.ticketTypeStatus} dispatch={dispatch} eventId={eventId} ticketTypes={event.ticketTypes}/>
         </div>)
 
       default:

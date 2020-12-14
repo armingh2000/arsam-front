@@ -438,6 +438,25 @@ const event = ( state = initialState, {type, payload }) => {
         ...state
       }
 
+    case ActionTypes.TOGGLE_TICKET_REQUEST:
+      return {
+        ...state
+      }
+
+    case ActionTypes.TOGGLE_TICKET_SUCCESS:
+      return {
+        ...state,
+        event: {
+          ...state.event,
+          buyingTicketEnabled: ! state.event.buyingTicketEnabled
+        }
+      }
+
+    case ActionTypes.TOGGLE_TICKET_FAILURE:
+      return {
+        ...state
+      }
+
     default:
       return state;
     };

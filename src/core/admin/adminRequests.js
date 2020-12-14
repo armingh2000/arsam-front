@@ -105,3 +105,25 @@ export const sendTypeDelete = (id) => {
     }
   })
 }
+
+export const sendTogglePut = ({event, eventId}) => {
+  return sendPutRequest({
+    url: `https://localhost:44373/api/event/update?id=${eventId}`,
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem("userToken")}`,
+      'Content-Type': 'application/json'
+    },
+    data: {
+      "Name": event.name,
+      "IsProject": event.isProject,
+      "Description": event.description,
+      "StartDate": event.startDate,
+      "EndDate": event.endDate,
+      "IsPrivate": event.isPrivate,
+      "IsLimitedMember": event.isLimitedMember,
+      "MaximumNumberOfMembers": event.maximumNumberOfMembers,
+      "Categories": event.categories,
+      "BuyingTicketEnabled" : !event.buyingTicketEnabled
+    }
+  })
+}

@@ -91,3 +91,10 @@ export const deleteTicketType = ({payload}) => {
     payload
   }
 }
+
+export const toggleTicket = ({payload}) => {
+  return {
+    type: ActionTypes.TOGGLE_TICKET_REQUEST,
+    payload
+  }
+}
