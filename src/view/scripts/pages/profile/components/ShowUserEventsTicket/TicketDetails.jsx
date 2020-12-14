@@ -17,7 +17,7 @@ import {
 } from '@ant-design/icons';
 
 
-const TicketDetails = ({title, price, ticketTypeName, isEvent}) =>
+const TicketDetails = ({title, price, ticketTypeName}) =>
 {
   const { Text, Title } = Typography;
 
@@ -28,7 +28,7 @@ const TicketDetails = ({title, price, ticketTypeName, isEvent}) =>
 
       <Title level={2}>
 
-      {isEvent?<ThunderboltTwoTone className="icon-place" twoToneColor="#fcb103"/>:<UserOutlined className="icon-place"/>}
+      <ThunderboltTwoTone className="icon-place" twoToneColor="#fcb103"/>
 
       {title}
       </Title>

@@ -34,11 +34,6 @@ const UserEventsForm = (props) =>{
 
   const history = useHistory();
 
-
-  useEffect(() => {
-  }, []);
-
-
   function handelClick(item){
     redirectUser(item.id);
   }

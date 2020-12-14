@@ -20,7 +20,6 @@ import {
   Spin
 } from 'antd';
 import moment from 'moment';
-import EventGrid from "./EventGrid";
 import { UploadOutlined, InboxOutlined, FrownOutlined, FrownTwoTone, FilterTwoTone, RobotOutlined } from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
 import EventImages from "./EventImages";

@@ -34,7 +34,6 @@ const UserEventsTickets=({user,status})=>{
     <span className="center-span">Create Event</span>
 
   </Button>
-// <Button>asadfasdfasdfasdf</Button>
 );
 
   // function callback(key) {
