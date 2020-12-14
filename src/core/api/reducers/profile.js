@@ -40,10 +40,7 @@ const profile = (state = initialState, {type, payload}) => {
             };
         case ActionTypes.UPDATE_PROFILE_SUCCESS:
             return{
-                user: {
-                    ...state.user,
-                    payload
-                },
+                user: payload,
                 status: 'Success'
             }
         case ActionTypes.UPDATE_PROFILE_FAILURE:
@@ -58,13 +55,25 @@ const profile = (state = initialState, {type, payload}) => {
             };
         case ActionTypes.UPDATE_IMAGE_SUCCESS:
             return{
-                user: {
-                    ...state.user,
-                    payload
-                },
+                user: payload,
                 status: 'Success'
             }
         case ActionTypes.UPDATE_IMAGE_FAILURE:
+            return{
+                ...state,
+                status: 'Error'
+            };    
+        case ActionTypes.UPDATE_PASSWORD:
+            return{
+                ...state,
+                status: 'Loading'
+            };
+        case ActionTypes.UPDATE_PASSWORD_SUCCESS:
+            return{
+                ...state,
+                status: 'Success'
+            }
+        case ActionTypes.UPDATE_PASSWORD_FAILURE:
             return{
                 ...state,
                 status: 'Error'

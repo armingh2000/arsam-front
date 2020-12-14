@@ -5,16 +5,16 @@ const sendProfileUpdate = (data) => {
         url: `https://localhost:44373/api/account/updateprofile`,
         data,
         headers: {
-          'Authorization': `Bearer ${data.tokenId}`
+          'Authorization': `Bearer ${localStorage.getItem('userToken')}`
       }})
   }
 
 const sendImageUpdate = (data) => {
     return sendPostRequest({
         url: `https://localhost:44373/api/account/updateimage`,
-        data,
+        data: data,
         headers: {
-            'Authorization': `Bearer ${data.tokenId}`
+            'Authorization': `Bearer ${localStorage.getItem('userToken')}`
         }
     })
 }
@@ -24,7 +24,7 @@ const sendChangePassword = (data) => {
         url: `https://localhost:44373/api/account/ChangePassword`,
         data,
         headers:{
-            'Authorization': `Bearer ${data.tokenId}`
+            'Authorization': `Bearer ${localStorage.getItem('userToken')}`
         }
     })
 }

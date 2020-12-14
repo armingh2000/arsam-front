@@ -12,6 +12,7 @@ import { UserOutlined, MailOutlined, EditOutlined,
     KeyOutlined } from '@ant-design/icons';
 import EditProfile from './EditUserProfile';
 import { updateProfile } from '../../../../../core/api/actions/UserProfileActions';
+import ChangePasswrod from './ChangePasswrod';
 
 const { Title } = Typography;
 const UserInfo = ({user, status, dispatch}) => {
@@ -26,6 +27,14 @@ const UserInfo = ({user, status, dispatch}) => {
       const handleCancel = () => {
         setEditProfile(false);
       };
+
+    const handleOkPass = () => {
+        setChangePassword(false);
+    };
+
+    const handleCancelPass = () => {
+        setChangePassword(false);
+    };
 
     const changeFields = (fields) => {
         switch(fields){
@@ -49,13 +58,12 @@ const UserInfo = ({user, status, dispatch}) => {
     return(
         <div id="components-profile-User-Info">
             <Card>
-                <Modal 
-                title="Edit profile"
-                visible={editProfile}
-                onOk={handleOk}
-                onCancel={handleCancel}>
-                <EditProfile/>
-                </Modal>
+                <EditProfile visible={editProfile} 
+                handleCancel={handleCancel} 
+                handleOk={handleOk}></EditProfile>
+                <ChangePasswrod visible={changePassword}
+                handleCancel={handleCancelPass}
+                handleOk={handleOkPass}></ChangePasswrod>
                 <Row span={24}>
                     <Col className="image">
                         {user.image ? 
@@ -75,9 +83,10 @@ const UserInfo = ({user, status, dispatch}) => {
                             <Title level={4}>{user.firstName} {user.lastName}</Title>
                         </Col>
                         <Button className="editButton" size='small' style={{fontSize:'16px'}}
-                        onClick={() => {setEditProfile(true)}}><EditOutlined /></Button>
+                        onClick={() => {setEditProfile(true) }}><EditOutlined /></Button>
                         
-                        <Button className="editButton" size='small' style={{fontSize:'16px'}}><KeyOutlined /></Button>
+                        <Button className="editButton" size='small' style={{fontSize:'16px'}}
+                        onClick={() => {setChangePassword(true) }}><KeyOutlined /></Button>
                     </Row>
 
                     <Row>

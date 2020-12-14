@@ -2,6 +2,7 @@ import { all, put, takeLatest } from "redux-saga/effects";
 import { updateProfile } from "../actions/UserProfileActions";
 import { ActionTypes } from "../constants/ActionTypes";
 import sendProfileGet from "../Profile/sendProfileGet";
+import {message} from 'antd';
 import {sendProfileUpdate, sendImageUpdate, sendChangePassword} from "../Profile/sendProfileUpdate";
 
 
@@ -59,17 +60,17 @@ export function* updateImageRequest({payload}){
 export function* updatePasswordRequest({payload}){
     try{
         setTimeout(() => {}, 1000);
-        const data = yield sendChangePassword(payload)
-        console.log(data.data)
+        const data = yield sendChangePassword(payload.credentials)
         yield put ({
             type: ActionTypes.UPDATE_PASSWORD_SUCCESS,
-            payload: data.data
         });
+        payload.handleSuccess();
     }
     catch{
         yield put ({
             type: ActionTypes.UPDATE_PASSWORD_FAILURE,
         })
+        payload.handleFail();
     }
 }
 
