@@ -12,7 +12,8 @@ import {
   sendEditTicketPut,
   sendAddTypePost,
   sendTypeDelete,
-  sendTogglePut
+  sendTogglePut,
+  sendTicketsGet
 } from "../../admin/adminRequests";
 import { sendFilterPost } from "../Filter/sendFilter";
 
@@ -229,6 +230,21 @@ export function* sendToggleRequest ({payload}) {
   }
 }
 
+export function* sendGetTicketsRequest ({payload}) {
+  try {
+    yield put ({
+      type: ActionTypes.GET_EVENT_TICKETS_SUCCESS,
+      payload: yield sendTicketsGet(payload)
+    })
+  }
+  catch (err) {
+    yield put ({
+      type: ActionTypes.GET_EVENT_TICKETS_FAILURE,
+      payload: err
+    })
+  }
+}
+
 export default function* root() {
   yield all([
     takeLatest(ActionTypes.GET_EVENT_REQUEST, getEventRequest),
@@ -245,6 +261,7 @@ export default function* root() {
     takeLatest(ActionTypes.ADD_TICKET_TYPE_REQUEST, sendAddTicketTypeRequest),
     takeLatest(ActionTypes.DELETE_TICKET_TYPE_REQUEST, sendDeleteTicketTypeRequest),
     takeLatest(ActionTypes.TOGGLE_TICKET_REQUEST, sendToggleRequest),
+    takeLatest(ActionTypes.GET_EVENT_TICKETS_REQUEST, sendGetTicketsRequest),
 
   ]);
 }

@@ -127,3 +127,13 @@ export const sendTogglePut = ({event, eventId}) => {
     }
   })
 }
+
+export const sendTicketsGet = ({eventId}) => {
+  return sendGetRequest({
+    url: `https://localhost:44373/api/ticket/GetEventTickets?id=${eventId}`,
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem("userToken")}`,
+      'Content-Type': 'application/json'
+    }
+  })
+}

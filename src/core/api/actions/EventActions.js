@@ -98,3 +98,10 @@ export const toggleTicket = ({payload}) => {
     payload
   }
 }
+
+export const getTickets = ({payload}) => {
+  return {
+    type: ActionTypes.GET_EVENT_TICKETS_REQUEST,
+    payload
+  }
+}

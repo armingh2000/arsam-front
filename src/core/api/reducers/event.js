@@ -28,6 +28,8 @@ const initialState = {
      buyingTicketEnabled: null
   },
   ticketTypes: [],
+  tickets: [],
+  ticketStatus: 'idle',
   ticketTypeStatus: 'idle',
   status: 'idle',
   requestStatus: 'idle',
@@ -455,6 +457,23 @@ const event = ( state = initialState, {type, payload }) => {
     case ActionTypes.TOGGLE_TICKET_FAILURE:
       return {
         ...state
+      }
+
+    case ActionTypes.GET_EVENT_TICKETS_REQUEST:
+      return {
+        ...state,
+        ticketStatus: 'loading'
+      }
+    case ActionTypes.GET_EVENT_TICKETS_SUCCESS:
+      return {
+        ...state,
+        ticketStatus: 'success',
+        tickets: payload.data
+      }
+    case ActionTypes.GET_EVENT_TICKETS_FAILURE:
+      return {
+        ...state,
+        ticketStatus: 'error'
       }
 
     default:
