@@ -85,7 +85,6 @@ const UserEventsTickets=({user,status})=>{
         key="3">
           <UserTicketsForm
             tickets={user.tickets}
-            isEvent={true}
           />
         </TabPane>
 

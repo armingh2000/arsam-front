@@ -49,7 +49,6 @@ const UserTicketsForm = (props) =>{
 
 
   if((props.tickets.length>0)){
-    if(props.isEvent){
       return (
       <div id="user-tickets-form-components">
 
@@ -68,7 +67,6 @@ const UserTicketsForm = (props) =>{
                           title={item.eventName}
                           price={item.price}
                           ticketTypeName={item.ticketTypeName}
-                          isEvent={props.isEvent}
                       />
                       <br />
 
@@ -83,42 +81,6 @@ const UserTicketsForm = (props) =>{
         </div>
       </div>
       );
-    }
-    else {
-      return (
-      <div id="user-tickets-form-components">
-
-        <div className="main-div">
-
-          <Row gutter={[20,10]}>
-
-            {
-                props.tickets.map((item)=>{
-                return(
-                  <Col span={6}>
-                    <Card className="card" onClick={()=>handelClick(item)}>
-
-
-                      <TicketDetails
-                          title={item.eventName}
-                          price={item.price}
-                          ticketTypeName={item.ticketTypeName}
-                          isEvent={props.isEvent}
-                      />
-                      <br />
-
-                    </Card>
-                  </Col>
-                );
-              })
-            }
-
-          </Row>
-
-        </div>
-      </div>
-      );
-    }
   }
   else if(props.tickets.length===0 && props.status==='Success'){
     return (
