@@ -34,7 +34,6 @@ const UserEventsTickets=({user,status})=>{
     <span className="center-span">Create Event</span>
 
   </Button>
-// <Button>asadfasdfasdfasdf</Button>
 );
 
   // function callback(key) {
@@ -86,6 +85,7 @@ const UserEventsTickets=({user,status})=>{
         key="3">
           <UserTicketsForm
             tickets={user.tickets}
+            isEvent={true}
           />
         </TabPane>
 

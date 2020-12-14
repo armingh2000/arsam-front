@@ -34,10 +34,6 @@ const UserTicketsForm = (props) =>{
   const history = useHistory();
 
 
-  useEffect(() => {
-  }, []);
-
-
   function handelClick(item){
     // redirectUser(item.id);
   }
@@ -53,39 +49,76 @@ const UserTicketsForm = (props) =>{
 
 
   if((props.tickets.length>0)){
-    return (
-    <div id="user-tickets-form-components">
+    if(props.isEvent){
+      return (
+      <div id="user-tickets-form-components">
 
-      <div className="main-div">
+        <div className="main-div">
 
-        <Row gutter={[20,10]}>
+          <Row gutter={[20,10]}>
 
-          {
-              props.tickets.map((item)=>{
-              return(
-                <Col span={6}>
-                  <Card className="card" onClick={()=>handelClick(item)}>
+            {
+                props.tickets.map((item)=>{
+                return(
+                  <Col span={6}>
+                    <Card className="card" onClick={()=>handelClick(item)}>
 
 
-                    <TicketDetails
-                        title={item.eventName}
-                        price={item.price}
-                        ticketTypeName={item.ticketTypeName}
-                        isEvent={true}
-                    />
-                    <br />
+                      <TicketDetails
+                          title={item.eventName}
+                          price={item.price}
+                          ticketTypeName={item.ticketTypeName}
+                          isEvent={props.isEvent}
+                      />
+                      <br />
 
-                  </Card>
-                </Col>
-              );
-            })
-          }
+                    </Card>
+                  </Col>
+                );
+              })
+            }
 
-        </Row>
+          </Row>
 
+        </div>
       </div>
-    </div>
-    );
+      );
+    }
+    else {
+      return (
+      <div id="user-tickets-form-components">
+
+        <div className="main-div">
+
+          <Row gutter={[20,10]}>
+
+            {
+                props.tickets.map((item)=>{
+                return(
+                  <Col span={6}>
+                    <Card className="card" onClick={()=>handelClick(item)}>
+
+
+                      <TicketDetails
+                          title={item.eventName}
+                          price={item.price}
+                          ticketTypeName={item.ticketTypeName}
+                          isEvent={props.isEvent}
+                      />
+                      <br />
+
+                    </Card>
+                  </Col>
+                );
+              })
+            }
+
+          </Row>
+
+        </div>
+      </div>
+      );
+    }
   }
   else if(props.tickets.length===0 && props.status==='Success'){
     return (
