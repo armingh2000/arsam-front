@@ -1,0 +1,119 @@
+#user-events-form-components{
+  width: 100%;
+}
+
+#user-events-form-components .card {
+  border: solid 1px #73cac5;
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.89)0%, rgba(247, 252, 252, 0.89)100%);
+  width: 100%;
+  border-radius: 10px;
+  margin: 15px 0;
+  height: 47vh;
+}
+
+#user-events-form-components .card:hover {
+  box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.2);
+  cursor: pointer;
+}
+
+
+
+#filter-component {
+  background-color: #f4f7fc;
+  height: 94vh;
+}
+
+#not-scrollable {
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+#user-events-form-components {
+  background-color: #F4F7FC;
+  padding-top: 20px;
+}
+
+#user-events-form-components {
+  color: #1c4947;
+}
+
+#user-events-form-components h2{
+  color: #026770;
+  margin-bottom: 0;
+}
+
+#user-events-form-components h5{
+  margin-top: 0;
+  font-size: 13px;
+}
+
+#user-events-form-components img {
+  border-radius: 10px;
+  width: 100%;
+  height: 35vh;
+}
+
+#user-events-form-components .image-div {
+  text-align: center;
+}
+
+#user-events-form-components .carousel {
+  height: 35vh;
+  border-radius: 10px;
+}
+
+#user-events-form-components .carousel:hover {
+    box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.2);
+}
+
+#user-events-form-components .event-details {
+  line-height: 1.5;
+  text-align: center;
+}
+
+#user-events-form-components .details-col {
+  text-align: top;
+}
+
+#user-events-form-components .details-header {
+}
+
+#user-events-form-components .text{
+  color: #1c4947;
+}
+
+#user-events-form-components .tags{
+  padding-top: 40px;
+}
+
+#user-events-form-components .carousel button {
+  border-radius: 95%;
+  width: 15px;
+  height: 15px;
+}
+
+#user-events-form-components .scrollable{
+  overflow-y:scroll;
+  overflow-x: hidden;
+  height: 100vh;
+  width: 100%;
+  margin-top: -20px;
+  padding-right: 20px;
+
+}
+
+#user-events-form-components .icon{
+  font-size: 10em;
+}
+
+#user-events-form-components .not-found{
+  text-align: center;
+  align-content: center;
+  margin-top: 20vh;
+  margin-bottom: 20vh;
+
+}
+
+#user-events-form-components .distance-from-top{
+  margin-top: 20vh;
+}
