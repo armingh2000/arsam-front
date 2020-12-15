@@ -15,8 +15,7 @@ import {
 const EventDetails = ({name, startDate, endDate, creator, categories}) =>
 {
   const { Text, Title } = Typography;
-  console.log(name);
-
+  
   return (<div align="top" className="event-details">
     <div className="details-header">
       <Title level={2}>{name}</Title>
@@ -44,7 +43,6 @@ const EventDetails = ({name, startDate, endDate, creator, categories}) =>
 
     <Text className="text tags">Tags:
     {categories.map((tag) => {
-      console.log(tag);
         switch (tag) {
           case 1:
           return <Tag color="magenta"><TrophyOutlined /> Race</Tag>;
