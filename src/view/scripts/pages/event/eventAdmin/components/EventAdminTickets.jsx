@@ -2,9 +2,10 @@ import React, {useEffect} from "react";
 import { getTickets } from "../../../../../../core/api/actions/EventActions";
 import { connect } from "react-redux";
 import { Spin,Typography, Row, Col } from 'antd';
+import EventTicketsForm from "./ShowEventTickets/EventTicketsForm";
 
 
-const EventAdminTickets = ({eventId, dispatch, ticketStatus}) =>
+const EventAdminTickets = ({eventId, dispatch, ticketStatus, tickets}) =>
 {
   useEffect(() => {
     dispatch(getTickets({payload: {eventId}}));
@@ -25,7 +26,7 @@ const EventAdminTickets = ({eventId, dispatch, ticketStatus}) =>
     case 'success':
 
       return  <div>
-                YEY!:D
+                <EventTicketsForm tickets={tickets}/>
               </div>
 
     case 'error':

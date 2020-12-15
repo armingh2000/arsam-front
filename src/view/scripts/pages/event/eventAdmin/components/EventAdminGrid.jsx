@@ -30,7 +30,7 @@ const EventAdminGrid = ({eventId, event, dispatch}) =>
 
       case "eventTickets":
         return (<div id="admin-tickets">
-          <EventAdminTickets ticketStatus={event.ticketStatus} eventId={eventId} dispatch={dispatch}/>
+          <EventAdminTickets tickets={event.tickets} ticketStatus={event.ticketStatus} eventId={eventId} dispatch={dispatch}/>
         </div>)
 
       case "eventTicketsManage":
