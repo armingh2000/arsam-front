@@ -47,7 +47,8 @@ const UserTicketsForm = (props) =>{
     // }
   }
 
-
+console.log("tickets:",props.tickets);
+console.log(props.status);
   if((props.tickets.length>0)){
       return (
       <div id="user-tickets-form-components">
@@ -89,7 +90,7 @@ const UserTicketsForm = (props) =>{
         <br />
         <br />
 
-        <h2>Oops!!! we didn't find such ticket</h2>
+        <h2>Oops!!! you don't have any ticket</h2>
 
       </div>
     );
