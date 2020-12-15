@@ -111,7 +111,7 @@ const SearchEventForm = (props) =>{
           {
               props.events.map((item)=>{
               return(
-                <Col span={8}>
+                <Col xl={{span:8}} lg={{span:8}}  md={{span:12}} sm={{span:12}} xs={{span:24}}>
                   <Card className="card" onClick={()=>handelClick(item)}>
 
                     <EventImages images={item.images}/>
