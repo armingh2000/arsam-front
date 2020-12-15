@@ -117,6 +117,82 @@ stroke-dashoffset: 80%;
 }
 //end of button style--------------------------------------------------------------------------------------------
 
+#components-form-profile .empty-div{
+  width: 100%;
+  height: 45px;
+  user-select: none;
+}
+
+
+
+//button2 style------------------------------------------------------------------------------------------------------
+#components-form-profile .btn2 {
+position: relative;
+display: inline-block;
+width: 100%;
+height: 45px;
+// font-size: 1em;
+font-weight: bold;
+line-height: 53px;
+text-align: center;
+// text-transform: uppercase;
+background-color: transparent;
+cursor: pointer;
+// text-decoration:overline;
+// font-weight: 900;
+// font-size: 17px;
+// letter-spacing: 0.045em;
+border: none;
+}
+
+#components-form-profile .btn2 svg {
+position: absolute;
+top: 0;
+left: 0;
+width:100%;
+height:100%;
+}
+
+#components-form-profile .btn2 svg rect {
+stroke-width: 1%;
+stroke-dasharray: 100%, 0%;
+stroke-dashoffset: 0;
+transition: all 600ms ease;
+width:97%;
+height: 95%;
+x:3;
+y:1;
+rx:25;
+}
+
+#components-form-profile .btn2 span {
+background: rgb(86, 128, 233);
+
+background: linear-gradient(to right, rgba(86, 128, 233, 1) 0%, rgba(116, 221, 252, 1) 100%);
+// -webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+}
+
+#components-form-profile .btn2:hover svg rect {
+stroke-width: 1%;
+stroke-dasharray:70%,180%;
+stroke-dashoffset: 100%;
+}
+
+// #components-form-profile .center-span2{
+//   text-align: center;
+//   padding-left: 0%;
+//   position: relative;
+//   bottom: 9px;
+// }
+
+#components-form-profile .center-button2{
+  // margin-left: 30%;
+}
+
+//end of button2 style--------------------------------------------------------------------------------------------
+
 #components-form-profile .get-border-radius{
   border-radius: 5px;
 }
