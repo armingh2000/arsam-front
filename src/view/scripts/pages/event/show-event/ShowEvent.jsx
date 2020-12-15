@@ -51,6 +51,6 @@ const ShowEvent = ({event, dispatch, match}) =>
 }
 
 
-const mapStateToProps = (state) => ({ event: state.event });
+const mapStateToProps = (state) => ({ event: state.event});
 const ShowTheLocationWithRouter = withRouter(ShowEvent);
 export default connect(mapStateToProps)(ShowTheLocationWithRouter);

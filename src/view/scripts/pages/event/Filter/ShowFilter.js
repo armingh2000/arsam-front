@@ -7,22 +7,39 @@ import { getEventsList, setFiltering } from '../../../../../core/api/actions/Fil
 import { connect } from "react-redux";
 
 
-const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest}) =>{
+const ShowFilter = ({dispatch, match, filteredEvents, shouldSendSearchRequest, loading, filter, isButtonPressed}) =>{
 
-
+  console.log("filter on ShowFilter");
+  console.log(filter);
     return(
-      <div>
+      <div id="not-scrollable">
 
         <div id="filter-component">
-          <Row justify="center" align="middle">
+          <Row justify="center">
             <Col span={4} ><FilterPage/></Col>
-            <Col span={20} id="search-event-component"><SearchEventForm shouldSendSearchRequest={shouldSendSearchRequest} dispatch={dispatch} events={filteredEvents}/></Col>
+            <Col span={20} id="search-event-component">
+              <SearchEventForm
+              shouldSendSearchRequest={shouldSendSearchRequest}
+              dispatch={dispatch}
+              events={filteredEvents}
+              loading={loading}
+              filter={filter}
+              isButtonPressed={isButtonPressed}
+              />
+            </Col>
           </Row>
         </div>
       </div>
     )
 }
 
-const mapStateToProps = (state) => ({ filteredEvents: state.event.filteredEvents, shouldSendSearchRequest: state.event.shouldSendSearchRequest });
+const mapStateToProps = (state) => (
+  {
+    filteredEvents: state.event.filteredEvents,
+    shouldSendSearchRequest: state.event.shouldSendSearchRequest,
+    loading:state.event.loading,
+    filter:state.event.filter,
+    isButtonPressed:state.event.isButtonPressed,
+  });
 const ShowTheLocationWithRouter = withRouter(ShowFilter);
 export default connect(mapStateToProps)(ShowTheLocationWithRouter);
