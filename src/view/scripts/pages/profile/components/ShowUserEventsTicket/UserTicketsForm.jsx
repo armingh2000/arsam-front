@@ -47,8 +47,6 @@ const UserTicketsForm = (props) =>{
     // }
   }
 
-console.log("tickets:",props.tickets);
-console.log(props.status);
   if((props.tickets.length>0)){
       return (
       <div id="user-tickets-form-components">
@@ -60,7 +58,7 @@ console.log(props.status);
             {
                 props.tickets.map((item)=>{
                 return(
-                  <Col span={6}>
+                  <Col xl={{span:6}}  md={{span:8}} sm={{span:12}} xs={{span:24}} >
                     <Card className="card" onClick={()=>handelClick(item)}>
 
 
