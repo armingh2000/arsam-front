@@ -14,7 +14,7 @@ const EventImages = (props) =>
             {
               imagesArray.map((img) => {
                 return <div className="image-div">
-                <Image src={`data:image/jpeg;base64,${img}`}  alt="event image"/>
+                <Image src={`data:image/jpeg;base64,${img.image}`}  alt="event image"/>
                 </div>
             })
           }

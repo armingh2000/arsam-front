@@ -24,7 +24,7 @@ const EventDetails = ({name, startDate, endDate, creator, categories}) =>
     </div>
     <br/>
     <Row justify="space-around" align="middle" gutter={[8,8]}>
-      <Col>
+      <Col xl={{span:12}}  md={{span:12}} sm={{span:12}} xs={{span:12}}>
         <Text className="text"><ClockCircleOutlined /> Start
           <br/>
           {new Date(startDate).toDateString()}
@@ -32,7 +32,7 @@ const EventDetails = ({name, startDate, endDate, creator, categories}) =>
           <Text type="secondary">{new Date(startDate).getHours() + ":" + new Date(startDate).getMinutes()}</Text>
         </Text>
       </Col>
-      <Col>
+      <Col xl={{span:12}}  md={{span:12}} sm={{span:12}} xs={{span:12}}>
         <Text className="text"><ClockCircleOutlined /> End
           <br/>
           {new Date(endDate).toDateString()}
