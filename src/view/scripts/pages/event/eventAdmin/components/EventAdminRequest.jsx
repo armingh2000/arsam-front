@@ -73,10 +73,9 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
       )
     }
 
-    return (<div>
+    return (<Row>
       {requests.map((req) => {
-        return (<div>
-          <Col span={5} offset={2} >
+        return (<Col span={5} offset={2} >
             <Card
               className="card"
             >
@@ -106,6 +105,7 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
                 </Tooltip>
                 <Tooltip title="reject" placement="left" color="red" className="right-aligned-button">
                   <CloseCircleTwoTone
+                    className="right-aligned-button"
                     twoToneColor="red"
                     style={{fontSize:40, margin:"10px 10px 0 0"}}
                     onClick={() => {
@@ -116,10 +116,9 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
               </div>
             </Card>
           </Col>
-        </div>
       );
       })}
-    </div>);
+    </Row>);
   }
 
   switch (requestStatus) {
