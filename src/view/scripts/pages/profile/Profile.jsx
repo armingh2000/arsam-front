@@ -19,7 +19,7 @@ const Profile = (props) =>
   <Row
     justify="center" 
     align="middle">
-    <UserInfo/>
+    <UserInfo user={props.user} status={props.status}/>
   </Row>
   <Row style={{
       minHeight: '100vh'
@@ -34,7 +34,8 @@ const Profile = (props) =>
 
 const mapStateToProps = (state) => {
   return{
-      user: state.profile.user
+      user: state.profile.user,
+      status: state.profile.status
   }
 }
 

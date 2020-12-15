@@ -10,42 +10,23 @@ import { updateImage, updateProfile } from '../../../../../core/api/actions/User
 const EditProfile = (props) => {
     const { Option } = Select;
 
-    const changeFields = (fields) => {
-      fields.map((fields) => {
-        switch(fields){
-        case 1: 
-        return 'Race';
-      case 2:
-        return 'Performance';
-      case 4:
-        return 'Conference';
-      case 8:
-        return 'Fundraiser';
-      case 16:
-        return 'Festival';
-      case 32:
-        return 'Social Event';
-      default:
-        return null;
-    }})
-  }
-    
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [description, setDescription] = useState('');
-    const [fields, setFields] = useState([]);
-    
-    console.log(firstName, 
-      lastName, 
-      description,
-      fields,)
+    const eventCategory=
+    [
+      <Option value={1}>Race</Option>,
+      <Option value={2}>Performance</Option>,
+      <Option value={4}>Conference</Option>,
+      <Option value={8}>Fundraiser</Option>,
+      <Option value={16}>Festival</Option>,
+      <Option value={32}>Social Event</Option>
+    ];
 
-    useEffect(() => {
-      setFirstName(props.user.firstName)
-      setLastName(props.user.lastName)
-      setDescription(props.user.description)
-      setFields(changeFields(props.user.fields))
-    }, [])
+    
+    const [firstName, setFirstName] = useState(props.user.firstName);
+    const [lastName, setLastName] = useState(props.user.lastName);
+    const [description, setDescription] = useState(props.user.description);
+    const [fields, setFields] = useState(props.user.fields);
+    
+    
     const [imageChanged, setImageChanged] = useState(false)
 
     //Set image
@@ -91,6 +72,7 @@ const EditProfile = (props) => {
         setFields(categories);
     }
     const handleOk = () => {
+      console.log('fields:',fields)
       if(imageChanged && fileList.length != 0 ){
         var FormData = require('form-data');
         var fs = require('fs');
@@ -113,16 +95,7 @@ const EditProfile = (props) => {
       };
 
       
-      const eventCategory=
-    [
-    <Option key={1}>Race</Option>,
-    <Option key={2}>Performance</Option>,
-    <Option key={4}>Conference</Option>,
-    <Option key={8}>Fundraiser</Option>,
-    <Option key={16}>Festival</Option>,
-    <Option key={32}>Social Event</Option>
-    ];
-
+     
  
     
     return(
@@ -187,7 +160,7 @@ const EditProfile = (props) => {
             name="fields"
             labelCol={4}>
             <Select
-            value={fields}
+            // value={fields}
             title="Fields"
             mode="multiple"
             placeholder="Please select"
@@ -201,11 +174,6 @@ const EditProfile = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return{
-        user: state.profile.user,
-        status: state.status
-    }
-  }
 
-export default connect(mapStateToProps)(EditProfile)
+
+export default connect()(EditProfile)

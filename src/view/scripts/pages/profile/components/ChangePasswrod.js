@@ -11,7 +11,6 @@ const ChangePassword = (props) => {
     const [oldPassword, setOldPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [repeat, setRepeat] = useState('')
-    const [error, setError] = useState(false)
 
     const onChangeOld = (e) => {
         const pass = e.target.value;
@@ -37,15 +36,11 @@ const ChangePassword = (props) => {
 
     const handleOk = () => {
       form.validateFields().then(
-        setError(true)
-      ).catch(setError(false))
-      
-      if(!error){
-        props.dispatch(updatePassword({OldPass: oldPassword, NewPass: newPassword}, handleSuccess, handleFail))
-      }
-      else{
-        message.error('Please check your inputs')
-      }
+        () => {
+          props.dispatch(updatePassword({OldPass: oldPassword, NewPass: newPassword}, handleSuccess, handleFail))
+        }
+      ).catch()
+  
     }
 
     const handleSuccess = () => {
@@ -53,9 +48,10 @@ const ChangePassword = (props) => {
       setOldPassword('')
       setNewPassword('')
       setRepeat('')
+      props.handleOk();
       form.resetFields();
       message.success('Your password has been changed successfully');
-      props.handleOk();
+      
       
     }
 
@@ -106,10 +102,8 @@ const ChangePassword = (props) => {
                 ({getFieldValue}) => ({
                   validator(rule, value) {
                     if (!value || getFieldValue('password') === value) {
-                      setError(false)
                       return Promise.resolve();
                     }
-                    setError(true);
                     return Promise.reject('The two passwords that you entered do not match!');
                   }
                 })

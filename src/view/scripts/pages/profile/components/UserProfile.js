@@ -1,18 +1,22 @@
 import React, {useEffect, useState} from 'react'
 import { connect } from 'react-redux';
-import { Modal, Card, Row, Col, Tag, Avatar, Image, Statistic, Button, Spin, Typography, } from 'antd';
+import ErrorPic from '../Image/right.png'
+import WelcomePic from '../Image/welcome.png'
+import Snow from '../Image/unnamed.png'
+import { Modal, Card, Row, Col, Tag, Avatar, Image, Statistic, Button, Spin, Typography, Dropdown, Menu } from 'antd';
 import { UserOutlined, MailOutlined, EditOutlined,
-    ClockCircleOutlined,
+    SettingOutlined,
     TrophyOutlined,
     DollarCircleOutlined,
     TeamOutlined,
     SoundOutlined,
     SafetyOutlined,
     FireOutlined,
-    KeyOutlined } from '@ant-design/icons';
+    KeyOutlined,
+     } from '@ant-design/icons';
 import EditProfile from './EditUserProfile';
-import { updateProfile } from '../../../../../core/api/actions/UserProfileActions';
 import ChangePasswrod from './ChangePasswrod';
+import LogoutButton from './LogoutButton'
 
 const { Title } = Typography;
 const UserInfo = ({user, status, dispatch}) => {
@@ -55,82 +59,150 @@ const UserInfo = ({user, status, dispatch}) => {
         }
     }
 
-    return(
-        <div id="components-profile-User-Info">
-            <Card>
-                <EditProfile visible={editProfile} 
-                handleCancel={handleCancel} 
-                handleOk={handleOk}></EditProfile>
-                <ChangePasswrod visible={changePassword}
-                handleCancel={handleCancelPass}
-                handleOk={handleOkPass}></ChangePasswrod>
-                <Row span={24}>
-                    <Col className="image">
-                        {user.image ? 
-                            <Avatar
-                            src={<Image src={`data:image/jpeg;base64,${user.image}`} />}
-                            size={160}>
-                            </Avatar> : <Avatar
-                            icon={<UserOutlined />}
-                            size={160}>
-                            </Avatar>
-                        }
-                    </Col>
-                    <Col className="infoPart">
+    const handleMenuClick = (e) => {
 
-                    <Row className="info">
-                        <Col span={18}>
-                            <Title level={4}>{user.firstName} {user.lastName}</Title>
-                        </Col>
-                        <Button className="editButton" size='small' style={{fontSize:'16px'}}
-                        onClick={() => {setEditProfile(true) }}><EditOutlined /></Button>
+    }
+
+    const menu = (
+        <Menu onClick={handleMenuClick}>
+          <Menu.Item key="1">
+            <Button className="editButton" 
+          onClick={() => {setChangePassword(true) }}><KeyOutlined /> ChangePasswrod</Button>
+          </Menu.Item>
+          <Menu.Item key="2">
+          <LogoutButton></LogoutButton>
+          </Menu.Item>
+         
+        </Menu>
+      );
+
+    switch (status) {
+        case 'Success':
+            return(
+                <div id="components-profile-User-Info">
+                <Card>
+                       <EditProfile visible={editProfile} 
+                       handleCancel={handleCancel} 
+                       handleOk={handleOk}
+                       user={user}></EditProfile>
+                       <ChangePasswrod visible={changePassword}
+                       handleCancel={handleCancelPass}
+                       handleOk={handleOkPass}></ChangePasswrod>
+                       <Row span={24}>
+                           <Col className="image">
+                               {user.image ? 
+                                   <Avatar
+                                   src={<Image src={`data:image/jpeg;base64,${user.image}`} />}
+                                   size={180} style={{lineHeight:'150px'}}>
+                                   </Avatar> : <Avatar
+                                   icon={<UserOutlined />}
+                                   size={180} style={{lineHeight:'150px'}}>
+                                   </Avatar>
+                               }
+                           </Col>
+                           <Col className="infoPart">
+       
+                           <Row className="info">
+                               <Col span={15}>
+                                   <Title level={4}>{user.firstName} {user.lastName}</Title>
+                               </Col>
+                               <Button className="editButton" size='small' style={{fontSize:'14px'}}
+                               onClick={() => {setEditProfile(true) }}><EditOutlined />Edit profile</Button>
+                               <Dropdown overlay={menu}>
+                               <Button size='small' style={{fontSize:'14px'}}>
+                               <SettingOutlined />
+                               </Button>
+                             </Dropdown>
+                               
+                               
+                               
+                           </Row>
+       
+                           <Row>
+                           <Col span={8}
+                           className="statics">
+                               <Statistic title="Created Events" value={user.createdEvents.length} />
+                           </Col>
+                           <Col  span={8}
+                           className="statics">
+                               <Statistic title="In Events" value={user.inEvents.length} />
+                           </Col>
+                           
+                           </Row>
+                           
+                           <Row className="info">
+                                   {user.description}
+                           </Row>
+                           <Row className="info">
+                               <h3 style={{marginRight:'2%'}}>Fields: </h3>
+                               <Col>
+                                   {user.fields.map((fields) => {
+                                       return(changeFields(fields))
+                                   })}
+                               </Col>
+                           </Row>
+                           <Row className="info">
+                               <Col style={{fontSize:'16px'}} span={2}><MailOutlined/></Col>
+                               <Col>
+                               <a>{user.email}</a>
+                               </Col>
+                           </Row>
+                           </Col>
+                       </Row>
+       
+                   </Card>
+               </div>
+           )
+        case 'Loading':
+            return (
+                <div style={{marginTop: '10%'}}><Spin size='large'></Spin></div>
+            )
+        case 'Error':
+            return (
+                <div id="components-profile-User-Info" >
+                    <Card
+                    >
+
+                        <div >
+                        <Row
+                        justify="center" align="middle"
+                        level={1}
+                        ><Title justify='center'>Whoops!</Title></Row>
+                        <Row>
+                        <Image src={WelcomePic}
+                            height='40vh'
+                            width='30vh'/>
+                            <Col ><Row 
+                            style={{margin:'1%', marginLeft:'5%'}}
+                            justify="center" align="middle">
+                            
+                            <Title level={4}>Something went wrong!</Title> 
+                            <Title level={4}>I think your're lost! </Title>
+                            
+                            </Row>
+                           </Col>
+                            </Row>
+                            
+                            <Row 
+                            justify="center" align="middle">
+                            <Col offset={9}>
+                           <Button onClick={() => window.location.reload(false)}>Refresh Page</Button></Col>
+                            <Image src={ErrorPic} style={{marginBottom:'2%'}}/></Row>
+                            
+                        </div>
                         
-                        <Button className="editButton" size='small' style={{fontSize:'16px'}}
-                        onClick={() => {setChangePassword(true) }}><KeyOutlined /></Button>
-                    </Row>
-
-                    <Row>
-                    <Col span={8}
-                    className="statics">
-                        <Statistic title="Created Events" value={user.createdEvents.length} />
-                    </Col>
-                    <Col  span={8}
-                    className="statics">
-                        <Statistic title="In Events" value={user.inEvents.length} />
-                    </Col>
+                    </Card>
                     
-                    </Row>
-                    
-                    <Row className="info">
-                            {user.description}
-                    </Row>
-                    <Row className="info">
-                        <h3 style={{marginRight:'2%'}}>Fields: </h3>
-                        <Col>
-                            {user.fields.map((fields) => {
-                                return(changeFields(fields))
-                            })}
-                        </Col>
-                    </Row>
-                    <Row className="info">
-                        <Col style={{fontSize:'16px'}} span={2}><MailOutlined/></Col>
-                        <Col>
-                        <a>{user.email}</a>
-                        </Col>
-                    </Row>
-                    </Col>
-                </Row>
-
-            </Card>
-        </div>
-    )
+                </div>
+            )
+    
+        default:
+            return(
+                <div></div>
+            )
+    }
 }
 
-const mapStateToProps = (state) => {
-    return{
-        user: state.profile.user,
-        status: state.status
-    }
-  }
 
-export default connect(mapStateToProps)(UserInfo)
+
+export default connect()(UserInfo)

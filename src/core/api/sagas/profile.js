@@ -66,11 +66,11 @@ export function* updatePasswordRequest({payload}){
         });
         payload.handleSuccess();
     }
-    catch{
+    catch(e){
         yield put ({
             type: ActionTypes.UPDATE_PASSWORD_FAILURE,
         })
-        payload.handleFail();
+        payload.handleFail(e.response.data[Object.keys(e.response.data)][0]);
     }
 }
 
