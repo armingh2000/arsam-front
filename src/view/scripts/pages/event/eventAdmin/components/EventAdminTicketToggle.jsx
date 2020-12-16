@@ -13,9 +13,11 @@ const EventAdminTicketToggle = ({eventId, dispatch, event}) =>
 
   const isTrue = event.buyingTicketEnabled;
 
+  const color = isTrue ? "#13c2c2" : "#f5222d";
+
   return <div>
           <Text>Enable ticket for event: </Text>
-          <Switch onClick={toggle} defaultChecked={isTrue} />
+          <Switch onClick={toggle} defaultChecked={isTrue} style={{backgroundColor:color}}/>
          </div>
 }
 

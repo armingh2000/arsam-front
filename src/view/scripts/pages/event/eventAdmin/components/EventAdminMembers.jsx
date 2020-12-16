@@ -60,7 +60,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
       <Row gutter={[20,10]}>
         {admins && admins.map((admin) => {
           return (
-            <Col span={5} offset={2} >
+            <Col lg={8} xs={22} md={10}>
               <Card
                 className="card"
               >
@@ -105,7 +105,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
         })}
         {members && members.map((member) => {
           return (
-            <Col span={5} offset={2} >
+            <Col  lg={8} xs={22} md={10} >
               <Card
                 className="card"
               >

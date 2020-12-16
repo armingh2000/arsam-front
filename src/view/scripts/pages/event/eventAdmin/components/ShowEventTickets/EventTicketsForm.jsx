@@ -40,7 +40,7 @@ const EventTicketsForm = (props) =>{
             {
                 props.tickets.map((ticket)=>{
                 return(
-                  <Col span={5} offset={2}>
+                  <Col lg={8} xs={22} md={10}>
                     <Card className="card">
                       <TicketDetails
                           type={ticket.type}
