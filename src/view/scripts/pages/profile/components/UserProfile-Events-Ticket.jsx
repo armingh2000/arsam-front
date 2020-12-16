@@ -18,9 +18,9 @@ const UserEventsTickets=({user,status})=>{
     history.replace("/createevent");
   }
 
-  const operations = (
-
-  <Button className="btn2 center-button2" onClick={handelClick}>
+  const operations = {
+  left:<div className="empty-div"><pre>               </pre></div>,
+  right:<Button className="btn2 center-button2" onClick={handelClick}>
     <svg>
       <defs>
         <linearGradient id="grad1">
@@ -34,7 +34,7 @@ const UserEventsTickets=({user,status})=>{
     <span className="center-span">Create Event</span>
 
   </Button>
-);
+};
 
   // function callback(key) {
   // console.log(key);
@@ -85,6 +85,7 @@ const UserEventsTickets=({user,status})=>{
         key="3">
           <UserTicketsForm
             tickets={user.tickets}
+            status={status}
           />
         </TabPane>
 

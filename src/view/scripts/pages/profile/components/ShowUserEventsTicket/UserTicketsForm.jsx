@@ -47,7 +47,6 @@ const UserTicketsForm = (props) =>{
     // }
   }
 
-
   if((props.tickets.length>0)){
       return (
       <div id="user-tickets-form-components">
@@ -59,7 +58,7 @@ const UserTicketsForm = (props) =>{
             {
                 props.tickets.map((item)=>{
                 return(
-                  <Col span={6}>
+                  <Col xl={{span:6}} lg={{span:8}}  md={{span:12}} sm={{span:12}} xs={{span:24}} >
                     <Card className="card" onClick={()=>handelClick(item)}>
 
 
@@ -89,7 +88,7 @@ const UserTicketsForm = (props) =>{
         <br />
         <br />
 
-        <h2>Oops!!! we didn't find such ticket</h2>
+        <h2>Oops!!! you don't have any ticket</h2>
 
       </div>
     );

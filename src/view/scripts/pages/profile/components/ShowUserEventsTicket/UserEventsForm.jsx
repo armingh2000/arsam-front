@@ -57,7 +57,7 @@ const UserEventsForm = (props) =>{
           {
               props.events.map((item)=>{
               return(
-                <Col span={6}>
+                <Col xl={{span:6}} lg={{span:8}}  md={{span:12}} sm={{span:12}} xs={{span:24}}>
                   <Card className="card" onClick={()=>handelClick(item)}>
 
 
