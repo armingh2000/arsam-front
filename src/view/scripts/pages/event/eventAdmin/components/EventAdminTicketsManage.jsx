@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import EventAdminTicketTypeList from "./EventAdminTicketTypeList";
 import { getEventTicketType } from "../../../../../../core/api/actions/EventActions";
-import { Spin,Typography, Row, Col } from 'antd';
+import { Spin,Typography, Row, Col, message } from 'antd';
 import EventAdminTicketToggle from "./EventAdminTicketToggle";
 
 
@@ -16,6 +16,20 @@ const EventAdminTicketsManage = ({ticketTypes, dispatch, eventId, ticketTypeStat
         }
     }));
   }, []);
+
+  const key = 'updatable';
+
+  const openLoadMessage = () => {
+    message.loading({ content: 'Loading...', key, duration: 0 });
+  };
+
+  const openSuccessMessage = () => {
+      message.success({ content: 'Updated!', key, duration: 2 });
+  };
+
+  const openErrorMessage = () => {
+      message.error({ content: 'Error!', key, duration: 2 });
+  };
 
   const {Text} = Typography;
 
@@ -32,8 +46,8 @@ const EventAdminTicketsManage = ({ticketTypes, dispatch, eventId, ticketTypeStat
     case 'success':
 
       return  <div>
-                <EventAdminTicketToggle dispatch={dispatch} eventId={eventId} event={event}/>
-                <EventAdminTicketTypeList eventId={eventId} dispatch={dispatch} ticketTypes={ticketTypes}/>
+                <EventAdminTicketToggle dispatch={dispatch} eventId={eventId} event={event} oem={openErrorMessage} olm={openLoadMessage} osm={openSuccessMessage}/>
+                <EventAdminTicketTypeList eventId={eventId} dispatch={dispatch} ticketTypes={ticketTypes} oem={openErrorMessage} olm={openLoadMessage} osm={openSuccessMessage}/>
               </div>
 
     case 'error':

@@ -203,7 +203,7 @@ export function* sendUpdateTicketTypeRequest ({payload}) {
   try {
     yield put ({
       type: ActionTypes.UPDATE_TICKET_TYPE_SUCCESS,
-      payload: yield sendEditTicketPut(payload)
+      payload: {...yield sendEditTicketPut(payload), olm: payload.olm, osm: payload.osm, oem: payload.oem}
     })
   }
   catch (err) {
@@ -218,7 +218,7 @@ export function* sendAddTicketTypeRequest ({payload}) {
   try {
     yield put ({
       type: ActionTypes.ADD_TICKET_TYPE_SUCCESS,
-      payload: yield sendAddTypePost(payload)
+      payload: {...yield sendAddTypePost(payload), olm: payload.olm, osm: payload.osm, oem: payload.oem}
     })
   }
   catch (err) {
@@ -249,7 +249,7 @@ export function* sendToggleRequest ({payload}) {
   try {
     yield put ({
       type: ActionTypes.TOGGLE_TICKET_SUCCESS,
-      payload: yield sendTogglePut(payload)
+      payload: {...(yield sendTogglePut(payload)), oem: payload.oem, olm: payload.olm, osm: payload.osm}
     })
   }
   catch (err) {

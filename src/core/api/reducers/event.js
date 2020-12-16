@@ -339,7 +339,7 @@ const event = ( state = initialState, {type, payload }) => {
           pageNumber:state.filter.pageNumber+1
         }
       }
-      
+
     case ActionTypes.SET_REQUEST_REQUEST:
       return {
         ...state,
@@ -430,11 +430,13 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.UPDATE_TICKET_TYPE_REQUEST:
+      payload.olm();
       return {
         ...state,
       }
 
     case ActionTypes.UPDATE_TICKET_TYPE_SUCCESS:
+      payload.osm();
       return {
         ...state,
         ticketTypes: state.ticketTypes.map((ticket) => {
@@ -444,48 +446,57 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.UPDATE_TICKET_TYPE_FAILURE:
+      payload.oem();
       return {
         ...state,
       }
 
     case ActionTypes.ADD_TICKET_TYPE_REQUEST:
+      payload.olm();
       return {
         ...state
       }
 
     case ActionTypes.ADD_TICKET_TYPE_SUCCESS:
+      payload.osm();
       return {
         ...state,
         ticketTypes: state.ticketTypes.concat(payload.data)
       }
 
     case ActionTypes.ADD_TICKET_TYPE_FAILURE:
+      payload.oem();
       return {
         ...state
       }
 
     case ActionTypes.DELETE_TICKET_TYPE_REQUEST:
+      payload.olm();
       return {
         ...state
       }
 
     case ActionTypes.DELETE_TICKET_TYPE_SUCCESS:
+      payload.osm();
       return {
         ...state,
         ticketTypes: state.ticketTypes.filter((ticket) => {return ticket.id !== payload.id})
       }
 
     case ActionTypes.DELETE_TICKET_TYPE_FAILURE:
+      payload.oem();
       return {
         ...state
       }
 
     case ActionTypes.TOGGLE_TICKET_REQUEST:
+      payload.olm();
       return {
         ...state
       }
 
     case ActionTypes.TOGGLE_TICKET_SUCCESS:
+      payload.osm();
       return {
         ...state,
         event: {
@@ -495,6 +506,7 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.TOGGLE_TICKET_FAILURE:
+      payload.oem();
       return {
         ...state
       }

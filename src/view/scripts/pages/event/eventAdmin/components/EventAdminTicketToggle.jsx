@@ -3,13 +3,15 @@ import { Typography, Switch } from "antd";
 import { toggleTicket } from "../../../../../../core/api/actions/EventActions";
 
 
-const EventAdminTicketToggle = ({eventId, dispatch, event}) =>
+const EventAdminTicketToggle = ({eventId, dispatch, event, oem, osm, olm}) =>
 {
   const {Text} = Typography;
 
   function toggle () {
-    dispatch(toggleTicket({payload: {event, eventId}}));
+    dispatch(toggleTicket({payload: {event, eventId, oem, olm, osm}}));
   }
+
+
 
   const isTrue = event.buyingTicketEnabled;
 
@@ -17,7 +19,7 @@ const EventAdminTicketToggle = ({eventId, dispatch, event}) =>
 
   return <div>
           <Text>Enable ticket for event: </Text>
-          <Switch onClick={toggle} defaultChecked={isTrue} style={{backgroundColor:color}}/>
+          <Switch onClick={toggle} checked={isTrue} style={{backgroundColor:color}}/>
          </div>
 }
 

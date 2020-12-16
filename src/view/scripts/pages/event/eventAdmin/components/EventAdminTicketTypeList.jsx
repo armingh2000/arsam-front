@@ -9,13 +9,12 @@ import { deleteTicketType } from "../../../../../../core/api/actions/EventAction
 
 
 
-const EventAdminTicketTypeList = ({ticketTypes, dispatch, eventId}) =>
+const EventAdminTicketTypeList = ({ticketTypes, dispatch, eventId, oem, olm, osm}) =>
 {
   const { Text } = Typography;
 
   function deleteType (ticket) {
-    console.log(ticket);
-    dispatch(deleteTicketType({payload: {id: ticket.id}}));
+    dispatch(deleteTicketType({payload: {id: ticket.id, olm, osm, oem}}));
   }
 
   return ( <div>
@@ -23,7 +22,7 @@ const EventAdminTicketTypeList = ({ticketTypes, dispatch, eventId}) =>
             itemLayout="horizontal"
             dataSource={ticketTypes}
             renderItem={item => (
-              <List.Item actions={[<TicketEditModal dispatch={dispatch} ticket={item}/>, <Button type="primary" onClick={() => deleteType(item)}>delete</Button>]}>
+              <List.Item actions={[<TicketEditModal olm={olm} osm={osm} oem={osm} dispatch={dispatch} ticket={item}/>, <Button type="primary" onClick={() => deleteType(item)}>delete</Button>]}>
                   <List.Item.Meta
                     avatar={<ContainerTwoTone twoToneColor="#006d75" />}
                     title={item.name}
@@ -37,7 +36,7 @@ const EventAdminTicketTypeList = ({ticketTypes, dispatch, eventId}) =>
               </List.Item>
             )}
           />
-        <TicketAddModal eventId={eventId} dispatch={dispatch}/>
+        <TicketAddModal olm={olm} osm={osm} oem={osm} eventId={eventId} dispatch={dispatch}/>
         </div>
   );
 
