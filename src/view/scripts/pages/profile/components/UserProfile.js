@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react'
 import { connect } from 'react-redux';
 import ErrorPic from '../Image/right.png'
 import WelcomePic from '../Image/welcome.png'
-import Snow from '../Image/unnamed.png'
-import { Modal, Card, Row, Col, Tag, Avatar, Image, Statistic, Button, Spin, Typography, Dropdown, Menu } from 'antd';
+import {useHistory} from 'react-router-dom';
+import { message, Card, Row, Col, Tag, Avatar, Image, Statistic, Button, Spin, Typography, Dropdown, Menu } from 'antd';
 import { UserOutlined, MailOutlined, EditOutlined,
     SettingOutlined,
     TrophyOutlined,
@@ -13,7 +13,7 @@ import { UserOutlined, MailOutlined, EditOutlined,
     SafetyOutlined,
     FireOutlined,
     KeyOutlined,
-     } from '@ant-design/icons';
+    LogoutOutlined} from '@ant-design/icons';
 import EditProfile from './EditUserProfile';
 import ChangePasswrod from './ChangePasswrod';
 import LogoutButton from './LogoutButton'
@@ -58,16 +58,20 @@ const UserInfo = ({user, status, dispatch}) => {
             return null;
         }
     }
-
+    const history = useHistory();
+    function logout() {
+        localStorage.clear();
+        history.replace("/");
+        message.success("Successfully logged out")
+    }
     const handleMenuClick = (e) => {
-
+        
     }
 
     const menu = (
         <Menu onClick={handleMenuClick}>
           <Menu.Item key="1">
-            <Button className="editButton" 
-          onClick={() => {setChangePassword(true) }}><KeyOutlined /> ChangePasswrod</Button>
+          <Button type="link" style={{color:'black'}} className="editButton" onClick={() => {setChangePassword(true)}}><KeyOutlined /> ChangePasswrod</Button>
           </Menu.Item>
           <Menu.Item key="2">
           <LogoutButton></LogoutButton>
@@ -172,8 +176,9 @@ const UserInfo = ({user, status, dispatch}) => {
                         <Image src={WelcomePic}
                             height='40vh'
                             width='30vh'/>
-                            <Col ><Row 
-                            style={{margin:'1%', marginLeft:'5%'}}
+                            <Col span={10}><Row 
+                            
+                            style={{margin:'3%'}}
                             justify="center" align="middle">
                             
                             <Title level={4}>Something went wrong!</Title> 
@@ -185,12 +190,12 @@ const UserInfo = ({user, status, dispatch}) => {
                             
                             <Row 
                             justify="center" align="middle">
-                            <Col offset={9}>
+                            <Col offset={8}>
                            <Button onClick={() => window.location.reload(false)}>Refresh Page</Button></Col>
-                            <Image src={ErrorPic} style={{marginBottom:'2%'}}/></Row>
+                            <Image src={ErrorPic} height='200px' width='320px' style={{marginBottom:'8%'}}/></Row>
                             
                         </div>
-                        
+                            
                     </Card>
                     
                 </div>

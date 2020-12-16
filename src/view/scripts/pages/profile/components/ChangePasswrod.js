@@ -45,13 +45,13 @@ const ChangePassword = (props) => {
 
     const handleSuccess = () => {
       //Password has changed and no error has occured
+      form.resetFields();
+      
+      props.handleOk();
+      message.success('Your password has been changed successfully');
       setOldPassword('')
       setNewPassword('')
       setRepeat('')
-      props.handleOk();
-      form.resetFields();
-      message.success('Your password has been changed successfully');
-      
       
     }
 

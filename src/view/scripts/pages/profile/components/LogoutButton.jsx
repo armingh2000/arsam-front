@@ -19,7 +19,7 @@ const LogoutButton = () =>
   if(localStorage.getItem("userToken") && localStorage.getItem('g')) {
      return <GLogout />;
   }
-  return <Button className="btn center-button" onClick={logout}>
+  return <Button type="link" style={{color:'black'}} className="editButton" onClick={logout}>
   <LogoutOutlined />Logout
 </Button>
 }
