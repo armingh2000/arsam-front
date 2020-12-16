@@ -19,7 +19,7 @@ import ChangePasswrod from './ChangePasswrod';
 import LogoutButton from './LogoutButton'
 
 const { Title } = Typography;
-const UserInfo = ({user, status, dispatch}) => {
+const UserInfo = ({user, status, changePasswordSuccess}) => {
 
     const [editProfile, setEditProfile] = useState(false);
     const [changePassword, setChangePassword] = useState(false);
@@ -71,7 +71,7 @@ const UserInfo = ({user, status, dispatch}) => {
     const menu = (
         <Menu onClick={handleMenuClick}>
           <Menu.Item key="1">
-          <Button type="link" style={{color:'black'}} className="editButton" onClick={() => {setChangePassword(true)}}><KeyOutlined /> ChangePasswrod</Button>
+          <Button type="link" style={{color:'black'}} className="editButton" onClick={() => {setChangePassword(true)}}><KeyOutlined /> Change Passwrod</Button>
           </Menu.Item>
           <Menu.Item key="2">
           <LogoutButton></LogoutButton>
@@ -91,7 +91,8 @@ const UserInfo = ({user, status, dispatch}) => {
                        user={user}></EditProfile>
                        <ChangePasswrod visible={changePassword}
                        handleCancel={handleCancelPass}
-                       handleOk={handleOkPass}></ChangePasswrod>
+                       handleOk={handleOkPass}
+                       changePasswordSuccess={changePasswordSuccess}></ChangePasswrod>
                        <Row span={24}>
                            <Col className="image">
                                {user.image ? 
@@ -190,7 +191,7 @@ const UserInfo = ({user, status, dispatch}) => {
                             
                             <Row 
                             justify="center" align="middle">
-                            <Col offset={8}>
+                            <Col offset={10}>
                            <Button onClick={() => window.location.reload(false)}>Refresh Page</Button></Col>
                             <Image src={ErrorPic} height='200px' width='320px' style={{marginBottom:'8%'}}/></Row>
                             

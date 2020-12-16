@@ -1,16 +1,21 @@
 import React, {useState} from 'react'
 import { connect } from 'react-redux';
-import { Input, Form, Modal, Select, Upload, message} from 'antd';
+import { Input, Form, Modal, message, Button, Row, Typography} from 'antd';
+import {useHistory} from 'react-router-dom';
 import { updatePassword } from '../../../../../core/api/actions/UserProfileActions';
 
 
+const { Title } = Typography;
 const ChangePassword = (props) => {
 
   const [form] = Form.useForm();
+  const history = useHistory();
 
     const [oldPassword, setOldPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [repeat, setRepeat] = useState('')
+    const [button, setButton] = useState(props.changePasswordSuccess)
+    console.log(props.changePasswordSuccess)
 
     const onChangeOld = (e) => {
         const pass = e.target.value;
@@ -45,13 +50,11 @@ const ChangePassword = (props) => {
 
     const handleSuccess = () => {
       //Password has changed and no error has occured
-      form.resetFields();
-      
-      props.handleOk();
+      localStorage.clear();
+      setButton(true);
       message.success('Your password has been changed successfully');
-      setOldPassword('')
-      setNewPassword('')
-      setRepeat('')
+      message.warning('Please login again');
+     
       
     }
 
@@ -68,7 +71,7 @@ const ChangePassword = (props) => {
         onCancel={handleCancel}>
         <Form id="PassForm"
         form={form}>
-            <Form.Item
+            <Form.Item hidden={button}
             name="Old password"
             rules={[{ required: true, message: 'Please input your old password!' }, 
             
@@ -79,7 +82,9 @@ const ChangePassword = (props) => {
                 onChange={(e) => {onChangeOld(e)}}>
                 </Input.Password>
             </Form.Item>
-            <Form.Item name="password" label="Password" rules={[
+            <Form.Item 
+            hidden={button}
+            name="password" label="Password" rules={[
                 {
                   required: true,
                   message: 'Please input your password!'
@@ -94,7 +99,9 @@ const ChangePassword = (props) => {
               onChange={(e) => {onChangeNew(e)}}/>
             </Form.Item>
       
-            <Form.Item name="confirm" label="Confirm Password" dependencies={['password']} hasFeedback="hasFeedback" rules={[
+            <Form.Item 
+            hidden={button}
+            name="confirm" label="Confirm Password" dependencies={['password']} hasFeedback="hasFeedback" rules={[
                 {
                   required: true,
                   message: 'Please confirm your password!'
@@ -109,9 +116,25 @@ const ChangePassword = (props) => {
                 })
               ]}>
               <Input.Password 
+              
               value={repeat}
               onChange={(e) => {onChangeRepeat(e)}}/>
              </Form.Item>
+             <Row 
+             hidden={!button}
+             justify='center'
+             align='middle'>
+             <Form.Item 
+             >
+              <Button 
+              onClick={() => {history.replace("/login");}}>
+                Login again
+              </Button>
+             </Form.Item>
+             </Row>
+             <Row hidden={!button} justify='center' align='middle' >
+             <Title level={5} type="warning">Please login again with your new password</Title>
+             </Row>
         </Form>
         </Modal>
         </div>

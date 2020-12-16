@@ -19,7 +19,7 @@ const Profile = (props) =>
   <Row
     justify="center" 
     align="middle">
-    <UserInfo user={props.user} status={props.status}/>
+    <UserInfo user={props.user} status={props.status} changePasswordSuccess={props.changePasswordSuccess}/>
   </Row>
   <Row style={{
       minHeight: '100vh'
@@ -35,7 +35,8 @@ const Profile = (props) =>
 const mapStateToProps = (state) => {
   return{
       user: state.profile.user,
-      status: state.profile.status
+      status: state.profile.status,
+      changePasswordSuccess: state.profile.changePasswordSuccess
   }
 }
 

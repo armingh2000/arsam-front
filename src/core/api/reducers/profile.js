@@ -1,4 +1,3 @@
-import { Profiler } from "react";
 import { ActionTypes } from "../constants/ActionTypes";
 
 const initialState = {
@@ -12,7 +11,8 @@ const initialState = {
         inEvents: [],
         createdEvents: [],
     },
-    status: ''
+    status: '',
+    changePasswordSuccess: false
 }
 
 
@@ -25,6 +25,7 @@ const profile = (state = initialState, {type, payload}) => {
             };
         case ActionTypes.GET_USER_SUCCESS:
             return{
+                ...state,
                 user: payload,
                 status: 'Success'
             };
@@ -40,6 +41,7 @@ const profile = (state = initialState, {type, payload}) => {
             };
         case ActionTypes.UPDATE_PROFILE_SUCCESS:
             return{
+                ...state,
                 user: payload,
                 status: 'Success'
             }
@@ -55,6 +57,7 @@ const profile = (state = initialState, {type, payload}) => {
             };
         case ActionTypes.UPDATE_IMAGE_SUCCESS:
             return{
+                ...state,
                 user: payload,
                 status: 'Success'
             }
@@ -71,7 +74,8 @@ const profile = (state = initialState, {type, payload}) => {
         case ActionTypes.UPDATE_PASSWORD_SUCCESS:
             return{
                 ...state,
-                status: 'Success'
+                status: 'Success',
+                changePasswordSuccess:true
             }
         case ActionTypes.UPDATE_PASSWORD_FAILURE:
             return{
