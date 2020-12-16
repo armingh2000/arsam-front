@@ -80,7 +80,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
 
           <Input placeholder="ticket capacity"/>
         </Form.Item>
-        
+
       </Form>
     </Modal>
   );
@@ -95,8 +95,9 @@ const TicketAddModal = ({dispatch, eventId}) => {
   };
 
   return (
-    <div align="right" style={{marginTop:"50px"}}>
+    <div align="center" style={{marginTop:"50px"}}>
       <Button
+        className="add-modal"
         type="primary"
         onClick={() => {
           setVisible(true);

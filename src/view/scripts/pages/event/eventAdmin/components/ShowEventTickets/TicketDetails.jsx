@@ -17,7 +17,7 @@ const TicketDetails = ({type, user}) =>
 
       <Title level={2}>
 
-      <ContainerTwoTone className="icon-place" twoToneColor="#fcb103"/>
+      <ContainerTwoTone className="icon-place" twoToneColor="#006d75"/>
 
       {type}
       </Title>

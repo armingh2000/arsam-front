@@ -25,7 +25,7 @@ const EventAdminTicketTypeList = ({ticketTypes, dispatch, eventId}) =>
             renderItem={item => (
               <List.Item actions={[<TicketEditModal dispatch={dispatch} ticket={item}/>, <Button type="primary" onClick={() => deleteType(item)}>delete</Button>]}>
                   <List.Item.Meta
-                    avatar={<ContainerTwoTone />}
+                    avatar={<ContainerTwoTone twoToneColor="#006d75" />}
                     title={item.name}
                     description={item.description}
                   />
@@ -37,7 +37,7 @@ const EventAdminTicketTypeList = ({ticketTypes, dispatch, eventId}) =>
               </List.Item>
             )}
           />
-        <TicketAddModal eventId={eventId} dispatch={dispatch} />
+        <TicketAddModal eventId={eventId} dispatch={dispatch}/>
         </div>
   );
 
