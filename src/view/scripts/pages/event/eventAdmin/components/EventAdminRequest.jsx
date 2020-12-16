@@ -73,7 +73,7 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
       )
     }
 
-    return (<Row>
+    return (<Row gutter={[20, 10]}>
       {requests.map((req) => {
         return (<Col span={5} offset={2} >
             <Card
