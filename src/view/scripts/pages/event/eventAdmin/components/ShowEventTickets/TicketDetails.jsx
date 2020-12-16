@@ -1,19 +1,8 @@
 import React from "react";
 import { Typography, Tag, Col, Row } from 'antd';
 import {
-  ClockCircleOutlined,
   UserOutlined,
-  TrophyOutlined,
-  DollarCircleOutlined,
-  TeamOutlined,
-  SoundOutlined,
-  SafetyOutlined,
-  FireOutlined,
-  AlertOutlined,
-  ThunderboltOutlined,
-  ThunderboltTwoTone,
-  DollarCircleTwoTone,
-  StarTwoTone
+  ContainerTwoTone
 } from '@ant-design/icons';
 
 
@@ -28,7 +17,7 @@ const TicketDetails = ({type, user}) =>
 
       <Title level={2}>
 
-      <ThunderboltTwoTone className="icon-place" twoToneColor="#fcb103"/>
+      <ContainerTwoTone className="icon-place" twoToneColor="#fcb103"/>
 
       {type}
       </Title>
