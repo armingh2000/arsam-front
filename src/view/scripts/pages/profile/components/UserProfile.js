@@ -97,7 +97,7 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                            <Col className="image">
                                {user.image ? 
                                    <Avatar
-                                   src={<Image src={`data:image/jpeg;base64,${user.image}`} />}
+                                   src={<Image src={user.image} />}
                                    size={180} style={{lineHeight:'150px'}}>
                                    </Avatar> : <Avatar
                                    icon={<UserOutlined />}
@@ -126,7 +126,7 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                            <Row>
                            <Col span={8}
                            className="statics">
-                               <Statistic title="Created Events" value={user.createdEvents.length} />
+                               <Statistic title="Admin in events" value={user.adminInEvents.length} />
                            </Col>
                            <Col  span={8}
                            className="statics">

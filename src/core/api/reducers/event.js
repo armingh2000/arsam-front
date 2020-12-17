@@ -35,7 +35,7 @@ const initialState = {
     name: null,
     dateMin: null,
     dateMax: null,
-    isPrivate: null,
+    isPrivate: false,
     isProject: null,
     membersCountMin: null,
     membersCountMax: null,

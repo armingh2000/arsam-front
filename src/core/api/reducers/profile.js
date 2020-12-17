@@ -9,7 +9,7 @@ const initialState = {
         image: null,
         fields: [],
         inEvents: [],
-        createdEvents: [],
+        adminInEvents: [],
     },
     status: '',
     changePasswordSuccess: false

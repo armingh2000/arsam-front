@@ -54,7 +54,7 @@ const UserEventsTickets=({user,status})=>{
         }
         key="1">
           <UserEventsForm
-          events={user.createdEvents}
+          events={user.adminInEvents}
           isAdmin={true}
           status={status}
           />
