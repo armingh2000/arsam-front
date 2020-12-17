@@ -28,6 +28,7 @@ import { connect } from "react-redux";
 
 
 const EventTicketsForm = (props) =>{
+  const {Text} = Typography;
 
   if((props.tickets.length>0)){
       return (
@@ -60,38 +61,17 @@ const EventTicketsForm = (props) =>{
       </div>
       );
   }
-  else if(props.tickets.length===0 && props.status==='Success'){
-    return (
-      <div id="user-tickets-form-components">
-        <div className="not-found">
-          <FrownTwoTone className="icon"/>
-          <br />
-          <br />
-
-          <h2>Oops!!! we didn't find such ticket</h2>
-
-        </div>
-      </div>
-    );
-  }
-  else if(props.status==='Loading'){
-    return(
-      <div className="distance-from-top">
-        <Row justify="center" style={{minHeight:"100vh"}}>
-          <Col>
-            <Spin size="large"/>
-          </Col>
-        </Row>
-      </div>
-    );
-  }
   else {
     return (
-      <Row>
-        <h1>an error occured</h1>
+      <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
+        <Col>
+          <Text type="danger">Sorry, no tickets found!</Text>
+        </Col>
       </Row>
     );
   }
+
+
 }
 
 export default EventTicketsForm;
