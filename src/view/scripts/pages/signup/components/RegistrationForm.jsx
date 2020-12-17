@@ -24,6 +24,7 @@ const RegistrationForm = () => {
   };
 
   const onSuccess = (data) => {
+    console.log("confirmationLink:",data.data.confirmationLink);
     localStorage.setItem("userToken", data.data.token);
     openNotificationWithIcon({history:history, type:"success", desc:true, dur:0});
   };

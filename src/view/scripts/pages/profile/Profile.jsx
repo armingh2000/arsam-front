@@ -20,25 +20,16 @@ const Profile = (props) =>
 
 
   console.log("userToken :" + localStorage.getItem("userToken"));
-  return (
-    <div id="components-form-profile">
-
-
-      <Row
-        justify="center"
-        align="middle">
-        <UserInfo/>
-      </Row>
-
-
-
-
-      <Row>
-
-        <LogoutButton />
+  return (<div id="components-form-profile">
+  <Row
+    justify="center" 
+    align="middle">
+    <UserInfo user={props.user} status={props.status} changePasswordSuccess={props.changePasswordSuccess}/>
+  </Row>
+  
+  <Row>
         <UserEventsTickets />
       </Row>
-
 
     </div>
   );
@@ -46,7 +37,9 @@ const Profile = (props) =>
 
 const mapStateToProps = (state) => {
   return{
-      user: state.profile.user
+      user: state.profile.user,
+      status: state.profile.status,
+      changePasswordSuccess: state.profile.changePasswordSuccess
   }
 }
 
