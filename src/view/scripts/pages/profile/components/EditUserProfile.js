@@ -25,7 +25,8 @@ const EditProfile = (props) => {
     const [lastName, setLastName] = useState(props.user.lastName);
     const [description, setDescription] = useState(props.user.description);
     const [fields, setFields] = useState(props.user.fields);
-      
+    const [image, setImage] = useState(props.user.image);
+
     
     const [imageChanged, setImageChanged] = useState(false)
 
@@ -34,7 +35,7 @@ const EditProfile = (props) => {
       uid: '-1',
       name: 'image.png',
       status: 'done',
-      url: `${props.user.image}`,
+      url: `${image}`,
     },]);
 
     const onChangeImage = ({ fileList: newFileList }) => {
@@ -92,6 +93,7 @@ const EditProfile = (props) => {
             Description: description,
             fields: fields
         }));
+        
         props.handleOk();
       };
     
