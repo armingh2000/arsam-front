@@ -44,7 +44,7 @@ const ProfileForm = () => {
 
         </Form.Item>
 
-        <LogoutButton />
+        
     </Form>
 
   </div>
