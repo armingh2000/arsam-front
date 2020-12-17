@@ -31,7 +31,8 @@ const ConfirmModal = ({item, dispatch, oem, olm, osm}) => {
       okText="Delete"
       cancelText="Cancel"
     >
-      <p>Are you sure you want to delete {item.name}?</p>
+      <p>Are you sure?</p>
+      <p>ticket type: {item.name}</p>
     </Modal>
   </div>)
 
