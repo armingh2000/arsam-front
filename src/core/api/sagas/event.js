@@ -209,7 +209,7 @@ export function* sendUpdateTicketTypeRequest ({payload}) {
   catch (err) {
     yield put ({
       type: ActionTypes.UPDATE_TICKET_TYPE_FAILURE,
-      payload: err
+      payload
     })
   }
 }
@@ -224,7 +224,7 @@ export function* sendAddTicketTypeRequest ({payload}) {
   catch (err) {
     yield put ({
       type: ActionTypes.ADD_TICKET_TYPE_FAILURE,
-      payload: err
+      payload
     })
   }
 }
@@ -240,7 +240,7 @@ export function* sendDeleteTicketTypeRequest ({payload}) {
   catch (err) {
     yield put ({
       type: ActionTypes.DELETE_TICKET_TYPE_FAILURE,
-      payload: err
+      payload
     })
   }
 }
@@ -255,7 +255,7 @@ export function* sendToggleRequest ({payload}) {
   catch (err) {
     yield put ({
       type: ActionTypes.TOGGLE_TICKET_FAILURE,
-      payload: err
+      payload
     })
   }
 }

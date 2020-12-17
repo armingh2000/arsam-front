@@ -5,7 +5,7 @@ import {
 } from '@ant-design/icons';
 import TicketEditModal from "./TicketEditModal";
 import TicketAddModal from "./TicketAddModal";
-import { deleteTicketType } from "../../../../../../core/api/actions/EventActions";
+import ConfirmModal from "./ConfirmModal";
 
 
 
@@ -13,18 +13,14 @@ const EventAdminTicketTypeList = ({ticketTypes, dispatch, eventId, oem, olm, osm
 {
   const { Text } = Typography;
 
-  function deleteType (ticket) {
-    dispatch(deleteTicketType({payload: {id: ticket.id, olm, osm, oem}}));
-  }
-
   return ( <div>
-            <TicketAddModal olm={olm} osm={osm} oem={osm} eventId={eventId} dispatch={dispatch}/>
+            <TicketAddModal olm={olm} osm={osm} oem={oem} eventId={eventId} dispatch={dispatch}/>
             <List
             header="Ticket Types"
             itemLayout="horizontal"
             dataSource={ticketTypes}
             renderItem={item => (
-              <List.Item actions={[<TicketEditModal olm={olm} osm={osm} oem={osm} dispatch={dispatch} ticket={item}/>, <Button type="primary" onClick={() => deleteType(item)}>delete</Button>]}>
+              <List.Item actions={[<TicketEditModal olm={olm} osm={osm} oem={oem} dispatch={dispatch} ticket={item}/>, <ConfirmModal item={item} olm={olm} osm={osm} oem={oem} dispatch={dispatch}/>]}>
                   <List.Item.Meta
                     avatar={<ContainerTwoTone twoToneColor="#006d75" />}
                     title={item.name}
