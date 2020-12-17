@@ -49,7 +49,7 @@ const profile = (state = initialState, {type, payload}) => {
             return{
                 ...state,
                 status: 'Error'
-            };    
+            };
         case ActionTypes.UPDATE_IMAGE:
             return{
                 ...state,
@@ -65,7 +65,7 @@ const profile = (state = initialState, {type, payload}) => {
             return{
                 ...state,
                 status: 'Error'
-            };    
+            };
         case ActionTypes.UPDATE_PASSWORD:
             return{
                 ...state,
@@ -81,7 +81,7 @@ const profile = (state = initialState, {type, payload}) => {
             return{
                 ...state,
                 status: 'Error'
-            };    
+            };
         default:
             return state;
     }

@@ -2,7 +2,7 @@ import {sendPostRequest} from "../api/api";
 
 const sendSignupPost = (data) => {
   return sendPostRequest({
-    url: "https://localhost:44373/api/account/register",
+    url: "api/account/register",
     data: data
   });
 };
