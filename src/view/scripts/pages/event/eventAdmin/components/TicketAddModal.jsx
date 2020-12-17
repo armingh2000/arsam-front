@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, Form, Input, Radio, Typography } from 'antd';
+import { Button, Modal, Form, Input, Radio } from 'antd';
 import moment from "moment";
 import { updateTicketType } from "../../../../../../core/api/actions/EventActions";
 import {
@@ -14,7 +14,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
   return (
     <Modal
       visible={visible}
-      title="Edit Ticket Info"
+      title="Add Ticket Type"
       okText="Add"
       cancelText="Cancel"
       onCancel={onCancel}
@@ -94,18 +94,16 @@ const TicketAddModal = ({dispatch, eventId, osm, olm, oem}) => {
     setVisible(false);
   };
 
-  const {Text} = Typography;
 
   return (
     <div align="center" style={{marginTop:"10px"}} className="add-button">
-      <Text>Add Ticket Type: </Text>
       <Button
         type="primary"
         onClick={() => {
           setVisible(true);
         }}
       >
-        <PlusCircleTwoTone />
+        Add Ticket Type
       </Button>
       <CollectionCreateForm
         visible={visible}
