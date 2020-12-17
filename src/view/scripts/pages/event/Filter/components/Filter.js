@@ -19,7 +19,7 @@ class FilterPage extends React.Component {
             membersCountMin: null,
             membersCountMax: null,
             isProject: null,
-            isPrivate: null,
+            isPrivate: false,
             dateMin: null,
             dateMax: null,
             pageNumber : 1,
@@ -39,15 +39,7 @@ class FilterPage extends React.Component {
         this.setState(() => ({categories : categories}))
     }
 
-    onChangePrivate = (e) => {
-        if(e == "public"){
-            this.setState(() => ({isPrivate : false}))
-        } else if(e == "private"){
-            this.setState(() => ({isPrivate : true}))
-        } else{
-            this.setState(() => ({isPrivate : null}))
-        }
-    }
+   
 
     onChangeProject = (e) => {
         if(e == "project"){

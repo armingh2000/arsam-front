@@ -16,8 +16,12 @@ export const updateImage = (payload) => ({
     payload
 })
 
-export const updatePassword =(payload) => ({
+export const updatePassword =(credentials, handleSuccess, handleFail) => ({
     type: ActionTypes.UPDATE_PASSWORD,
-    payload
+    payload: {
+        credentials,
+        handleSuccess,
+        handleFail
+    }
 })
 
