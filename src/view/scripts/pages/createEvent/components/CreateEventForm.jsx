@@ -168,7 +168,7 @@ const CreateEventForm = () =>{
 
 
       sendImageEventPost(
-        `event/AddImage?eventId=${eventId}`
+        `api/event/AddImage?eventId=${eventId}`
           ,
           data
           ,

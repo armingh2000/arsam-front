@@ -83,7 +83,7 @@ const UserInfo = ({user, status, dispatch}) => {
                     <Row>
                     <Col span={8}
                     className="statics">
-                        <Statistic title="Created Events" value={user.createdEvents.length} />
+                        <Statistic title="Created Events" value={user.adminInEvents.length} />
                     </Col>
                     <Col  span={8}
                     className="statics">

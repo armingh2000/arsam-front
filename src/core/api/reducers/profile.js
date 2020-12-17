@@ -10,7 +10,7 @@ const initialState = {
         image: null,
         fields: [],
         inEvents: [],
-        createdEvents: [],
+        adminInEvents: [],
     },
     status: ''
 }
@@ -50,7 +50,7 @@ const profile = (state = initialState, {type, payload}) => {
             return{
                 ...state,
                 status: 'Error'
-            };    
+            };
         case ActionTypes.UPDATE_IMAGE:
             return{
                 ...state,
@@ -68,7 +68,7 @@ const profile = (state = initialState, {type, payload}) => {
             return{
                 ...state,
                 status: 'Error'
-            };    
+            };
         default:
             return state;
     }

@@ -3,7 +3,7 @@ import {sendPostRequest} from "../api/api";
 
 const sendGLoginPost = (data) => {
   return sendPostRequest({
-    url: "account/googlelogin",
+    url: "api/account/googlelogin",
     params: {
       tokenid: data
     }

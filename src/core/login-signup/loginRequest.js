@@ -2,7 +2,7 @@ import {sendPostRequest} from "../api/api";
 
 const sendLoginPost = (data) => {
   return sendPostRequest({
-    url: "account/login",
+    url: "api/account/login",
     data: data
   });
 };

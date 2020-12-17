@@ -9,7 +9,7 @@ import {sendPostRequest} from "../api/api";
 
 const sendCreateEventPost = (data,headers) => {
   return sendPostRequest({
-    url: "event/create",
+    url: "api/event/create",
     data: data,
     headers: headers
   });
