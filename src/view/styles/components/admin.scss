@@ -13,9 +13,12 @@
   box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.16);
 }
 
-#admin-members .admin-invite{
-  width: 100%;
-  text-align: center;
+#admin-members .admin-invite {
+  margin: 20px 0;
+}
+
+#admin-members .admin-invite Button {
+  background-color: #13c2c2;
 }
 
 #admin-members .admin-cards-div {
@@ -25,11 +28,6 @@
 
 #admin-sider {
   box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.90);
-}
-
-#admin-members .right-aligned-button {
-  position: absolute;
-  right: 0;
 }
 
 #admin-request {
@@ -47,11 +45,6 @@
   box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.16);
 }
 
-#admin-request .right-aligned-button {
-  position: absolute;
-  right: 0;
-}
-
 #admin-tickets {
   min-height: 100vh;
   margin: 10px 10px;
@@ -61,7 +54,7 @@
   border: solid 1px #73cac5;
   background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.89)0%, rgba(247, 252, 252, 0.89)100%);
   width: 100%;
-  height: 100%;
+  height: 80%;
   border-radius: 10px;
   margin: 5px 0;
   box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.16);
@@ -70,12 +63,31 @@
 
 #admin-tickets-manage {
   min-height: 100vh;
-  margin: 20px 30px;
+  margin: 20px 17%;
 }
 
-#admin-tickets-manage .add-modal {
-  margin: 0 auto;
-  width: 5%;
+#admin-tickets-manage .ticket-list {
+  border: solid 1px #73cac5;
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.89)0%, rgba(247, 252, 252, 0.89)100%);
+  width: 100%;
+  height: 80%;
+  border-radius: 10px;
+  margin: 5px 0;
+  box-shadow: 0px 10px 15px rgba(61, 99, 174, 0.16);
+  padding: 10px;
+}
+
+#admin-tickets-manage .ant-list-split .ant-list-header {
+  border-bottom: 5px 0 solid #f0f0f0;
+
+}
+
+#admin-tickets-manage .ant-list-split .ant-list-item {
+  border-bottom: 5px solid #f0f0f0;
+}
+
+#admin-tickets-manage .add-button {
+  text-align: left;
 }
 
 #admin-tickets-manage Button {

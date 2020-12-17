@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, Form, Input, Radio } from 'antd';
+import { Button, Modal, Form, Input, Radio, Typography } from 'antd';
 import moment from "moment";
 import { updateTicketType } from "../../../../../../core/api/actions/EventActions";
 import {
@@ -94,10 +94,12 @@ const TicketAddModal = ({dispatch, eventId, osm, olm, oem}) => {
     setVisible(false);
   };
 
+  const {Text} = Typography;
+
   return (
-    <div align="center" style={{marginTop:"50px"}}>
+    <div align="center" style={{marginTop:"10px"}} className="add-button">
+      <Text>Add Ticket Type: </Text>
       <Button
-        className="add-modal"
         type="primary"
         onClick={() => {
           setVisible(true);

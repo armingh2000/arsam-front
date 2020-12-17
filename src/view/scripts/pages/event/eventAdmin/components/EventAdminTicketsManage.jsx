@@ -45,7 +45,7 @@ const EventAdminTicketsManage = ({ticketTypes, dispatch, eventId, ticketTypeStat
       );
     case 'success':
 
-      return  <div>
+      return  <div className="ticket-list">
                 <EventAdminTicketToggle dispatch={dispatch} eventId={eventId} event={event} oem={openErrorMessage} olm={openLoadMessage} osm={openSuccessMessage}/>
                 <EventAdminTicketTypeList eventId={eventId} dispatch={dispatch} ticketTypes={ticketTypes} oem={openErrorMessage} olm={openLoadMessage} osm={openSuccessMessage}/>
               </div>

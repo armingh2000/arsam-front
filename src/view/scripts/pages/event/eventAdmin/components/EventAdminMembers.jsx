@@ -81,7 +81,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
                 />
               {admin.email !== creator.email &&
                 <div>
-                  <Tooltip title="demote to member" placement="right" color="red">
+                  <Tooltip title="demote to member" color="red">
                   <DownCircleTwoTone
                   twoToneColor="#eb2f96"
                   style={{fontSize:40, margin:"10px 10px 0 0"}}
@@ -89,7 +89,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
                     dispatch(setMember({payload:{eventId, email:admin.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                   }}/>
                 </Tooltip>
-                <Tooltip title="remove member" placement="left" color="red" className="right-aligned-button">
+                <Tooltip title="remove member" color="red" className="right-aligned-button">
                   <CloseCircleTwoTone
                     twoToneColor="red"
                     style={{fontSize:40, margin:"10px 10px 0 0"}}
@@ -124,7 +124,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
                   title={getUserInfo(member)}
                   description="member"
                 />
-              <Tooltip title="promote to admin" placement="right" color="green">
+              <Tooltip title="promote to admin" color="green">
                 <UpCircleTwoTone
                   twoToneColor="#52c41a"
                   style={{fontSize:40, margin:"10px 10px 0 0"}}
@@ -132,7 +132,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
                     dispatch(setAdmin({payload:{eventId, email:member.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                   }}/>
               </Tooltip>
-              <Tooltip title="remove member" placement="left" color="red" className="right-aligned-button">
+              <Tooltip title="remove member" color="red" className="right-aligned-button">
                 <CloseCircleTwoTone
                   twoToneColor="red"
                   style={{fontSize:40, margin:"10px 10px 0 0"}}

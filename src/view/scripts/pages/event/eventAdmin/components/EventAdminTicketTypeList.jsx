@@ -18,7 +18,9 @@ const EventAdminTicketTypeList = ({ticketTypes, dispatch, eventId, oem, olm, osm
   }
 
   return ( <div>
+            <TicketAddModal olm={olm} osm={osm} oem={osm} eventId={eventId} dispatch={dispatch}/>
             <List
+            header="Ticket Types"
             itemLayout="horizontal"
             dataSource={ticketTypes}
             renderItem={item => (
@@ -36,7 +38,6 @@ const EventAdminTicketTypeList = ({ticketTypes, dispatch, eventId, oem, olm, osm
               </List.Item>
             )}
           />
-        <TicketAddModal olm={olm} osm={osm} oem={osm} eventId={eventId} dispatch={dispatch}/>
         </div>
   );
 

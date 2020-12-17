@@ -95,7 +95,7 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
                 description="Wants to join your event!"
               />
               <div>
-                  <Tooltip title="accept" placement="right" color="green">
+                  <Tooltip title="accept" color="green">
                   <CheckCircleTwoTone
                   twoToneColor="#52c41a"
                   style={{fontSize:40, margin:"10px 10px 0 0"}}
@@ -103,7 +103,7 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
                     dispatch(acceptJoin({payload:{eventId, email:req.user.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                   }}/>
                 </Tooltip>
-                <Tooltip title="reject" placement="left" color="red" className="right-aligned-button">
+                <Tooltip title="reject" color="red" className="right-aligned-button">
                   <CloseCircleTwoTone
                     className="right-aligned-button"
                     twoToneColor="red"
