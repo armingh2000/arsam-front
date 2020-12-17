@@ -20,7 +20,6 @@ import {
   Spin
 } from 'antd';
 import moment from 'moment';
-import EventGrid from "./EventGrid";
 import { UploadOutlined, InboxOutlined, FrownOutlined, FrownTwoTone, FilterTwoTone, RobotOutlined } from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
 import EventImages from "./EventImages";
@@ -112,7 +111,7 @@ const SearchEventForm = (props) =>{
           {
               props.events.map((item)=>{
               return(
-                <Col span={8}>
+                <Col xl={{span:8}} lg={{span:8}}  md={{span:12}} sm={{span:12}} xs={{span:24}}>
                   <Card className="card" onClick={()=>handelClick(item)}>
 
                     <EventImages images={item.images}/>

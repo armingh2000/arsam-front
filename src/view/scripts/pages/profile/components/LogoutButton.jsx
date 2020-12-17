@@ -10,6 +10,7 @@ const LogoutButton = () =>
 {
   const history = useHistory();
 
+
   function logout () {
     localStorage.clear();
     history.replace("/");

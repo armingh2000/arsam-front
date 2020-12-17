@@ -6,6 +6,7 @@ import {sendLoginPost} from "../../../../../core/login-signup/loginRequest";
 
 
 const NormalLoginForm = () => {
+  var email;
 
   const [failureMessage, setFailureMessage] = useState("");
   const [isFailed, setIsFailed] = useState(false);
@@ -14,7 +15,7 @@ const NormalLoginForm = () => {
   const history = useHistory();
   const onSuccess = ({data}) => {
     localStorage.setItem("userToken", data.token);
-    history.replace("/profile");
+    history.replace(`/profile/${email}`);
   };
 
   const onFailure = (error) => {
@@ -28,6 +29,7 @@ const NormalLoginForm = () => {
   };
 
   function onFinish(values) {
+    email=values.email;
     sendLoginPost({Email: values.email, Password: values.password}).then(onSuccess).catch(onFailure);
   };
 

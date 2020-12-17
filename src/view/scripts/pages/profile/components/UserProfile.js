@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import ErrorPic from '../Image/right.png'
 import WelcomePic from '../Image/welcome.png'
@@ -27,7 +27,7 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
     const handleOk = () => {
         setEditProfile(false);
       };
-    
+
       const handleCancel = () => {
         setEditProfile(false);
       };

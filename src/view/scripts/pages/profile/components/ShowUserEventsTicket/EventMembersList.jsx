@@ -15,6 +15,7 @@ const EventMembersList = ({members}) =>
   return color;
   }
 
+
   return (
     <div style={{textAlign:"center"}}>
       <Title level={5}>Attendies: {members.length}</Title>
@@ -28,13 +29,13 @@ const EventMembersList = ({members}) =>
         >
           {members.map((member) => {
             return (
-              <Tooltip title={member.email} placement="top">
+              <Tooltip title={member} placement="top">
                 <Avatar
                   style={{
-                    backgroundColor: 'orange',
+                    backgroundColor:getRandomColor(member.charAt(0)),
                   }}
                 >
-                  {member.email.charAt(0)}
+                  {member.charAt(0)}
                 </Avatar>
               </Tooltip>
             );
