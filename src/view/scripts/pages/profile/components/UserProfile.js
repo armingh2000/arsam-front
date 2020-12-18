@@ -59,7 +59,7 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
         }
     }
     const history = useHistory();
-   
+
     const handleMenuClick = (e) => {
 
     }
@@ -156,7 +156,7 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
            )
         case 'Loading':
             return (
-                <div style={{marginTop: '10%'}}><Spin size='large'></Spin></div>
+                <div style={{marginTop: '25%', marginBottom:'50%'}}><Spin size='large'></Spin></div>
             )
         case 'Error':
             return (
