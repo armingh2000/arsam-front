@@ -22,14 +22,14 @@ const Profile = (props) =>
   console.log("userToken :" + localStorage.getItem("userToken"));
   return (<div id="components-form-profile">
   <Row
-    justify="center" 
+    justify="center"
     align="middle">
     <UserInfo user={props.user} status={props.status} changePasswordSuccess={props.changePasswordSuccess}/>
   </Row>
-  
+
   <Row>
-        <UserEventsTickets />
-      </Row>
+    {props.status==='Success'?<UserEventsTickets />:<div></div>}
+  </Row>
 
     </div>
   );
