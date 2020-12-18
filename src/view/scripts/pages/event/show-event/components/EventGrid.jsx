@@ -71,7 +71,7 @@ const EventGrid = ({event, dispatch, eventId, role}) =>
                 </Card>
               </Col>
             </Row>
-            }
+            } 
             <Card className="card">
               <EventDescription description={event.description}/>
             </Card>
