@@ -15,7 +15,6 @@ const ChangePassword = (props) => {
     const [newPassword, setNewPassword] = useState('')
     const [repeat, setRepeat] = useState('')
     const [button, setButton] = useState(props.changePasswordSuccess)
-    console.log(props.changePasswordSuccess)
 
     const onChangeOld = (e) => {
         const pass = e.target.value;
@@ -54,8 +53,6 @@ const ChangePassword = (props) => {
       setButton(true);
       message.success('Your password has been changed successfully');
       message.warning('Please login again');
-     
-      
     }
 
     const handleFail = (data) => {

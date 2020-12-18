@@ -29,14 +29,21 @@ const EditProfile = (props) => {
 
     
     const [imageChanged, setImageChanged] = useState(false)
-
     //Set image
     const [fileList, setFileList] = useState([{
       uid: '-1',
       name: 'image.png',
       status: 'done',
-      url: `${image}`,
-    },]);
+      url: `${props.user.image}`,
+    },
+    ]);
+
+     
+
+    useEffect(() => setFileList([{ uid: '-1',
+    name: 'image.png',
+    status: 'done',
+    url: `${props.user.image}`,}]),[props.user.image])
 
     const onChangeImage = ({ fileList: newFileList }) => {
       setFileList(newFileList);
@@ -87,6 +94,12 @@ const EditProfile = (props) => {
         data.append('ProfileImage',fileList[0].originFileObj);
         props.dispatch(updateImage(data))
       }
+      if(fileList.length == 0){
+        var FormData = require('form-data');
+        var fs = require('fs');
+        var data = new FormData();
+        props.dispatch(updateImage(data))
+      }
         props.dispatch(updateProfile({
             FirstName: firstName,
             LastName: lastName,
@@ -101,9 +114,7 @@ const EditProfile = (props) => {
         props.handleCancel();
       };
 
-      
      
- 
     
     return(
         <div><Modal 
@@ -129,7 +140,6 @@ const EditProfile = (props) => {
               listType="picture-card"
               fileList={fileList}
               onChange={onChangeImage}
-              onPreview={onPreview}
             >
               {fileList.length < 1 && '+ Upload'}
             </Upload>

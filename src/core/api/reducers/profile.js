@@ -27,7 +27,9 @@ const profile = (state = initialState, {type, payload}) => {
             return{
                 ...state,
                 user: payload,
-                status: 'Success'
+                status: 'Success',
+                changePasswordSuccess:false
+
             };
         case ActionTypes.GET_USER_FAILURE:
             return{
@@ -43,7 +45,7 @@ const profile = (state = initialState, {type, payload}) => {
             return{
                 ...state,
                 user: payload,
-                status: 'Success'
+                status: 'Success',
             }
         case ActionTypes.UPDATE_PROFILE_FAILURE:
             return{
