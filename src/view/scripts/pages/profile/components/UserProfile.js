@@ -59,11 +59,7 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
         }
     }
     const history = useHistory();
-    function logout() {
-        localStorage.clear();
-        history.replace("/");
-        message.success("Successfully logged out")
-    }
+   
     const handleMenuClick = (e) => {
 
     }
