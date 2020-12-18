@@ -4,10 +4,13 @@ import { Input, Form, Modal, Select, Upload, Image, Tag} from 'antd';
 import ImgCrop from 'antd-img-crop';
 import { SoundOutlined, SafetyOutlined, TrophyOutlined, DollarCircleOutlined, FireOutlined, TeamOutlined  } from '@ant-design/icons';
 import { updateImage, updateProfile } from '../../../../../core/api/actions/UserProfileActions';
+import {useHistory} from 'react-router-dom';
 
 
-  
+
 const EditProfile = (props) => {
+  const history = useHistory();
+
     const { Option } = Select;
 
     const eventCategory=
@@ -20,19 +23,19 @@ const EditProfile = (props) => {
       <Option value={32}>Social Event</Option>
     ];
 
-    
+
     const [firstName, setFirstName] = useState(props.user.firstName);
     const [lastName, setLastName] = useState(props.user.lastName);
     const [description, setDescription] = useState(props.user.description);
     const [fields, setFields] = useState(props.user.fields);
 
-    
+
     const [imageChanged, setImageChanged] = useState(false)
     //Set image
     const [fileList, setFileList] = useState([
     ]);
 
-     
+
 
     useEffect(() => {
       if(props.user.image){
@@ -65,7 +68,7 @@ const EditProfile = (props) => {
       const imgWindow = window.open(src);
       imgWindow.document.write(image.outerHTML);
     };
-   
+
 
     const OnchangeFirstName = (e) => {
         const name = e.target.value;
@@ -95,36 +98,51 @@ const EditProfile = (props) => {
         data.append('ProfileImage',fileList[0].originFileObj);
         props.dispatch(updateImage(data))
       }
-      if(fileList.length == 0){
-        var FormData = require('form-data');
-        var fs = require('fs');
-        var data = new FormData();
-        props.dispatch(updateImage(data))
-      }
+      // if(fileList.length == 0){
+      //   var FormData = require('form-data');
+      //   var fs = require('fs');
+      //   var data = new FormData();
+      //   props.dispatch(updateImage(data))
+      // }
         props.dispatch(updateProfile({
-            FirstName: firstName,
-            LastName: lastName,
-            Description: description,
+            FirstName: ((firstName!==null)?firstName:""),
+            LastName: ((lastName!==null)?lastName:""),
+            Description: ((description!==null)?description:""),
             fields: fields
         }));
-        
+
         props.handleOk();
+        // redirect();
+        // () => window.location.reload(false)
+        // reloadPage();
       };
-    
+
+      function reloadPage(){
+        window.location.reload(false);
+      }
+
+      // function redirect(){
+      //   // const email= props.match.params.email;
+      //   console.log("user",props.user);
+      //   const email= props.user.email;
+      //
+      //   history.replace(`/profile/${email}`);
+      // }
+
       const handleCancel = () => {
         props.handleCancel();
       };
 
-     
-    
+
+
     return(
-        <div><Modal 
+        <div><Modal
         title="Edit profile"
         visible={props.visible}
         onOk={handleOk}
         onCancel={handleCancel}>
 
-        <Form 
+        <Form
         initialValues={{
           firstName:firstName,
           lastName:lastName,
@@ -145,7 +163,7 @@ const EditProfile = (props) => {
               {fileList.length < 1 && '+ Upload'}
             </Upload>
           </ImgCrop>
-            
+
             </Form.Item>
             <Form.Item
             label="First Name"
@@ -160,16 +178,16 @@ const EditProfile = (props) => {
             label="Last Name"
             name="lastName"
             labelCol={4}>
-            <Input 
+            <Input
             value={lastName}
             onChange={(e) => {OnchangeLastName(e)}}
             ></Input>
             </Form.Item>
-            <Form.Item 
+            <Form.Item
             name="description"
             label="Description"
             labelCol={4}>
-            <Input.TextArea 
+            <Input.TextArea
             value={description}
             onChange={(e) => {OnchangeDescription(e)}}></Input.TextArea>
             </Form.Item>
@@ -187,7 +205,7 @@ const EditProfile = (props) => {
             </Form.Item>
       </Form>
         </Modal>
-        
+
         </div>
     )
 }
