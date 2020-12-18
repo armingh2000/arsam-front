@@ -25,25 +25,26 @@ const EditProfile = (props) => {
     const [lastName, setLastName] = useState(props.user.lastName);
     const [description, setDescription] = useState(props.user.description);
     const [fields, setFields] = useState(props.user.fields);
-    const [image, setImage] = useState(props.user.image);
 
     
     const [imageChanged, setImageChanged] = useState(false)
     //Set image
-    const [fileList, setFileList] = useState([{
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url: `${props.user.image}`,
-    },
+    const [fileList, setFileList] = useState([
     ]);
 
      
 
-    useEffect(() => setFileList([{ uid: '-1',
+    useEffect(() => {
+      if(props.user.image){
+        setFileList([{ uid: '-1',
     name: 'image.png',
     status: 'done',
-    url: `${props.user.image}`,}]),[props.user.image])
+    url: `${props.user.image}`,}])
+      }
+      else{
+        setFileList([])
+      }
+    },[props.user.image])
 
     const onChangeImage = ({ fileList: newFileList }) => {
       setFileList(newFileList);
