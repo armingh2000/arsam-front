@@ -18,8 +18,29 @@ const UserEventsTickets=({user,status})=>{
     history.replace("/createevent");
   }
 
+  function redirect(){
+    // <div className="empty-div"><pre>               </pre></div>
+    history.replace("/filter");
+
+  }
+
+
   const operations = {
-  left:<div className="empty-div"><pre>               </pre></div>,
+  left:<Button className="btn2 center-button2" onClick={redirect}>
+    <svg>
+      <defs>
+        <linearGradient id="grad1">
+          <stop offset="0%" stop-color="#7183f5" />
+          <stop offset="100%" stop-color="#74ddfc" />
+        </linearGradient>
+      </defs>
+      <rect fill="none" stroke="url(#grad1)"></rect>
+    </svg>
+
+    <span className="center-span">Filter Page</span>
+
+  </Button>
+  ,
   right:<Button className="btn2 center-button2" onClick={handelClick}>
     <svg>
       <defs>
