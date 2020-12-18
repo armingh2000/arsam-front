@@ -31,7 +31,7 @@ const ShowEvent = ({event, dispatch, match}) =>
       );
     case 'success':
       return (<div id="show-event-component">
-            <EventGrid dispatch={dispatch} event={event.event} eventId={match.params.eventId}/>
+            <EventGrid dispatch={dispatch} event={event.event} eventId={match.params.eventId} role={event.event.myRole}/>
           </div>
         );
 
