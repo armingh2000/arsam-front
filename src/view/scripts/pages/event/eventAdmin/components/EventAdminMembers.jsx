@@ -25,7 +25,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
   const key = 'updatable';
 
   const openLoadMessage = () => {
-    message.loading({ content: 'Loading...', key });
+    message.loading({ content: 'Loading...', key, duration: 0 });
   };
 
   const openSuccessMessage = () => {
@@ -60,7 +60,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
       <Row gutter={[20,10]}>
         {admins && admins.map((admin) => {
           return (
-            <Col span={5} offset={2} >
+            <Col lg={8} xs={22} md={10}>
               <Card
                 className="card"
               >
@@ -81,7 +81,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
                 />
               {admin.email !== creator.email &&
                 <div>
-                  <Tooltip title="demote to member" placement="right" color="red">
+                  <Tooltip title="demote to member" color="red">
                   <DownCircleTwoTone
                   twoToneColor="#eb2f96"
                   style={{fontSize:40, margin:"10px 10px 0 0"}}
@@ -89,7 +89,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
                     dispatch(setMember({payload:{eventId, email:admin.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                   }}/>
                 </Tooltip>
-                <Tooltip title="remove member" placement="left" color="red" className="right-aligned-button">
+                <Tooltip title="remove member" color="red" className="right-aligned-button">
                   <CloseCircleTwoTone
                     twoToneColor="red"
                     style={{fontSize:40, margin:"10px 10px 0 0"}}
@@ -105,7 +105,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
         })}
         {members && members.map((member) => {
           return (
-            <Col span={5} offset={2} >
+            <Col  lg={8} xs={22} md={10} >
               <Card
                 className="card"
               >
@@ -124,7 +124,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
                   title={getUserInfo(member)}
                   description="member"
                 />
-              <Tooltip title="promote to admin" placement="right" color="green">
+              <Tooltip title="promote to admin" color="green">
                 <UpCircleTwoTone
                   twoToneColor="#52c41a"
                   style={{fontSize:40, margin:"10px 10px 0 0"}}
@@ -132,7 +132,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
                     dispatch(setAdmin({payload:{eventId, email:member.email, oem:openErrorMessage, olm:openLoadMessage, osm: openSuccessMessage}}))
                   }}/>
               </Tooltip>
-              <Tooltip title="remove member" placement="left" color="red" className="right-aligned-button">
+              <Tooltip title="remove member" color="red" className="right-aligned-button">
                 <CloseCircleTwoTone
                   twoToneColor="red"
                   style={{fontSize:40, margin:"10px 10px 0 0"}}

@@ -24,12 +24,17 @@ const initialState = {
        phoneNumber: null
      },
      categories: [],
+     requests: [],
+     buyingTicketEnabled: null
   },
+  ticketTypes: [],
+  tickets: [],
+  ticketStatus: 'idle',
+  ticketTypeStatus: 'idle',
   status: 'idle',
+  requestStatus: 'idle',
   adminContent: "event",
   membersStatus: 'success',
-     status: 'idle',
-
   //filters applied
   filter: {
     name: null,
@@ -51,7 +56,6 @@ const initialState = {
 };
 
 const event = ( state = initialState, {type, payload }) => {
-  // console.log("herher", payload);
   switch (type) {
     case ActionTypes.GET_EVENT_REQUEST:
       return {
@@ -334,7 +338,195 @@ const event = ( state = initialState, {type, payload }) => {
           ...state.filter,
           pageNumber:state.filter.pageNumber+1
         }
-      };
+      }
+
+    case ActionTypes.SET_REQUEST_REQUEST:
+      return {
+        ...state,
+        requestStatus: "loading"
+      }
+
+    case ActionTypes.SET_REQUEST_SUCCESS:
+      return {
+        ...state,
+        requestStatus: "success",
+        event: {
+          ...state.event,
+          requests: payload.data
+        }
+      }
+
+    case ActionTypes.SET_REQUEST_FAILURE:
+      return {
+        ...state,
+        requestStatus: "error"
+      }
+
+    case ActionTypes.ACCEPT_JOIN_REQUEST:
+      payload.olm();
+      return {
+        ...state,
+        joinStatus: "loading"
+      }
+
+    case ActionTypes.ACCEPT_JOIN_SUCCESS:
+      payload.osm();
+      return {
+        ...state,
+        joinStatus: "success",
+        event: {
+          ...state.event,
+          requests: state.event.requests.filter((req) => {return req.user.email !== payload.email}),
+          eventMembers: [...state.event.eventMembers, {email: payload.email}]
+        }
+      }
+
+    case ActionTypes.ACCEPT_JOIN_FAILURE:
+      payload.oem();
+      return {
+        ...state,
+        joinStatus: "error"
+      }
+
+    case ActionTypes.REJECT_JOIN_REQUEST:
+      payload.olm();
+      return {
+        ...state,
+      }
+
+    case ActionTypes.REJECT_JOIN_SUCCESS:
+      payload.osm();
+      return {
+        ...state,
+        event: {
+          ...state.event,
+          requests: state.event.requests.filter((req) => {return req.user.email !== payload.email})
+        }
+      }
+
+    case ActionTypes.REJECT_JOIN_FAILURE:
+      payload.oem();
+      return {
+        ...state,
+      }
+
+    case ActionTypes.GET_EVENT_TICKET_TYPE_REQUEST:
+      return {
+        ...state,
+        ticketTypeStatus: "loading"
+      }
+
+    case ActionTypes.GET_EVENT_TICKET_TYPE_SUCCESS:
+      return {
+        ...state,
+        ticketTypes: payload.data,
+        ticketTypeStatus: "success"
+      }
+
+    case ActionTypes.GET_EVENT_TICKET_TYPE_FAILURE:
+      return {
+        ...state,
+        ticketTypeStatus: "error"
+      }
+
+    case ActionTypes.UPDATE_TICKET_TYPE_REQUEST:
+      payload.olm();
+      return {
+        ...state,
+      }
+
+    case ActionTypes.UPDATE_TICKET_TYPE_SUCCESS:
+      payload.osm();
+      return {
+        ...state,
+        ticketTypes: state.ticketTypes.map((ticket) => {
+            // console.log(ticket, payload.data);
+            return ticket.id === payload.data.id ? payload.data : ticket
+        })
+      }
+
+    case ActionTypes.UPDATE_TICKET_TYPE_FAILURE:
+      payload.oem();
+      return {
+        ...state,
+      }
+
+    case ActionTypes.ADD_TICKET_TYPE_REQUEST:
+      payload.olm();
+      return {
+        ...state
+      }
+
+    case ActionTypes.ADD_TICKET_TYPE_SUCCESS:
+      payload.osm();
+      return {
+        ...state,
+        ticketTypes: state.ticketTypes.concat(payload.data)
+      }
+
+    case ActionTypes.ADD_TICKET_TYPE_FAILURE:
+      payload.oem();
+      return {
+        ...state
+      }
+
+    case ActionTypes.DELETE_TICKET_TYPE_REQUEST:
+      payload.olm();
+      return {
+        ...state
+      }
+
+    case ActionTypes.DELETE_TICKET_TYPE_SUCCESS:
+      payload.osm();
+      return {
+        ...state,
+        ticketTypes: state.ticketTypes.filter((ticket) => {return ticket.id !== payload.id})
+      }
+
+    case ActionTypes.DELETE_TICKET_TYPE_FAILURE:
+      payload.oem();
+      return {
+        ...state
+      }
+
+    case ActionTypes.TOGGLE_TICKET_REQUEST:
+      payload.olm();
+      return {
+        ...state
+      }
+
+    case ActionTypes.TOGGLE_TICKET_SUCCESS:
+      payload.osm();
+      return {
+        ...state,
+        event: {
+          ...state.event,
+          buyingTicketEnabled: ! state.event.buyingTicketEnabled
+        }
+      }
+
+    case ActionTypes.TOGGLE_TICKET_FAILURE:
+      payload.oem();
+      return {
+        ...state
+      }
+
+    case ActionTypes.GET_EVENT_TICKETS_REQUEST:
+      return {
+        ...state,
+        ticketStatus: 'loading'
+      }
+    case ActionTypes.GET_EVENT_TICKETS_SUCCESS:
+      return {
+        ...state,
+        ticketStatus: 'success',
+        tickets: payload.data
+      }
+    case ActionTypes.GET_EVENT_TICKETS_FAILURE:
+      return {
+        ...state,
+        ticketStatus: 'error'
+      }
 
     default:
       return state;
