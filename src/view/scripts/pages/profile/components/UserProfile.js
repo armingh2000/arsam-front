@@ -61,7 +61,7 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
     const history = useHistory();
    
     const handleMenuClick = (e) => {
-        
+
     }
 
     const menu = (
@@ -72,7 +72,7 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
           <Menu.Item key="2">
           <LogoutButton></LogoutButton>
           </Menu.Item>
-         
+
         </Menu>
       );
 
@@ -81,8 +81,8 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
             return(
                 <div id="components-profile-User-Info">
                 <Card>
-                       <EditProfile visible={editProfile} 
-                       handleCancel={handleCancel} 
+                       <EditProfile visible={editProfile}
+                       handleCancel={handleCancel}
                        handleOk={handleOk}
                        user={user}></EditProfile>
                        <ChangePasswrod visible={changePassword}
@@ -91,7 +91,7 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                        changePasswordSuccess={changePasswordSuccess}></ChangePasswrod>
                        <Row span={24}>
                            <Col className="image">
-                               {user.image ? 
+                               {user.image ?
                                    <Avatar
                                    src={<Image src={user.image} />}
                                    size={180} style={{lineHeight:'150px'}}>
@@ -102,7 +102,7 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                                }
                            </Col>
                            <Col className="infoPart">
-       
+
                            <Row className="info">
                                <Col span={15}>
                                    <Title level={4}>{user.firstName} {user.lastName}</Title>
@@ -114,11 +114,11 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                                <SettingOutlined />
                                </Button>
                              </Dropdown>
-                               
-                               
-                               
+
+
+
                            </Row>
-       
+
                            <Row>
                            <Col span={8}
                            className="statics">
@@ -128,9 +128,9 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                            className="statics">
                                <Statistic title="In Events" value={user.inEvents.length} />
                            </Col>
-                           
+
                            </Row>
-                           
+
                            <Row className="info">
                                    {user.description}
                            </Row>
@@ -150,7 +150,7 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                            </Row>
                            </Col>
                        </Row>
-       
+
                    </Card>
                </div>
            )
@@ -173,31 +173,31 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                         <Image src={WelcomePic}
                             height='40vh'
                             width='30vh'/>
-                            <Col span={10}><Row 
-                            
+                            <Col span={10}><Row
+
                             style={{margin:'3%'}}
                             justify="center" align="middle">
-                            
-                            <Title level={4}>Something went wrong!</Title> 
+
+                            <Title level={4}>Something went wrong!</Title>
                             <Title level={4}>I think your're lost! </Title>
-                            
+
                             </Row>
                            </Col>
                             </Row>
-                            
-                            <Row 
+
+                            <Row
                             justify="center" align="middle">
                             <Col offset={10}>
                            <Button onClick={() => window.location.reload(false)}>Refresh Page</Button></Col>
                             <Image src={ErrorPic} height='200px' width='320px' style={{marginBottom:'8%'}}/></Row>
-                            
+
                         </div>
-                            
+
                     </Card>
-                    
+
                 </div>
             )
-    
+
         default:
             return(
                 <div></div>
