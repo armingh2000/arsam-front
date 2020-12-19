@@ -108,7 +108,7 @@ const EditProfile = (props) => {
             FirstName: ((firstName!==null)?firstName:""),
             LastName: ((lastName!==null)?lastName:""),
             Description: ((description!==null)?description:""),
-            fields: fields
+            fields: ((fields!=null)?fields:[])
         }));
 
         props.handleOk();
@@ -117,9 +117,9 @@ const EditProfile = (props) => {
         // reloadPage();
       };
 
-      function reloadPage(){
-        window.location.reload(false);
-      }
+      // function reloadPage(){
+      //   window.location.reload(false);
+      // }
 
       // function redirect(){
       //   // const email= props.match.params.email;
