@@ -32,6 +32,9 @@ export function* updateProfileRequest({payload}){
             type: ActionTypes.UPDATE_PROFILE_SUCCESS,
             payload: data.data
         });
+        // setTimeout(() => {window.location.reload(true);}, 1000);
+
+
     }
     catch{
         yield put ({
