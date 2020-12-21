@@ -64,7 +64,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
           }
         >
 
-          <Input placeholder="ticket price"/>
+          <Input placeholder="ticket price" type="number"/>
         </Form.Item>
 
         <Form.Item
@@ -78,7 +78,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
           }
         >
 
-          <Input placeholder="ticket capacity"/>
+          <Input placeholder="ticket capacity" type="number"/>
         </Form.Item>
 
       </Form>

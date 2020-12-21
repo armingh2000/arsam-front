@@ -57,7 +57,7 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
       message.error({ content: 'Error!', key, duration: 2 });
   };
 
-  const {Text} = Typography;
+  const {Text, Title} = Typography;
   const { Meta } = Card;
 
 
@@ -67,7 +67,7 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
       return (
         <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
           <Col>
-            <Text type="danger">Sorry, no join requests!</Text>
+            <Title type="warning" level={3}>Sorry, no join requests!</Title>
           </Col>
         </Row>
       )
