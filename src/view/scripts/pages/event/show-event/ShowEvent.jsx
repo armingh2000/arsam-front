@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getEvent } from "../../../../../core/api/actions/EventActions";
 import { withRouter } from "react-router";
 import { Spin,Typography, Row, Col } from 'antd';
+import Comment from './components/Comment';
 
 const ShowEvent = ({event, dispatch, match}) =>
 {
@@ -32,6 +33,7 @@ const ShowEvent = ({event, dispatch, match}) =>
     case 'success':
       return (<div id="show-event-component">
             <EventGrid dispatch={dispatch} event={event.event} eventId={match.params.eventId} role={event.event.myRole}/>
+            <Comment />
           </div>
         );
 
