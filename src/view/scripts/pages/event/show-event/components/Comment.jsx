@@ -115,7 +115,7 @@ const Comments = () => {
     },
     {
       author: 'mark',
-      content: "1",
+      content: "parent",
       children:[
       {
         author:'armin',
@@ -166,6 +166,22 @@ const Comments = () => {
   };
 
 
+  function handleScroll(e){
+    setScroll(e.target.scrollTop);
+    if(props.shouldSendSearchRequest && scroll % 270 > 200){
+      setScroll(0);
+      // window.FP.state.pageNumber++;
+      // props.dispatch(sendFilterRequest(window.FP.getBody()));
+      // props.filter.PageNumber++;
+      console.log("props.filter1:(SearchEventForm.jsx)");
+      console.log(props.filter);
+      props.dispatch(addFilterPageNumber());
+      props.dispatch(sendFilterRequest(getBody(props.filter),true,false));
+      console.log("props.filter2:(SearchEventForm.jsx)");
+      console.log(getBody(props.filter));
+    }
+  }
+
 
 
   return (
@@ -173,7 +189,7 @@ const Comments = () => {
 
 
       {/* {comments.length > 0 && <CommentList comments={comments} />} */}
-      <div style={{height:'200px' ,overflowY:"scroll"}}>
+      <div style={{height:'200px' ,overflowY:"scroll"}} onScroll={handleScroll}>
       <CommentList comments={data} />
       </div>
 

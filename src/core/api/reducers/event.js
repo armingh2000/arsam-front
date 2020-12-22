@@ -52,7 +52,18 @@ const initialState = {
   filteredEvents: [],
   shouldSendSearchRequest: true,
   loading:true,
-  isButtonPressed:false
+  isButtonPressed:false,
+
+
+
+
+  comments:[],
+  shouldSendGetCommentsRequest: true,
+  commentsPageSize:20,
+  commentsPageNumber:1,
+  getCommentStatus:'success',
+  addCommentStatus: 'success',
+
 };
 
 const event = ( state = initialState, {type, payload }) => {
@@ -527,6 +538,103 @@ const event = ( state = initialState, {type, payload }) => {
         ...state,
         ticketStatus: 'error'
       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    case ActionTypes.RESET_AND_GET_COMMENT_REQUEST:
+      return {
+
+      };
+
+    case ActionTypes.RESET_AND_GET_COMMENT_SUCCESS:
+      return {
+
+      };
+
+    case ActionTypes.RESET_AND_GET_COMMENT_FAILURE:
+      return {
+
+      };
+
+
+
+
+
+
+
+    case ActionTypes.GET_COMMENTS_REQUEST:
+      return {
+        ...state,
+        getCommentStatus: 'loading',
+        shouldSendGetCommentsRequest: false
+      };
+
+    case ActionTypes.GET_COMMENTS_SUCCESS:
+      return {
+        ...state,
+        getCommentStatus: 'success',
+        comments: state.comments.concat(payload),
+        shouldSendGetCommentsRequest:true,
+        commentsPageNumber: state.commentsPageNumber + 1
+      };
+
+    case ActionTypes.GET_COMMENTS_FAILURE:
+      return {
+        ...state,
+        getCommentStatus: 'error'
+      };
+
+
+
+
+
+
+
+
+
+
+    case ActionTypes.ADD_COMMENT_REQUEST:
+      return {
+        ...state,
+        addCommentStatus: 'loading',
+        comments:[],
+
+      };
+
+    case ActionTypes.ADD_COMMENT_SUCCESS:
+      return {
+        ...state,
+        addCommentStatus: 'success',
+        comments: state.comments.concat(payload),
+        shouldSendGetCommentsRequest:true,
+        commentsPageNumber: state.commentsPageNumber + 1
+      };
+
+    case ActionTypes.ADD_COMMENT_FAILURE:
+      return {
+        ...state,
+        addCommentStatus: 'error'
+      };
+
+
+
 
     default:
       return state;

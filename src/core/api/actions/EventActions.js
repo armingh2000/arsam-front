@@ -105,3 +105,32 @@ export const getTickets = ({payload}) => {
     payload
   }
 }
+
+
+
+
+
+
+
+
+export const getComments = ({payload}) =>{
+  return {
+    type:ActionTypes.GET_COMMENTS_REQUEST,
+    payload
+  }
+}
+
+
+export const addComment = ({payload}) =>{
+  return {
+    type:ActionTypes.ADD_COMMENT_REQUEST,
+    payload
+  }
+}
+
+export const resetGetComments = ({payload}) =>{
+  return {
+    type:ActionTypes.RESET_AND_GET_COMMENT_REQUEST,
+    payload
+  }
+}
