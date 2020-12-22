@@ -545,32 +545,28 @@ const event = ( state = initialState, {type, payload }) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     case ActionTypes.RESET_AND_GET_COMMENT_REQUEST:
       return {
-
+        ...state,
+        getCommentStatus: 'loading',
+        shouldSendGetCommentsRequest: false,
+        commentsPageNumber: 1,
+        comments:[]
       };
 
     case ActionTypes.RESET_AND_GET_COMMENT_SUCCESS:
       return {
-
+        ...state,
+        getCommentStatus: 'success',
+        comments: state.comments.concat(payload),
+        shouldSendGetCommentsRequest:true,
+        commentsPageNumber: state.commentsPageNumber + 1
       };
 
     case ActionTypes.RESET_AND_GET_COMMENT_FAILURE:
       return {
-
+        ...state,
+        getCommentStatus: 'error'
       };
 
 
@@ -607,24 +603,17 @@ const event = ( state = initialState, {type, payload }) => {
 
 
 
-
-
-
     case ActionTypes.ADD_COMMENT_REQUEST:
       return {
         ...state,
         addCommentStatus: 'loading',
-        comments:[],
-
       };
 
     case ActionTypes.ADD_COMMENT_SUCCESS:
       return {
         ...state,
         addCommentStatus: 'success',
-        comments: state.comments.concat(payload),
-        shouldSendGetCommentsRequest:true,
-        commentsPageNumber: state.commentsPageNumber + 1
+        // comments: state.comments.concat(payload),
       };
 
     case ActionTypes.ADD_COMMENT_FAILURE:

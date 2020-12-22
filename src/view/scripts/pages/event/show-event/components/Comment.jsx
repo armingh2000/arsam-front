@@ -94,7 +94,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
   </div>
 );
 
-const Comments = () => {
+const Comments = (props) => {
   const [data, setData] = useState([
     {
       author: 'ali',
@@ -138,6 +138,7 @@ const Comments = () => {
   ]);
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState("");
+  const [scroll, setScroll] = useState(0);
 
   const handleSubmit = () => {
     if (!value) {
@@ -168,22 +169,34 @@ const Comments = () => {
 
   function handleScroll(e){
     setScroll(e.target.scrollTop);
-    if(props.shouldSendSearchRequest && scroll % 270 > 200){
-      setScroll(0);
-      // window.FP.state.pageNumber++;
-      // props.dispatch(sendFilterRequest(window.FP.getBody()));
-      // props.filter.PageNumber++;
-      console.log("props.filter1:(SearchEventForm.jsx)");
-      console.log(props.filter);
-      props.dispatch(addFilterPageNumber());
-      props.dispatch(sendFilterRequest(getBody(props.filter),true,false));
-      console.log("props.filter2:(SearchEventForm.jsx)");
-      console.log(getBody(props.filter));
-    }
+    // if(scroll % 270 > 200){
+    //   console.log("get scroll");
+    // }
+
+
+
+
+    // if(props.shouldSendSearchRequest && scroll % 270 > 200){
+    //   setScroll(0);
+    //   // props.dispatch(sendFilterRequest(getBody(props.filter),true,false));
+    //
+    // }
+
+
+
   }
 
 
+  function getRandomColor(firstLetter) {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[(firstLetter.charCodeAt(0) * i + 14) % 16];
+    }
+    return color;
+  }
 
+  console.log("props:",props);
   return (
     <div>
 
@@ -195,10 +208,15 @@ const Comments = () => {
 
       <Comment
         avatar={
-          <Avatar
-            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-            alt="Han Solo"
-          />
+          <Tooltip title={props.profile.email} placement="top">
+              <Avatar
+                    style={{
+                      backgroundColor:getRandomColor("me".charAt(0)),
+                    }}
+                  >
+                    {props.profile.email.charAt(0)}
+              </Avatar>
+          </Tooltip>
         }
         content={
           <Editor
