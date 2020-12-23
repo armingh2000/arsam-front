@@ -16,7 +16,7 @@ import {
   sendTicketsGet
 } from "../../admin/adminRequests";
 import { sendFilterPost } from "../Filter/sendFilter";
-
+import {sendCommentGet, sendAddCommentPost} from '../event/comments';
 
 export function* getEventRequest({payload}) {
   try {
@@ -275,6 +275,52 @@ export function* sendGetTicketsRequest ({payload}) {
   }
 }
 
+
+
+
+
+export function* sendAddCommentRequest ({payload}){
+  try {
+    yield put
+    ({
+      type:ActionTypes.ADD_COMMENT_SUCCESS,
+      payload: yield sendAddCommentPost(payload)
+    })
+  }
+  catch (err) {
+    yield put
+    ({
+      type:ActionTypes.ADD_COMMENT_FAILURE,
+      payload:err
+    })
+  }
+}
+
+
+export function* sendGetCommentRequest ({payload}){
+  try {
+    yield put
+    ({
+      type:ActionTypes.GET_COMMENTS_SUCCESS,
+      payload: yield sendCommentGet(payload)
+    })
+  }
+  catch (err) {
+    yield put
+    ({
+      type:ActionTypes.GET_COMMENTS_FAILURE,
+      payload:err
+    })
+  }
+}
+
+
+
+
+
+
+
+
 export default function* root() {
   yield all([
     takeLatest(ActionTypes.GET_EVENT_REQUEST, getEventRequest),
@@ -293,5 +339,8 @@ export default function* root() {
     takeLatest(ActionTypes.TOGGLE_TICKET_REQUEST, sendToggleRequest),
     takeLatest(ActionTypes.GET_EVENT_TICKETS_REQUEST, sendGetTicketsRequest),
 
+
+    takeLatest(ActionTypes.GET_COMMENTS_REQUEST, sendGetCommentRequest),
+    takeLatest(ActionTypes.ADD_COMMENT_REQUEST, sendAddCommentRequest),
   ]);
 }

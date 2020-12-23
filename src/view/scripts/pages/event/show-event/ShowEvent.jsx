@@ -9,6 +9,7 @@ import Comment from './components/Comment';
 const ShowEvent = ({event, dispatch, match, profile}) =>
 {
   const {Text} = Typography;
+  const userToken= localStorage.getItem("userToken");
 
     useEffect(() => {
       if(match.path === "/event/:eventId") {
@@ -33,8 +34,18 @@ const ShowEvent = ({event, dispatch, match, profile}) =>
     case 'success':
       return (<div id="show-event-component">
             <EventGrid dispatch={dispatch} event={event.event} eventId={match.params.eventId} role={event.event.myRole}/>
-            {console.log("prof:",profile)}
-            {profile.email!==""?<Comment dispatch={dispatch} profile={profile}/>:<div></div>}
+
+            {(userToken!==undefined && userToken!=="")?
+            <Comment
+            dispatch={dispatch}
+            eventId={match.params.eventId}
+            userToken={userToken}
+            profile={profile}
+            event={event}
+            comments={event.comments}
+            />
+            :<div></div>}
+
           </div>
         );
 

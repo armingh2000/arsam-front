@@ -58,12 +58,9 @@ const initialState = {
 
 
   comments:[],
-  shouldSendGetCommentsRequest: true,
-  commentsPageSize:20,
-  commentsPageNumber:1,
   getCommentStatus:'success',
   addCommentStatus: 'success',
-
+  addReplyStatus: 'success',
 };
 
 const event = ( state = initialState, {type, payload }) => {
@@ -543,52 +540,17 @@ const event = ( state = initialState, {type, payload }) => {
 
 
 
-
-
-    case ActionTypes.RESET_AND_GET_COMMENT_REQUEST:
-      return {
-        ...state,
-        getCommentStatus: 'loading',
-        shouldSendGetCommentsRequest: false,
-        commentsPageNumber: 1,
-        comments:[]
-      };
-
-    case ActionTypes.RESET_AND_GET_COMMENT_SUCCESS:
-      return {
-        ...state,
-        getCommentStatus: 'success',
-        comments: state.comments.concat(payload),
-        shouldSendGetCommentsRequest:true,
-        commentsPageNumber: state.commentsPageNumber + 1
-      };
-
-    case ActionTypes.RESET_AND_GET_COMMENT_FAILURE:
-      return {
-        ...state,
-        getCommentStatus: 'error'
-      };
-
-
-
-
-
-
-
     case ActionTypes.GET_COMMENTS_REQUEST:
       return {
         ...state,
         getCommentStatus: 'loading',
-        shouldSendGetCommentsRequest: false
       };
 
     case ActionTypes.GET_COMMENTS_SUCCESS:
       return {
         ...state,
         getCommentStatus: 'success',
-        comments: state.comments.concat(payload),
-        shouldSendGetCommentsRequest:true,
-        commentsPageNumber: state.commentsPageNumber + 1
+        comments: payload.data,
       };
 
     case ActionTypes.GET_COMMENTS_FAILURE:
@@ -613,13 +575,35 @@ const event = ( state = initialState, {type, payload }) => {
       return {
         ...state,
         addCommentStatus: 'success',
-        // comments: state.comments.concat(payload),
+        comments: payload.data
       };
 
     case ActionTypes.ADD_COMMENT_FAILURE:
       return {
         ...state,
         addCommentStatus: 'error'
+      };
+
+
+
+
+    case ActionTypes.ADD_REPLY_REQUEST:
+      return {
+        ...state,
+        addReplyStatus: 'loading'
+      };
+
+    case ActionTypes.ADD_REPLY_SUCCESS:
+      return {
+        ...state,
+        addReplyStatus: 'success',
+        comments: payload
+      };
+
+    case ActionTypes.ADD_REPLY_FAILURE:
+      return {
+        ...state,
+        addReplyStatus: 'error'
       };
 
 

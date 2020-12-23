@@ -134,3 +134,10 @@ export const resetGetComments = ({payload}) =>{
     payload
   }
 }
+
+export const addReply = ({payload}) =>{
+  return {
+    type:ActionTypes.ADD_REPLY_REQUEST,
+    payload
+  }
+}

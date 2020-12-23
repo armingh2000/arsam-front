@@ -1,6 +1,7 @@
 import { Input, Form, Modal, Select, Upload, Image, Tag} from 'antd';
 import React, {useEffect, useState} from 'react';
 import { SoundOutlined, SafetyOutlined, TrophyOutlined, DollarCircleOutlined, FireOutlined, TeamOutlined  } from '@ant-design/icons';
+import { addComment, getComments } from "../../../../../../core/api/actions/EventActions";
 
 
 const ReplyModal = (props) => {
@@ -8,18 +9,37 @@ const ReplyModal = (props) => {
 
   const [commentText,setCommentText]=useState("");
 
+  useEffect(()=>{
+    setCommentText("");
+  },[]);
+
     const OnchangeCommentText = (e) => {
         const val = e.target.value;
         setCommentText(val);
     }
 
     const handleOk = () => {
-        // props.dispatch(updateProfile({
-        //     FirstName: ((firstName!==null)?firstName:""),
-        //     LastName: ((lastName!==null)?lastName:""),
-        //     Description: ((description!==null)?description:""),
-        //     fields: ((fields!=null)?fields:[])
-        // }));
+      console.log("parent",props.parent);
+      console.log("text:",commentText);
+
+        props.dispatch(
+          addComment
+          (
+            {
+              payload:{
+                tokenId: localStorage.getItem("userToken"),
+                data:
+                {
+                EventId: props.eventId,
+                Description: commentText,
+                ParentId: props.parent.id
+                }
+              }
+            }
+          )
+        );
+
+        setCommentText("");
 
         props.handleOk();
       };
@@ -37,7 +57,6 @@ const ReplyModal = (props) => {
         visible={props.visible}
         onOk={handleOk}
         onCancel={handleCancel}>
-
         <Form
         >
             {
@@ -54,7 +73,7 @@ const ReplyModal = (props) => {
 
             <Form.Item
             label="comment text"
-            name="commentText"
+            name="commentTextItem"
             labelCol={4}>
 
 
