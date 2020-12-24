@@ -123,12 +123,19 @@ const Comments = (props) => {
   return (
     <div>
 
-
+    <div id="outer-component">
       <div id="comment-components">
 
-      <CommentList comments={props.event.comments} dispatch={props.dispatch} eventId={props.eventId}/>
+      <CommentList
+      addCommentStatus={props.event.addCommentStatus}
+      addReplyStatus={props.event.addReplyStatus}
+      getCommentStatus={props.event.getCommentStatus}
+      comments={props.event.comments}
+      dispatch={props.dispatch}
+      eventId={props.eventId}/>
 
       </div>
+    </div>
 
       <Comment
         content={

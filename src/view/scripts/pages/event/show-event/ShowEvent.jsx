@@ -36,6 +36,10 @@ const ShowEvent = ({event, dispatch, match, profile}) =>
             <EventGrid dispatch={dispatch} event={event.event} eventId={match.params.eventId} role={event.event.myRole}/>
 
             {(userToken!==undefined && userToken!=="")?
+            <div>
+            <hr />
+            <h2>Comments</h2>
+            <br />
             <Comment
             dispatch={dispatch}
             eventId={match.params.eventId}
@@ -44,6 +48,7 @@ const ShowEvent = ({event, dispatch, match, profile}) =>
             event={event}
             comments={event.comments}
             />
+            </div>
             :<div></div>}
 
           </div>

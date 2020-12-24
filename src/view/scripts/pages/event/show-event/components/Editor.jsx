@@ -12,9 +12,9 @@ const { TextArea } = Input;
 
 
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
-  <div>
+  <div id="editor-components">
     <Form.Item>
-      <TextArea rows={4} onChange={onChange} value={value} />
+      <TextArea className="get-border-radius" rows={4} onChange={onChange} value={value} />
     </Form.Item>
     <Form.Item>
       <Button
