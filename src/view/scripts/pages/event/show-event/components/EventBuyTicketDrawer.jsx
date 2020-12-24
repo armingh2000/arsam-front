@@ -5,7 +5,7 @@ import { getEventTicketType, createTicket } from "../../../../../../core/api/act
 import EventTicketTypeList from "./EventTicketTypeList";
 
 
-const EventBuyTicketDrawer = ({eventId, dispatch, ticketTypes}) =>
+const EventBuyTicketDrawer = ({eventId, dispatch, ticketTypes, buyingTicketEnabled, isProject}) =>
 {
 
   useEffect(() => {
@@ -57,8 +57,7 @@ const EventBuyTicketDrawer = ({eventId, dispatch, ticketTypes}) =>
   }
 
 
-  return (
-    <div>
+  return (ticketTypes && buyingTicketEnabled && !isProject && <div>
       <Button type="primary" onClick={showDrawer}>
         <PlusOutlined /> Ticket
       </Button>

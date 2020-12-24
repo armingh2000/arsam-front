@@ -29,7 +29,7 @@ const EventGrid = ({event, dispatch, eventId, role, ticketTypes}) =>
                     categories={event.categories}/>
                 </Col>
                 <Col>
-                  <EventBuyTicketDrawer dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/>
+                  <EventBuyTicketDrawer isProject={event.isProject} buyingTicketEnabled={event.buyingTicketEnabled} dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/>
                 </Col>
               </Row>
               </Card>
