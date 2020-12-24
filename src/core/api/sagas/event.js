@@ -282,8 +282,11 @@ export function* sendCreateTicketRequest ({payload}) {
       type: ActionTypes.CREATE_TICKET_SUCCESS,
       payload,
       result: yield sendCreateTicketPost(payload)
-    })
-    window.location.reload(false);
+    });
+    yield put ({
+      type: ActionTypes.GET_EVENT_REQUEST,
+      payload,
+    });
   }
   catch (err) {
     yield put ({
