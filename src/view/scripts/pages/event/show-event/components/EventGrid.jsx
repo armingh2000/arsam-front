@@ -8,11 +8,11 @@ import EventDetails from "./EventDetails";
 import { addTask, changeStatus } from '../../../../../../core/event/actions/taskActions'
 import Tasks from '../../checklist/Tasks'
 import TaskForm from '../../checklist/TaskForm'
-
+import EventBuyTicketDrawer from "./EventBuyTicketDrawer";
 import EventMembersList from "./EventMembersList";
 import EventDescription from "./EventDescription";
 
-const EventGrid = ({event, dispatch, eventId, role}) =>
+const EventGrid = ({event, dispatch, eventId, role, ticketTypes}) =>
 {
   return (<div>
             <Card className="card">
@@ -27,6 +27,9 @@ const EventGrid = ({event, dispatch, eventId, role}) =>
                     endDate={event.endDate}
                     creator={event.creator}
                     categories={event.categories}/>
+                </Col>
+                <Col>
+                  <EventBuyTicketDrawer dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/>
                 </Col>
               </Row>
               </Card>
@@ -71,7 +74,7 @@ const EventGrid = ({event, dispatch, eventId, role}) =>
                 </Card>
               </Col>
             </Row>
-            } 
+            }
             <Card className="card">
               <EventDescription description={event.description}/>
             </Card>
