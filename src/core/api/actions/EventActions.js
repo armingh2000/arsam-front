@@ -105,3 +105,10 @@ export const getTickets = ({payload}) => {
     payload
   }
 }
+
+export const createTicket = ({payload}) => {
+  return {
+    type: ActionTypes.CREATE_TICKET_REQUEST,
+    payload
+  }
+}

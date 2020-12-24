@@ -1,19 +1,35 @@
 import React, {useState, useEffect} from "react";
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker } from 'antd';
+import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import { getEventTicketType } from "../../../../../../core/api/actions/EventActions";
+import { getEventTicketType, createTicket } from "../../../../../../core/api/actions/EventActions";
+import EventTicketTypeList from "./EventTicketTypeList";
 
 
 const EventBuyTicketDrawer = ({eventId, dispatch, ticketTypes}) =>
 {
 
-    useEffect(() => {
-      dispatch(getEventTicketType({
-          payload: {
-            eventId
-          }
-      }));
-    }, []);
+  useEffect(() => {
+    dispatch(getEventTicketType({
+        payload: {
+          eventId
+        }
+    }));
+  }, []);
+
+
+  const key = 'updatable';
+
+  const openLoadMessage = () => {
+    message.loading({ content: 'Loading...', key, duration: 0 });
+  };
+
+  const openSuccessMessage = () => {
+      message.success({ content: 'Updated!', key, duration: 2 });
+  };
+
+  const openErrorMessage = () => {
+      message.error({ content: 'Error!', key, duration: 2 });
+  };
 
 
   const { Option } = Select;
@@ -32,34 +48,28 @@ const EventBuyTicketDrawer = ({eventId, dispatch, ticketTypes}) =>
     });
   };
 
+  const onFinish = (values) => {
+    dispatch(createTicket({payload: {email: values.email, typeId: values.type,
+      olm: openLoadMessage, osm: openSuccessMessage, oem: openErrorMessage,
+      eventId
+      }}));
+    console.log(values);
+  }
+
 
   return (
     <div>
       <Button type="primary" onClick={showDrawer}>
-        <PlusOutlined /> New account
+        <PlusOutlined /> Ticket
       </Button>
       <Drawer
-        title="Create a new account"
-        width={300}
+        title="Buy a ticket"
+        width={400}
         onClose={onClose}
         visible={state.visible}
         bodyStyle={{ paddingBottom: 80 }}
-        footer={
-          <div
-            style={{
-              textAlign: 'right',
-            }}
-          >
-            <Button onClick={onClose} style={{ marginRight: 8 }}>
-              Cancel
-            </Button>
-            <Button onClick={onClose} type="primary">
-              Submit
-            </Button>
-          </div>
-        }
       >
-        <Form layout="vertical" hideRequiredMark>
+        <Form layout="vertical" hideRequiredMark onFinish={onFinish}>
               <Form.Item
                 name="email"
                 label="Your Email"
@@ -82,6 +92,25 @@ const EventBuyTicketDrawer = ({eventId, dispatch, ticketTypes}) =>
                 <Select placeholder="Please choose ticket type">
                   {ticketTypes.map((type, index) => {return <Option value={type.id}>{type.name}</Option>})}
                 </Select>
+              </Form.Item>
+
+              <Form.Item>
+                <EventTicketTypeList ticketTypes={ticketTypes} />
+              </Form.Item>
+
+              <Form.Item>
+                <div
+                  style={{
+                    textAlign: 'right',
+                  }}
+                >
+                  <Button onClick={onClose} style={{ marginRight: 8 }}>
+                    Cancel
+                  </Button>
+                  <Button type="primary" htmlType="submit">
+                    Submit
+                  </Button>
+                </div>
               </Form.Item>
 
         </Form>

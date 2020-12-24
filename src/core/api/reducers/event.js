@@ -528,6 +528,24 @@ const event = ( state = initialState, {type, payload }) => {
         ticketStatus: 'error'
       }
 
+    case ActionTypes.CREATE_TICKET_REQUEST:
+      payload.olm();
+      return {
+        ...state
+      }
+
+    case ActionTypes.CREATE_TICKET_SUCCESS:
+      payload.osm();
+      return {
+        ...state
+      }
+
+    case ActionTypes.CREATE_TICKET_FAILURE:
+      payload.oem();
+      return {
+        ...state
+      }
+
     default:
       return state;
     };

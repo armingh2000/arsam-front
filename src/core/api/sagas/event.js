@@ -16,6 +16,7 @@ import {
   sendTicketsGet
 } from "../../admin/adminRequests";
 import { sendFilterPost } from "../Filter/sendFilter";
+import {sendCreateTicketPost} from "../../event/tickets/ticketRequests";
 
 
 export function* getEventRequest({payload}) {
@@ -275,6 +276,23 @@ export function* sendGetTicketsRequest ({payload}) {
   }
 }
 
+export function* sendCreateTicketRequest ({payload}) {
+  try {
+    yield put ({
+      type: ActionTypes.CREATE_TICKET_SUCCESS,
+      payload,
+      result: yield sendCreateTicketPost(payload)
+    })
+    window.location.reload(false);
+  }
+  catch (err) {
+    yield put ({
+      type: ActionTypes.CREATE_TICKET_FAILURE,
+      payload
+    })
+  }
+}
+
 export default function* root() {
   yield all([
     takeLatest(ActionTypes.GET_EVENT_REQUEST, getEventRequest),
@@ -292,6 +310,7 @@ export default function* root() {
     takeLatest(ActionTypes.DELETE_TICKET_TYPE_REQUEST, sendDeleteTicketTypeRequest),
     takeLatest(ActionTypes.TOGGLE_TICKET_REQUEST, sendToggleRequest),
     takeLatest(ActionTypes.GET_EVENT_TICKETS_REQUEST, sendGetTicketsRequest),
+    takeLatest(ActionTypes.CREATE_TICKET_REQUEST, sendCreateTicketRequest),
 
   ]);
 }
