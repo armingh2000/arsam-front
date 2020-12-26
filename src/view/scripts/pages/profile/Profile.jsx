@@ -26,7 +26,7 @@ const Profile = (props) =>
     align="middle">
     <UserInfo user={props.user} status={props.status} changePasswordSuccess={props.changePasswordSuccess}/>
   </Row>
-
+  <hr width="75%"/>
   <Row>
     {props.status==='Success'?<UserEventsTickets />:<div></div>}
   </Row>

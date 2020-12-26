@@ -80,7 +80,7 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
         case 'Success':
             return(
                 <div id="components-profile-User-Info">
-                <Card>
+                <Card className="info-card">
                        <EditProfile visible={editProfile}
                        handleCancel={handleCancel}
                        handleOk={handleOk}

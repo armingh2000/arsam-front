@@ -1,4 +1,4 @@
-import { Input, Form, Modal, Select, Upload, Image, Tag, Tooltip, Comment, Avatar, Typography} from 'antd';
+import { Input, Form, Modal, Select, Upload, Image, Tag, Tooltip, Comment, Avatar, Typography, Row, Col} from 'antd';
 import React, {useEffect, useState} from 'react';
 import { SoundOutlined, SafetyOutlined, TrophyOutlined, DollarCircleOutlined, FireOutlined, TeamOutlined  } from '@ant-design/icons';
 import { addComment, getComments } from "../../../../../../core/api/actions/EventActions";
@@ -87,14 +87,72 @@ const ReplyModal = (props) => {
 
 
     return(
-        <div>
+        <div id="modal-div">
         <Modal
         title="Reply"
         visible={props.visible}
         onOk={handleOk}
         onCancel={handleCancel}
+        width={600}
         >
 
+
+          <Row>
+            {
+                  props.parent
+                  &&
+                  <Comment
+                  author={<a onClick={()=>handleOnClickAuthor(props.parent.user.email)}>{`${props.parent.user.firstName.charAt(0).toUpperCase()+props.parent.user.firstName.slice(1)} ${props.parent.user.lastName.charAt(0).toUpperCase()+props.parent.user.lastName.slice(1)}`}</a>}
+                  avatar={
+                    <Tooltip title={props.parent.user.email} placement="top">
+                        {
+                          // <Avatar
+                          // style={{
+                          //     backgroundColor:getRandomColor(props.parent.user.email),
+                          //     }}
+                          // onClick={()=>handleOnClickAuthor(props.parent.user.email)}
+                          // >
+                          //   {props.parent.user.firstName.charAt(0).toUpperCase()+props.parent.user.lastName.charAt(0).toUpperCase()}
+                          // </Avatar>
+                        }
+                      {
+                        !(props.parent.user.image===null || props.parent.user.image===undefined || props.parent.user.image==="")?
+                        <Avatar
+                        src={<div id="reply-img-div"><Image src={props.parent.user.image} /></div>}
+                        size={50}
+                        onClick={()=>handleOnClickAuthor(props.parent.user.email)}
+                        >
+                        </Avatar>
+                        :
+                        <Avatar
+                        style={{
+                            backgroundColor:getRandomColor(props.parent.user.email),
+                            }}
+                        onClick={()=>handleOnClickAuthor(props.parent.user.email)}
+                        >
+                          {props.parent.user.firstName.charAt(0).toUpperCase()+props.parent.user.lastName.charAt(0).toUpperCase()}
+                        </Avatar>
+                      }
+                    </Tooltip>
+                    }
+                        content={
+                          <p>
+                            {props.parent.description}
+                          </p>
+                        }
+                        datetime={
+                            <Tooltip title={new Date(props.parent.dateTime).toDateString()}>
+                              <span>{new Date(props.parent.dateTime).toDateString()+" "+new Date(props.parent.dateTime).getHours()+":"+new Date(props.parent.dateTime).getMinutes()}</span>
+                            </Tooltip>
+                        }
+                      >
+                        {/*console.log("item",item)*/}
+
+                      </Comment>
+
+                      }
+          </Row>
+          <br />
 
         <Form>
 
@@ -116,53 +174,6 @@ const ReplyModal = (props) => {
             }
 
 
-              {
-                props.parent
-                &&
-
-
-
-
-                <Comment
-                author={<a onClick={()=>handleOnClickAuthor(props.parent.user.email)}>{props.parent.user.email}</a>}
-                avatar={
-                  <Tooltip title={`${props.parent.user.firstName.charAt(0).toUpperCase()+props.parent.user.firstName.slice(1)} ${props.parent.user.lastName.charAt(0).toUpperCase()+props.parent.user.lastName.slice(1)}`} placement="top">
-                      <Avatar
-                      style={{
-                          backgroundColor:getRandomColor(props.parent.user.email),
-                          }}
-                      onClick={()=>handleOnClickAuthor(props.parent.user.email)}
-                      >
-                        {props.parent.user.firstName.charAt(0).toUpperCase()+props.parent.user.lastName.charAt(0).toUpperCase()}
-                      </Avatar>
-                  </Tooltip>
-                }
-                content={
-                  <p>
-                    {props.parent.description}
-                  </p>
-                }
-                datetime={
-                    <Tooltip title={new Date(props.parent.dateTime).toDateString()}>
-                      <span>{new Date(props.parent.dateTime).toDateString()+" "+new Date(props.parent.dateTime).getHours()+":"+new Date(props.parent.dateTime).getMinutes()}</span>
-                    </Tooltip>
-                }
-              >
-                {/*console.log("item",item)*/}
-
-              </Comment>
-
-              }
-
-              {
-
-                                  // <p>
-                                  //   Replied Comment:
-                                  // <div>
-                                  //     {props.parent.description}
-                                  //   </div>
-                                  // </p>
-              }
 
             <Form.Item
             label="Comment Text"
@@ -182,6 +193,7 @@ const ReplyModal = (props) => {
 
 
           </Form>
+
         </Modal>
 
         </div>

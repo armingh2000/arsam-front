@@ -11,3 +11,23 @@
 @import "./components/user-events.scss";
 @import "./components/user-tickets.scss";
 @import "./components/comment.scss";
+
+.ant-btn{
+  border-radius: 7px;
+}
+
+.ant-btn-primary{
+  background-color: #13c2c2;
+}
+
+.ant-input{
+  border-radius: 5px;
+}
+
+.ant-modal-content{
+  border-radius: 10px;
+}
+
+.ant-modal-header{
+  border-radius: 10px;
+}

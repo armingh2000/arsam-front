@@ -37,7 +37,7 @@ const ShowEvent = ({event, dispatch, match, profile}) =>
 
             {(userToken!==undefined && userToken!=="")?
             <div>
-            <hr />
+            <hr id="top-comment-hr"/>
             <h2>Comments</h2>
             <br />
             <Comment

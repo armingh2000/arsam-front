@@ -59,6 +59,7 @@ const CommentList = ({ comments, dispatch, eventId, addCommentStatus, addReplySt
 
 
       return(<div>
+        {
         <ReplyModal
         visible={isVisibleReplyModal}
         handleOk={handleOk}
@@ -67,6 +68,7 @@ const CommentList = ({ comments, dispatch, eventId, addCommentStatus, addReplySt
         dispatch={dispatch}
         eventId={eventId}
         />
+        }
 
         {
           comments&&
@@ -76,15 +78,18 @@ const CommentList = ({ comments, dispatch, eventId, addCommentStatus, addReplySt
           return(
           <Comment
           actions={[<span key="comment-nested-reply-to" onClick={()=>handleOnClick(item)}>Reply to</span>]}
-          author={<a onClick={()=>handleOnClickAuthor(item.user.email)}>{item.user.email}</a>}
+          author={<a onClick={()=>handleOnClickAuthor(item.user.email)}>{`${item.user.firstName.charAt(0).toUpperCase()+item.user.firstName.slice(1)} ${item.user.lastName.charAt(0).toUpperCase()+item.user.lastName.slice(1)}`}</a>}
           avatar={
-            <Tooltip title={`${item.user.firstName.charAt(0).toUpperCase()+item.user.firstName.slice(1)} ${item.user.lastName.charAt(0).toUpperCase()+item.user.lastName.slice(1)}`} placement="top">
+            <Tooltip title={item.user.email} placement="top">
                 {
-                  // !(item.user.image===null || item.user.image===undefined || item.user.image==="")?
-                  // <Avatar
-                  // src={<Image src={item.user.image}/>}>
-                  // </Avatar>
-                  // :
+                  !(item.user.image===null || item.user.image===undefined || item.user.image==="")?
+                  <Avatar
+                  src={<div id="img-avatar-div"><Image src={item.user.image} height={45} width={45} /></div>}
+                  size={40}
+                  onClick={()=>handleOnClickAuthor(item.user.email)}
+                  >
+                  </Avatar>
+                  :
                   <Avatar
                   style={{
                       backgroundColor:getRandomColor(item.user.email),
