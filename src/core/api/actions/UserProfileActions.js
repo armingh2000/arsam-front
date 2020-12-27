@@ -25,3 +25,26 @@ export const updatePassword =(credentials, handleSuccess, handleFail) => ({
     }
 })
 
+export const deleteProfile = () => ({
+    type: ActionTypes.DELETE_PROFILE
+})
+
+export const chargeAccount = (credentials, handleSuccess, handleOk) => ({
+    type: ActionTypes.CHARGE_ACCOUNT,
+    payload: {
+        credentials,
+        handleSuccess,
+        handleOk
+    }
+})
+
+export const changeToPremium = (credentials, handleSuccess, handleFail, handleOk) => ({
+    type: ActionTypes.CHANGE_TO_PREMIUM,
+    payload:{
+        credentials,
+        handleSuccess,
+        handleFail,
+        handleOk
+    }
+})
+

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Input, Form, Modal, Select, Upload, Image, Tag} from 'antd';
 import ImgCrop from 'antd-img-crop';
 import { SoundOutlined, SafetyOutlined, TrophyOutlined, DollarCircleOutlined, FireOutlined, TeamOutlined  } from '@ant-design/icons';
-import { updateImage, updateProfile } from '../../../../../core/api/actions/UserProfileActions';
+import { deleteProfile, updateImage, updateProfile } from '../../../../../core/api/actions/UserProfileActions';
 import {useHistory} from 'react-router-dom';
 
 
@@ -98,6 +98,9 @@ const EditProfile = (props) => {
         data.append('ProfileImage',fileList[0].originFileObj);
         props.dispatch(updateImage(data))
       }
+      if(imageChanged && props.user.image && fileList.length == 0){
+        props.dispatch(deleteProfile())
+      }
       // if(fileList.length == 0){
       //   var FormData = require('form-data');
       //   var fs = require('fs');
@@ -159,6 +162,7 @@ const EditProfile = (props) => {
               listType="picture-card"
               fileList={fileList}
               onChange={onChangeImage}
+              onPreview={onPreview}
             >
               {fileList.length < 1 && '+ Upload'}
             </Upload>
