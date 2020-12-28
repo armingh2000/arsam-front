@@ -8,7 +8,7 @@ import EventDetails from "./EventDetails";
 import { addTask, changeStatus } from '../../../../../../core/event/actions/taskActions'
 import Tasks from '../../checklist/Tasks'
 import TaskForm from '../../checklist/TaskForm'
-
+import EventJoinRequest from "./EventJoinRequest";
 import EventMembersList from "./EventMembersList";
 import EventDescription from "./EventDescription";
 
@@ -28,6 +28,10 @@ const EventGrid = ({event, dispatch, eventId, role}) =>
                     creator={event.creator}
                     categories={event.categories}/>
                 </Col>
+                <Col>
+                  <EventJoinRequest />
+                </Col>
+
               </Row>
               </Card>
 
@@ -71,7 +75,7 @@ const EventGrid = ({event, dispatch, eventId, role}) =>
                 </Card>
               </Col>
             </Row>
-            } 
+            }
             <Card className="card">
               <EventDescription description={event.description}/>
             </Card>
