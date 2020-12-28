@@ -27,8 +27,8 @@ const EventBuyTicketDrawer = ({eventId, dispatch, ticketTypes, buyingTicketEnabl
       message.success({ content: 'Updated!', key, duration: 2 });
   };
 
-  const openErrorMessage = () => {
-      message.error({ content: 'Error!', key, duration: 2 });
+  const openErrorMessage = (text) => {
+      message.error({ content: text, key, duration: 2 });
   };
 
 
@@ -53,11 +53,9 @@ const EventBuyTicketDrawer = ({eventId, dispatch, ticketTypes, buyingTicketEnabl
       olm: openLoadMessage, osm: openSuccessMessage, oem: openErrorMessage,
       eventId
       }}));
-    console.log(values);
   }
 
-
-  return (ticketTypes && buyingTicketEnabled && !isProject && <div>
+  return (ticketTypes.length>0 && buyingTicketEnabled && !isProject && <div>
       <Button type="primary" onClick={showDrawer}>
         <PlusOutlined /> Ticket
       </Button>

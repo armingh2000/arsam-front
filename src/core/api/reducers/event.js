@@ -541,7 +541,12 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.CREATE_TICKET_FAILURE:
-      payload.oem();
+      if(payload.result.response.status === 409) {
+        payload.oem("Please insert your email!");
+      }
+      else {
+        payload.oem("Error!");
+      }
       return {
         ...state
       }

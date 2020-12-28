@@ -291,7 +291,7 @@ export function* sendCreateTicketRequest ({payload}) {
   catch (err) {
     yield put ({
       type: ActionTypes.CREATE_TICKET_FAILURE,
-      payload
+      payload: {...payload, result: err}
     })
   }
 }
