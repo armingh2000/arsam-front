@@ -2,11 +2,12 @@ import React from "react";
 import { Typography, Tag, Col, Row } from 'antd';
 import {
   UserOutlined,
-  ContainerTwoTone
+  ContainerTwoTone,
+  DollarCircleTwoTone
 } from '@ant-design/icons';
 
 
-const TicketDetails = ({type, user}) =>
+const TicketDetails = ({type, user, price}) =>
 {
   const { Text, Title } = Typography;
 
@@ -32,6 +33,11 @@ const TicketDetails = ({type, user}) =>
     </div>
 
     <br/>
+
+      <div>
+        <DollarCircleTwoTone twoToneColor="#52c41a"/>
+        <Text> {price} $</Text>
+      </div>
 
     <br/>
 
