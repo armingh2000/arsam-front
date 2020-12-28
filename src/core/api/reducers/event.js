@@ -25,7 +25,8 @@ const initialState = {
      },
      categories: [],
      requests: [],
-     buyingTicketEnabled: null
+     buyingTicketEnabled: null,
+     myRole: undefined
   },
   ticketTypes: [],
   tickets: [],
@@ -526,6 +527,25 @@ const event = ( state = initialState, {type, payload }) => {
       return {
         ...state,
         ticketStatus: 'error'
+      }
+
+    case ActionTypes.SEND_JOIN_REQUEST:
+      payload.olm();
+      return {
+        ...state
+      }
+
+    case ActionTypes.SEND_JOIN_SUCCESS:
+      payload.osm();
+      return {
+        ...state
+      }
+
+    case ActionTypes.SEND_JOIN_FAILURE:
+      if(payload.result.response.status === 400)
+        payload.owm(payload.result.response.data);
+      return {
+        ...state
       }
 
     default:

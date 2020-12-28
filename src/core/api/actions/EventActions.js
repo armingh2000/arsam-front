@@ -105,3 +105,10 @@ export const getTickets = ({payload}) => {
     payload
   }
 }
+
+export const joinRequest = ({payload}) => {
+  return {
+    type: ActionTypes.SEND_JOIN_REQUEST,
+    payload
+  }
+}

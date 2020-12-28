@@ -16,7 +16,7 @@ import {
   sendTicketsGet
 } from "../../admin/adminRequests";
 import { sendFilterPost } from "../Filter/sendFilter";
-
+import {sendJoinRequestPost} from "../../event/Join/JoinRequests";
 
 export function* getEventRequest({payload}) {
   try {
@@ -275,6 +275,22 @@ export function* sendGetTicketsRequest ({payload}) {
   }
 }
 
+export function* sendJoinRequest ({payload}) {
+  try {
+    yield put({
+      type: ActionTypes.SEND_JOIN_SUCCESS,
+      payload,
+      result: yield sendJoinRequestPost(payload)
+    })
+  }
+  catch (err) {
+    yield put ({
+      type: ActionTypes.SEND_JOIN_FAILURE,
+      payload: {...payload, result: err}
+    })
+  }
+}
+
 export default function* root() {
   yield all([
     takeLatest(ActionTypes.GET_EVENT_REQUEST, getEventRequest),
@@ -292,6 +308,7 @@ export default function* root() {
     takeLatest(ActionTypes.DELETE_TICKET_TYPE_REQUEST, sendDeleteTicketTypeRequest),
     takeLatest(ActionTypes.TOGGLE_TICKET_REQUEST, sendToggleRequest),
     takeLatest(ActionTypes.GET_EVENT_TICKETS_REQUEST, sendGetTicketsRequest),
+    takeLatest(ActionTypes.SEND_JOIN_REQUEST, sendJoinRequest),
 
   ]);
 }

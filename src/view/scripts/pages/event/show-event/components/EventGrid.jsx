@@ -28,9 +28,9 @@ const EventGrid = ({event, dispatch, eventId, role}) =>
                     creator={event.creator}
                     categories={event.categories}/>
                 </Col>
-                <Col>
-                  <EventJoinRequest />
-                </Col>
+                {!event.myRole && <Col>
+                  <EventJoinRequest dispatch={dispatch} eventId={eventId} />
+                </Col>}
 
               </Row>
               </Card>
