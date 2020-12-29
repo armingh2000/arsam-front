@@ -24,7 +24,7 @@ const EventBuyTicketDrawer = ({eventId, dispatch, ticketTypes, buyingTicketEnabl
   };
 
   const openSuccessMessage = () => {
-      message.success({ content: 'Updated!', key, duration: 2 });
+      message.success({ content: 'Successfully Bought Ticket!', key, duration: 2 });
   };
 
   const openErrorMessage = (text) => {
