@@ -1,4 +1,5 @@
 import { Tooltip, Comment, Avatar, Form, Button, Input } from "antd";
+import {SendOutlined} from '@ant-design/icons';
 import moment from "moment";
 import React, { useEffect, useState} from "react";
 import { Spin, Typography, Row, Col } from "antd";
@@ -24,6 +25,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
         type="primary"
       >
         Add Comment
+        <SendOutlined />
       </Button>
     </Form.Item>
   </div>
