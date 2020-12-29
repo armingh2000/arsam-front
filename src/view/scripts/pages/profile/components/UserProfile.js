@@ -13,16 +13,23 @@ import { UserOutlined, MailOutlined, EditOutlined,
     SafetyOutlined,
     FireOutlined,
     KeyOutlined,
-    LogoutOutlined} from '@ant-design/icons';
+    PlusOutlined,
+    CrownOutlined,
+    StarTwoTone,
+    MailTwoTone} from '@ant-design/icons';
 import EditProfile from './EditUserProfile';
 import ChangePasswrod from './ChangePasswrod';
+import ChargeAccount from './ChargeAccount';
 import LogoutButton from './LogoutButton'
+import ChangePremium from './ChangeToPremium'
 
 const { Title } = Typography;
 const UserInfo = ({user, status, changePasswordSuccess}) => {
 
     const [editProfile, setEditProfile] = useState(false);
     const [changePassword, setChangePassword] = useState(false);
+    const [chargeAccount, setChargeAccount] = useState(false);
+    const [changeToPremium, setChangeToPremium] = useState(false);
 
     const handleOk = () => {
         setEditProfile(false);
@@ -39,6 +46,26 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
     const handleCancelPass = () => {
         setChangePassword(false);
     };
+
+    const handleOkCredit = () => {
+        setChargeAccount(false);
+    };
+
+    const handleCancelCredit = () => {
+        setChargeAccount(false);
+    };
+    const handleOkPremium = () => {
+        setChangeToPremium(false);
+    };
+
+    const handleCancelPremium = () => {
+        setChangeToPremium(false);
+    };
+
+
+    const checkPremium = () => {
+        setChangeToPremium(true)
+    }
 
     const changeFields = (fields) => {
         switch(fields){
@@ -58,8 +85,6 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
             return null;
         }
     }
-    const history = useHistory();
-
     const handleMenuClick = (e) => {
 
     }
@@ -72,23 +97,39 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
           <Menu.Item key="2">
           <LogoutButton></LogoutButton>
           </Menu.Item>
-
         </Menu>
       );
+      const type = 'Free'
 
     switch (status) {
         case 'Success':
             return(
                 <div id="components-profile-User-Info">
                 <Card>
-                       <EditProfile visible={editProfile}
+                       <EditProfile 
+                       visible={editProfile}
                        handleCancel={handleCancel}
                        handleOk={handleOk}
-                       user={user}></EditProfile>
-                       <ChangePasswrod visible={changePassword}
+                       user={user}>
+                       </EditProfile>
+                       <ChangePasswrod 
+                       visible={changePassword}
                        handleCancel={handleCancelPass}
                        handleOk={handleOkPass}
-                       changePasswordSuccess={changePasswordSuccess}></ChangePasswrod>
+                       changePasswordSuccess={changePasswordSuccess}>
+                       </ChangePasswrod>
+                       <ChargeAccount
+                       visible={chargeAccount}
+                       handleCancel={handleCancelCredit}
+                       handleOk={handleOkCredit}
+                       user={user}>
+                       </ChargeAccount>
+                       <ChangePremium
+                       type={type}
+                       visible={changeToPremium}
+                       handleCancel={handleCancelPremium}
+                       handleOk={handleOkPremium}
+                       user={user}></ChangePremium>
                        <Row span={24}>
                            <Col className="image">
                                {user.image ?
@@ -101,20 +142,22 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                                    </Avatar>
                                }
                            </Col>
-                           <Col className="infoPart">
+                           <Col className="infoPart" span={16}>
 
                            <Row className="info">
-                               <Col span={15}>
+                               <Col span={12}>
                                    <Title level={4}>{user.firstName} {user.lastName}</Title>
                                </Col>
-                               <Button className="editButton" size='small' style={{fontSize:'14px'}}
+                               <Button className="editButton" size='small' style={{fontSize:'13px'}}
                                onClick={() => {setEditProfile(true) }}><EditOutlined />Edit profile</Button>
+                               
                                <Dropdown overlay={menu}>
-                               <Button size='small' style={{fontSize:'14px'}}>
+                               <Button size='small' style={{fontSize:'13px'}}>
                                <SettingOutlined />
                                </Button>
                              </Dropdown>
-
+                             <Button  className="editButton" size='small' style={{fontSize:'13px'}} onClick={checkPremium}>{user.premium && 
+                             <CrownOutlined />}{user.premium ? 'Premium' : 'Free'}</Button>
 
 
                            </Row>
@@ -128,7 +171,8 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                            className="statics">
                                <Statistic title="In Events" value={user.inEvents.length} />
                            </Col>
-
+                        
+                           
                            </Row>
 
                            <Row className="info">
@@ -142,10 +186,28 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                                    })}
                                </Col>
                            </Row>
+                           <Row >
+                           
+                                <Col 
+                                className="statics">
+                                <Statistic title="Balance" value={user.balance} prefix='$' />
+                               </Col>
+                               <Col>
+                               <Button style={{marginLeft:'30%', marginTop:'30%'}} className="editButton" onClick={() => {setChargeAccount(true)}}><PlusOutlined /> Add credit</Button>
+                               </Col>
+                            </Row>
                            <Row className="info">
-                               <Col style={{fontSize:'16px'}} span={2}><MailOutlined/></Col>
+                               <Col style={{fontSize:'16px'}} span={2}>{<MailTwoTone twoToneColor="#343aeb" style={{fontSize:'18px'}}/>}
+                               </Col>
                                <Col>
                                <a>{user.email}</a>
+                               </Col>
+                           </Row>
+                           <Row className="info">
+                               <Col style={{fontSize:'16px'}} span={2}>{<StarTwoTone twoToneColor="#f0c20c"  style={{fontSize:'18px'}}/> }
+                               </Col>
+                               <Col>
+                               {user.averagedCreatedEventsRating}
                                </Col>
                            </Row>
                            </Col>

@@ -105,3 +105,13 @@ export const getTickets = ({payload}) => {
     payload
   }
 }
+
+export const ticketRating = (credentials, handleFail, handleSuccess) =>( {
+    type: ActionTypes.TICKET_RATING,
+    payload:{
+      credentials,
+      handleFail,
+      handleSuccess
+    }
+}
+)

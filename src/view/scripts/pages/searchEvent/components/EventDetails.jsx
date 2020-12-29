@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Tag, Col, Row } from 'antd';
+import { Typography, Tag, Col, Row, Tooltip } from 'antd';
 import {
   ClockCircleOutlined,
   UserOutlined,
@@ -8,14 +8,15 @@ import {
   TeamOutlined,
   SoundOutlined,
   SafetyOutlined,
-  FireOutlined
+  FireOutlined,
+  StarTwoTone
 } from '@ant-design/icons';
 
 
-const EventDetails = ({name, startDate, endDate, creator, categories}) =>
+const EventDetails = ({name, startDate, endDate, creator, categories, rate, rateCount}) =>
 {
   const { Text, Title } = Typography;
-
+  const tooltipTitle = `${rateCount} users rated`
 
   return (<div align="top" className="event-details">
     <div className="details-header">
@@ -41,6 +42,7 @@ const EventDetails = ({name, startDate, endDate, creator, categories}) =>
         </Text>
       </Col>
     </Row>
+
     <Text className="text tags">Tags: {categories.map((tag) => {
         switch (tag) {
           case 1:
@@ -61,6 +63,10 @@ const EventDetails = ({name, startDate, endDate, creator, categories}) =>
       }
     )}
   </Text>
+  <Row justify='center' align='middle' style={{marginTop: '5%'}}>
+  <Tooltip title={tooltipTitle}>
+    <span><StarTwoTone twoToneColor="#f0c20c" style={{fontSize:'18px'}} /> {rate}</span>
+  </Tooltip></Row>
   </div>);
 }
 

@@ -16,6 +16,7 @@ import {
   sendTicketsGet
 } from "../../admin/adminRequests";
 import { sendFilterPost } from "../Filter/sendFilter";
+import sendRating from "../event/sendTicketRating";
 
 
 export function* getEventRequest({payload}) {
@@ -275,6 +276,23 @@ export function* sendGetTicketsRequest ({payload}) {
   }
 }
 
+export function* TicketRating ({payload}) {
+    try {
+      const data = yield sendRating(payload.credentials)
+      yield put ({
+        type: ActionTypes.TICKET_RATING_SUCCESS,
+        payload: data.data
+      })
+      payload.handleSuccess()
+  }
+  catch {
+    yield put ({
+      type: ActionTypes.TICKET_RATING_FAILURE,
+    })
+    payload.handleFail()
+  }
+} 
+
 export default function* root() {
   yield all([
     takeLatest(ActionTypes.GET_EVENT_REQUEST, getEventRequest),
@@ -292,6 +310,6 @@ export default function* root() {
     takeLatest(ActionTypes.DELETE_TICKET_TYPE_REQUEST, sendDeleteTicketTypeRequest),
     takeLatest(ActionTypes.TOGGLE_TICKET_REQUEST, sendToggleRequest),
     takeLatest(ActionTypes.GET_EVENT_TICKETS_REQUEST, sendGetTicketsRequest),
-
+    takeLatest(ActionTypes.TICKET_RATING, TicketRating)
   ]);
 }

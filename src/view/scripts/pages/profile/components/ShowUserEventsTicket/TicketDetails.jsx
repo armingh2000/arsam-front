@@ -1,5 +1,5 @@
-import React from "react";
-import { Typography, Tag, Col, Row } from 'antd';
+import React, { useState } from "react";
+import { Typography, Tag, Col, Row, Rate, message } from 'antd';
 import {
   ClockCircleOutlined,
   UserOutlined,
@@ -15,12 +15,28 @@ import {
   DollarCircleTwoTone,
   StarTwoTone
 } from '@ant-design/icons';
+import { now } from "moment";
+import { connect } from "react-redux";
+import { ticketRating } from '../../../../../../core/api/actions/EventActions';
+import moment from 'moment';
 
-
-const TicketDetails = ({title, price, ticketTypeName}) =>
+const TicketDetails = ({title, price, ticketTypeName, eventId, eventEndDate, dispatch}) =>
 {
   const { Text, Title } = Typography;
+  const onchangeScore = (e) => {
+    dispatch(ticketRating({
+      Id: eventId,
+      Stars: e
+    }, handleFail, handleSuccess))
+  }
 
+  const handleFail = () => {
+    message.error('You can not rate this event')
+  }
+
+  const handleSuccess = () => {
+    message.success(`Your vote for ${title} event is submited successfully`)
+  }
 
   return (
   <div align="top" className="ticket-details">
@@ -49,6 +65,12 @@ const TicketDetails = ({title, price, ticketTypeName}) =>
       <Text className="icon">{price}$</Text>
     </div>
 
+    { moment().isAfter(eventEndDate)  && 
+    <div>
+      <Rate onChange={onchangeScore}></Rate>
+    </div>
+  }
+
     <br/>
 
 
@@ -56,4 +78,4 @@ const TicketDetails = ({title, price, ticketTypeName}) =>
 );
 }
 
-export default TicketDetails;
+export default connect()(TicketDetails);
