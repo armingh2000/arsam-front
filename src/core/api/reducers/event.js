@@ -544,6 +544,12 @@ const event = ( state = initialState, {type, payload }) => {
       if(payload.result.response.status === 409) {
         payload.oem("Please insert your email!");
       }
+      else if(payload.result.response.status === 400){
+        payload.oem(payload.result.response.data);
+      }
+      else if(payload.result.response.status === 403){
+        payload.oem(payload.result.response.data);
+      }
       else {
         payload.oem("Error!");
       }
