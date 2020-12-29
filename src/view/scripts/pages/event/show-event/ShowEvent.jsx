@@ -32,10 +32,10 @@ const ShowEvent = ({event, dispatch, match, profile}) =>
         </Row>
       );
     case 'success':
+    console.log("userToken",userToken);
       return (<div id="show-event-component">
             <EventGrid dispatch={dispatch} event={event.event} eventId={match.params.eventId} role={event.event.myRole}/>
 
-            {(userToken!==undefined && userToken!=="")?
             <div>
             <hr id="top-comment-hr"/>
             <h2>Comments</h2>
@@ -49,7 +49,6 @@ const ShowEvent = ({event, dispatch, match, profile}) =>
             comments={event.comments}
             />
             </div>
-            :<div></div>}
 
           </div>
         );

@@ -9,6 +9,8 @@ import {useHistory} from 'react-router-dom';
 
 const CommentList = ({ comments, dispatch, eventId, addCommentStatus, addReplyStatus, getCommentStatus }) => {
   const history = useHistory();
+  const userToken= localStorage.getItem("userToken");
+
   const {Text} = Typography;
 
 
@@ -77,7 +79,19 @@ const CommentList = ({ comments, dispatch, eventId, addCommentStatus, addReplySt
           comments.map((item)=>{
           return(
           <Comment
-          actions={[<span key="comment-nested-reply-to" onClick={()=>handleOnClick(item)}>Reply to</span>]}
+          actions=
+          {
+            (userToken!==undefined && userToken!=="" && userToken!==null)?
+            [
+              <span
+              key="comment-nested-reply-to"
+              onClick={()=>handleOnClick(item)}>
+              Reply to
+              </span>
+            ]
+            :
+            <div></div>
+          }
           author={<a onClick={()=>handleOnClickAuthor(item.user.email)}>{`${item.user.firstName.charAt(0).toUpperCase()+item.user.firstName.slice(1)} ${item.user.lastName.charAt(0).toUpperCase()+item.user.lastName.slice(1)}`}</a>}
           avatar={
             <Tooltip title={item.user.email} placement="top">

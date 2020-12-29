@@ -137,6 +137,7 @@ const Comments = (props) => {
       </div>
     </div>
 
+    {(props.userToken!==undefined && props.userToken!=="" && props.userToken!==null)?
       <Comment
         content={
           <Editor
@@ -147,6 +148,9 @@ const Comments = (props) => {
           />
         }
       />
+      :
+      <div></div>
+    }
     </div>
   );
 };
