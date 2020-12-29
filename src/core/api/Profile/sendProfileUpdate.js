@@ -1,4 +1,4 @@
-import { sendPostRequest } from "../api";
+import { sendDeleteRequest, sendPostRequest } from "../api";
 
 const sendProfileUpdate = (data) => {
     return sendPostRequest({
@@ -29,4 +29,14 @@ const sendChangePassword = (data) => {
     })
 }
 
-export  {sendProfileUpdate, sendImageUpdate, sendChangePassword};
+const deleteProfileImage = () => {
+    return sendDeleteRequest({
+        url: `http://45.82.136.84:5000/api/account/removeimage`,
+        headers:{
+            'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+        }
+
+    })
+}
+
+export  {sendProfileUpdate, sendImageUpdate, sendChangePassword, deleteProfileImage};

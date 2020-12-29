@@ -17,6 +17,8 @@ import {
 } from "../../admin/adminRequests";
 import { sendFilterPost } from "../Filter/sendFilter";
 import {sendCommentGet, sendAddCommentPost} from '../event/comments';
+import sendRating from "../event/sendTicketRating";
+
 
 export function* getEventRequest({payload}) {
   try {
@@ -320,6 +322,22 @@ export function* sendGetCommentRequest ({payload}){
 
 
 
+export function* TicketRating ({payload}) {
+    try {
+      const data = yield sendRating(payload.credentials)
+      yield put ({
+        type: ActionTypes.TICKET_RATING_SUCCESS,
+        payload: data.data
+      })
+      payload.handleSuccess()
+  }
+  catch {
+    yield put ({
+      type: ActionTypes.TICKET_RATING_FAILURE,
+    })
+    payload.handleFail()
+  }
+}
 
 export default function* root() {
   yield all([
@@ -342,5 +360,6 @@ export default function* root() {
 
     takeLatest(ActionTypes.GET_COMMENTS_REQUEST, sendGetCommentRequest),
     takeLatest(ActionTypes.ADD_COMMENT_REQUEST, sendAddCommentRequest),
+    takeLatest(ActionTypes.TICKET_RATING, TicketRating)
   ]);
 }

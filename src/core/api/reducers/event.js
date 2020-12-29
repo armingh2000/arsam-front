@@ -25,7 +25,9 @@ const initialState = {
      },
      categories: [],
      requests: [],
-     buyingTicketEnabled: null
+     buyingTicketEnabled: null,
+     averagedRating: '',
+     ratingCount: ''
   },
   ticketTypes: [],
   tickets: [],
@@ -609,6 +611,22 @@ const event = ( state = initialState, {type, payload }) => {
 
 
 
+      case ActionTypes.TICKET_RATING:
+        return{
+            ...state,
+            status: 'loading'
+        }
+    case ActionTypes.TICKET_RATING_SUCCESS:
+        return{
+            ...state,
+            event: payload,
+            status: 'success'
+        }
+    case ActionTypes.TICKET_RATING_FAILURE:
+        return{
+            ...state,
+            status: 'error'
+        }
     default:
       return state;
     };

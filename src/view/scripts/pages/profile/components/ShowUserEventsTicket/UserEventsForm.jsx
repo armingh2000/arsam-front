@@ -17,10 +17,11 @@ import {
   Switch,
   Upload,
   Card,
-  Spin
+  Spin,
+  Tooltip
 } from 'antd';
 import moment from 'moment';
-import { UploadOutlined, InboxOutlined, FrownOutlined, FrownTwoTone, FilterTwoTone, RobotOutlined } from '@ant-design/icons';
+import { UploadOutlined, InboxOutlined, FrownOutlined, FrownTwoTone, FilterTwoTone, RobotOutlined, StarTwoTone } from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
 import EventDetails from "./EventDetails";
 import { withRouter } from "react-router";
@@ -47,7 +48,7 @@ const UserEventsForm = (props) =>{
     }
   }
 
-
+  
   if((props.events.length>0)){
     return (
       <div className="main-div">
@@ -66,12 +67,13 @@ const UserEventsForm = (props) =>{
                           startDate={item.startDate}
                           endDate={item.endDate}
                           creator={item.creator}
-                          categories={item.categories}/>
+                          categories={item.categories}
+                          rate={item.averagedRating}
+                          rateCount={item.ratingCount}/>
                     <br />
 
                     <EventMembersList
                           members={item.eventMembers}/>
-
                   </Card>
                 </Col>
               );

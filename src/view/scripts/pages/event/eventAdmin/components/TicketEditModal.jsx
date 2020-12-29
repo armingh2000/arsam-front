@@ -62,7 +62,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel, ticket }) => {
               }]
           }
         >
-          <Input/>
+          <Input type="number"/>
         </Form.Item>
 
         <Form.Item
@@ -75,7 +75,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel, ticket }) => {
               }]
           }
         >
-          <Input/>
+          <Input type="number"/>
         </Form.Item>
 
         <Form.Item

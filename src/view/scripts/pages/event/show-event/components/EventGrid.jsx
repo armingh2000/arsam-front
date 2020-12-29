@@ -26,7 +26,9 @@ const EventGrid = ({event, dispatch, eventId, role}) =>
                     startDate={event.startDate}
                     endDate={event.endDate}
                     creator={event.creator}
-                    categories={event.categories}/>
+                    categories={event.categories}
+                    rate={event.averagedRating}
+                    rateCount={event.ratingCount}/>
                 </Col>
               </Row>
               </Card>
