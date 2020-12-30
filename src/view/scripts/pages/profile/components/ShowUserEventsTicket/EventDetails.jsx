@@ -17,7 +17,7 @@ const EventDetails = ({name, startDate, endDate, creator, categories, rate, rate
 {
   const { Text, Title } = Typography;
   const tooltipTitle = `${rateCount} users rated`
-  
+
   return (<div align="top" className="event-details">
     <div className="details-header">
       <Title level={2}>{name}</Title>
