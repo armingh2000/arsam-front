@@ -13,6 +13,7 @@ const initialState = {
         balance: '',
         premium: null,
         averagedCreatedEventsRating: '',
+        isMe: null
     },
     status: '',
     changePasswordSuccess: false
