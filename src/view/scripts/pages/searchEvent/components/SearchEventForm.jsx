@@ -121,7 +121,9 @@ const SearchEventForm = (props) =>{
                           startDate={item.startDate}
                           endDate={item.endDate}
                           creator={item.creator}
-                          categories={item.categories}/>
+                          categories={item.categories}
+                          rate={item.averagedRating}
+                          rateCount={item.ratingCount}/>
 
                   </Card>
                 </Col>

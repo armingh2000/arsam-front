@@ -5,6 +5,7 @@ import {
   Col,
   Form,
   Input,
+  Rate,
   Button,
   Typography,
   Checkbox,
@@ -53,7 +54,7 @@ const UserTicketsForm = (props) =>{
 
         <div className="main-div">
 
-          <Row gutter={[20,10]}>
+          <Row gutter={[20,3]}>
 
             {
                 props.tickets.map((item)=>{
@@ -66,10 +67,13 @@ const UserTicketsForm = (props) =>{
                           title={item.eventName}
                           price={item.price}
                           ticketTypeName={item.ticketTypeName}
+                          eventId={item.eventId}
+                          eventEndDate={item.eventEndDate}
                       />
                       <br />
 
                     </Card>
+
                   </Col>
                 );
               })

@@ -17,6 +17,10 @@ import {
 } from "../../admin/adminRequests";
 import { sendFilterPost } from "../Filter/sendFilter";
 import {sendJoinRequestPost} from "../../event/Join/JoinRequests";
+import {sendCreateTicketPost} from "../../event/tickets/ticketRequests";
+import {sendCommentGet, sendAddCommentPost} from '../event/comments';
+import sendRating from "../event/sendTicketRating";
+
 
 export function* getEventRequest({payload}) {
   try {
@@ -275,6 +279,7 @@ export function* sendGetTicketsRequest ({payload}) {
   }
 }
 
+
 export function* sendJoinRequest ({payload}) {
   try {
     yield put({
@@ -288,6 +293,86 @@ export function* sendJoinRequest ({payload}) {
       type: ActionTypes.SEND_JOIN_FAILURE,
       payload: {...payload, result: err}
     })
+  }
+}
+
+export function* sendCreateTicketRequest ({payload}) {
+  try {
+    yield put ({
+      type: ActionTypes.CREATE_TICKET_SUCCESS,
+      payload,
+      result: yield sendCreateTicketPost(payload)
+    });
+    yield put ({
+      type: ActionTypes.GET_EVENT_REQUEST,
+      payload,
+    });
+  }
+  catch (err) {
+    yield put ({
+      type: ActionTypes.CREATE_TICKET_FAILURE,
+
+      payload: {...payload, result: err}
+    })
+  }
+}
+
+
+export function* sendAddCommentRequest ({payload}){
+  try {
+    yield put
+    ({
+      type:ActionTypes.ADD_COMMENT_SUCCESS,
+      payload: yield sendAddCommentPost(payload)
+    })
+  }
+  catch (err) {
+    yield put
+    ({
+      type:ActionTypes.ADD_COMMENT_FAILURE,
+      payload:err
+    })
+  }
+}
+
+
+export function* sendGetCommentRequest ({payload}){
+  try {
+    yield put
+    ({
+      type:ActionTypes.GET_COMMENTS_SUCCESS,
+      payload: yield sendCommentGet(payload)
+    })
+  }
+  catch (err) {
+    yield put
+    ({
+      type:ActionTypes.GET_COMMENTS_FAILURE,
+      payload:err
+    })
+  }
+}
+
+
+
+
+
+
+
+export function* TicketRating ({payload}) {
+    try {
+      const data = yield sendRating(payload.credentials)
+      yield put ({
+        type: ActionTypes.TICKET_RATING_SUCCESS,
+        payload: data.data
+      })
+      payload.handleSuccess()
+  }
+  catch {
+    yield put ({
+      type: ActionTypes.TICKET_RATING_FAILURE,
+    })
+    payload.handleFail()
   }
 }
 
@@ -309,6 +394,11 @@ export default function* root() {
     takeLatest(ActionTypes.TOGGLE_TICKET_REQUEST, sendToggleRequest),
     takeLatest(ActionTypes.GET_EVENT_TICKETS_REQUEST, sendGetTicketsRequest),
     takeLatest(ActionTypes.SEND_JOIN_REQUEST, sendJoinRequest),
+    takeLatest(ActionTypes.CREATE_TICKET_REQUEST, sendCreateTicketRequest),
 
+
+    takeLatest(ActionTypes.GET_COMMENTS_REQUEST, sendGetCommentRequest),
+    takeLatest(ActionTypes.ADD_COMMENT_REQUEST, sendAddCommentRequest),
+    takeLatest(ActionTypes.TICKET_RATING, TicketRating)
   ]);
 }

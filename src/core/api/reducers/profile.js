@@ -10,6 +10,9 @@ const initialState = {
         fields: [],
         inEvents: [],
         adminInEvents: [],
+        balance: '',
+        premium: null,
+        averagedCreatedEventsRating: '',
     },
     status: '',
     changePasswordSuccess: false
@@ -82,8 +85,57 @@ const profile = (state = initialState, {type, payload}) => {
         case ActionTypes.UPDATE_PASSWORD_FAILURE:
             return{
                 ...state,
-                status: 'Error'
+                status: payload !== 404 ? 'Success' : 'Error'
             };
+        case ActionTypes.CHARGE_ACCOUNT:
+            return{
+                ...state,
+                status: 'Loading'
+            }
+        case ActionTypes.CHARGE_ACCOUNT_SUCCESS:
+            return{
+                ...state,
+                user: payload,
+                status: 'Success'
+            }
+        case ActionTypes.CHARGE_ACCOUNT_FAILURE:
+            return{
+                ...state,
+                status: 'Error'
+            }
+        case ActionTypes.CHANGE_TO_PREMIUM:
+            return{
+                ...state,
+                status: 'Loading'
+            }
+        case ActionTypes.CHANGE_TO_PREMIUM_SUCCESS:
+            return{
+                ...state,
+                user: payload,
+                status: 'Success'
+            }
+        case ActionTypes.CHANGE_TO_PREMIUM_FAILURE:
+            return{
+                ...state,
+                status: payload == 400 ? 'Success' : 'Error'
+            }
+        case ActionTypes.DELETE_PROFILE:
+            return{
+                ...state,
+                status: 'Loading'
+            }
+        case ActionTypes.DELETE_PROFILE_SUCCESS:
+            return{
+                ...state,
+                user: payload,
+                status: 'Success'
+            }
+        case ActionTypes.DELETE_PROFILE_FIALURE:
+            return{
+                ...state,
+                status: 'Error'
+            }
+        
         default:
             return state;
     }

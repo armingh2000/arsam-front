@@ -4,10 +4,12 @@ import { connect } from "react-redux";
 import { getEvent } from "../../../../../core/api/actions/EventActions";
 import { withRouter } from "react-router";
 import { Spin,Typography, Row, Col } from 'antd';
+import Comment from './components/Comment';
 
-const ShowEvent = ({event, dispatch, match}) =>
+const ShowEvent = ({event, dispatch, match, profile}) =>
 {
   const {Text} = Typography;
+  const userToken= localStorage.getItem("userToken");
 
     useEffect(() => {
       if(match.path === "/event/:eventId") {
@@ -31,7 +33,22 @@ const ShowEvent = ({event, dispatch, match}) =>
       );
     case 'success':
       return (<div id="show-event-component">
-            <EventGrid dispatch={dispatch} event={event.event} eventId={match.params.eventId} role={event.event.myRole}/>
+            <EventGrid ticketTypes={event.ticketTypes} dispatch={dispatch} event={event.event} eventId={match.params.eventId} role={event.event.myRole}/>
+
+            <div>
+            <hr id="top-comment-hr"/>
+            <h2>Comments</h2>
+            <br />
+            <Comment
+            dispatch={dispatch}
+            eventId={match.params.eventId}
+            userToken={userToken}
+            profile={profile}
+            event={event}
+            comments={event.comments}
+            />
+            </div>
+
           </div>
         );
 
@@ -51,6 +68,6 @@ const ShowEvent = ({event, dispatch, match}) =>
 }
 
 
-const mapStateToProps = (state) => ({ event: state.event});
+const mapStateToProps = (state) => ({ event: state.event , profile:state.profile.user});
 const ShowTheLocationWithRouter = withRouter(ShowEvent);
 export default connect(mapStateToProps)(ShowTheLocationWithRouter);

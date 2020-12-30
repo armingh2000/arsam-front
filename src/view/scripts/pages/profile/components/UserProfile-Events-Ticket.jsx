@@ -5,7 +5,15 @@ import UserTicketsForm from "./ShowUserEventsTicket/UserTicketsForm"
 import { Tabs, Button } from 'antd';
 import { connect } from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import { TeamOutlined, ThunderboltOutlined, ShakeOutlined } from '@ant-design/icons';
+import { CalendarOutlined ,
+  ThunderboltOutlined,
+  TeamOutlined,
+  ShakeOutlined,
+  ContainerOutlined
+ } from '@ant-design/icons';
+
+
+
 
 
 const UserEventsTickets=({user,status})=>{
@@ -69,7 +77,7 @@ const UserEventsTickets=({user,status})=>{
         <TabPane
         tab={
           <div>
-            <ThunderboltOutlined />
+            <CalendarOutlined/>
             Events
           </div>
         }
@@ -84,7 +92,7 @@ const UserEventsTickets=({user,status})=>{
         <TabPane
         tab={
           <div>
-            <TeamOutlined />
+            <TeamOutlined twoToneColor="#006d75"/>
             Participations
           </div>
         }
@@ -99,7 +107,7 @@ const UserEventsTickets=({user,status})=>{
         <TabPane
         tab={
           <div>
-            <ShakeOutlined />
+            <ContainerOutlined/>
             Tickets
           </div>
         }

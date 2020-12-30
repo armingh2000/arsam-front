@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, Form, Input, Radio } from 'antd';
+import { Button, Modal, Form, Input, Radio, InputNumber } from 'antd';
 import moment from "moment";
 import { updateTicketType } from "../../../../../../core/api/actions/EventActions";
 import {
@@ -64,8 +64,8 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
           }
         >
 
-          <Input placeholder="ticket price" type="number"/>
-        </Form.Item>
+          <InputNumber placeholder="ticket price" min="0" defaultValue="0" style={{width:"100%"}}/>
+        </Form.Item> 
 
         <Form.Item
           name="capacity"
@@ -78,7 +78,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
           }
         >
 
-          <Input placeholder="ticket capacity" type="number"/>
+          <InputNumber placeholder="ticket capacity" min="0" defaultValue="0" style={{width:"100%"}}/>
         </Form.Item>
 
       </Form>

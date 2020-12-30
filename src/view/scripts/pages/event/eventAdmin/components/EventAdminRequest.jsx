@@ -27,14 +27,24 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
     }));
   }, []);
 
-  function getRandomColor(firstLetter) {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[(firstLetter.charCodeAt(0) * i + 14) % 16];
+  function getRandomColor(email) {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+
+  if(email.length<6){
+
+    for(var i = 0; i<6; i++ ){
+      color += letters[(email.charCodeAt(i%email.length)) % 16];
     }
-    return color;
   }
+  else {
+    for (var i = 0; i < 6; i++) {
+      color += letters[(email.charCodeAt(i)) % 16];
+    }
+  }
+
+  return color;
+}
 
   function getUserInfo(user) {
     return <div>
@@ -83,7 +93,7 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
                 avatar={
                   <Avatar
                     style={{
-                      backgroundColor:getRandomColor(req.user.email.charAt(0)),
+                      backgroundColor:getRandomColor(req.user.email),
                       height: 40,
                       width: 40
                     }}
