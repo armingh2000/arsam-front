@@ -28,12 +28,7 @@ const CommentList = ({ comments, dispatch, eventId, addCommentStatus, addReplySt
   var color = '#';
 
   if(email.length<6){
-    // for(var i = 0; i<email.length; i++ ){
-    //   color += letters[(email.charCodeAt(i) * i + 14) % 16];
-    // }
-    // for(var i=email.length; i<6; i++){
-    //   color += letters[(email.charCodeAt(i) * i + 14) % 16];
-    // }
+
     for(var i = 0; i<6; i++ ){
       color += letters[(email.charCodeAt(i%email.length)) % 16];
     }

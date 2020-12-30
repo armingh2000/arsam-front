@@ -14,47 +14,7 @@ const { TextArea } = Input;
 
 
 const Comments = (props) => {
-  const [data, setData] = useState([
-    {
-      author: 'ali',
-      content:
-          "happy"
-      ,
-    },
-    {
-      author: 'sohrab',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-      content:"sad"
-      ,
-      datetime: (
-        <Tooltip title={moment().subtract(2, 'days').format('YYYY-MM-DD HH:mm:ss')}>
-          <span>{moment().subtract(2, 'days').fromNow()}</span>
-        </Tooltip>
-      ),
-    },
-    {
-      author: 'mark',
-      content: "parent",
-      children:[
-      {
-        author:'armin',
-        content:"good mood"
-      }
-      ,
-      {
-        author:'mmm',
-        content:"bad mood",
-        children:[
-          {
-            author:"rep",
-            content:"reply to bad mood"
-          }
-        ]
-      }
-      ]
-    }
 
-  ]);
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState("");
 

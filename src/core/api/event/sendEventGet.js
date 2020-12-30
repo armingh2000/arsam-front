@@ -1,6 +1,7 @@
 import { sendGetRequest } from "../api";
 
-const sendEventGet = ({eventId, tokenId}) => {
+const sendEventGet = ({eventId, }) => {
+  const tokenId = localStorage.getItem("userToken");
   if(tokenId===null){
     return sendGetRequest({
       url: `api/event/get?id=${eventId}`,

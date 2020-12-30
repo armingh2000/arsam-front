@@ -37,14 +37,24 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
   };
 
 
-  function getRandomColor(firstLetter) {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[(firstLetter.charCodeAt(0) * i + 14) % 16];
+  function getRandomColor(email) {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+
+  if(email.length<6){
+
+    for(var i = 0; i<6; i++ ){
+      color += letters[(email.charCodeAt(i%email.length)) % 16];
     }
-    return color;
   }
+  else {
+    for (var i = 0; i < 6; i++) {
+      color += letters[(email.charCodeAt(i)) % 16];
+    }
+  }
+
+  return color;
+}
 
   function getUserInfo(user) {
     return <div>
@@ -68,7 +78,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
                   avatar={
                     <Avatar
                       style={{
-                        backgroundColor:getRandomColor(admin.email.charAt(0)),
+                        backgroundColor:getRandomColor(admin.email),
                         height: 40,
                         width: 40
                       }}
@@ -113,7 +123,7 @@ const EventAdminMembers = ({eventId, admins, members, dispatch, creator}) =>
                   avatar={
                     <Avatar
                       style={{
-                        backgroundColor:getRandomColor(member.email.charAt(0)),
+                        backgroundColor:getRandomColor(member.email),
                         height: 40,
                         width: 40
                       }}

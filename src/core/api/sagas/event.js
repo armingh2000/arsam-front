@@ -295,8 +295,8 @@ export function* sendCreateTicketRequest ({payload}) {
       type: ActionTypes.CREATE_TICKET_FAILURE,
       payload: {...payload, result: err}
     })
-
-
+  }
+}
 
 
 export function* sendAddCommentRequest ({payload}){
