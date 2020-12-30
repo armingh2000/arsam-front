@@ -64,7 +64,9 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
 
 
     const checkPremium = () => {
-        setChangeToPremium(true)
+        if(user.isMe){
+            setChangeToPremium(true)
+        }
     }
 
     const changeFields = (fields) => {
@@ -148,15 +150,15 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                                <Col span={12}>
                                    <Title level={4}>{user.firstName} {user.lastName}</Title>
                                </Col>
-                               <Button className="editButton" size='small' style={{fontSize:'13px'}}
-                               onClick={() => {setEditProfile(true) }}><EditOutlined />Edit profile</Button>
-
-                               <Dropdown overlay={menu}>
+                               {user.isMe && <Button className="editButton" size='small' style={{fontSize:'13px'}}
+                               onClick={() => {setEditProfile(true) }}><EditOutlined />Edit profile</Button>}
+                               
+                             {user.isMe && <Dropdown overlay={menu}>
                                <Button size='small' style={{fontSize:'13px'}}>
                                <SettingOutlined />
                                </Button>
-                             </Dropdown>
-                             <Button  className="editButton" size='small' style={{fontSize:'13px'}} onClick={checkPremium}>{user.premium &&
+                             </Dropdown>}
+                             <Button  className="editButton" size='small' style={{fontSize:'13px'}} onClick={checkPremium}>{user.premium && 
                              <CrownOutlined />}{user.premium ? 'Premium' : 'Free'}</Button>
 
 
@@ -193,7 +195,7 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                                 <Statistic title="Balance" value={user.balance} prefix='$' />
                                </Col>
                                <Col>
-                               <Button style={{marginLeft:'30%', marginTop:'30%'}} className="editButton" onClick={() => {setChargeAccount(true)}}><PlusOutlined /> Add credit</Button>
+                               {user.isMe && <Button style={{marginLeft:'30%', marginTop:'30%'}} className="editButton" onClick={() => {setChargeAccount(true)}}><PlusOutlined /> Add credit</Button>}
                                </Col>
                             </Row>
                            <Row className="info">
