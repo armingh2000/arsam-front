@@ -15,6 +15,8 @@ import EventDescription from "./EventDescription";
 
 const EventGrid = ({event, dispatch, eventId, role, ticketTypes}) =>
 {
+  const tokenId = localStorage.getItem("userToken");
+    
   return (<div>
             <Card className="card">
               <Row justify="space-around" align="middle" gutter={[8,8]}>
@@ -31,10 +33,10 @@ const EventGrid = ({event, dispatch, eventId, role, ticketTypes}) =>
                     rate={event.averagedRating}
                     rateCount={event.ratingCount}/>
                 </Col>
-                <Col>
-                    <EventBuyTicketDrawer isProject={event.isProject} buyingTicketEnabled={event.buyingTicketEnabled} dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/>
-                    {!event.myRole && <EventJoinRequest dispatch={dispatch} eventId={eventId} />}
-                </Col>
+                  {tokenId && <Col>
+                        <EventBuyTicketDrawer isProject={event.isProject} buyingTicketEnabled={event.buyingTicketEnabled} dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/>
+                        {!event.myRole && <EventJoinRequest dispatch={dispatch} eventId={eventId} />}
+                    </Col>}
 
               </Row>
               </Card>
