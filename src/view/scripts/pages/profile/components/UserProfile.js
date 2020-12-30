@@ -105,14 +105,14 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
         case 'Success':
             return(
                 <div id="components-profile-User-Info">
-                <Card>
-                       <EditProfile 
+                <Card className="info-card">
+                       <EditProfile
                        visible={editProfile}
                        handleCancel={handleCancel}
                        handleOk={handleOk}
                        user={user}>
                        </EditProfile>
-                       <ChangePasswrod 
+                       <ChangePasswrod
                        visible={changePassword}
                        handleCancel={handleCancelPass}
                        handleOk={handleOkPass}
@@ -150,13 +150,13 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                                </Col>
                                <Button className="editButton" size='small' style={{fontSize:'13px'}}
                                onClick={() => {setEditProfile(true) }}><EditOutlined />Edit profile</Button>
-                               
+
                                <Dropdown overlay={menu}>
                                <Button size='small' style={{fontSize:'13px'}}>
                                <SettingOutlined />
                                </Button>
                              </Dropdown>
-                             <Button  className="editButton" size='small' style={{fontSize:'13px'}} onClick={checkPremium}>{user.premium && 
+                             <Button  className="editButton" size='small' style={{fontSize:'13px'}} onClick={checkPremium}>{user.premium &&
                              <CrownOutlined />}{user.premium ? 'Premium' : 'Free'}</Button>
 
 
@@ -171,8 +171,8 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                            className="statics">
                                <Statistic title="In Events" value={user.inEvents.length} />
                            </Col>
-                        
-                           
+
+
                            </Row>
 
                            <Row className="info">
@@ -187,8 +187,8 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                                </Col>
                            </Row>
                            <Row >
-                           
-                                <Col 
+
+                                <Col
                                 className="statics">
                                 <Statistic title="Balance" value={user.balance} prefix='$' />
                                </Col>

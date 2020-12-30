@@ -54,7 +54,15 @@ const initialState = {
   filteredEvents: [],
   shouldSendSearchRequest: true,
   loading:true,
-  isButtonPressed:false
+  isButtonPressed:false,
+
+
+
+
+  comments:[],
+  getCommentStatus:'success',
+  addCommentStatus: 'success',
+  addReplyStatus: 'success',
 };
 
 const event = ( state = initialState, {type, payload }) => {
@@ -529,6 +537,80 @@ const event = ( state = initialState, {type, payload }) => {
         ...state,
         ticketStatus: 'error'
       }
+
+
+
+
+
+    case ActionTypes.GET_COMMENTS_REQUEST:
+      return {
+        ...state,
+        getCommentStatus: 'loading',
+      };
+
+    case ActionTypes.GET_COMMENTS_SUCCESS:
+      return {
+        ...state,
+        getCommentStatus: 'success',
+        comments: payload.data,
+      };
+
+    case ActionTypes.GET_COMMENTS_FAILURE:
+      return {
+        ...state,
+        getCommentStatus: 'error'
+      };
+
+
+
+
+
+
+
+    case ActionTypes.ADD_COMMENT_REQUEST:
+      return {
+        ...state,
+        addCommentStatus: 'loading',
+      };
+
+    case ActionTypes.ADD_COMMENT_SUCCESS:
+      return {
+        ...state,
+        addCommentStatus: 'success',
+        comments: payload.data
+      };
+
+    case ActionTypes.ADD_COMMENT_FAILURE:
+      return {
+        ...state,
+        addCommentStatus: 'error'
+      };
+
+
+
+
+    case ActionTypes.ADD_REPLY_REQUEST:
+      return {
+        ...state,
+        addReplyStatus: 'loading'
+      };
+
+    case ActionTypes.ADD_REPLY_SUCCESS:
+      return {
+        ...state,
+        addReplyStatus: 'success',
+        comments: payload
+      };
+
+    case ActionTypes.ADD_REPLY_FAILURE:
+      return {
+        ...state,
+        addReplyStatus: 'error'
+      };
+
+
+
+
       case ActionTypes.TICKET_RATING:
         return{
             ...state,
