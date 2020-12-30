@@ -538,9 +538,35 @@ const event = ( state = initialState, {type, payload }) => {
         ticketStatus: 'error'
       }
 
+    case ActionTypes.CREATE_TICKET_REQUEST:
+      payload.olm();
+      return {
+        ...state
+      }
 
+    case ActionTypes.CREATE_TICKET_SUCCESS:
+      payload.osm();
+      return {
+        ...state
+      }
 
-
+    case ActionTypes.CREATE_TICKET_FAILURE:
+      // if(payload.result.response.status === 409) {
+      //   payload.oem("Please insert your email!");
+      // }
+      // else
+      if(payload.result.response.status === 400){
+        payload.oem(payload.result.response.data);
+      }
+      else if(payload.result.response.status === 403){
+        payload.oem(payload.result.response.data);
+      }
+      else {
+        payload.oem("Error!");
+      }
+      return {
+        ...state
+      }
 
     case ActionTypes.GET_COMMENTS_REQUEST:
       return {

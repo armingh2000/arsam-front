@@ -33,7 +33,7 @@ const UserTicketsForm = (props) =>{
   const [form] = Form.useForm();
 
   const history = useHistory();
-  
+
 
   function handelClick(item){
     // redirectUser(item.id);
@@ -54,7 +54,7 @@ const UserTicketsForm = (props) =>{
 
         <div className="main-div">
 
-          <Row gutter={[20,10]}>
+          <Row gutter={[20,3]}>
 
             {
                 props.tickets.map((item)=>{
@@ -71,9 +71,9 @@ const UserTicketsForm = (props) =>{
                           eventEndDate={item.eventEndDate}
                       />
                       <br />
-                      
+
                     </Card>
-                    
+
                   </Col>
                 );
               })
