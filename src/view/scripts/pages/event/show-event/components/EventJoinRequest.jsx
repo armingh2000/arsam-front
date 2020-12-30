@@ -28,7 +28,7 @@ const EventJoinRequest = ({eventId, dispatch}) =>
     dispatch(joinRequest({payload: {eventId, owm:openWarningMessage, oem:openErrorMessage, olm:openLoadMessage, osm:openSuccessMessage}}));
   }
 
-  return <Button type="primary" onClick={onClick}><PlusOutlined/> Join</Button>
+  return <Button className="action-button" type="primary" onClick={onClick}><PlusOutlined/> Join</Button>
 }
 
 export default EventJoinRequest;
