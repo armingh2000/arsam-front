@@ -107,14 +107,14 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
         case 'Success':
             return(
                 <div id="components-profile-User-Info">
-                <Card>
-                       <EditProfile 
+                <Card className="info-card">
+                       <EditProfile
                        visible={editProfile}
                        handleCancel={handleCancel}
                        handleOk={handleOk}
                        user={user}>
                        </EditProfile>
-                       <ChangePasswrod 
+                       <ChangePasswrod
                        visible={changePassword}
                        handleCancel={handleCancelPass}
                        handleOk={handleOkPass}
@@ -173,8 +173,8 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                            className="statics">
                                <Statistic title="In Events" value={user.inEvents.length} />
                            </Col>
-                        
-                           
+
+
                            </Row>
 
                            <Row className="info">
@@ -189,8 +189,8 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                                </Col>
                            </Row>
                            <Row >
-                           
-                                <Col 
+
+                                <Col
                                 className="statics">
                                 <Statistic title="Balance" value={user.balance} prefix='$' />
                                </Col>

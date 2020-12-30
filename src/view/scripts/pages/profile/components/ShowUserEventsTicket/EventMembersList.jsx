@@ -6,14 +6,33 @@ const EventMembersList = ({members}) =>
 
   const { Title } = Typography;
 
-  function getRandomColor() {
+  // function getRandomColor(firstLetter) {
+  //   var letters = '0123456789ABCDEF';
+  //   var color = '#';
+  //   for (var i = 0; i < 6; i++) {
+  //     color += letters[(firstLetter.charCodeAt(0) * i + 14) % 16];
+  //   }
+  //   return color;
+  // }
+
+  function getRandomColor(email) {
   var letters = '0123456789ABCDEF';
   var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
+
+  if(email.length<6){
+    for(var i = 0; i<6; i++ ){
+      color += letters[(email.charCodeAt(i%email.length)) % 16];
+    }
   }
+  else {
+    for (var i = 0; i < 6; i++) {
+      color += letters[(email.charCodeAt(i)) % 16];
+    }
+  }
+
   return color;
-  }
+}
+
 
 
   return (
@@ -32,7 +51,7 @@ const EventMembersList = ({members}) =>
               <Tooltip title={member} placement="top">
                 <Avatar
                   style={{
-                    backgroundColor:getRandomColor(member.charAt(0)),
+                    backgroundColor:getRandomColor(member),
                   }}
                 >
                   {member.charAt(0)}

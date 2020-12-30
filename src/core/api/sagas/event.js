@@ -16,6 +16,7 @@ import {
   sendTicketsGet
 } from "../../admin/adminRequests";
 import { sendFilterPost } from "../Filter/sendFilter";
+import {sendCommentGet, sendAddCommentPost} from '../event/comments';
 import sendRating from "../event/sendTicketRating";
 
 
@@ -276,6 +277,51 @@ export function* sendGetTicketsRequest ({payload}) {
   }
 }
 
+
+
+
+
+export function* sendAddCommentRequest ({payload}){
+  try {
+    yield put
+    ({
+      type:ActionTypes.ADD_COMMENT_SUCCESS,
+      payload: yield sendAddCommentPost(payload)
+    })
+  }
+  catch (err) {
+    yield put
+    ({
+      type:ActionTypes.ADD_COMMENT_FAILURE,
+      payload:err
+    })
+  }
+}
+
+
+export function* sendGetCommentRequest ({payload}){
+  try {
+    yield put
+    ({
+      type:ActionTypes.GET_COMMENTS_SUCCESS,
+      payload: yield sendCommentGet(payload)
+    })
+  }
+  catch (err) {
+    yield put
+    ({
+      type:ActionTypes.GET_COMMENTS_FAILURE,
+      payload:err
+    })
+  }
+}
+
+
+
+
+
+
+
 export function* TicketRating ({payload}) {
     try {
       const data = yield sendRating(payload.credentials)
@@ -291,7 +337,7 @@ export function* TicketRating ({payload}) {
     })
     payload.handleFail()
   }
-} 
+}
 
 export default function* root() {
   yield all([
@@ -310,6 +356,10 @@ export default function* root() {
     takeLatest(ActionTypes.DELETE_TICKET_TYPE_REQUEST, sendDeleteTicketTypeRequest),
     takeLatest(ActionTypes.TOGGLE_TICKET_REQUEST, sendToggleRequest),
     takeLatest(ActionTypes.GET_EVENT_TICKETS_REQUEST, sendGetTicketsRequest),
+
+
+    takeLatest(ActionTypes.GET_COMMENTS_REQUEST, sendGetCommentRequest),
+    takeLatest(ActionTypes.ADD_COMMENT_REQUEST, sendAddCommentRequest),
     takeLatest(ActionTypes.TICKET_RATING, TicketRating)
   ]);
 }
