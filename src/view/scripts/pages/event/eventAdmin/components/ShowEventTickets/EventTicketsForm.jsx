@@ -28,7 +28,7 @@ import { connect } from "react-redux";
 
 
 const EventTicketsForm = (props) =>{
-  const {Text} = Typography;
+  const {Text, Title} = Typography;
 
   if((props.tickets.length>0)){
       return (
@@ -46,6 +46,7 @@ const EventTicketsForm = (props) =>{
                       <TicketDetails
                           type={ticket.type}
                           user={ticket.user}
+                          price={ticket.price}
                       />
                       <br />
 
@@ -65,7 +66,7 @@ const EventTicketsForm = (props) =>{
     return (
       <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
         <Col>
-          <Text type="danger">Sorry, no tickets found!</Text>
+          <Title type="warning" level={3}>Sorry, no tickets found!</Title>
         </Col>
       </Row>
     );

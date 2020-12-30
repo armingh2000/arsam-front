@@ -1,11 +1,20 @@
 import { sendGetRequest } from "../api";
 
-const sendEventGet = ({eventId}) => {
-  return sendGetRequest({
+const sendEventGet = ({eventId, tokenId}) => {
+  if(tokenId===null){
+    return sendGetRequest({
       url: `api/event/get?id=${eventId}`,
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem("userToken")}`
-    }})
+    })
+  }
+  else{
+    return sendGetRequest({
+        url: `api/event/get?id=${eventId}`,
+        headers: {
+          'Authorization': `Bearer ${tokenId}`
+      }
+    })
+  }
+
 }
 
 export default sendEventGet;

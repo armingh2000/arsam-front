@@ -5,6 +5,7 @@ import {
   Col,
   Form,
   Input,
+  Rate,
   Button,
   Typography,
   Checkbox,
@@ -32,7 +33,7 @@ const UserTicketsForm = (props) =>{
   const [form] = Form.useForm();
 
   const history = useHistory();
-
+  
 
   function handelClick(item){
     // redirectUser(item.id);
@@ -66,10 +67,13 @@ const UserTicketsForm = (props) =>{
                           title={item.eventName}
                           price={item.price}
                           ticketTypeName={item.ticketTypeName}
+                          eventId={item.eventId}
+                          eventEndDate={item.eventEndDate}
                       />
                       <br />
-
+                      
                     </Card>
+                    
                   </Col>
                 );
               })
