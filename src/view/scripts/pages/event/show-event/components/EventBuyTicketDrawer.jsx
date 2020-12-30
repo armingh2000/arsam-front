@@ -56,7 +56,7 @@ const EventBuyTicketDrawer = ({eventId, dispatch, ticketTypes, buyingTicketEnabl
   }
 
   return (ticketTypes.length>0 && buyingTicketEnabled && !isProject && <div>
-      <Button type="primary" onClick={showDrawer}>
+      <Button type="primary" onClick={showDrawer} className="action-button">
         <PlusOutlined /> Ticket
       </Button>
       <Drawer

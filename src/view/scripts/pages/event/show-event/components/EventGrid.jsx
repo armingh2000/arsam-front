@@ -8,6 +8,7 @@ import EventDetails from "./EventDetails";
 import { addTask, changeStatus } from '../../../../../../core/event/actions/taskActions'
 import Tasks from '../../checklist/Tasks'
 import TaskForm from '../../checklist/TaskForm'
+import EventJoinRequest from "./EventJoinRequest";
 import EventBuyTicketDrawer from "./EventBuyTicketDrawer";
 import EventMembersList from "./EventMembersList";
 import EventDescription from "./EventDescription";
@@ -31,8 +32,10 @@ const EventGrid = ({event, dispatch, eventId, role, ticketTypes}) =>
                     rateCount={event.ratingCount}/>
                 </Col>
                 <Col>
-                  <EventBuyTicketDrawer isProject={event.isProject} buyingTicketEnabled={event.buyingTicketEnabled} dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/>
+                    <EventBuyTicketDrawer isProject={event.isProject} buyingTicketEnabled={event.buyingTicketEnabled} dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/>
+                    {!event.myRole && <EventJoinRequest dispatch={dispatch} eventId={eventId} />}
                 </Col>
+
               </Row>
               </Card>
 

@@ -27,7 +27,8 @@ const initialState = {
      requests: [],
      buyingTicketEnabled: null,
      averagedRating: '',
-     ratingCount: ''
+     ratingCount: '',
+     myRole: undefined,
   },
   ticketTypes: [],
   tickets: [],
@@ -587,12 +588,6 @@ const event = ( state = initialState, {type, payload }) => {
         getCommentStatus: 'error'
       };
 
-
-
-
-
-
-
     case ActionTypes.ADD_COMMENT_REQUEST:
       return {
         ...state,
@@ -611,9 +606,6 @@ const event = ( state = initialState, {type, payload }) => {
         ...state,
         addCommentStatus: 'error'
       };
-
-
-
 
     case ActionTypes.ADD_REPLY_REQUEST:
       return {
@@ -634,9 +626,6 @@ const event = ( state = initialState, {type, payload }) => {
         addReplyStatus: 'error'
       };
 
-
-
-
       case ActionTypes.TICKET_RATING:
         return{
             ...state,
@@ -653,6 +642,26 @@ const event = ( state = initialState, {type, payload }) => {
             ...state,
             status: 'error'
         }
+
+    case ActionTypes.SEND_JOIN_REQUEST:
+      payload.olm();
+      return {
+        ...state
+      }
+
+    case ActionTypes.SEND_JOIN_SUCCESS:
+      payload.osm();
+      return {
+        ...state
+      }
+
+    case ActionTypes.SEND_JOIN_FAILURE:
+      if(payload.result.response.status === 400)
+        payload.owm(payload.result.response.data);
+      return {
+        ...state
+      }
+
     default:
       return state;
     };
