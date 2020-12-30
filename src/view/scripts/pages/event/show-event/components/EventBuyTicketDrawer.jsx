@@ -67,20 +67,20 @@ const EventBuyTicketDrawer = ({eventId, dispatch, ticketTypes, buyingTicketEnabl
         bodyStyle={{ paddingBottom: 80 }}
       >
         <Form layout="vertical" hideRequiredMark onFinish={onFinish}>
-              <Form.Item
-                name="email"
-                label="Your Email"
-                rules={[
-                  { required: true, message: 'Please enter your email' },
-                  {
-                    type: 'email',
-                    message: 'The input is not valid E-mail!'
-                  }
-                ]}
-              >
-                <Input placeholder="Please enter your email" />
-              </Form.Item>
-
+              {// <Form.Item
+              //   name="email"
+              //   label="Your Email"
+              //   rules={[
+              //     { required: true, message: 'Please enter your email' },
+              //     {
+              //       type: 'email',
+              //       message: 'The input is not valid E-mail!'
+              //     }
+              //   ]}
+              // >
+              //   <Input placeholder="Please enter your email" />
+              // </Form.Item>
+}
               <Form.Item
                 name="type"
                 label="Type"
