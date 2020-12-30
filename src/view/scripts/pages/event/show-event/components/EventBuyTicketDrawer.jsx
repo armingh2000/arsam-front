@@ -65,6 +65,7 @@ const EventBuyTicketDrawer = ({eventId, dispatch, ticketTypes, buyingTicketEnabl
         onClose={onClose}
         visible={state.visible}
         bodyStyle={{ paddingBottom: 80 }}
+        style={{minHeight:"100vh"}}
       >
         <Form layout="vertical" hideRequiredMark onFinish={onFinish}>
               {// <Form.Item
@@ -92,13 +93,10 @@ const EventBuyTicketDrawer = ({eventId, dispatch, ticketTypes, buyingTicketEnabl
               </Form.Item>
 
               <Form.Item>
-                <EventTicketTypeList ticketTypes={ticketTypes} />
-              </Form.Item>
-
-              <Form.Item>
                 <div
                   style={{
                     textAlign: 'right',
+
                   }}
                 >
                   <Button onClick={onClose} style={{ marginRight: 8 }}>
@@ -109,6 +107,12 @@ const EventBuyTicketDrawer = ({eventId, dispatch, ticketTypes, buyingTicketEnabl
                   </Button>
                 </div>
               </Form.Item>
+
+              <Form.Item >
+                <EventTicketTypeList ticketTypes={ticketTypes} />
+              </Form.Item>
+
+
 
         </Form>
       </Drawer>
