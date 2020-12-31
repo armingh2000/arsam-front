@@ -13,9 +13,10 @@ const EventImages = (props) =>
       return (<Carousel autoplay autoplaySpeed="50" speed="1000" fade className="carousel">
             {
               imagesArray.map((img) => {
+                console.log("img",img);
                 return <div className="image-div">
                   {
-                    <Image src={`data:image/jpeg;base64,${img.image}`}  alt="event image"/>
+                    <Image src={`${img.image}`}  alt="event image"/>
                   }
                 </div>
             })
