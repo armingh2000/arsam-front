@@ -5,6 +5,9 @@
     background-size: cover;
     background-color: #f4f7fc;
     padding: 0% 5%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100vh;
 }
 
 #components-form-profile .text-center{

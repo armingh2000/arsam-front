@@ -13,7 +13,9 @@ import {
   ThunderboltOutlined,
   ThunderboltTwoTone,
   DollarCircleTwoTone,
-  StarTwoTone
+  StarTwoTone,
+  CalendarTwoTone,
+  ContainerTwoTone
 } from '@ant-design/icons';
 import { now } from "moment";
 import { connect } from "react-redux";
@@ -42,9 +44,9 @@ const TicketDetails = ({title, price, ticketTypeName, eventId, eventEndDate, dis
   <div align="top" className="ticket-details">
     <div className="details-header">
 
-      <Title level={2}>
+      <Title level={3}>
 
-      <ThunderboltTwoTone className="icon-place" twoToneColor="#fcb103"/>
+      <CalendarTwoTone className="icon-place"  twoToneColor="#006d75"/>
 
       {title}
       </Title>
@@ -54,18 +56,18 @@ const TicketDetails = ({title, price, ticketTypeName, eventId, eventEndDate, dis
 
 
     <div>
-      <StarTwoTone className="icon icon-place" twoToneColor="#fcdb03"/>
+      <ContainerTwoTone className="icon icon-place" twoToneColor="#006d75"/>
       <Text className="icon">{ticketTypeName}</Text>
     </div>
 
     <br/>
 
-    <div>
+    <div style={{marginBottom:"20px"}}>
       <DollarCircleTwoTone className="icon icon-place" twoToneColor="#52c41a"/>
       <Text className="icon">{price}$</Text>
     </div>
 
-    { moment().isAfter(eventEndDate)  && 
+    { moment().isAfter(eventEndDate)  &&
     <div>
       <Rate onChange={onchangeScore}></Rate>
     </div>

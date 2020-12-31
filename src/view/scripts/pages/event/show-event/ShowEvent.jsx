@@ -32,9 +32,8 @@ const ShowEvent = ({event, dispatch, match, profile}) =>
         </Row>
       );
     case 'success':
-    console.log("userToken",userToken);
       return (<div id="show-event-component">
-            <EventGrid dispatch={dispatch} event={event.event} eventId={match.params.eventId} role={event.event.myRole}/>
+            <EventGrid ticketTypes={event.ticketTypes} dispatch={dispatch} event={event.event} eventId={match.params.eventId} role={event.event.myRole}/>
 
             <div>
             <hr id="top-comment-hr"/>
