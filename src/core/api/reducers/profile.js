@@ -48,7 +48,10 @@ const profile = (state = initialState, {type, payload}) => {
         case ActionTypes.UPDATE_PROFILE_SUCCESS:
             return{
                 ...state,
-                user: payload,
+                user: {
+                    ...payload,
+                    isMe: true
+                },
                 status: 'Success',
             }
         case ActionTypes.UPDATE_PROFILE_FAILURE:
@@ -64,7 +67,10 @@ const profile = (state = initialState, {type, payload}) => {
         case ActionTypes.UPDATE_IMAGE_SUCCESS:
             return{
                 ...state,
-                user: payload,
+                user: {
+                    ...payload,
+                    isMe: true
+                },
                 status: 'Success'
             }
         case ActionTypes.UPDATE_IMAGE_FAILURE:
@@ -96,7 +102,10 @@ const profile = (state = initialState, {type, payload}) => {
         case ActionTypes.CHARGE_ACCOUNT_SUCCESS:
             return{
                 ...state,
-                user: payload,
+                user: {
+                    ...payload,
+                    isMe: true
+                },
                 status: 'Success'
             }
         case ActionTypes.CHARGE_ACCOUNT_FAILURE:
@@ -112,7 +121,10 @@ const profile = (state = initialState, {type, payload}) => {
         case ActionTypes.CHANGE_TO_PREMIUM_SUCCESS:
             return{
                 ...state,
-                user: payload,
+                user: {
+                    ...payload,
+                    isMe: true
+                },
                 status: 'Success'
             }
         case ActionTypes.CHANGE_TO_PREMIUM_FAILURE:
@@ -128,7 +140,10 @@ const profile = (state = initialState, {type, payload}) => {
         case ActionTypes.DELETE_PROFILE_SUCCESS:
             return{
                 ...state,
-                user: payload,
+                user: {
+                    ...payload,
+                    isMe: true
+                },
                 status: 'Success'
             }
         case ActionTypes.DELETE_PROFILE_FIALURE:

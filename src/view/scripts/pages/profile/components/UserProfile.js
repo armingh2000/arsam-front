@@ -90,7 +90,6 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
     const handleMenuClick = (e) => {
 
     }
-
     const menu = (
         <Menu onClick={handleMenuClick}>
           <Menu.Item key="1">
