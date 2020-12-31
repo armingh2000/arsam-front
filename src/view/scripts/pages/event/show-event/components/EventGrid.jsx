@@ -15,7 +15,7 @@ import EventDescription from "./EventDescription";
 
 const EventGrid = ({event, dispatch, eventId, role, ticketTypes}) =>
 {
-  const tokenId = localStorage.getItem("userToken");\
+  const tokenId = localStorage.getItem("userToken");
     
   return (<div>
             <Card className="card">
