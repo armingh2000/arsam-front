@@ -6,7 +6,7 @@ import EventAdminTicketToggle from "./EventAdminTicketToggle";
 
 
 
-const EventAdminTicketsManage = ({ticketTypes, dispatch, eventId, ticketTypeStatus, event}) =>
+const EventAdminTicketsManage = ({adminContent, ticketTypes, dispatch, eventId, ticketTypeStatus, event}) =>
 {
 
   useEffect(() => {

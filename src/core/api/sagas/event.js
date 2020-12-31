@@ -209,6 +209,10 @@ export function* sendUpdateTicketTypeRequest ({payload}) {
       type: ActionTypes.UPDATE_TICKET_TYPE_SUCCESS,
       payload: {...yield sendEditTicketPut(payload), olm: payload.olm, osm: payload.osm, oem: payload.oem}
     })
+    yield put ({
+      type: ActionTypes.GET_EVENT_REQUEST,
+      payload,
+    });
   }
   catch (err) {
     yield put ({

@@ -20,7 +20,7 @@ const EventAdminTicketTypeList = ({ticketTypes, dispatch, eventId, oem, olm, osm
             itemLayout="horizontal"
             dataSource={ticketTypes}
             renderItem={item => (
-              <List.Item actions={[<TicketEditModal olm={olm} osm={osm} oem={oem} dispatch={dispatch} ticket={item}/>, <ConfirmModal item={item} olm={olm} osm={osm} oem={oem} dispatch={dispatch}/>]}>
+              <List.Item actions={[<TicketEditModal eventId={eventId} olm={olm} osm={osm} oem={oem} dispatch={dispatch} ticket={item}/>, <ConfirmModal item={item} olm={olm} osm={osm} oem={oem} dispatch={dispatch}/>]}>
                   <List.Item.Meta
                     avatar={<ContainerTwoTone twoToneColor="#006d75" />}
                     title={item.name}

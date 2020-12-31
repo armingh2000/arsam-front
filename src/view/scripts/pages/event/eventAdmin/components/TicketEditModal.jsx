@@ -88,11 +88,11 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel, ticket }) => {
   );
 };
 
-const TicketEditModal = ({ticket, dispatch, osm, olm, oem}) => {
+const TicketEditModal = ({ticket, dispatch, eventId, osm, olm, oem}) => {
   const [visible, setVisible] = useState(false);
 
   const onCreate = (values) => {
-    dispatch(updateTicketType({payload: {ticket: values, oem, olm, osm}}));
+    dispatch(updateTicketType({payload: {eventId, ticket: values, oem, olm, osm}}));
     setVisible(false);
   };
 
