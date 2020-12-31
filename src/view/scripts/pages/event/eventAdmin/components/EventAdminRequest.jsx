@@ -73,7 +73,7 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
 
   function getRequests() {
 
-    if (requests.length === 0) {
+    if (requests && requests.length === 0) {
       return (
         <Row justify="center" align="middle" style={{minHeight:"100vh"}}>
           <Col>
@@ -84,7 +84,7 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
     }
 
     return (<Row gutter={[20, 10]}>
-      {requests.map((req) => {
+      {requests&&requests.map((req) => {
         return (<Col lg={8} xs={22} md={10} >
             <Card
               className="card"
