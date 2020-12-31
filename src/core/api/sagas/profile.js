@@ -123,7 +123,7 @@ export function* changeToPremium({payload}){
             payload: data.data
         });
         payload.handleSuccess();
-        payload.handleOk();
+        // payload.handleOk();
     }
     catch(e){
         console.log(e.response.status)
@@ -132,7 +132,7 @@ export function* changeToPremium({payload}){
             payload: e.response.status
         })
         payload.handleFail();
-        payload.handleOk();
+        // payload.handleOk();
     }
 }
 

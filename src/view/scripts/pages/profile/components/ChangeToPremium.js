@@ -4,7 +4,7 @@ import { Radio, Row, Modal, message, Card, Col, Tag} from 'antd';
 import { changeToPremium } from '../../../../../core/api/actions/UserProfileActions';
 
 const ChangePremium = (props) => {
-    
+
     const [value, setValue] = React.useState(-1);
 
     const handleOk = () => {
@@ -20,10 +20,10 @@ const ChangePremium = (props) => {
         }
     }
 
-    const handleFail = () => { 
+    const handleFail = () => {
         message.error('Not enough credit, please charge your account or choose another package')
     }
-      
+
     const handleSuccess = () => {
       message.success('Your are now a premium user');
     }
@@ -63,17 +63,17 @@ const ChangePremium = (props) => {
             <Radio.Button value={4} style={{width:'112%', height:'120%',}}>
             <h3>1 Year, with only 140$</h3>
             </Radio.Button></Col></Row>
-            
+
             </Radio.Group>
-            {props.user.premium && 
-                <h3 style={{marginTop:'5%', marginLeft:'1%' ,fontFamily:'initial'}}>Your premium package will be ended at {new Date(props.user.premium).toDateString()} {new Date(props.user.premium).getHours() + ":" + new Date(props.user.premium).getMinutes()}</h3>    
+            {props.user.premium &&
+                <h3 style={{marginTop:'5%', marginLeft:'1%' ,fontFamily:'initial'}}>Your premium package will be ended at {new Date(props.user.premium).toDateString()} {new Date(props.user.premium).getHours() + ":" + new Date(props.user.premium).getMinutes()}</h3>
                 }
-            
+
 
             </Modal>
-       
+
         </div>
-    
+
     )
 }
 
