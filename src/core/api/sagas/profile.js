@@ -132,7 +132,7 @@ export function* changeToPremium({payload}){
             payload: e.response.status
         })
         payload.handleFail();
-        payload.handleOk();
+        // payload.handleOk();
     }
 }
 
