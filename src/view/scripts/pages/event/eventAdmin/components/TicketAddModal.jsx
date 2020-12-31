@@ -64,7 +64,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
           }
         >
 
-          <InputNumber placeholder="ticket price" min="0" defaultValue="0" style={{width:"100%"}}/>
+          <InputNumber placeholder="ticket price" min="0" style={{width:"100%"}}/>
         </Form.Item> 
 
         <Form.Item
@@ -78,7 +78,7 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel }) => {
           }
         >
 
-          <InputNumber placeholder="ticket capacity" min="0" defaultValue="0" style={{width:"100%"}}/>
+          <InputNumber placeholder="ticket capacity" min="0" style={{width:"100%"}}/>
         </Form.Item>
 
       </Form>
