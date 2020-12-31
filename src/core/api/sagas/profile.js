@@ -123,7 +123,7 @@ export function* changeToPremium({payload}){
             payload: data.data
         });
         payload.handleSuccess();
-        payload.handleOk();
+        // payload.handleOk();
     }
     catch(e){
         console.log(e.response.status)
