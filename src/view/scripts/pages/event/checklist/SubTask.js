@@ -28,9 +28,12 @@ const SubTask = ({dispatch, id, eventId, name, status, eventMembers, assignedMem
    
     const assignChange = (e) => {
       const setIt = e;
-      if(!assignedMembers.includes(setIt)){
+      const member = eventMembers.filter((email) => email.email == e)[0]
+      const include = assignedMembers.filter((email) => email.email == e)
+      
+      if(include.length == 0){
         sendAssignMembersTaskPut({Id : id, MemberId : setIt})
-            .then(dispatch(assignMember(id, setIt))).catch((e) => {console.log(e)})
+            .then(dispatch(assignMember(id, member))).catch((e) => {console.log(e)})
       }
     }
     const editTaskSend = () => {
@@ -157,20 +160,19 @@ const SubTask = ({dispatch, id, eventId, name, status, eventMembers, assignedMem
      
      <Row className="Tags-Row-Style">
      {assignedMembers && assignedMembers.map((member) => {
-       return (<Tag key={member}
+       return (<Tag key={member.email}
        closable
        onClose={() => {
-         sendDeleteMemberDelete({Id : id, MemberId : member}).then(dispatch(removeTaskMember(member, id)))
+         sendDeleteMemberDelete({Id : id, MemberId : member.email}).then(dispatch(removeTaskMember(member, id)))
        }}>
                {
-                 member
+                 member.email
                }
            </Tag>)
      })}  
      <Tag icon={<UserAddOutlined />} className="get-border-radius get-shadow" onClick={() => {setAssignMode(!assignMode)}}>{assignMode && 
       <Dropdown overlay={(<Menu
         onClick={(e) => {assignChange(e.key)}}>
-        {console.log(eventMembers)}
           {eventMembers.map(member => 
              <Menu.Item key={member.email}>{member.email}</Menu.Item>
           )}
