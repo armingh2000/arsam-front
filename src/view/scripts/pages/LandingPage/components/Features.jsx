@@ -50,7 +50,7 @@ const Features = () =>{
 
     <Divider orientation="left">Free</Divider>
 
-    <Collapse>
+    <Collapse className="get-border-radius">
       <Panel header="Events" key="1">
         <ul>
           <Row>
