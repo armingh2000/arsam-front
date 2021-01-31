@@ -16,7 +16,8 @@ const LandingPage = () => {
 
           <div id="img-div">
             <Image
-            width={90}
+            width={100}
+            height={100}
             src={EventusIcon}
             />
           </div>
