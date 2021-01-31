@@ -388,6 +388,7 @@ export function* TicketRating ({payload}) {
 
 
 export function* sendDeleteEventRequest ({payload}){
+  console.log("saga:sendDeleteEventRequest:",payload);
   try {
     yield put
     ({
