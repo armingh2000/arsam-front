@@ -156,3 +156,16 @@ export const joinRequest = ({payload}) => {
     payload
   }
 }
+
+
+
+
+
+
+export const deleteEventRequest = ({payload}) => {
+  console.log("deleteEventRequest:",payload);
+  return {
+    type: ActionTypes.DELETE_EVENT_REQUEST,
+    payload
+  }
+}

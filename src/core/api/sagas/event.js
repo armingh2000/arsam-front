@@ -13,7 +13,8 @@ import {
   sendAddTypePost,
   sendTypeDelete,
   sendTogglePut,
-  sendTicketsGet
+  sendTicketsGet,
+  sendEventDelete
 } from "../../admin/adminRequests";
 import { sendFilterPost } from "../Filter/sendFilter";
 import {sendJoinRequestPost} from "../../event/Join/JoinRequests";
@@ -360,9 +361,6 @@ export function* sendGetCommentRequest ({payload}){
 
 
 
-
-
-
 export function* TicketRating ({payload}) {
     try {
       const data = yield sendRating(payload.credentials)
@@ -379,6 +377,35 @@ export function* TicketRating ({payload}) {
     payload.handleFail()
   }
 }
+
+
+
+
+
+
+
+
+
+
+export function* sendDeleteEventRequest ({payload}){
+  try {
+    yield put
+    ({
+      type:ActionTypes.DELETE_EVENT_SUCCESS,
+      payload: yield sendEventDelete(payload)
+    })
+  }
+  catch (err) {
+    yield put
+    ({
+      type:ActionTypes.DELETE_EVENT_FAILURE,
+      payload:err
+    })
+  }
+}
+
+
+
 
 export default function* root() {
   yield all([
@@ -403,6 +430,13 @@ export default function* root() {
 
     takeLatest(ActionTypes.GET_COMMENTS_REQUEST, sendGetCommentRequest),
     takeLatest(ActionTypes.ADD_COMMENT_REQUEST, sendAddCommentRequest),
-    takeLatest(ActionTypes.TICKET_RATING, TicketRating)
+    takeLatest(ActionTypes.TICKET_RATING, TicketRating),
+
+
+
+
+
+
+    takeLatest(ActionTypes.DELETE_EVENT_REQUEST, sendDeleteEventRequest),
   ]);
 }

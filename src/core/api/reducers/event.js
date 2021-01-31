@@ -38,6 +38,7 @@ const initialState = {
   requestStatus: 'idle',
   adminContent: "event",
   membersStatus: 'success',
+  deleteEventStatus: 'success',
   //filters applied
   filter: {
     name: null,
@@ -660,6 +661,32 @@ const event = ( state = initialState, {type, payload }) => {
         payload.owm(payload.result.response.data);
       return {
         ...state
+      }
+
+
+
+
+
+
+
+
+
+    case ActionTypes.DELETE_EVENT_REQUEST:
+      return{
+        ...state,
+        deleteEventStatus:'loading',
+      }
+
+    case ActionTypes.DELETE_EVENT_SUCCESS:
+      return{
+        ...state,
+        deleteEventStatus:'success',
+      }
+
+    case ActionTypes.DELETE_EVENT_FAILURE:
+      return{
+        ...state,
+        deleteEventStatus:'error',
       }
 
     default:
