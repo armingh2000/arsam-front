@@ -17,7 +17,7 @@ const DeleteEventConfirmModal = ({eventId, dispatch}) => {
 
   const onOk = () => {
     // dispatch(deleteEventRequest({payload: {id: eventId, olm, osm, oem}}));
-    dispatch(deleteEventRequest({payload: {id: eventId}}));
+    dispatch(deleteEventRequest({payload: {eventId: eventId}}));
     hideModal();
   }
 
