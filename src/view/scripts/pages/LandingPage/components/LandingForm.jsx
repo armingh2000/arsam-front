@@ -22,7 +22,7 @@ import {
   Upload } from 'antd';
 import EventusIcon from "../Images/eventus-good.png";
 import ARSAMIcon from "../Images/arsam-good.png";
-import { UploadOutlined, InboxOutlined , CalendarTwoTone, SketchOutlined } from '@ant-design/icons';
+import { UploadOutlined, InboxOutlined , CalendarOutlined ,TwoTone, SketchOutlined } from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
 import EventTypes from "./EventTypes";
 import Features from "./Features";
@@ -53,7 +53,7 @@ const LandingForm = () =>{
       <div>
         <Tabs defaultActiveKey="1" centered>
 
-          <TabPane tab={<div><CalendarTwoTone/>Event Types</div> } key="1">
+          <TabPane tab={<div><CalendarOutlined />Event Types</div> } key="1">
             <EventTypes />
           </TabPane>
 
