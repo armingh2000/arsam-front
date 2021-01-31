@@ -16,7 +16,7 @@ const LandingPage = () => {
 
           <div id="img-div">
             <Image
-            width={185}
+            width={90}
             src={EventusIcon}
             />
           </div>
@@ -33,7 +33,7 @@ const LandingPage = () => {
 
         <Footer className="landing-page-footer">
 
-            <div id="img-div">
+            <div id="img-div-footer">
             <h5>
               created by:
             </h5>

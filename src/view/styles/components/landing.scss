@@ -103,8 +103,13 @@
 }
 
 
+#img-div Img{
+  border-radius: 100%;
+}
+
+
 #landing-page .landing-page-header{
-  height: 200px;
+  height: 100px;
   background-color: #74C7FA;
 }
 
@@ -118,5 +123,14 @@
 }
 
 #features Img{
+  border-radius: 10px;
+}
+
+#img-div-footer{
+  text-align: center;
+}
+
+
+#img-div-footer Img{
   border-radius: 10px;
 }
