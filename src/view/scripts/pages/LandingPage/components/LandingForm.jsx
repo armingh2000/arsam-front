@@ -18,10 +18,11 @@ import {
   InputNumber,
   TreeSelect,
   Switch,
+  Divider,
   Upload } from 'antd';
 import EventusIcon from "../Images/eventus-good.png";
 import ARSAMIcon from "../Images/arsam-good.png";
-import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
+import { UploadOutlined, InboxOutlined , CalendarTwoTone, SketchOutlined } from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
 import EventTypes from "./EventTypes";
 import Features from "./Features";
@@ -41,17 +42,24 @@ const LandingForm = () =>{
       <div>
         <h1 className="head">Best way to Plan Your Events</h1>
         <h3 className="text-center">Experience different feelings</h3>
+        <div className="signup-button-up-div">
+          <Button onClick={handleOnClick} className="signup-button-up" shape="round">
+            Join us
+          </Button>
+        </div>
       </div>
 
 
       <div>
         <Tabs defaultActiveKey="1" centered>
 
-          <TabPane tab="Event Types" key="1">
+          <TabPane tab={<div><CalendarTwoTone/>Event Types</div> } key="1">
             <EventTypes />
           </TabPane>
 
-          <TabPane tab="Features" key="2">
+
+
+          <TabPane tab={<div><SketchOutlined/>Features</div>} key="2">
             <Features />
           </TabPane>
 

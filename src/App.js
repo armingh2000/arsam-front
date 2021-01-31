@@ -23,8 +23,13 @@ function App() {
         <Route path="/event/:eventId/admin" exact={true} component={EventAdmin}/>
         <Route path="/createevent" component={CreateEvent} />
         <Route path="/filter" component={ShowFilter}/>
-        <Route path="/landing" component={LandingPage} />
-        <Route path="/" component={Home}/>
+        {
+        // <Route path="/landing" component={LandingPage} />
+        }
+        {
+        // <Route path="/" component={Home}/>
+        }
+        <Route path="/" component={LandingPage}/>
       </Switch>
     </div>
   </Router>);

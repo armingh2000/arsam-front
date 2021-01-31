@@ -42,6 +42,9 @@ const EventTypes = () =>{
           <Col span={16}>
             <div>
               <h3>Race</h3>
+              <br/>
+              If you want to hold a race with other people you can create race event and add others to your event.
+              Or make it project type and let others bought your tickets.
             </div>
           </Col>
 
@@ -76,6 +79,9 @@ const EventTypes = () =>{
         <Col span={16}>
           <div>
             <h3>Performance</h3>
+            <br/>
+            If you want to hold a performance you can create an event and also different types of tickets and when you want to sell them
+            you can set sell option On and sell your tickets with your desired price.
           </div>
         </Col>
 
@@ -88,6 +94,9 @@ const EventTypes = () =>{
         <Col span={16}>
           <div>
             <h3>Conference</h3>
+            <br/>
+            If you want to hold a Conference you can create a pulic or private event and you add members to it Or let others bought
+            your tickets with your desired price.
           </div>
         </Col>
 
@@ -122,6 +131,8 @@ const EventTypes = () =>{
         <Col span={16}>
           <div>
             <h3>Fundraiser</h3>
+            <br/>
+            If you want to raise money for charity you can create a findraiser event and envite other people to attend.
           </div>
         </Col>
 
@@ -134,6 +145,8 @@ const EventTypes = () =>{
         <Col span={16}>
           <div>
             <h3>Festival</h3>
+            <br/>
+            If you want to inform others for your festival you can create a public event.
           </div>
         </Col>
 
@@ -168,6 +181,8 @@ const EventTypes = () =>{
         <Col span={16}>
           <div>
             <h3>Social Event</h3>
+            <br/>
+            If you want to hang out with your friends you can create a social event.
           </div>
         </Col>
 

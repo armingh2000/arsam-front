@@ -22,7 +22,7 @@ import {
   Divider,
   Collapse,
   Upload } from 'antd';
-import { UploadOutlined, InboxOutlined } from '@ant-design/icons';
+import { UploadOutlined, InboxOutlined, IdcardOutlined, ProjectOutlined , CrownOutlined , ContactsOutlined } from '@ant-design/icons';
 import {useHistory} from 'react-router-dom';
 import CreateEventImg from "../Images/createevent.png";
 import FilterEventImg from "../Images/filter.png";
@@ -48,10 +48,10 @@ const Features = () =>{
   return (
     <div id="features">
 
-    <Divider orientation="left">Free</Divider>
+    <Divider orientation="left"><div><ContactsOutlined /> Free</div></Divider>
 
     <Collapse className="get-border-radius">
-      <Panel header="Events" key="1">
+      <Panel header={<div><ProjectOutlined/> Events</div>} key="1">
         <ul>
           <Row>
             <Col span={14}>
@@ -255,7 +255,7 @@ const Features = () =>{
 
       </Panel>
 
-      <Panel header="Profile" key="2">
+      <Panel header={<div><IdcardOutlined/> Profile</div>} key="2">
         <ul>
           <li>You can charge your account.</li>
           <li>You can change your password or change your profile image.</li>
@@ -268,7 +268,7 @@ const Features = () =>{
 
 
 
-    <Divider orientation="right">Premium</Divider>
+    <Divider orientation="right"><div><CrownOutlined/> Premium</div></Divider>
       <ul>
         <li>You have all Free Version Features.</li>
         <li>You can create infinite events.</li>
