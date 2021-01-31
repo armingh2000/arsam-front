@@ -1,8 +1,8 @@
 import { sendGetRequest } from "../api";
 
-const sendProfileGet = ({email, tokenId}) => {
+const sendProfileGet = ({id, tokenId}) => {
     return sendGetRequest({
-        url: `api/account/getprofile?email=${email}`,
+        url: `api/account/getprofile?id=${id}`,
         headers: {
           'Authorization': `Bearer ${tokenId}`
       }})

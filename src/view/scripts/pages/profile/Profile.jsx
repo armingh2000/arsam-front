@@ -14,7 +14,7 @@ const Profile = (props) =>
 {
 
   useEffect(() => {
-    props.dispatch(getUser({email: props.match.params.email, tokenId: localStorage.getItem("userToken")}))
+    props.dispatch(getUser({id: props.match.params.id, tokenId: localStorage.getItem("userToken")}))
   },
   []);
 
