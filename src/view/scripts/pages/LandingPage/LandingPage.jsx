@@ -34,14 +34,51 @@ const LandingPage = () => {
 
         <Footer className="landing-page-footer">
 
-            <div id="img-div-footer">
-            <h5>
-              created by:
-            </h5>
-            <Image
-            width={100}
-            src={ARSAMIcon}
-            />
+          <div id="img-div-footer">
+
+            <Row>
+
+              <Col span={8} className="left-text">
+              Questions? Call 1-124-567-8990
+              <br/>
+                <a>FAQ</a>
+                <br/>
+                <a>Investor Relations</a>
+                <br/>
+                <a>Corporate Information</a>
+                <br/>
+                <a>Help Center</a>
+                <br/>
+                <a>Terms of Use</a>
+              </Col>
+
+              <Col span={8}>
+                <h5>
+                  Created by:
+                </h5>
+                <Image
+                width={200}
+                src={ARSAMIcon}
+                />
+              </Col>
+
+              <Col span={8} className="left-text">
+                Contact us:
+                <br/>
+                <a>ali@gmail.com</a>
+                <br/>
+                <a>armin@gmail.com</a>
+                <br/>
+                <a>melika@gmail.com</a>
+                <br/>
+                <a>mostafa@gmail.com</a>
+                <br/>
+                <a>sohrab@gmail.com</a>
+
+              </Col>
+
+            </Row>
+
           </div>
 
         </Footer>

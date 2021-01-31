@@ -55,10 +55,7 @@ const Features = () =>{
         <ul>
           <Row>
             <Col span={14}>
-              <li>You can create your own events. (only 5/project or normal events)</li>
-              <li>You can create project or normal event.</li>
-              <li>You can create private or public event.</li>
-
+              <li>Create events (only 5) + Project/normal event + Private/public event</li>
             </Col>
             <Col span={2}>
 
@@ -66,7 +63,7 @@ const Features = () =>{
 
             <Col span={8}>
               <Image
-              height={150}
+              height={200}
               src={CreateEventImg}
               />
             </Col>
@@ -77,7 +74,7 @@ const Features = () =>{
 
           <Row>
             <Col span={14}>
-              <li>You can search and filter among events.</li>
+              <li>Search and Filter among events</li>
             </Col>
             <Col span={2}>
 
@@ -97,7 +94,7 @@ const Features = () =>{
           <Row>
             <Col span={14}>
 
-              <li>You can buy tickets.</li>
+              <li>Buy tickets</li>
             </Col>
             <Col span={2}>
 
@@ -112,10 +109,32 @@ const Features = () =>{
           </Row>
 
           <br/>
+          {
+          // <Row>
+          //   <Col span={14}>
+          //     <li>Send request to join events</li>
+          //   </Col>
+          //   <Col span={2}>
+          //
+          //   </Col>
+          //
+          //   <Col span={8}>
+          //     <Image
+          //     height={150}
+          //     src={JoinImg}
+          //     />
+          //   </Col>
+          // </Row>
+          //
+          // <br/>
+          }
 
           <Row>
             <Col span={14}>
-              <li>You can send request to join events.</li>
+              <li>Accept or reject requests to join + Add or remove members + Promote or demote members + Ask your questions in comments
+              + Send request to join events + Add tags to filter events + create tasks and assign them
+              + Sell tickets(maximum 50) + Create/Edit/Delete different types of tickets
+              </li>
             </Col>
             <Col span={2}>
 
@@ -123,25 +142,7 @@ const Features = () =>{
 
             <Col span={8}>
               <Image
-              height={150}
-              src={JoinImg}
-              />
-            </Col>
-          </Row>
-
-          <br/>
-
-          <Row>
-            <Col span={14}>
-              <li>You can accept or reject requests of other people to join your events.</li>
-            </Col>
-            <Col span={2}>
-
-            </Col>
-
-            <Col span={8}>
-              <Image
-              height={150}
+              height={200}
               src={RequestsImg}
               />
             </Col>
@@ -151,101 +152,106 @@ const Features = () =>{
 
           <br/>
 
-          <Row>
-            <Col span={14}>
-              <li>You can add or remove members to your events.</li>
-              <li>You can promote or demote members in your events.</li>
+          {
+          // <Row>
+          //   <Col span={14}>
+          //
+          //
+          //   </Col>
+          //   <Col span={2}>
+          //
+          //   </Col>
+          //
+          //   <Col span={8}>
+          //     <Image
+          //     height={150}
+          //     src={MembersImg}
+          //     />
+          //   </Col>
+          // </Row>
+          //
+          // <br/>
 
-            </Col>
-            <Col span={2}>
 
-            </Col>
+          // <Row>
+          //   <Col span={14}>
+          //     <li>You can ask your questions about an event or reply to other comments in comment part for each event.</li>
+          //
+          //   </Col>
+          //   <Col span={2}>
+          //
+          //   </Col>
+          //
+          //   <Col span={8}>
+          //     <Image
+          //     height={150}
+          //     src={CommentsImg}
+          //     />
+          //   </Col>
+          // </Row>
+          //
+          // <br/>
 
-            <Col span={8}>
-              <Image
-              height={150}
-              src={MembersImg}
-              />
-            </Col>
-          </Row>
 
-          <br/>
+          // <Row>
+          //   <Col span={14}>
+          //     <li>You can assign some tags to your events.</li>
+          //
+          //   </Col>
+          //   <Col span={2}>
+          //
+          //   </Col>
+          //
+          //   <Col span={8}>
+          //     <Image
+          //     height={150}
+          //     src={EventsImg}
+          //     />
+          //   </Col>
+          // </Row>
+          //
+          // <br/>
+          }
 
-          <Row>
-            <Col span={14}>
-              <li>You can ask your questions about an event or reply to other comments in comment part for each event.</li>
+          {
+          // <Row>
+          //   <Col span={14}>
+          //     <li></li>
+          //
+          //   </Col>
+          //   <Col span={2}>
+          //
+          //   </Col>
+          //
+          //   <Col span={8}>
+          //     <Image
+          //     height={150}
+          //     src={CreateTicketsImg}
+          //     />
+          //   </Col>
+          // </Row>
+          //
+          // <br/>
+          }
 
-            </Col>
-            <Col span={2}>
-
-            </Col>
-
-            <Col span={8}>
-              <Image
-              height={150}
-              src={CommentsImg}
-              />
-            </Col>
-          </Row>
-
-          <br/>
-
-          <Row>
-            <Col span={14}>
-              <li>You can assign some tags to your events.</li>
-
-            </Col>
-            <Col span={2}>
-
-            </Col>
-
-            <Col span={8}>
-              <Image
-              height={150}
-              src={EventsImg}
-              />
-            </Col>
-          </Row>
-
-          <br/>
-
-          <Row>
-            <Col span={14}>
-              <li>You can sell tickets for your events.(maximum 50)</li>
-              <li>You can create/edit/delete different types of tickets.</li>
-
-            </Col>
-            <Col span={2}>
-
-            </Col>
-
-            <Col span={8}>
-              <Image
-              height={150}
-              src={CreateTicketsImg}
-              />
-            </Col>
-          </Row>
-
-          <br/>
-
-          <Row>
-            <Col span={14}>
-              <li>You can create tasks and assign them to your members or edit or delete them.</li>
-
-            </Col>
-            <Col span={2}>
-
-            </Col>
-
-            <Col span={8}>
-              <Image
-              height={150}
-              src={TasksImg}
-              />
-            </Col>
-          </Row>
-
+          {
+          // <Row>
+          //   <Col span={14}>
+          //     <li>You can create tasks and assign them to your members or edit or delete them.</li>
+          //
+          //   </Col>
+          //   <Col span={2}>
+          //
+          //   </Col>
+          //
+          //   <Col span={8}>
+          //     <Image
+          //     height={150}
+          //     src={TasksImg}
+          //     />
+          //   </Col>
+          // </Row>
+          }
 
 
 
@@ -257,9 +263,9 @@ const Features = () =>{
 
       <Panel header={<div><IdcardOutlined/> Profile</div>} key="2">
         <ul>
-          <li>You can charge your account.</li>
-          <li>You can change your password or change your profile image.</li>
-          <li>You can rate events.</li>
+          <li>Charge your account</li>
+          <li>Change your password or change your profile image</li>
+          <li>Rate events</li>
 
         </ul>
       </Panel>
@@ -271,8 +277,8 @@ const Features = () =>{
     <Divider orientation="right"><div><CrownOutlined/> Premium</div></Divider>
       <ul>
         <li>You have all Free Version Features.</li>
-        <li>You can create infinite events.</li>
-        <li>You can create any number of tickets you want.</li>
+        <li>Create Infinite Events</li>
+        <li>Create Infinite Tickets</li>
       </ul>
 
 

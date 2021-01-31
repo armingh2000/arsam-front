@@ -53,7 +53,7 @@ const LandingForm = () =>{
       <div>
         <Tabs defaultActiveKey="1" centered>
 
-          <TabPane tab={<div><CalendarOutlined />Event Types</div> } key="1">
+          <TabPane tab={<div><CalendarOutlined />Event Categories</div> } key="1">
             <EventTypes />
           </TabPane>
 
