@@ -16,6 +16,8 @@ import LandingMenu from "./components/LandingMenu";
 const { Header, Content, Footer } = Layout;
 
 const LandingPage = () => {
+  var today = new Date();
+  var year=String(today.getFullYear());
 
   return<div id="landing-page">
 
@@ -25,14 +27,14 @@ const LandingPage = () => {
 
           <div id="img-div">
           <Row>
-            <Col span={18}>
+            <Col xs={6} sm={8} md={9} lg={12} xl={16}>
               <Image
               width={70}
               height={70}
               src={EventusLogo2}
               />
             </Col>
-            <Col span={6}>
+            <Col xs={18} sm={16} md={15} lg={12} xl={8}>
               <LandingMenu/>
             </Col>
           </Row>
@@ -55,7 +57,7 @@ const LandingPage = () => {
             <Row>
 
               <Col span={8} className="left-text">
-              Questions? Call 1-124-567-8990
+              <b><i>Questions? Call 1-234-567-8990</i></b>
               <br/>
                 <a>FAQ</a>
                 <br/>
@@ -70,12 +72,33 @@ const LandingPage = () => {
 
               <Col span={8}>
                 <h5>
-                  Created by:
+                  <b><i>Created by:</i></b>
                 </h5>
                 <Image
                 width={100}
                 src={ARSAMLogo}
                 />
+
+                <br/>
+                <b><i>Eventus.ir © 2020 - {year} All rights reserved</i></b>
+
+              </Col>
+
+              <Col span={8} className="left-text">
+                <b><i>Contact us:</i></b>
+                <br/>
+                <a><i>Eventus.arsam@gmail.com</i></a>
+                {
+                // <a>ali@gmail.com</a>
+                // <br/>
+                // <a>armin@gmail.com</a>
+                // <br/>
+                // <a>melika@gmail.com</a>
+                // <br/>
+                // <a>mostafa@gmail.com</a>
+                // <br/>
+                // <a>sohrab@gmail.com</a>
+                }
 
                 <br/>
                 <Space>
@@ -85,21 +108,6 @@ const LandingPage = () => {
                   <a><FacebookOutlined className="social-media"/></a>
                   <a><GooglePlusOutlined className="social-media"/></a>
                 </Space>
-              </Col>
-
-              <Col span={8} className="left-text">
-                Contact us:
-                <br/>
-                <a>ali@gmail.com</a>
-                <br/>
-                <a>armin@gmail.com</a>
-                <br/>
-                <a>melika@gmail.com</a>
-                <br/>
-                <a>mostafa@gmail.com</a>
-                <br/>
-                <a>sohrab@gmail.com</a>
-
               </Col>
 
             </Row>

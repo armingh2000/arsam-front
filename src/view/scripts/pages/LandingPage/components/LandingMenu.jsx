@@ -45,13 +45,25 @@ const LandingMenu = () =>{
   return (
     <div id="landing-menu">
 
-      <Space>
-        <a onClick={()=>RedirectUser("login")}>Login</a>
-        <Divider type="vertical" />
-        <a>Services</a>
-        <Divider type="vertical" />
-        <a>About us</a>
-      </Space>
+      <Row>
+        <Space>
+          <Col>
+            <a onClick={()=>RedirectUser("filter")}>Filter</a>
+          </Col>
+          <Divider type="vertical" />
+          <Col>
+            <a onClick={()=>RedirectUser("login")}>Login</a>
+          </Col>
+          <Divider type="vertical" />
+          <Col>
+            <a>Services</a>
+          </Col>
+          <Divider type="vertical" />
+          <Col>
+            <a>About us</a>
+          </Col>
+        </Space>
+      </Row>
       {
       // <Menu onClick={handleOnClick} mode="horizontal">
       //   <Menu.Item key="mail" icon={<MailOutlined />}>
