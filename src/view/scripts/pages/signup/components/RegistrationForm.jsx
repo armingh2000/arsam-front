@@ -23,10 +23,9 @@ const RegistrationForm = () => {
     setIsFailed(true);
   };
 
-  const onSuccess = (data) => {
-    console.log("confirmationLink:",data.data.confirmationLink);
-    localStorage.setItem("userToken", data.data.token);
-    openNotificationWithIcon({history:history, type:"success", desc:true, dur:0});
+    const onSuccess = (data) => {
+        localStorage.setItem("userToken", data.data.token);
+        openNotificationWithIcon({history:history, type:"success", desc:true, dur:0});
   };
 
   const onFinish = (values) => {
