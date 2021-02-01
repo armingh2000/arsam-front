@@ -18,7 +18,7 @@ function App() {
       <Switch>
         <Route path="/login" component={Login}/>
         <Route path="/signup" component={Signup}/>
-        <Route path="/profile/:email"  component={Profile}/>
+        <Route path="/profile/:id"  component={Profile}/>
         <Route path="/event/:eventId" exact={true} component={ShowEvent}/>
         <Route path="/event/:eventId/admin" exact={true} component={EventAdmin}/>
         <Route path="/createevent" component={CreateEvent} />
