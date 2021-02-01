@@ -95,7 +95,7 @@ const CommentList = ({ comments, dispatch, eventId, addCommentStatus, addReplySt
                   <Avatar
                   src={<div id="img-avatar-div"><Image src={item.user.image} height={45} width={45} /></div>}
                   size={40}
-                  onClick={()=>handleOnClickAuthor(item.user.email)}
+                  onClick={()=>handleOnClickAuthor(item.user.userId)}
                   >
                   </Avatar>
                   :
@@ -103,7 +103,7 @@ const CommentList = ({ comments, dispatch, eventId, addCommentStatus, addReplySt
                   style={{
                       backgroundColor:getRandomColor(item.user.email),
                       }}
-                  onClick={()=>handleOnClickAuthor(item.user.email)}
+                  onClick={()=>handleOnClickAuthor(item.user.userId)}
                   >
                     {item.user.firstName.charAt(0).toUpperCase()+item.user.lastName.charAt(0).toUpperCase()}
                   </Avatar>
