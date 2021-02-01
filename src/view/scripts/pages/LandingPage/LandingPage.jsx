@@ -1,8 +1,17 @@
 import React from "react";
-import {Layout, Row, Col, Image} from 'antd';
+import {Layout, Row, Col, Image, Space} from 'antd';
 import LandingForm from './components/LandingForm';
 import EventusIcon from "./Images/eventus-good.png";
 import ARSAMIcon from "./Images/arsam-good.png";
+import EventusLogo from "./Images/Eventus-logo.png";
+import EventusLogo2 from "./Images/Eventus-logo2.png";
+import ARSAMLogo from "./Images/arsam-logo.png";
+import { UploadOutlined, InboxOutlined , CalendarOutlined ,TwoTone, SketchOutlined, InstagramOutlined,
+RedditOutlined, FacebookOutlined, GooglePlusOutlined, AmazonOutlined, SkypeOutlined, GitlabOutlined ,
+GoogleOutlined , YoutubeOutlined, LinkedinOutlined ,TwitterOutlined,
+} from '@ant-design/icons';
+import LandingMenu from "./components/LandingMenu";
+
 
 const { Header, Content, Footer } = Layout;
 
@@ -15,11 +24,18 @@ const LandingPage = () => {
         <Header className="landing-page-header">
 
           <div id="img-div">
-            <Image
-            width={100}
-            height={100}
-            src={EventusIcon}
-            />
+          <Row>
+            <Col span={18}>
+              <Image
+              width={70}
+              height={70}
+              src={EventusLogo2}
+              />
+            </Col>
+            <Col span={6}>
+              <LandingMenu/>
+            </Col>
+          </Row>
           </div>
 
         </Header>
@@ -57,9 +73,18 @@ const LandingPage = () => {
                   Created by:
                 </h5>
                 <Image
-                width={200}
-                src={ARSAMIcon}
+                width={100}
+                src={ARSAMLogo}
                 />
+
+                <br/>
+                <Space>
+                  <a><InstagramOutlined className="social-media"/></a>
+                  <a><LinkedinOutlined className="social-media"/></a>
+                  <a><YoutubeOutlined className="social-media"/></a>
+                  <a><FacebookOutlined className="social-media"/></a>
+                  <a><GooglePlusOutlined className="social-media"/></a>
+                </Space>
               </Col>
 
               <Col span={8} className="left-text">
