@@ -43,7 +43,7 @@ const EventGrid = ({event, dispatch, eventId, role, ticketTypes}) =>
 
 
             {role==='Admin' || role==='Member'?
-            <Row justify="space-around" align="middle" gutter={[8,8]}>
+            <Row justify="space-between" align="middle" gutter={[8,8]}>
 
               <Col xs={24} md={17}>
                 <Card className="card">
