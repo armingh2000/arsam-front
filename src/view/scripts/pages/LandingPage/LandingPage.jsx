@@ -29,8 +29,8 @@ const LandingPage = () => {
           <Row>
             <Col xs={6} sm={8} md={9} lg={12} xl={16}>
               <Image
-              width={70}
-              height={70}
+              width={60}
+              height={60}
               src={EventusLogo2}
               />
             </Col>
