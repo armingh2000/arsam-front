@@ -15,6 +15,7 @@ const EventAdminTicketTypeList = ({ticketTypes, dispatch, eventId, oem, olm, osm
 
   return ( <div>
             <TicketAddModal olm={olm} osm={osm} oem={oem} eventId={eventId} dispatch={dispatch}/>
+            <br/>
             <List
             header="Ticket Types"
             itemLayout="horizontal"

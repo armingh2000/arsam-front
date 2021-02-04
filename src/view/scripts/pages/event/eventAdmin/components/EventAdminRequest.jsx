@@ -83,7 +83,8 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
       )
     }
 
-    return (<Row gutter={[20, 10]}>
+    return (<div className="admin-cards-div">
+      <Row gutter={[20, 10]}>
       {requests&&requests.map((req) => {
         return (<Col lg={8} xs={22} md={10} >
             <Card
@@ -128,7 +129,9 @@ const EventAdminRequest = ({eventId, dispatch, requestStatus, requests}) =>
           </Col>
       );
       })}
-    </Row>);
+    </Row>
+    </div>
+  );
   }
 
   switch (requestStatus) {
