@@ -36,7 +36,9 @@ const ShowEvent = ({event, dispatch, match, profile}) =>
             <EventGrid ticketTypes={event.ticketTypes} dispatch={dispatch} event={event.event} eventId={match.params.eventId} role={event.event.myRole}/>
 
             <div>
-            <hr id="top-comment-hr"/>
+            {
+            // <hr id="top-comment-hr"/>
+            }
             <h2>Comments</h2>
             <br />
             <Comment

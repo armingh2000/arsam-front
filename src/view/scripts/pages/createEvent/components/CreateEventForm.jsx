@@ -281,7 +281,7 @@ const CreateEventForm = () =>{
                   <Switch  className="get-shadow" onChange={onLimitChange}/>
                 </Form.Item>
 
-                <Form.Item label="Member Num" name="memberNum" hidden={!limiedMember} labelCol={{ span: 11 }} wrapperCol={{ span: 10 }}>
+                <Form.Item label="Member Number" name="memberNum" hidden={!limiedMember} labelCol={{ span: 11 }} wrapperCol={{ span: 10 }}>
                   <InputNumber min="1" defaultValue={1}/>
                 </Form.Item>
               </Col>
