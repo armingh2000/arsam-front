@@ -12,6 +12,7 @@ const MenuBar = ({match}) => {
     const path = window.location.pathname;
     const show = path != "/" ? true : false;
     const [showMenuBar, setShowMenuBar] = useState(show);
+    const [defKey, setDefKey] = useState(getDefKey(window.location.pathname));
     
     useEffect(() => {
         return history.listen((location) => {
@@ -19,6 +20,8 @@ const MenuBar = ({match}) => {
                 setShowMenuBar(true);
             else
                 setShowMenuBar(false);
+
+            setDefKey(getDefKey(location.pathname));
         }) 
     },[history]);
 
@@ -31,6 +34,27 @@ const MenuBar = ({match}) => {
         history.replace(page);
     }
 
+    function getDefKey(path)
+    {
+        console.log(path);
+        switch(path)
+        {
+            case "/":
+            return ['1'];
+            case "/filter":
+            return ['2'];
+            case "/login":
+            return ['3'];
+            case "/signup":
+            return ['5'];
+            case `/profile/${localStorage.getItem("userId")}`:
+            return ['6'];
+
+            default:
+            return [];
+        }
+    }
+
 
     if(!showMenuBar)
         return <div></div>
@@ -38,7 +62,7 @@ const MenuBar = ({match}) => {
     return (
         <div className="menu">
             <Menu
-                defaultSelectedKeys={['1']}
+                defaultSelectedKeys={defKey}
                 mode={mode}
                 theme={theme}
             >
