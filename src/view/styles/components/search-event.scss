@@ -16,12 +16,12 @@
 
 #filter-component {
   background-color: #f4f7fc;
-  height: 94vh;
+  height: 93vh;
 }
 
 #not-scrollable {
   overflow-y: hidden;
-  height: 100vh;
+  height: 93vh;
 }
 
 #search-event-component {
@@ -98,7 +98,7 @@
 #search-event-component .scrollable{
   overflow-y:scroll;
   overflow-x: hidden;
-  height: 100vh;
+  height: 92vh;
   width: 100%;
   margin-top: -20px;
   padding-right: 20px;
