@@ -34,20 +34,22 @@ const UserEventsTickets=({user,status})=>{
 
 
   const operations = {
-  left:<Button className="btn2 center-button2" onClick={redirect}>
-    <svg>
-      <defs>
-        <linearGradient id="grad1">
-          <stop offset="0%" stop-color="#7183f5" />
-          <stop offset="100%" stop-color="#74ddfc" />
-        </linearGradient>
-      </defs>
-      <rect fill="none" stroke="url(#grad1)"></rect>
-    </svg>
-
-    <span className="center-span">Filter Page</span>
-
-  </Button>
+  // left:<Button className="btn2 center-button2" onClick={redirect}>
+  //   <svg>
+  //     <defs>
+  //       <linearGradient id="grad1">
+  //         <stop offset="0%" stop-color="#7183f5" />
+  //         <stop offset="100%" stop-color="#74ddfc" />
+  //       </linearGradient>
+  //     </defs>
+  //     <rect fill="none" stroke="url(#grad1)"></rect>
+  //   </svg>
+  //
+  //   <span className="center-span">Filter Page</span>
+  //
+  // </Button>
+  // ,
+  left:<pre id="not-selectable">                 </pre>
   ,
   right:<Button className="btn2 center-button2" onClick={handelClick}>
     <svg>
