@@ -2,10 +2,13 @@ import React, {useState} from "react";
 import { Modal, Button } from 'antd';
 import { deleteEventRequest } from "../../../../../../core/api/actions/EventActions";
 import { DeleteOutlined } from '@ant-design/icons';
+import {useHistory } from 'react-router-dom';
 
 // const DeleteEventConfirmModal = ({eventId, dispatch, oem, olm, osm}) => {
 const DeleteEventConfirmModal = ({eventId, dispatch}) => {
   const [state, setState] = useState(false);
+
+  const history=useHistory();
 
   const showModal = () => {
     setState(true);
@@ -19,6 +22,7 @@ const DeleteEventConfirmModal = ({eventId, dispatch}) => {
     // dispatch(deleteEventRequest({payload: {id: eventId, olm, osm, oem}}));
     dispatch(deleteEventRequest({payload: {eventId: eventId}}));
     hideModal();
+    history.replace(`/profile/${localStorage.getItem("userId")}`);
   }
 
   return (<div>
