@@ -20,11 +20,7 @@ const Tasks = (props) => {
 
             <Layout
             className="get-border-radius"
-            style={{
-                // width: '95vh',
-                marginLeft: '5%',
-                marginTop : '5%',
-            }}
+            
             >
             <Sider theme="light"
             className="site-layout-background get-border-radius get-shadow menu-tasks-get-style">

@@ -143,13 +143,13 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                                    </Avatar>
                                }
                            </Col>
-                           <Col className="infoPart" span={16}>
+                           <Col className="infoPart" span={18}>
 
-                           <Row className="info">
+                           <Row className="info" justify="space-between" >
                                <Col span={12}>
                                    <Title level={4}>{user.firstName} {user.lastName}</Title>
                                </Col>
-                               {user.isMe && <Button className="editButton" size='small' style={{fontSize:'13px'}}
+                               <Col  span={9}>{user.isMe && <Button className="editButton" size='small' style={{fontSize:'13px'}}
                                onClick={() => {setEditProfile(true) }}><EditOutlined />Edit profile</Button>}
                                
                              {user.isMe && <Dropdown overlay={menu}>
@@ -158,7 +158,7 @@ const UserInfo = ({user, status, changePasswordSuccess}) => {
                                </Button>
                              </Dropdown>}
                              <Button  className="editButton" size='small' style={{fontSize:'13px'}} onClick={checkPremium}>{user.premium && 
-                             <CrownOutlined />}{user.premium ? 'Premium' : 'Free'}</Button>
+                             <CrownOutlined />}{user.premium ? 'Premium' : 'Free'}</Button></Col>
 
 
                            </Row>
