@@ -48,7 +48,7 @@ const LandingMenu = () =>{
       <Row>
         <Space>
           <Col>
-            <a onClick={()=>RedirectUser("filter")}>Filter</a>
+            <a onClick={()=>RedirectUser("filter")}>Explore</a>
           </Col>
           <Divider type="vertical" />
           <Col>
