@@ -43,29 +43,31 @@ const EventDetails = ({name, startDate, endDate, creator, categories, rate, rate
       </Col>
     </Row>
 
+    <div id="tag-space">
     <Text className="text tags">Tags:
-    {categories.map((tag) => {
-        switch (tag) {
-          case 1:
-          return <Tag color="magenta"><TrophyOutlined /> Race</Tag>;
-          case 2:
-            return <Tag color="gold"><SafetyOutlined /> Performance</Tag>;
-          case 4:
-            return <Tag color="purple"><SoundOutlined /> Conference</Tag>;
-          case 8:
-            return <Tag color="red"><DollarCircleOutlined /> Fundraiser</Tag>;
+      {categories.map((tag) => {
+          switch (tag) {
+            case 1:
+            return <Tag color="magenta" className="spc"><TrophyOutlined /> Race</Tag>;
+            case 2:
+              return <Tag color="gold" className="spc"><SafetyOutlined /> Performance</Tag>;
+            case 4:
+              return <Tag color="purple" className="spc"><SoundOutlined /> Conference</Tag>;
+            case 8:
+              return <Tag color="red" className="spc"><DollarCircleOutlined /> Fundraiser</Tag>;
 
-          case 16:
-            return <Tag color="blue"><FireOutlined /> Festival</Tag>;
-          case 32:
-            return <Tag color="green"><TeamOutlined /> Social Event</Tag>;
+            case 16:
+              return <Tag color="blue" className="spc"><FireOutlined /> Festival</Tag>;
+            case 32:
+              return <Tag color="green" className="spc"><TeamOutlined /> Social Event</Tag>;
 
-          default:
-            return null;
+            default:
+              return null;
+          }
         }
-      }
-    )}
-  </Text>
+      )}
+    </Text>
+  </div>
   <Row justify='center' align='middle' style={{marginTop: '5%'}}>
   <Tooltip title={tooltipTitle}>
     <span><StarTwoTone twoToneColor="#f0c20c" style={{fontSize:'18px'}} /> {rate}</span>

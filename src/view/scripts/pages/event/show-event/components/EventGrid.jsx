@@ -61,7 +61,13 @@ const EventGrid = ({event, dispatch, eventId, role, ticketTypes}) =>
                   </Card>
                 </Col>
 
-                <Col xs={24} md={5} style={{height:"100%"}}>
+                  {tokenId && <Col>
+                                  <EventBuyTicketDrawer isProject={event.isProject} buyingTicketEnabled={event.buyingTicketEnabled} dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/>
+                                  {!event.myRole && event.isProject && <EventJoinRequest dispatch={dispatch} eventId={eventId} />}
+                              </Col>}
+
+
+          <Col xs={24} md={5} style={{height:"100%"}}>
                   <Card className="card">
                     <EventMembersList
                       members={event.eventMembers}
@@ -106,8 +112,8 @@ const EventGrid = ({event, dispatch, eventId, role, ticketTypes}) =>
                   </Col>
                     {tokenId && <Col>
                           <EventBuyTicketDrawer isProject={event.isProject} buyingTicketEnabled={event.buyingTicketEnabled} dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/>
-                          {!event.myRole && <EventJoinRequest dispatch={dispatch} eventId={eventId} />}
-                      </Col>}
+                                    {!event.myRole && event.isProject && <EventJoinRequest dispatch={dispatch} eventId={eventId} />}
+                                </Col>}
 
                 </Row>
                 </Card>

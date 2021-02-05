@@ -50,11 +50,13 @@ const EventAdminGrid = ({eventId, event, dispatch}) =>
           <EventAdminSidebar event={event} dispatch={dispatch} eventId={eventId}/>
         </Sider>
         <Content>
+          <div className={event.adminContent!="event" ? "admin-content-scroll" : ""}>
           {getAdminContent(event)}
-         </Content>
+      </div>
+          </Content>
 
       </Layout>
-    </div>
+          </div>
   );
 }
 
