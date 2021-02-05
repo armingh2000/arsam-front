@@ -198,7 +198,12 @@ const CreateEventForm = () =>{
   const onFailure = (error) => {
     setIsFailed(true);
     setFailureMessage("Invalid Create Event Attempt!");
-    console.log(error);
+    if(error.response.status===402){
+      message.error(error.response.data);
+    }
+    else if(error.response.status===415){
+      message.error(error.response.data);
+    }
   };
 
   const [fileList, updateFileList] = useState([]);
