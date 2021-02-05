@@ -330,8 +330,7 @@ const event = ( state = initialState, {type, payload }) => {
       }
 
     case ActionTypes.RESET_FILTERED_EVENTS:
-    console.log("state in RESET_FILTERED_EVENTS:(event.js-reducers)",state);
-    console.log("state.filter in Reset:(event.js-reducers)",state.filter);
+
       return {
         ...state,
         pageNumber:1,
