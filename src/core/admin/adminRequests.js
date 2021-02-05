@@ -137,3 +137,22 @@ export const sendTicketsGet = ({eventId}) => {
     }
   })
 }
+
+
+
+
+
+
+
+
+
+
+export const sendEventDelete = ({eventId}) => {
+  console.log("sendEventDelete:",eventId);
+  return sendDeleteRequest({
+    url: `api/event/delete?id=${eventId}`,
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem("userToken")}`
+    }
+  })
+}

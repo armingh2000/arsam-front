@@ -13,7 +13,8 @@ const initialState = {
         balance: '',
         premium: null,
         averagedCreatedEventsRating: '',
-        isMe: null
+        isMe: null,
+        userId: null
     },
     status: '',
     changePasswordSuccess: false
@@ -68,7 +69,8 @@ const profile = (state = initialState, {type, payload}) => {
             return{
                 ...state,
                 user: {
-                    ...payload,
+                    ...state.user,
+                    image: payload.image,
                     isMe: true
                 },
                 status: 'Success'
@@ -141,7 +143,8 @@ const profile = (state = initialState, {type, payload}) => {
             return{
                 ...state,
                 user: {
-                    ...payload,
+                    ...state.user,
+                    image: payload.image,
                     isMe: true
                 },
                 status: 'Success'

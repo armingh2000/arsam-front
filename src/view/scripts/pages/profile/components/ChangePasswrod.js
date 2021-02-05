@@ -67,6 +67,7 @@ const ChangePassword = (props) => {
         onOk={handleOk}
         onCancel={handleCancel}>
         <Form id="PassForm"
+        layout="vertical"
         form={form}>
             <Form.Item hidden={button}
             name="Old password"

@@ -39,11 +39,11 @@ const ChargeAccount = (props) => {
 
             <Radio.Group onChange={onChange} value={value}>
                 <Row style={{marginBottom:'15%'}}><Radio value={5}><Tag color='cyan' style={{fontSize:'20px'}}>$5.00</Tag></Radio></Row>
-                <Row style={{marginBottom:'15%'}}><Radio value={10}><Tag color='blue' style={{fontSize:'20px'}}>$10.00</Tag></Radio></Row>
-                <Row style={{marginBottom:'15%'}}><Radio value={20}><Tag color='geekblue' style={{fontSize:'20px'}}>$20.00</Tag></Radio></Row>
-                <Row style={{marginBottom:'15%'}}><Radio value={50}><Tag color='purple' style={{fontSize:'20px'}}>$50.00</Tag></Radio></Row>
+                <Row style={{marginBottom:'15%'}}><Radio value={10}><Tag color='cyan' style={{fontSize:'20px'}}>$10.00</Tag></Radio></Row>
+                <Row style={{marginBottom:'15%'}}><Radio value={20}><Tag color='cyan' style={{fontSize:'20px'}}>$20.00</Tag></Radio></Row>
+                <Row style={{marginBottom:'15%'}}><Radio value={50}><Tag color='cyan' style={{fontSize:'20px'}}>$50.00</Tag></Radio></Row>
             </Radio.Group>
-            <Image src={card}></Image>
+            <Image src={card} height='80px' width='400px' style={{marginLeft:'8%'}}></Image>
 
             </Modal>
         </div>

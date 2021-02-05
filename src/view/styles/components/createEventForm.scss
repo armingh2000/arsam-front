@@ -13,6 +13,11 @@
   width: 100%;
 }
 
+#components-form-create-event{
+  height: 93vh;
+  overflow-y: scroll;
+}
+
 #components-form-create-event {
 	// background-image: url("https://images.pexels.com/photos/891252/pexels-photo-891252.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     background-position: center;
@@ -21,7 +26,7 @@
     background-size: cover;
     // min-height:100vh;
     background-color: #f4f7fc;
-    padding: 5% 10%;
+    padding: 2% 10%;
     // background:
 	// font-family: 'Noto Sans', sans-serif;
 }

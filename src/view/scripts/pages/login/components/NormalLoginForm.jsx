@@ -14,8 +14,9 @@ const NormalLoginForm = () => {
 
   const history = useHistory();
   const onSuccess = ({data}) => {
-    localStorage.setItem("userToken", data.token);
-    history.replace(`/profile/${email}`);
+      localStorage.setItem("userToken", data.token);
+      localStorage.setItem("userId", data.id);
+      history.replace(`/profile/${data.id}`);
   };
 
   const onFailure = (error) => {

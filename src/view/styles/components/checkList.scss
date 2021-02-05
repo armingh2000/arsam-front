@@ -1,5 +1,5 @@
   #components-checkList {
-      padding: 5% 0;
+      // padding: 5% 0;
   }
 
   #components-checkList .text-center{
@@ -210,15 +210,13 @@
     overflow: auto;
     height: 25vh;
     width : 260 ;
-    margin-left: 0px;
-    margin-right: 5px;
   }
 
   #components-checkList .content-style{
     // max-width: 100%;
     background-Color : white;
-    padding-top: 0.5%;
-    padding-left: 1%;
+    padding-top: 2%;
+    padding-left: 3%;
   }
   #components-checkList .Status-Button-Style{
       margin-left: 10%;
@@ -234,7 +232,7 @@
   }
 
   #components-checkList .Members-Title-Style{
-    margin-left: 0px;
+    margin-top: 1%;
   }
   #components-checkList .Tags-Row-Style{
     margin-right: 10px;

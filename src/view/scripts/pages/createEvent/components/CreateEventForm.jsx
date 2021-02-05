@@ -192,13 +192,18 @@ const CreateEventForm = () =>{
   };
 
   function redirectUser(eventId){
-    history.replace(`/event/${eventId}`);
+    history.replace(`/event/${eventId}/admin`);
   }
 
   const onFailure = (error) => {
     setIsFailed(true);
     setFailureMessage("Invalid Create Event Attempt!");
-    console.log(error);
+    if(error.response.status===402){
+      message.error(error.response.data);
+    }
+    else if(error.response.status===415){
+      message.error(error.response.data);
+    }
   };
 
   const [fileList, updateFileList] = useState([]);
@@ -281,7 +286,7 @@ const CreateEventForm = () =>{
                   <Switch  className="get-shadow" onChange={onLimitChange}/>
                 </Form.Item>
 
-                <Form.Item label="Member Num" name="memberNum" hidden={!limiedMember} labelCol={{ span: 11 }} wrapperCol={{ span: 10 }}>
+                <Form.Item label="Member Number" name="memberNum" hidden={!limiedMember} labelCol={{ span: 11 }} wrapperCol={{ span: 10 }}>
                   <InputNumber min="1" defaultValue={1}/>
                 </Form.Item>
               </Col>
