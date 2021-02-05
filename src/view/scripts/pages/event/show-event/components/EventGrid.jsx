@@ -110,13 +110,11 @@ const EventGrid = ({event, dispatch, eventId, role, ticketTypes}) =>
                       rate={event.averagedRating}
                       rateCount={event.ratingCount}/>
                   </Col>
-                    {tokenId && <Col>
-                          <EventBuyTicketDrawer isProject={event.isProject} buyingTicketEnabled={event.buyingTicketEnabled} dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/>
-                                    {!event.myRole && event.isProject && <EventJoinRequest dispatch={dispatch} eventId={eventId} />}
-                                </Col>}
+                    {tokenId && !event.isProject && <Col><EventBuyTicketDrawer isProject={event.isProject} buyingTicketEnabled={event.buyingTicketEnabled} dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/></Col>}
+                    {!event.myRole && event.isProject && <Col><EventJoinRequest dispatch={dispatch} eventId={eventId} /></Col>}
 
                 </Row>
-                </Card>
+            </Card>
 
             {role==='Admin' || role==='Member'?
             <Row justify="space-between" align="middle" gutter={[8,8]}>
