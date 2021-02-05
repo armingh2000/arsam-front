@@ -38,15 +38,15 @@ const EventAdminSidebar = ({event, dispatch, eventId}) =>
                              <Menu.Item key="eventTickets" onClick={() => {setContent("eventTickets")}}>Tickets</Menu.Item>
                              <Menu.Item key="eventTicketsManage" onClick={() => {setContent("eventTicketsManage")}}>Manage Tickets</Menu.Item>
                          </SubMenu>}
-          <Menu.Item key="deleteEvent">
-              <div>
-                          <DeleteEventConfirmModal eventId={eventId} dispatch={dispatch}/>
-                      </div>
-                  </Menu.Item>
+        <Menu.Item key="deleteEvent">
+          <div>
+            <DeleteEventConfirmModal eventId={eventId} dispatch={dispatch}/>
+          </div>
+        </Menu.Item>
 
-                  </Menu>
-                  </div>
-              );
-          }
+      </Menu>
+    </div>
+  );
+}
 
 export default EventAdminSidebar;
