@@ -192,7 +192,7 @@ const CreateEventForm = () =>{
   };
 
   function redirectUser(eventId){
-    history.replace(`/event/${eventId}`);
+    history.replace(`/event/${eventId}/admin`);
   }
 
   const onFailure = (error) => {
