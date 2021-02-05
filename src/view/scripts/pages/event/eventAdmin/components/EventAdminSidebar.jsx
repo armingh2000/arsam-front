@@ -2,12 +2,14 @@ import React from "react";
 import {
   Menu,
   Avatar,
-  Typography
+  Typography,
+  Button
  } from 'antd';
  import {setAdminContent, setRequest} from "../../../../../../core/api/actions/EventActions";
+import { DeleteOutlined } from '@ant-design/icons';
+import DeleteEventConfirmModal from "./DeleteEventConfirmModal";
 
-
-const EventAdminSidebar = ({event, dispatch}) =>
+const EventAdminSidebar = ({event, dispatch, eventId}) =>
 {
 
   const {SubMenu} = Menu;
@@ -22,6 +24,7 @@ const EventAdminSidebar = ({event, dispatch}) =>
     )
   }
 
+
     const isProject = event.event.isProject;
 
     return (
@@ -35,6 +38,12 @@ const EventAdminSidebar = ({event, dispatch}) =>
                              <Menu.Item key="eventTickets" onClick={() => {setContent("eventTickets")}}>Tickets</Menu.Item>
                              <Menu.Item key="eventTicketsManage" onClick={() => {setContent("eventTicketsManage")}}>Manage Tickets</Menu.Item>
                          </SubMenu>}
+        <Menu.Item key="deleteEvent">
+          <div>
+            <DeleteEventConfirmModal eventId={eventId} dispatch={dispatch}/>
+          </div>
+        </Menu.Item>
+
       </Menu>
     </div>
   );
