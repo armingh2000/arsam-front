@@ -19,13 +19,13 @@ function GLogin() {
           history.replace(`/profile/${data.id}`);
 
       }).catch(() => {
-      alert("Ran into problem. Please try logging in again!");
-    });
+          alert("Ran into problem. Please try logging in again!");
+      });
     refreshTokenSetup(res);
   };
 
   const onFailure = (res) => {
-    alert("Unable to Login. Please try again!");
+          //alert("Unable to Login. Please try again!");
   };
 
   return (<div>
