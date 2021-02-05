@@ -1,5 +1,6 @@
 import React from "react";
 import { Avatar, Typography, Tooltip } from 'antd';
+import {useHistory} from 'react-router-dom';
 
 const EventMembersList = ({members, maximumNumberOfMembers, isLimitedMember}) =>
 {
@@ -21,9 +22,15 @@ const EventMembersList = ({members, maximumNumberOfMembers, isLimitedMember}) =>
     }
   }
 
+
   return color;
 }
 
+const history = useHistory();
+
+function handleOnClickAuthor(author){
+  history.replace(`/profile/${author}`);
+}
 
   return (
     <div style={{textAlign:"center"}}>
@@ -42,6 +49,7 @@ const EventMembersList = ({members, maximumNumberOfMembers, isLimitedMember}) =>
             return (
               <Tooltip title={member.email} placement="top">
                 <Avatar
+                  onClick={()=>handleOnClickAuthor(member.userId)}
                   style={{
                     backgroundColor:getRandomColor(member.email),
                   }}

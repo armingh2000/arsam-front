@@ -87,7 +87,7 @@ const CommentList = ({ comments, dispatch, eventId, addCommentStatus, addReplySt
             :
             <div></div>
           }
-          author={<a onClick={()=>handleOnClickAuthor(item.user.email)}>{`${item.user.firstName.charAt(0).toUpperCase()+item.user.firstName.slice(1)} ${item.user.lastName.charAt(0).toUpperCase()+item.user.lastName.slice(1)}`}</a>}
+          author={<a onClick={()=>handleOnClickAuthor(item.user.userId)}>{`${item.user.firstName.charAt(0).toUpperCase()+item.user.firstName.slice(1)} ${item.user.lastName.charAt(0).toUpperCase()+item.user.lastName.slice(1)}`}</a>}
           avatar={
             <Tooltip title={item.user.email} placement="top">
                 {

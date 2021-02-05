@@ -42,25 +42,26 @@ const ChangePremium = (props) => {
             visible={props.visible}
             onCancel={handleCancel}
             onOk={handleOk}
+            width='700px'
             title={props.user.premium ? "You are premium" : "Which one do you rather to choose"}>
-            <p style={{fontSize:'20px', fontFamily:'initial', marginLeft:'1%', color:'navy'}}>All of these offers include creating unlimited events and also selling unlimited tickets for your events!</p>
-            <Radio.Group className="info" onChange={onChange} value={value} size='large' style={{fontFamily:'initial'}}>
-            <Row><Col span={11}>
-            <Radio.Button value={1} style={{width:'112%', height:'90%', marginBottom: '10%'}}><h3>1 Month, with only 15$</h3>
+            <p style={{fontSize:'20px', fontFamily:'initial', marginBottom:'7%'}}>All of these offers include creating unlimited events and also selling unlimited tickets for your events!</p>
+            <Radio.Group  onChange={onChange} value={value} size='large' style={{fontFamily:'initial', marginLeft:'12%'}}>
+            <Row style={{marginBottom:'3%'}}><Col span={11}>
+            <Radio.Button value={1} style={{width:'120%', height:'90%', marginBottom: '10%'}}><h3>1 Month, with only 15$</h3>
             </Radio.Button>
             </Col>
             <Col span={11} offset={2}>
-            <Radio.Button value={2} style={{width:'112%', height:'90%', marginBottom: '10%'}}>
+            <Radio.Button value={2} style={{width:'120%', height:'90%', marginBottom: '10%' ,marginLeft:'9%'}}>
             <h3>3 Months, with only 40$</h3>
             </Radio.Button></Col>
             </Row>
             <Row>
             <Col span={11}>
-            <Radio.Button value={3} style={{width:'112%', height:'120%',}}>
+            <Radio.Button value={3} style={{width:'120%', height:'120%',}}>
             <h3>6 Months, with only 75$</h3>
             </Radio.Button></Col>
             <Col span={11} offset={2}>
-            <Radio.Button value={4} style={{width:'112%', height:'120%',}}>
+            <Radio.Button value={4} style={{width:'120%', height:'120%', marginLeft:'9%'}}>
             <h3>1 Year, with only 140$</h3>
             </Radio.Button></Col></Row>
 
