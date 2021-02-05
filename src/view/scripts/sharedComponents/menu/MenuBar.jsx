@@ -11,7 +11,7 @@ const MenuBar = ({match}) => {
     const history = useHistory();
 
     //localStorage.setItem("userToken", 1);
-    const showLogin = (localStorage.getItem("userToken") == undefined);
+    const showLogin = (localStorage.getItem("userToken") == undefined) || (localStorage.getItem("userToken") == null);
     //localStorage.clear();
 
     function setPage(page)
