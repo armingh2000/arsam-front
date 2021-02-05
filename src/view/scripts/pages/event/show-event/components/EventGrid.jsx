@@ -17,15 +17,15 @@ const EventGrid = ({event, dispatch, eventId, role, ticketTypes}) =>
 {
   const tokenId = localStorage.getItem("userToken");
 
-  console.log("images",event.images.length);
-  if(event.images.length>0){
-    return (<div>
-              <Card className="card">
-                <Row justify="space-around" align="middle" gutter={[8,8]}>
-                  <Col xs={24} md={11}>
-                      <EventImages images={event.images}/>
-                  </Col>
-                  <Col xs={24} md={9} className="details-col">
+    
+    if(event.images.length>0){
+        return (<div>
+                    <Card className="card">
+                        <Row justify="space-around" align="middle" gutter={[8,8]}>
+                            <Col xs={24} md={11}>
+                                <EventImages images={event.images}/>
+                            </Col>
+                            <Col xs={24} md={9} className="details-col">
                     <EventDetails
                       name={event.name}
                       startDate={event.startDate}
@@ -35,13 +35,11 @@ const EventGrid = ({event, dispatch, eventId, role, ticketTypes}) =>
                       rate={event.averagedRating}
                       rateCount={event.ratingCount}/>
                   </Col>
-                    {tokenId && <Col>
-                          <EventBuyTicketDrawer isProject={event.isProject} buyingTicketEnabled={event.buyingTicketEnabled} dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/>
-                          {!event.myRole && <EventJoinRequest dispatch={dispatch} eventId={eventId} />}
-                      </Col>}
+                            {tokenId && !event.isProject && <Col><EventBuyTicketDrawer isProject={event.isProject} buyingTicketEnabled={event.buyingTicketEnabled} dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/></Col>}
+                            {!event.myRole && event.isProject && <Col><EventJoinRequest dispatch={dispatch} eventId={eventId} /></Col>}
 
-                </Row>
-                </Card>
+                        </Row>
+                    </Card>
 
 
               {role==='Admin' || role==='Member'?
@@ -61,13 +59,8 @@ const EventGrid = ({event, dispatch, eventId, role, ticketTypes}) =>
                   </Card>
                 </Col>
 
-                  {tokenId && <Col>
-                                  <EventBuyTicketDrawer isProject={event.isProject} buyingTicketEnabled={event.buyingTicketEnabled} dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/>
-                                  {!event.myRole && event.isProject && <EventJoinRequest dispatch={dispatch} eventId={eventId} />}
-                              </Col>}
 
-
-          <Col xs={24} md={5} style={{height:"100%"}}>
+                  <Col xs={24} md={5} style={{height:"100%"}}>
                   <Card className="card">
                     <EventMembersList
                       members={event.eventMembers}
@@ -110,13 +103,11 @@ const EventGrid = ({event, dispatch, eventId, role, ticketTypes}) =>
                       rate={event.averagedRating}
                       rateCount={event.ratingCount}/>
                   </Col>
-                    {tokenId && <Col>
-                          <EventBuyTicketDrawer isProject={event.isProject} buyingTicketEnabled={event.buyingTicketEnabled} dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/>
-                                    {!event.myRole && event.isProject && <EventJoinRequest dispatch={dispatch} eventId={eventId} />}
-                                </Col>}
+                    {tokenId && !event.isProject && <Col><EventBuyTicketDrawer isProject={event.isProject} buyingTicketEnabled={event.buyingTicketEnabled} dispatch={dispatch} eventId={eventId} ticketTypes={ticketTypes}/></Col>}
+                    {!event.myRole && event.isProject && <Col><EventJoinRequest dispatch={dispatch} eventId={eventId} /></Col>}
 
                 </Row>
-                </Card>
+            </Card>
 
             {role==='Admin' || role==='Member'?
             <Row justify="space-between" align="middle" gutter={[8,8]}>
